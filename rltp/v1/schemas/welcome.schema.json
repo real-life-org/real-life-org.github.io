@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://real-life.org/rltp/v1/schemas/welcome.schema.json",
+  "title": "RLTP Welcome (rltp-welcome/0.1, rltp-membership@0.7)",
+  "description": "The plaintext of a welcome seal (Membership Tasks section 4): binding fields (v, group, subject, accept) are owned by Membership Tasks and CLOSED — the receiver verifies them against the admitting operation; material is owned by the Access layer and opaque here (CURRENT epoch keys and the subject's implicit capability — history opens through the epoch-key lineage in the replicated log, never through the welcome). The digest over JCS(this document) is committed in the admitting operation's body (admission.welcome), which is the welcome's one authenticity carrier. The welcome binds the ACCEPT digest, never the operation id — the id covers admission.welcome, so a back-pointer would be an unconstructible hash fixed point.",
+  "type": "object",
+  "required": ["v", "group", "subject", "accept", "material"],
+  "additionalProperties": false,
+  "properties": {
+    "v": { "const": "rltp-welcome/0.1" },
+    "group": { "$ref": "#/$defs/didKey" },
+    "subject": { "$ref": "#/$defs/didKey" },
+    "accept": {
+      "type": "string",
+      "pattern": "^(u[A-Za-z0-9_-]{46}|z[1-9A-HJ-NP-Za-km-z]{44,48})$",
+      "description": "document digest of the accept this admission consumes (= digest of admission.accept)"
+    },
+    "material": {
+      "type": "object",
+      "description": "Access-owned: CURRENT epoch keys and the subject's implicit capability; unpinned until the Access layer converges (MO-4)"
+    }
+  },
+  "$defs": {
+    "didKey": {
+      "type": "string",
+      "pattern": "^did:key:z6Mk[1-9A-HJ-NP-Za-km-z]{44}$"
+    }
+  }
+}

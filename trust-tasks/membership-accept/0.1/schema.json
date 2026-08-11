@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://real-life.org/trust-tasks/membership-accept/0.1",
+  "title": "Payload: membership-accept/0.1 (rltp-membership@0.7, target Trust Tasks framework 0.4)",
+  "description": "Payload schema per Trust Tasks 6.3 ($id = Type URI, describes only the payload). The consent artifact: subject MUST equal the document issuer AND the referenced invite's invitee (no transplantation); ref binds this accept to exactly one invite document by document digest; card is the subject's contact card, whose key-agreement key the welcome will be sealed to (card proof MUST verify and card.anchor MUST equal subject — a foreign card would redirect the group keys; retained per Contract section 5 from the accept's issuance; key transport, no freshness claimed). The document MUST carry a proof verifying under the issuer. One accept authorizes at most one admission (consumable at materialization). Normative rules in Membership Tasks 3.2, 3.3.",
+  "type": "object",
+  "required": ["accept"],
+  "additionalProperties": false,
+  "properties": {
+    "accept": {
+      "type": "object",
+      "required": ["group", "subject", "ref", "card"],
+      "additionalProperties": false,
+      "properties": {
+        "group": { "$ref": "#/$defs/didKey" },
+        "subject": { "$ref": "#/$defs/didKey" },
+        "ref": { "$ref": "#/$defs/multibaseMultihash" },
+        "card": {
+          "$ref": "https://real-life.org/rltp/v1/schemas/contact-card.schema.json",
+          "description": "the subject's contact card (displayed form): carries the key-agreement key the welcome will be sealed to"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "didKey": {
+      "type": "string",
+      "pattern": "^did:key:z6Mk[1-9A-HJ-NP-Za-km-z]{44}$"
+    },
+    "multibaseMultihash": {
+      "type": "string",
+      "pattern": "^(u[A-Za-z0-9_-]{46}|z[1-9A-HJ-NP-Za-km-z]{44,48})$",
+      "description": "document digest of the invite being accepted (Contract section 2)"
+    }
+  }
+}

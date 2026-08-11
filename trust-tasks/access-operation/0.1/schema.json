@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://real-life.org/trust-tasks/access-operation/0.1",
+  "title": "Payload: access-operation/0.1 (rltp-membership@0.7, target Trust Tasks framework 0.4)",
+  "description": "Payload schema per Trust Tasks 6.3 ($id = Type URI, describes only the payload). Carries one Access-layer operation envelope to a party outside the replica boundary; the envelope carries its own signatures, so the task document carries no proof, and the document issuer MUST be the operation's author or one of its signers (Membership Tasks 3.3). When operation.op is member.add, the body profile of Membership Tasks 3.3 applies (enforced below): subject plus admission carrying the COMPLETE invite and accept documents and the welcome plaintext digest — full documents, so every replica can verify the consent chain at materialization. welcome (the seal) is permitted only on such an admitting operation, is REQUIRED when the document crosses the boundary to its subject (prose rule), and its plaintext digest MUST equal admission.welcome.",
+  "type": "object",
+  "required": ["operation"],
+  "additionalProperties": false,
+  "if": { "required": ["welcome"] },
+  "then": {
+    "properties": {
+      "operation": {
+        "properties": { "op": { "const": "member.add" } },
+        "required": ["op"]
+      }
+    }
+  },
+  "properties": {
+    "operation": {
+      "allOf": [
+        { "$ref": "https://real-life.org/rltp/v1/schemas/access-operation-envelope.schema.json" },
+        {
+          "if": {
+            "properties": { "op": { "const": "member.add" } },
+            "required": ["op"]
+          },
+          "then": {
+            "properties": {
+              "body": {
+                "type": "object",
+                "required": ["subject", "admission"],
+                "properties": {
+                  "subject": {
+                    "type": "string",
+                    "pattern": "^did:key:z6Mk[1-9A-HJ-NP-Za-km-z]{44}$"
+                  },
+                  "admission": {
+                    "type": "object",
+                    "required": ["invite", "accept", "welcome"],
+                    "additionalProperties": false,
+                    "properties": {
+                      "invite": {
+                        "allOf": [
+                          { "$ref": "https://real-life.org/rltp/v1/schemas/rltp-delivery-document.schema.json" },
+                          {
+                            "required": ["proof"],
+                            "properties": {
+                              "type": { "const": "https://real-life.org/trust-tasks/membership-invite/0.1" },
+                              "payload": { "$ref": "https://real-life.org/trust-tasks/membership-invite/0.1" }
+                            }
+                          }
+                        ],
+                        "description": "the COMPLETE membership-invite document, proof REQUIRED — verifiable by every replica"
+                      },
+                      "accept": {
+                        "allOf": [
+                          { "$ref": "https://real-life.org/rltp/v1/schemas/rltp-delivery-document.schema.json" },
+                          {
+                            "required": ["proof"],
+                            "properties": {
+                              "type": { "const": "https://real-life.org/trust-tasks/membership-accept/0.1" },
+                              "payload": { "$ref": "https://real-life.org/trust-tasks/membership-accept/0.1" }
+                            }
+                          }
+                        ],
+                        "description": "the COMPLETE membership-accept document, proof REQUIRED"
+                      },
+                      "welcome": {
+                        "type": "string",
+                        "pattern": "^(u[A-Za-z0-9_-]{46}|z[1-9A-HJ-NP-Za-km-z]{44,48})$",
+                        "description": "multibase multihash over JCS of the welcome plaintext (Membership Tasks section 4)"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "welcome": {
+      "type": "object",
+      "required": ["sealed"],
+      "additionalProperties": false,
+      "properties": {
+        "sealed": {
+          "$ref": "https://real-life.org/rltp/v1/schemas/sealed-envelope.schema.json",
+          "description": "welcome seal (HKDF info rltp/v1/welcome, never a delivery document): plaintext = rltp-welcome/0.1 (welcome.schema.json), sealed to the key-agreement key of the accept's ownership-verified card"
+        }
+      }
+    }
+  }
+}

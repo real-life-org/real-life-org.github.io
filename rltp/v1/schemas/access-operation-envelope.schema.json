@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://real-life.org/rltp/v1/schemas/access-operation-envelope.schema.json",
+  "title": "RLTP Access Operation Envelope (transcription of Access Layer draft 0.3 section 3.3)",
+  "description": "TRANSCRIPTION, not the definition: the Access layer owns this shape; this schema exists so Membership Tasks validates its payload offline (Delivery Contract offline schema rule). Self-addressing id (oid: + base64url SHA-256 over the JCS serialization with id empty and proof omitted); every signature covers exactly that serialization. Root is CLOSED; as transcribed from Access 0.3, crit can only NAME extension fields — the closed root admits none, so extensions are impossible in this transcription until the Access layer defines its extension container.",
+  "type": "object",
+  "required": ["v", "op", "group", "epoch", "policyVersion", "prev", "body", "id", "author", "proof"],
+  "additionalProperties": false,
+  "properties": {
+    "v": { "const": "rltp-access/0.3" },
+    "op": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*\\.[a-z][a-z0-9]*$",
+      "examples": ["member.add", "member.remove", "member.leave", "epoch.rotate", "policy.change", "grant.revoke", "group.dissolve"]
+    },
+    "group": { "$ref": "#/$defs/didKey" },
+    "epoch": { "type": "integer", "minimum": 0 },
+    "policyVersion": { "type": "integer", "minimum": 0 },
+    "prev": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/oid" },
+      "maxItems": 32
+    },
+    "body": { "type": "object" },
+    "crit": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 64 },
+      "maxItems": 16
+    },
+    "id": { "$ref": "#/$defs/oid" },
+    "author": { "$ref": "#/$defs/didKey" },
+    "proof": {
+      "type": "object",
+      "required": ["mechanism", "signatures"],
+      "additionalProperties": false,
+      "properties": {
+        "mechanism": { "const": "signature-set" },
+        "signatures": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 64,
+          "items": {
+            "type": "object",
+            "required": ["signer", "sig"],
+            "additionalProperties": false,
+            "properties": {
+              "signer": { "$ref": "#/$defs/didKey" },
+              "sig": { "type": "string", "pattern": "^z[1-9A-HJ-NP-Za-km-z]+$", "maxLength": 128 }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "didKey": {
+      "type": "string",
+      "pattern": "^did:key:z6Mk[1-9A-HJ-NP-Za-km-z]{44}$",
+      "description": "did:key over an Ed25519 public key; MUST additionally decode to multicodec ed25519-pub + 32 bytes (Encounter 2.3)"
+    },
+    "oid": {
+      "type": "string",
+      "pattern": "^oid:[A-Za-z0-9_-]{43}$",
+      "description": "self-addressing operation id: base64url(SHA-256) without padding over the JCS serialization with id empty and proof omitted"
+    }
+  }
+}

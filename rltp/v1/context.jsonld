@@ -1,0 +1,16 @@
+{
+  "@context": {
+    "@protected": true,
+    "EncounterCredential": {
+      "@id": "https://real-life.org/rltp/v1#EncounterCredential",
+      "@context": {
+        "@protected": true,
+        "format": "https://real-life.org/rltp/v1#credentialFormat",
+        "ceremony": "https://real-life.org/rltp/v1#Ceremony",
+        "challenge": "https://real-life.org/rltp/v1#Challenge",
+        "enactmentBinding": "https://real-life.org/rltp/v1#EnactmentBinding",
+        "channel": "https://real-life.org/rltp/v1#channel"
+      }
+    }
+  }
+}

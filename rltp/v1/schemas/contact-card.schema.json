@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://real-life.org/rltp/v1/schemas/contact-card.schema.json",
+  "title": "RLTP Contact Card (rltp-encounter@0.19)",
+  "description": "Normative wire format per RLTP Encounter Layer 0.19 section 6. The root is CLOSED. The challenge is REQUIRED whenever the card is used in an enactment. sentTo and boundTo are REQUIRED on sent cards (sentTo names the recipient anchor, boundTo the counterparty displayed-challenge value the enactment answers; receivers reject sent cards missing either or with a foreign sentTo) and MUST be absent on displayed cards. Keys are verified decoded (multicodec + 32 bytes).",
+  "type": "object",
+  "required": [
+    "version",
+    "anchor",
+    "keyAgreement",
+    "proof"
+  ],
+  "additionalProperties": false,
+  "dependentRequired": {
+    "sentTo": ["boundTo"],
+    "boundTo": ["sentTo"]
+  },
+  "properties": {
+    "version": {
+      "const": "rltp-card/0.19"
+    },
+    "anchor": {
+      "type": "string",
+      "pattern": "^did:key:z6Mk[1-9A-HJ-NP-Za-km-z]{44}$"
+    },
+    "keyAgreement": {
+      "type": "string",
+      "description": "X25519 Multikey: 'z6LS' + 44 base58btc chars; MUST decode to multicodec x25519-pub + 32 bytes",
+      "pattern": "^z6LS[1-9A-HJ-NP-Za-km-z]{44}$"
+    },
+    "challenge": {
+      "type": "object",
+      "required": [
+        "value",
+        "issuedAt"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{22,88}$"
+        },
+        "issuedAt": {
+          "$ref": "#/$defs/rfc3339utc"
+        }
+      }
+    },
+    "sentTo": {
+      "type": "string",
+      "description": "recipient anchor; REQUIRED on sent cards, absent on displayed cards (spec 5.3, 6)",
+      "pattern": "^did:key:z6Mk[1-9A-HJ-NP-Za-km-z]{44}$"
+    },
+    "boundTo": {
+      "type": "string",
+      "description": "the counterparty displayed-challenge value this enactment answers; REQUIRED on sent cards (selects the receiver's own challenge under the resolution rule, spec 5.3), absent on displayed cards; in a bundle MUST equal the enclosed credential's bound challenge",
+      "pattern": "^[A-Za-z0-9_-]{22,88}$"
+    },
+    "name": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "deliveryHints": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 512
+      },
+      "maxItems": 8
+    },
+    "proof": {
+      "type": "object",
+      "required": [
+        "type",
+        "cryptosuite",
+        "created",
+        "verificationMethod",
+        "proofPurpose",
+        "proofValue"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "DataIntegrityProof"
+        },
+        "cryptosuite": {
+          "const": "eddsa-jcs-2022"
+        },
+        "created": {
+          "$ref": "#/$defs/rfc3339utc"
+        },
+        "verificationMethod": {
+          "type": "string",
+          "pattern": "^did:key:z6Mk[1-9A-HJ-NP-Za-km-z]{44}#z6Mk[1-9A-HJ-NP-Za-km-z]{44}$"
+        },
+        "proofPurpose": {
+          "const": "assertionMethod"
+        },
+        "proofValue": {
+          "type": "string",
+          "pattern": "^z[1-9A-HJ-NP-Za-km-z]+$"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "rfc3339utc": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?Z$"
+    }
+  }
+}
