@@ -1,0 +1,38 @@
+{
+  "name": "RLTP vocabulary namespace",
+  "namespace": "https://real-life.org/rltp/v1",
+  "publisher": "https://real-life.org/",
+  "specificationRepository": "https://github.com/real-life-org/rltp-spec",
+  "updated": "2026-08-11",
+  "digestAlgorithm": "SHA-256, lowercase hex, over the served bytes of the referenced file",
+  "context": {
+    "url": "https://real-life.org/rltp/v1/context.jsonld",
+    "sha256": "e94b3544b45cf61dbbc06987b5a4acaecf5ceab301213948c932d47b8bfb5412"
+  },
+  "offlineRule": "Per the interim securing profile, credentials pin their @context by value and implementations never process JSON-LD or resolve schemas over the network at runtime; this registry is documentation and distribution, not runtime infrastructure.",
+  "terms": [
+    { "fragment": "Anchor", "iri": "https://real-life.org/rltp/v1#Anchor", "meaning": "the stable Layer-1 identifier of a person (in the interim profile: a did:key)", "definedIn": "Encounter 2.2" },
+    { "fragment": "ContactCard", "iri": "https://real-life.org/rltp/v1#ContactCard", "meaning": "a person's signed self-description: verification material, key-agreement key, challenge when used in an enactment", "definedIn": "Encounter 6" },
+    { "fragment": "Challenge", "iri": "https://real-life.org/rltp/v1#Challenge", "meaning": "a fresh, single-use, high-entropy value carried in a contact card for one enactment; governed by the own-challenge state model", "definedIn": "Encounter 5.3" },
+    { "fragment": "Ceremony", "iri": "https://real-life.org/rltp/v1#Ceremony", "meaning": "a registered, versioned definition of an encounter interaction, including its time parameters", "definedIn": "Encounter 5.1" },
+    { "fragment": "Enactment", "iri": "https://real-life.org/rltp/v1#Enactment", "meaning": "one performed run of a ceremony between two people; never reused", "definedIn": "Encounter 5.2" },
+    { "fragment": "Step", "iri": "https://real-life.org/rltp/v1#Step", "meaning": "one credential issuance within an enactment", "definedIn": "Encounter 5.2" },
+    { "fragment": "EnactmentBinding", "iri": "https://real-life.org/rltp/v1#EnactmentBinding", "meaning": "the digest, identical in both step credentials, tying them to one exchange descriptor", "definedIn": "Encounter 5.4" },
+    { "fragment": "EncounterCredential", "iri": "https://real-life.org/rltp/v1#EncounterCredential", "meaning": "the immutable credential in which one party records that they recognized another", "definedIn": "Encounter 7" },
+    { "fragment": "CredentialDigest", "iri": "https://real-life.org/rltp/v1#CredentialDigest", "meaning": "the multibase multihash over JCS(document) of the complete credential including its proof", "definedIn": "Encounter 2.2" },
+    { "fragment": "Edge", "iri": "https://real-life.org/rltp/v1#Edge", "meaning": "the relation between two anchors constituted by the encounter credentials between them: incoming, outgoing, or mutual; one edge per anchor pair", "definedIn": "Encounter 4.2" },
+    { "fragment": "DocumentDigest", "iri": "https://real-life.org/rltp/v1#DocumentDigest", "meaning": "the multibase multihash over JCS(document) of a delivery document's plaintext; its identity for idempotency and acknowledgement", "definedIn": "Delivery 2" },
+    { "fragment": "SealedEnvelope", "iri": "https://real-life.org/rltp/v1#SealedEnvelope", "meaning": "the encrypted form in which a document travels: ephemeral X25519, HKDF, AES-256-GCM", "definedIn": "Delivery 5" },
+    { "fragment": "Disposition", "iri": "https://real-life.org/rltp/v1#Disposition", "meaning": "the receiver's classification of a processed envelope (staged, first failing stage names it)", "definedIn": "Delivery 6.2" },
+    { "fragment": "DeliveryAck", "iri": "https://real-life.org/rltp/v1#DeliveryAck", "meaning": "the arrival acknowledgement: machine-generated at the durable recording of a document's defined effect; arrival, never acceptance", "definedIn": "Delivery 4.2" }
+  ],
+  "schemas": [
+    { "name": "contact-card", "url": "https://real-life.org/rltp/v1/schemas/contact-card.schema.json", "sha256": "7c75ff977fd3077e8ad421827d6ade8ed821ebdb312839f048b5a6a7f92cf599" },
+    { "name": "encounter-credential", "url": "https://real-life.org/rltp/v1/schemas/encounter-credential.schema.json", "sha256": "8f5ffd892b237d471b9ae53c920130a33ca48e1217dadab821a8f88e5437a9a2" },
+    { "name": "sealed-envelope", "url": "https://real-life.org/rltp/v1/schemas/sealed-envelope.schema.json", "sha256": "a7074c073f0dd394b6f7ac7e36f75b70bad67901e4f6456431e3952ac7c5e224" },
+    { "name": "rltp-delivery-document", "url": "https://real-life.org/rltp/v1/schemas/rltp-delivery-document.schema.json", "sha256": "3613f8af5cd58ac0448c4501c764a56da95d734c4cf8e168887a5a69f1486704" },
+    { "name": "access-operation-envelope", "url": "https://real-life.org/rltp/v1/schemas/access-operation-envelope.schema.json", "sha256": "2296d469aa2a5c50f33c8e160ffb0797248a41f43f844402056297ad94d1aef3" },
+    { "name": "welcome", "url": "https://real-life.org/rltp/v1/schemas/welcome.schema.json", "sha256": "864a12155016a660d93c2c6122e4a1b069c29eabcd7f6486910fb1252169ae09" }
+  ],
+  "taskTypeRegistry": "https://real-life.org/trust-tasks/index.json"
+}
