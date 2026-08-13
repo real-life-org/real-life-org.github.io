@@ -1,0 +1,168 @@
+{
+  "$comment": "Editorial data the generator cannot derive from the schemas: one-line summaries, the defining specification and section, and the vocabulary term meanings. The conformance profile is DERIVED from the schema title, never stored here. Everything else — schema files, digests, registries, type pages — is generated from rltp-spec by scripts/generate.mjs, which FAILS if a shipped type has no entry here or an entry has no shipped type.",
+  "publisher": "https://real-life.org/",
+  "specRepo": "https://github.com/real-life-org/rltp-spec",
+  "framework": "ToIP DTGWG Trust Tasks 0.4 (draft), §6.5 private specifications",
+  "offlineRule": "Conforming implementations pre-register every schema by its $id and never resolve schemas or contexts over the network at runtime; this registry is documentation and distribution, not runtime infrastructure.",
+  "types": {
+    "encounter-bundle/0.1": {
+      "summary": "The one-scan transmission: the scanner's sent card and step credential.",
+      "definedIn": {
+        "specification": "RLTP Delivery Contract",
+        "section": "4.1",
+        "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
+      }
+    },
+    "delivery-ack/0.1": {
+      "summary": "The arrival acknowledgement: proof-carrying, terminal, arrival-only semantics.",
+      "definedIn": {
+        "specification": "RLTP Delivery Contract",
+        "section": "4.2",
+        "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
+      }
+    },
+    "encounter-credential-delivery/0.1": {
+      "summary": "Post-enactment delivery of a step credential (counter-step or standalone).",
+      "definedIn": {
+        "specification": "RLTP Delivery Contract",
+        "section": "4.3",
+        "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
+      }
+    },
+    "access-operation/0.1": {
+      "summary": "The generic carrier for Access-layer operations crossing the replica boundary, incl. the member.add admission profile and the welcome seal.",
+      "definedIn": {
+        "specification": "RLTP Membership Tasks",
+        "section": "3.3",
+        "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
+      }
+    },
+    "membership-invite/0.1": {
+      "summary": "The invitation: no key material, invitee signed into the payload, inviter card and validity window.",
+      "definedIn": {
+        "specification": "RLTP Membership Tasks",
+        "section": "3.1",
+        "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
+      }
+    },
+    "membership-accept/0.1": {
+      "summary": "The consent artifact: signed by the person consenting, content-bound to exactly one invitation.",
+      "definedIn": {
+        "specification": "RLTP Membership Tasks",
+        "section": "3.2",
+        "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
+      }
+    },
+    "membership-evidence/0.1": {
+      "summary": "The evidence relay: the complete invite and accept documents, enclosed, so any authorized member can admit.",
+      "definedIn": {
+        "specification": "RLTP Membership Tasks",
+        "section": "3.4",
+        "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
+      }
+    },
+    "key-delivery/0.1": {
+      "summary": "Epoch key material to a specific party, and the authenticated request for it: transition key envelopes, welcomes and re-welcomes, refreshes under the key service duty.",
+      "definedIn": {
+        "specification": "RLTP Access Layer",
+        "section": "10.1",
+        "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md"
+      }
+    },
+    "removal-notice/0.1": {
+      "summary": "The compact notice a removed member is owed: it states the removal without carrying the transition-bearing envelope, which never crosses the replica boundary.",
+      "definedIn": {
+        "specification": "RLTP Access Layer",
+        "section": "10.2",
+        "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md"
+      }
+    }
+  },
+  "terms": [
+    {
+      "fragment": "Anchor",
+      "iri": "https://real-life.org/rltp/v1#Anchor",
+      "meaning": "the stable Layer-1 identifier of a person (in the interim profile: a did:key)",
+      "definedIn": "Encounter 2.2"
+    },
+    {
+      "fragment": "ContactCard",
+      "iri": "https://real-life.org/rltp/v1#ContactCard",
+      "meaning": "a person's signed self-description: verification material, key-agreement key, challenge when used in an enactment",
+      "definedIn": "Encounter 6"
+    },
+    {
+      "fragment": "Challenge",
+      "iri": "https://real-life.org/rltp/v1#Challenge",
+      "meaning": "a fresh, single-use, high-entropy value carried in a contact card for one enactment; governed by the own-challenge state model",
+      "definedIn": "Encounter 5.3"
+    },
+    {
+      "fragment": "Ceremony",
+      "iri": "https://real-life.org/rltp/v1#Ceremony",
+      "meaning": "a registered, versioned definition of an encounter interaction, including its time parameters",
+      "definedIn": "Encounter 5.1"
+    },
+    {
+      "fragment": "Enactment",
+      "iri": "https://real-life.org/rltp/v1#Enactment",
+      "meaning": "one performed run of a ceremony between two people; never reused",
+      "definedIn": "Encounter 5.2"
+    },
+    {
+      "fragment": "Step",
+      "iri": "https://real-life.org/rltp/v1#Step",
+      "meaning": "one credential issuance within an enactment",
+      "definedIn": "Encounter 5.2"
+    },
+    {
+      "fragment": "EnactmentBinding",
+      "iri": "https://real-life.org/rltp/v1#EnactmentBinding",
+      "meaning": "the digest, identical in both step credentials, tying them to one exchange descriptor",
+      "definedIn": "Encounter 5.4"
+    },
+    {
+      "fragment": "EncounterCredential",
+      "iri": "https://real-life.org/rltp/v1#EncounterCredential",
+      "meaning": "the immutable credential in which one party records that they recognized another",
+      "definedIn": "Encounter 7"
+    },
+    {
+      "fragment": "CredentialDigest",
+      "iri": "https://real-life.org/rltp/v1#CredentialDigest",
+      "meaning": "the multibase multihash over JCS(document) of the complete credential including its proof",
+      "definedIn": "Encounter 2.2"
+    },
+    {
+      "fragment": "Edge",
+      "iri": "https://real-life.org/rltp/v1#Edge",
+      "meaning": "the relation between two anchors constituted by the encounter credentials between them: incoming, outgoing, or mutual; one edge per anchor pair",
+      "definedIn": "Encounter 4.2"
+    },
+    {
+      "fragment": "DocumentDigest",
+      "iri": "https://real-life.org/rltp/v1#DocumentDigest",
+      "meaning": "the multibase multihash over JCS(document) of a delivery document's plaintext; its identity for idempotency and acknowledgement",
+      "definedIn": "Delivery 2"
+    },
+    {
+      "fragment": "SealedEnvelope",
+      "iri": "https://real-life.org/rltp/v1#SealedEnvelope",
+      "meaning": "the encrypted form in which a document travels: ephemeral X25519, HKDF, AES-256-GCM",
+      "definedIn": "Delivery 5"
+    },
+    {
+      "fragment": "Disposition",
+      "iri": "https://real-life.org/rltp/v1#Disposition",
+      "meaning": "the receiver's classification of a processed envelope (staged, first failing stage names it)",
+      "definedIn": "Delivery 6.2"
+    },
+    {
+      "fragment": "DeliveryAck",
+      "iri": "https://real-life.org/rltp/v1#DeliveryAck",
+      "meaning": "the arrival acknowledgement: machine-generated at the durable recording of a document's defined effect; arrival, never acceptance",
+      "definedIn": "Delivery 4.2"
+    }
+  ],
+  "vocabularyOfflineRule": "Per the interim securing profile, credentials pin their @context by value and implementations never process JSON-LD or resolve schemas over the network at runtime; this registry is documentation and distribution, not runtime infrastructure."
+}

@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://real-life.org/trust-tasks/key-delivery/0.1",
+  "title": "Payload: key-delivery/0.1 (rltp-access@0.24, target Trust Tasks framework 0.4)",
+  "description": "Payload schema per Trust Tasks 6.3 ($id = Type URI). Epoch key material to a specific party, and the authenticated request for it: kind=keydist (transition key envelope; authority carrier = the transition whose keyDist commits this sealed envelope's digest, AAD-bound to genesis digest, newEpoch, and recipient — never the operation id), kind=re-welcome (welcome seal toward an admission subject) and kind=refresh (keydist-profile seal toward any currently entitled member) — both from fresh P4 material, adopted only if the unsealed content key matches the current epoch's contentKeyCommitment in the log (which authenticates ALL consensus-relevant material: side secrets are derived from the content key, never transported) — and kind=request (signed claim under the key service duty; the task document's proof is REQUIRED and verifies under the claiming anchor, which equals the enclosed card's anchor; never pends). Material kinds carry NO document proof (one carrier). The group identity (genesisDigest) is computed over the proof-free genesis signature input (Access 3.2). Consistency and effects: Access 10.1.",
+  "type": "object",
+  "required": [
+    "keyDelivery"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "keyDelivery": {
+      "type": "object",
+      "required": [
+        "group",
+        "genesisDigest",
+        "epoch",
+        "op",
+        "kind"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "group": {
+          "type": "string",
+          "pattern": "^did:key:z6Mk[1-9A-HJ-NP-Za-km-z]{44}$"
+        },
+        "genesisDigest": {
+          "type": "string",
+          "pattern": "^(z[1-9A-HJ-NP-Za-km-z]+|u[A-Za-z0-9_-]+)$",
+          "maxLength": 128,
+          "description": "the group's identity (Access 3.2: multihash over the proof-free genesis signature input); MUST match the recipient's state for the group, or a bootstrapping invitee's own invite digest"
+        },
+        "epoch": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "keydist: MUST equal the named transition's newEpoch; re-welcome and refresh: MUST equal the unsealed material's epoch and the recipient's current epoch at adoption; request: informative"
+        },
+        "op": {
+          "type": "string",
+          "pattern": "^oid:[A-Za-z0-9_-]{43}$",
+          "description": "the transition (keydist), the canonical admission (re-welcome), any canonical admission of the recipient (refresh — none is distinguished, Access 5.3), or the operation the claim rests on (request)"
+        },
+        "kind": {
+          "enum": [
+            "keydist",
+            "re-welcome",
+            "refresh",
+            "request"
+          ]
+        },
+        "sealed": {
+          "$ref": "https://real-life.org/rltp/v1/schemas/sealed-envelope.schema.json",
+          "description": "REQUIRED for keydist, re-welcome, and refresh; absent for request. keydist: seal per Delivery section 5 with three deliberate differences (HKDF info rltp/v1/keydist; AAD = UTF-8 of JCS {genesis, newEpoch, recipient}; plaintext = rltp-access-keydist/0.24 object) whose digest the named transition commits. re-welcome: welcome seal per Membership section 4. refresh: keydist-profile seal from fresh P4 material at the sender's current position, sealed to the request's card; adopted only on commitment match (Access 10.1)."
+        },
+        "card": {
+          "$ref": "https://real-life.org/rltp/v1/schemas/contact-card.schema.json",
+          "description": "REQUIRED for request, absent otherwise: the requester's contact card in the displayed form (live key, no freshness claim), proof verifying under the requester's anchor"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "keydist",
+                  "re-welcome",
+                  "refresh"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "sealed"
+            ],
+            "not": {
+              "required": [
+                "card"
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "request"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "card"
+            ],
+            "not": {
+              "required": [
+                "sealed"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

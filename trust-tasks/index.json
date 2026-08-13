@@ -3,7 +3,7 @@
   "publisher": "https://real-life.org/",
   "framework": "ToIP DTGWG Trust Tasks 0.4 (draft), §6.5 private specifications",
   "specificationRepository": "https://github.com/real-life-org/rltp-spec",
-  "updated": "2026-08-11",
+  "generatedFrom": "rltp-spec/schemas — do not edit by hand, run scripts/generate.mjs",
   "digestAlgorithm": "SHA-256, lowercase hex, over the served bytes of the referenced file",
   "documentProfile": {
     "schema": "https://real-life.org/rltp/v1/schemas/rltp-delivery-document.schema.json",
@@ -12,19 +12,19 @@
   "offlineRule": "Conforming implementations pre-register every schema by its $id and never resolve schemas or contexts over the network at runtime; this registry is documentation and distribution, not runtime infrastructure.",
   "types": [
     {
-      "type": "https://real-life.org/trust-tasks/encounter-bundle/0.1",
-      "name": "encounter-bundle",
+      "type": "https://real-life.org/trust-tasks/access-operation/0.1",
+      "name": "access-operation",
       "version": "0.1",
-      "profile": "rltp-delivery@0.17",
-      "summary": "The one-scan transmission: the scanner's sent card and step credential.",
+      "profile": "rltp-membership@0.11",
+      "summary": "The generic carrier for Access-layer operations crossing the replica boundary, incl. the member.add admission profile and the welcome seal.",
       "definedIn": {
-        "specification": "RLTP Delivery Contract 0.17",
-        "section": "4.1",
-        "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
+        "specification": "RLTP Membership Tasks",
+        "section": "3.3",
+        "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
       },
-      "schema": "https://real-life.org/trust-tasks/encounter-bundle/0.1/schema.json",
-      "schemaSha256": "17608ec5833b77df51f66ad58e1745018cedf3992ec1d5d1cf55122d80fa301b",
-      "documentation": "https://real-life.org/trust-tasks/encounter-bundle/0.1/"
+      "schema": "https://real-life.org/trust-tasks/access-operation/0.1/schema.json",
+      "schemaSha256": "2571f2621e4b09b59fb62b818960f0a6166b4b8bbdf8bf08870511592026c280",
+      "documentation": "https://real-life.org/trust-tasks/access-operation/0.1/"
     },
     {
       "type": "https://real-life.org/trust-tasks/delivery-ack/0.1",
@@ -33,7 +33,7 @@
       "profile": "rltp-delivery@0.17",
       "summary": "The arrival acknowledgement: proof-carrying, terminal, arrival-only semantics.",
       "definedIn": {
-        "specification": "RLTP Delivery Contract 0.17",
+        "specification": "RLTP Delivery Contract",
         "section": "4.2",
         "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
       },
@@ -42,13 +42,28 @@
       "documentation": "https://real-life.org/trust-tasks/delivery-ack/0.1/"
     },
     {
+      "type": "https://real-life.org/trust-tasks/encounter-bundle/0.1",
+      "name": "encounter-bundle",
+      "version": "0.1",
+      "profile": "rltp-delivery@0.17",
+      "summary": "The one-scan transmission: the scanner's sent card and step credential.",
+      "definedIn": {
+        "specification": "RLTP Delivery Contract",
+        "section": "4.1",
+        "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
+      },
+      "schema": "https://real-life.org/trust-tasks/encounter-bundle/0.1/schema.json",
+      "schemaSha256": "17608ec5833b77df51f66ad58e1745018cedf3992ec1d5d1cf55122d80fa301b",
+      "documentation": "https://real-life.org/trust-tasks/encounter-bundle/0.1/"
+    },
+    {
       "type": "https://real-life.org/trust-tasks/encounter-credential-delivery/0.1",
       "name": "encounter-credential-delivery",
       "version": "0.1",
       "profile": "rltp-delivery@0.17",
       "summary": "Post-enactment delivery of a step credential (counter-step or standalone).",
       "definedIn": {
-        "specification": "RLTP Delivery Contract 0.17",
+        "specification": "RLTP Delivery Contract",
         "section": "4.3",
         "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
       },
@@ -57,64 +72,79 @@
       "documentation": "https://real-life.org/trust-tasks/encounter-credential-delivery/0.1/"
     },
     {
-      "type": "https://real-life.org/trust-tasks/access-operation/0.1",
-      "name": "access-operation",
+      "type": "https://real-life.org/trust-tasks/key-delivery/0.1",
+      "name": "key-delivery",
       "version": "0.1",
-      "profile": "rltp-membership@0.7",
-      "summary": "The generic carrier for Access-layer operations crossing the replica boundary, incl. the member.add admission profile and the welcome seal.",
+      "profile": "rltp-access@0.24",
+      "summary": "Epoch key material to a specific party, and the authenticated request for it: transition key envelopes, welcomes and re-welcomes, refreshes under the key service duty.",
       "definedIn": {
-        "specification": "RLTP Membership Tasks 0.7",
-        "section": "3.3",
-        "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
+        "specification": "RLTP Access Layer",
+        "section": "10.1",
+        "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md"
       },
-      "schema": "https://real-life.org/trust-tasks/access-operation/0.1/schema.json",
-      "schemaSha256": "b43c44f406058fd3ec4240279075116f5ed8b1928a3bf30414e117ce925237f3",
-      "documentation": "https://real-life.org/trust-tasks/access-operation/0.1/"
-    },
-    {
-      "type": "https://real-life.org/trust-tasks/membership-invite/0.1",
-      "name": "membership-invite",
-      "version": "0.1",
-      "profile": "rltp-membership@0.7",
-      "summary": "The invitation: no key material, invitee signed into the payload, inviter card and validity window.",
-      "definedIn": {
-        "specification": "RLTP Membership Tasks 0.7",
-        "section": "3.1",
-        "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
-      },
-      "schema": "https://real-life.org/trust-tasks/membership-invite/0.1/schema.json",
-      "schemaSha256": "6d1eeae91b1fdeb6abdb005976202b113f45b6e105e917a12e9b784917151967",
-      "documentation": "https://real-life.org/trust-tasks/membership-invite/0.1/"
+      "schema": "https://real-life.org/trust-tasks/key-delivery/0.1/schema.json",
+      "schemaSha256": "d8da8308143661ec8088f77c32f3244b14d030e908ec24f6c6435d59082e1eca",
+      "documentation": "https://real-life.org/trust-tasks/key-delivery/0.1/"
     },
     {
       "type": "https://real-life.org/trust-tasks/membership-accept/0.1",
       "name": "membership-accept",
       "version": "0.1",
-      "profile": "rltp-membership@0.7",
+      "profile": "rltp-membership@0.11",
       "summary": "The consent artifact: signed by the person consenting, content-bound to exactly one invitation.",
       "definedIn": {
-        "specification": "RLTP Membership Tasks 0.7",
+        "specification": "RLTP Membership Tasks",
         "section": "3.2",
         "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
       },
       "schema": "https://real-life.org/trust-tasks/membership-accept/0.1/schema.json",
-      "schemaSha256": "c812cf00a34e7629307d6827da5135c05f29bb6987bca3b696e30d794caf5f00",
+      "schemaSha256": "25627efff23e2d9768e08f998251140009baab44f4f14b45c41ef7b4f428e85b",
       "documentation": "https://real-life.org/trust-tasks/membership-accept/0.1/"
     },
     {
       "type": "https://real-life.org/trust-tasks/membership-evidence/0.1",
       "name": "membership-evidence",
       "version": "0.1",
-      "profile": "rltp-membership@0.7",
+      "profile": "rltp-membership@0.11",
       "summary": "The evidence relay: the complete invite and accept documents, enclosed, so any authorized member can admit.",
       "definedIn": {
-        "specification": "RLTP Membership Tasks 0.7",
+        "specification": "RLTP Membership Tasks",
         "section": "3.4",
         "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
       },
       "schema": "https://real-life.org/trust-tasks/membership-evidence/0.1/schema.json",
-      "schemaSha256": "b56647d8724427c561febb7810329573cea8b4f8b4ba526b6ce85f58f7dc6b3a",
+      "schemaSha256": "66a6af43df00b3030affebcf19a275de9ec03c5cc34dbeda0b7776387cec2ee7",
       "documentation": "https://real-life.org/trust-tasks/membership-evidence/0.1/"
+    },
+    {
+      "type": "https://real-life.org/trust-tasks/membership-invite/0.1",
+      "name": "membership-invite",
+      "version": "0.1",
+      "profile": "rltp-membership@0.11",
+      "summary": "The invitation: no key material, invitee signed into the payload, inviter card and validity window.",
+      "definedIn": {
+        "specification": "RLTP Membership Tasks",
+        "section": "3.1",
+        "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
+      },
+      "schema": "https://real-life.org/trust-tasks/membership-invite/0.1/schema.json",
+      "schemaSha256": "4ca8342a27e2e8af4839435a8e0fcd9dc586a069e98c5ca660825f140ebbfed1",
+      "documentation": "https://real-life.org/trust-tasks/membership-invite/0.1/"
+    },
+    {
+      "type": "https://real-life.org/trust-tasks/removal-notice/0.1",
+      "name": "removal-notice",
+      "version": "0.1",
+      "profile": "rltp-access@0.24",
+      "summary": "The compact notice a removed member is owed: it states the removal without carrying the transition-bearing envelope, which never crosses the replica boundary.",
+      "definedIn": {
+        "specification": "RLTP Access Layer",
+        "section": "10.2",
+        "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md"
+      },
+      "schema": "https://real-life.org/trust-tasks/removal-notice/0.1/schema.json",
+      "schemaSha256": "dfeba3b2a588bc9f1e42bafe5fdb35f29eab760e1f9801d05a1184d54fce2508",
+      "documentation": "https://real-life.org/trust-tasks/removal-notice/0.1/"
     }
   ]
 }

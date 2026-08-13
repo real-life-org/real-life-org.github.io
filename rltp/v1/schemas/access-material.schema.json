@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://real-life.org/rltp/v1/schemas/access-material.schema.json",
+  "title": "RLTP Access key material (Access Layer 0.24 sections 7.1 and 9.5)",
+  "description": "The two plaintext shapes the adapter produces: rltp-access-material/0.24 (the welcome material of Membership section 4 — the MO-4 pin, adopted by Membership 0.9) and rltp-access-keydist/0.24 (the keydist/refresh plaintext of Access 7.1/10.1). Both forms carry the registered adapter id; keys is owned and CLOSED by the adapter registration. linear/0.1 carries exactly the content key — every further secret is DERIVED from it (HKDF info rltp/v1/epoch-secret/<genesis digest>), never transported, so the log's contentKeyCommitment authenticates all consensus-relevant material.",
+  "type": "object",
+  "required": [
+    "v",
+    "adapter",
+    "epoch",
+    "keys"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "v": {
+      "enum": [
+        "rltp-access-material/0.24",
+        "rltp-access-keydist/0.24"
+      ]
+    },
+    "adapter": {
+      "type": "string",
+      "maxLength": 64,
+      "description": "the registered adapter id"
+    },
+    "epoch": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "keys": {
+      "type": "object"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "adapter"
+        ],
+        "properties": {
+          "adapter": {
+            "const": "linear/0.1"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "keys": {
+            "type": "object",
+            "required": [
+              "contentKey"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "contentKey": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_-]{43}$",
+                "description": "base64url (unpadded) 32-byte AES-256 content key; its commitment is the multihash over the raw 32 bytes (Access 7.1); the per-epoch secret is derived, never transported"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

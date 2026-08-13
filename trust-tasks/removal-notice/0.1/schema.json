@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://real-life.org/trust-tasks/removal-notice/0.1",
+  "title": "RLTP Removal Notice (Access Layer 0.24 section 10.2)",
+  "description": "Payload of the removal-notice/0.1 task registered by the Access layer (10.2) — the compact artifact by which a removed member is told, never the operation envelope itself, whose membership-scaled keyDist fits no carrier budget (Access 5.3 boundary rule). Signature input = JCS serialization with sig omitted; sig MUST verify under author, and the carrying document's issuer MUST equal author. The recipient verifies against their own last-held state: genesisDigest matches, author was a member there, subject is themselves. A verified notice is a SURFACED CLAIM WITH NO MANDATORY STATE EFFECT: it MUST be surfaced, SHOULD trigger a verification attempt, and MUST NOT by itself suspend writing or alter authorization state — the ONLY binding event for victim-side write hygiene is the recipient's own canonical application of the removal; a peer's refusal to serve is a signal prompting verification, never a binding event (Access 10.2; anything stronger would make every member signature a policy-free denial lever). Dispositions: unique on first surfacing, duplicate-known on redelivery (Delivery section 6's closed set). Supersedes the former Membership section 3.3 case 2 — retired as of Membership 0.9, whose access-operation carrier is admission-only.",
+  "type": "object",
+  "required": [
+    "v",
+    "type",
+    "group",
+    "genesisDigest",
+    "op",
+    "subject",
+    "epoch",
+    "author",
+    "sig"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "v": {
+      "const": "rltp-access-removal-notice/0.24"
+    },
+    "type": {
+      "const": "removal-notice"
+    },
+    "group": {
+      "$ref": "#/$defs/didKey"
+    },
+    "genesisDigest": {
+      "$ref": "#/$defs/digest"
+    },
+    "op": {
+      "$ref": "#/$defs/oid",
+      "description": "the canonical member.remove operation this notice reports"
+    },
+    "subject": {
+      "$ref": "#/$defs/didKey",
+      "description": "the removed anchor; a recipient MUST discard a notice whose subject is not themselves"
+    },
+    "epoch": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "the removal transition's newEpoch"
+    },
+    "author": {
+      "$ref": "#/$defs/didKey",
+      "description": "the member.remove operation's author; sig MUST verify under this anchor, and the recipient checks its membership against their own last-held state"
+    },
+    "sig": {
+      "type": "string",
+      "pattern": "^z[1-9A-HJ-NP-Za-km-z]+$",
+      "maxLength": 128,
+      "description": "signature by author over the JCS serialization with sig omitted"
+    }
+  },
+  "$defs": {
+    "didKey": {
+      "type": "string",
+      "pattern": "^did:key:z6Mk[1-9A-HJ-NP-Za-km-z]{44}$"
+    },
+    "oid": {
+      "type": "string",
+      "pattern": "^oid:[A-Za-z0-9_-]{43}$"
+    },
+    "digest": {
+      "type": "string",
+      "pattern": "^(z[1-9A-HJ-NP-Za-km-z]+|u[A-Za-z0-9_-]+)$",
+      "maxLength": 128
+    }
+  }
+}

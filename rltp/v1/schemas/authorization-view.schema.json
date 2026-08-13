@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://real-life.org/rltp/v1/schemas/authorization-view.schema.json",
+  "title": "RLTP Authorization View (Access Layer 0.24 section 7.3)",
+  "description": "The chained, quorum-signed object by which a service learns a group's epoch and authorized service identities. Signature input = JCS with sigs omitted; prevView chains (null exactly at seq 0; array form = reconciliation view naming divergent tips, stepwise reconciliation permitted). A reconciliation view additionally names its predecessor explicitly (an accepted common ancestor of the named tips at or above the service's anchor — the issuing quorum's overt choice, NOT a maximality requirement; Access 7.3 obligation 5); ordinary views never carry the field. m non-null replaces the quorum size from the NEXT view on (1 <= m <= |identities|, cross-field checked by the service); the effective quorum size of a view is its own non-null m, else — for a reconciliation — the MAXIMUM of its named parents' effective sizes, else its single parent's (Access 7.3 obligation 5(d), recursive over the DAG). Signer distinctness, the intersection rule (an ordinary view: signers in both the parent's and this view's identities; a reconciliation: signers in EVERY named parent's identities and in this view's), the predecessor's ancestry and anchor floor, and the named-tip binding of seq and epoch are NORMATIVE SERVICE CHECKS that JSON Schema cannot transcribe — this schema is a shape floor, never the complete quorum check. Acceptance conditions incl. the freshness window and the terminal grace window are Access 7.3.",
+  "type": "object",
+  "required": [
+    "v",
+    "type",
+    "group",
+    "genesisDigest",
+    "seq",
+    "epoch",
+    "identities",
+    "m",
+    "terminal",
+    "prevView",
+    "issuedAt",
+    "validUntil",
+    "sigs"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "v": {
+      "const": "rltp-access-view/0.24"
+    },
+    "type": {
+      "const": "authorization-view"
+    },
+    "group": {
+      "type": "string",
+      "pattern": "^did:key:z6Mk[1-9A-HJ-NP-Za-km-z]{44}$"
+    },
+    "genesisDigest": {
+      "$ref": "#/$defs/digest"
+    },
+    "seq": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "epoch": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "identities": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8192,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/didKey"
+      }
+    },
+    "m": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "integer",
+          "minimum": 1
+        }
+      ],
+      "description": "null = unchanged; an integer replaces the quorum size from the next view on and MUST satisfy m <= |identities| of this view"
+    },
+    "terminal": {
+      "type": "boolean"
+    },
+    "prevView": {
+      "anyOf": [
+        {
+          "type": "null",
+          "description": "seq 0 only"
+        },
+        {
+          "$ref": "#/$defs/digest"
+        },
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 8,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/digest"
+          },
+          "description": "reconciliation view: the named parents being joined (held anywhere in the service's accepted-view DAG, tip or ancestor - Access 7.3)"
+        }
+      ]
+    },
+    "predecessor": {
+      "$ref": "#/$defs/digest",
+      "description": "reconciliation views only: signature-input digest of the chosen predecessor view — an accepted common ancestor of every named tip whose seq is at or above the service's anchor (always satisfiable under the admission ratchet: the anchor itself qualifies); the choice among qualifying ancestors is the issuing quorum's, overt and signed (Access 7.3)"
+    },
+    "issuedAt": {
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 40
+    },
+    "validUntil": {
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 40
+    },
+    "sigs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8192,
+      "items": {
+        "type": "object",
+        "required": [
+          "signer",
+          "sig"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "signer": {
+            "$ref": "#/$defs/didKey"
+          },
+          "sig": {
+            "type": "string",
+            "pattern": "^z[1-9A-HJ-NP-Za-km-z]+$",
+            "maxLength": 128
+          }
+        }
+      },
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "didKey": {
+      "type": "string",
+      "pattern": "^did:key:z6Mk[1-9A-HJ-NP-Za-km-z]{44}$"
+    },
+    "digest": {
+      "type": "string",
+      "pattern": "^(z[1-9A-HJ-NP-Za-km-z]+|u[A-Za-z0-9_-]+)$",
+      "maxLength": 128
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "seq": {
+            "const": 0
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "prevView": {
+            "type": "null"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "prevView": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/digest"
+              },
+              {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 8,
+                "uniqueItems": true,
+                "items": {
+                  "$ref": "#/$defs/digest"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "prevView": {
+            "type": "array"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "predecessor"
+        ]
+      },
+      "else": {
+        "not": {
+          "required": [
+            "predecessor"
+          ]
+        }
+      }
+    }
+  ]
+}

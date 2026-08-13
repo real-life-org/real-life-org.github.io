@@ -1,20 +1,42 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://real-life.org/trust-tasks/access-operation/0.1",
-  "title": "Payload: access-operation/0.1 (rltp-membership@0.7, target Trust Tasks framework 0.4)",
-  "description": "Payload schema per Trust Tasks 6.3 ($id = Type URI, describes only the payload). Carries one Access-layer operation envelope to a party outside the replica boundary; the envelope carries its own signatures, so the task document carries no proof, and the document issuer MUST be the operation's author or one of its signers (Membership Tasks 3.3). When operation.op is member.add, the body profile of Membership Tasks 3.3 applies (enforced below): subject plus admission carrying the COMPLETE invite and accept documents and the welcome plaintext digest — full documents, so every replica can verify the consent chain at materialization. welcome (the seal) is permitted only on such an admitting operation, is REQUIRED when the document crosses the boundary to its subject (prose rule), and its plaintext digest MUST equal admission.welcome.",
+  "title": "Payload: access-operation/0.1 (rltp-membership@0.11, target Trust Tasks framework 0.4)",
+  "description": "Payload schema per Trust Tasks 6.3 ($id = Type URI, describes only the payload). Carries EXACTLY ONE thing across the replica boundary: an admitting member.add with its welcome, delivered to its own subject (the bootstrap). This is the only operation that genuinely crosses the boundary (Membership Tasks 3.3): replication owns the inside, a removed member's notice is Access's removal-notice/0.1 (its 10.2), transition key material travels per recipient via key-delivery/0.1 (its 10.1), and transition-carrying envelopes never leave the replica (Access 5.3). The schema therefore REQUIRES op = member.add, the member.add body, and the welcome seal; it additionally rejects any operation body carrying a transition (defence in depth). The envelope carries its own signatures, so the task document carries no proof, and the document issuer MUST be the operation's author or one of its signers (Membership Tasks 3.3). The enclosed member.add proof is a TRANSPORTED VARIANT capped at 64 signatures and 16 credentials (each credential at most 2048 bytes JCS — prose rule; Access 5.3): never a replica's merged proof. Validity, canonicality, consumption, and every merge question are Access 5.3's; this schema is transport shape only.",
   "type": "object",
-  "required": ["operation"],
+  "required": ["operation", "welcome"],
   "additionalProperties": false,
-  "if": { "required": ["welcome"] },
-  "then": {
-    "properties": {
-      "operation": {
-        "properties": { "op": { "const": "member.add" } },
-        "required": ["op"]
-      }
+  "allOf": [
+    {
+      "properties": {
+        "operation": {
+          "properties": {
+            "op": { "const": "member.add" },
+            "body": {
+              "not": { "required": ["transition"] }
+            }
+          },
+          "required": ["op"]
+        }
+      },
+      "description": "admission-only rule (Membership Tasks 3.3): op MUST be member.add; no-transition rule as defence in depth (Access 5.3)"
+    },
+    {
+      "properties": {
+        "operation": {
+          "properties": {
+            "proof": {
+              "properties": {
+                "signatures": { "maxItems": 64 },
+                "credentials": { "maxItems": 16 }
+              }
+            }
+          }
+        }
+      },
+      "description": "transported-variant caps on the enclosed admission proof (Access 5.3)"
     }
-  },
+  ],
   "properties": {
     "operation": {
       "allOf": [

@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://real-life.org/trust-tasks/membership-accept/0.1",
-  "title": "Payload: membership-accept/0.1 (rltp-membership@0.7, target Trust Tasks framework 0.4)",
-  "description": "Payload schema per Trust Tasks 6.3 ($id = Type URI, describes only the payload). The consent artifact: subject MUST equal the document issuer AND the referenced invite's invitee (no transplantation); ref binds this accept to exactly one invite document by document digest; card is the subject's contact card, whose key-agreement key the welcome will be sealed to (card proof MUST verify and card.anchor MUST equal subject — a foreign card would redirect the group keys; retained per Contract section 5 from the accept's issuance; key transport, no freshness claimed). The document MUST carry a proof verifying under the issuer. One accept authorizes at most one admission (consumable at materialization). Normative rules in Membership Tasks 3.2, 3.3.",
+  "title": "Payload: membership-accept/0.1 (rltp-membership@0.11, target Trust Tasks framework 0.4)",
+  "description": "Payload schema per Trust Tasks 6.3 ($id = Type URI, describes only the payload). The consent artifact: subject MUST equal the document issuer AND the referenced invite's invitee (no transplantation); ref binds this accept to exactly one invite document by document digest; card is the subject's contact card, whose key-agreement key the welcome will be sealed to (card proof MUST verify and card.anchor MUST equal subject — a foreign card would redirect the group keys; retained per Contract section 5 from the accept's issuance; key transport, no freshness claimed). The document MUST carry a proof verifying under the issuer. An accept is consent to ONE MEMBERSHIP: the subject is a member once, however many canonical admissions enclose the accept (concurrent same-subject admissions are idempotent — Access 5.3), and the accept is consumed content-bound and never freed. Normative rules in Membership Tasks 3.2, 3.3; canonicality and consumption in Access 5.3.",
   "type": "object",
   "required": ["accept"],
   "additionalProperties": false,
