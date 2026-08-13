@@ -1,21 +1,36 @@
 name: generated
 
 # This site is a projection of rltp-spec, not a place where content is written.
-# The check therefore has to run in two situations, and the second is the one
-# that actually bites: someone edits a file here by hand, OR nothing here
-# changes at all and the site goes stale because the specification repository
-# moved. A push-triggered job alone would never notice the second, which is
-# exactly how nine of eighteen schemas came to be wrong within three days.
+# Two different questions have to be asked about it, and they need opposite
+# answers:
+#
+#   push / PR   Did someone edit a generated file by hand? That must FAIL
+#               loudly. Silently regenerating over it would hide the fact that
+#               a person believed this was a place to write.
+#
+#   schedule    Has the specification repository moved without us? Then the
+#   dispatch    site is stale through no local change at all — the failure mode
+#               that left nine of eighteen schemas wrong within three days —
+#               and the answer is to regenerate and publish.
+#
+# The scheduled run commits with the built-in token, which by design does not
+# trigger further workflows, so there is no loop. GitHub Pages redeploys from
+# the commit. A push from rltp-spec cannot reach across repositories without a
+# stored credential, so the cron is the coupling: the site can be at most one
+# day behind the specification, never indefinitely.
 
 on:
   push:
   pull_request:
   schedule:
-    - cron: '17 6 * * *'   # the specification repository moves without us
+    - cron: '17 6 * * *'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
-  check:
+  generated:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,5 +41,28 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+
       - name: site matches the specification repository
+        if: github.event_name == 'push' || github.event_name == 'pull_request'
         run: node scripts/generate.mjs rltp-spec --check
+
+      - name: regenerate and publish
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          set -euo pipefail
+          SPEC_SHA=$(git -C rltp-spec rev-parse --short HEAD)
+          node scripts/generate.mjs rltp-spec
+          rm -rf rltp-spec                    # never let the source repo into this one
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Already matches rltp-spec at ${SPEC_SHA} — nothing to publish."
+            exit 0
+          fi
+          git config user.name  "rltp-generator"
+          git config user.email "noreply@real-life.org"
+          git add -A
+          git commit -m "Regenerate from rltp-spec ${SPEC_SHA}" \
+                     -m "Published by .github/workflows/generated.yml. Every file here is
+          derived: schemas at the paths their own \$id promises, both registries
+          with computed digests, the documentation pages. Edit rltp-spec or
+          registry.meta.json, never this."
+          git push
