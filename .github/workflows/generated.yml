@@ -1,0 +1,30 @@
+name: generated
+
+# This site is a projection of rltp-spec, not a place where content is written.
+# The check therefore has to run in two situations, and the second is the one
+# that actually bites: someone edits a file here by hand, OR nothing here
+# changes at all and the site goes stale because the specification repository
+# moved. A push-triggered job alone would never notice the second, which is
+# exactly how nine of eighteen schemas came to be wrong within three days.
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '17 6 * * *'   # the specification repository moves without us
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: real-life-org/rltp-spec
+          path: rltp-spec
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: site matches the specification repository
+        run: node scripts/generate.mjs rltp-spec --check
