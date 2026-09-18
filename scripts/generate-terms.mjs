@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Generate the term namespaces /rlnp/v1, /rls/v1 and /meta/v1 from real-life-org/meta.
+// Generate the term namespaces /rlnp/v1, /rls/v1 and /meta/v1, and the gate page at /, from real-life-org/meta.
 //
 // The Real Life term register is federated: each part (RLNP, RLTP, RLS) keeps its
 // own SKOS concept scheme, and real-life-org/meta holds the mappings between them.
@@ -169,6 +169,36 @@ ${RL.map(([f, d]) => `<tr id="${f}"><td><code>#${f}</code></td><td>${esc(d)}</td
 </table>
 <h2>Rule</h2>
 <p>Definitions never live here. Each part defines its terms in its own repository and stays normative for them; the register only connects them. Source and checks: <a href="https://github.com/real-life-org/meta">real-life-org/meta</a>.</p>`))
+
+// ── the gate: real-life.org itself ───────────────────────────────────────
+// The root page shows the whole: the layer picture and the three parts, one sentence and
+// three points each, then the identifiers this domain anchors. English at /, German at /de/.
+// Content comes from meta/overview/parts.json; the picture from meta/overview/layers.{en,de}.svg.
+console.log('\n── gate page')
+const parts = JSON.parse(readFileSync(join(META, 'overview/parts.json'), 'utf8'))
+for (const l of ['en', 'de']) emit(`overview/layers.${l}.svg`, readFileSync(join(META, `overview/layers.${l}.svg`), 'utf8'))
+const GATE_STYLE = STYLE + `.parts{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin:1.6rem 0}@media(max-width:640px){.parts{grid-template-columns:1fr}}.part h2{margin:.2rem 0 .3rem}.part p{margin:.2rem 0}.part ul{margin:.4rem 0 .6rem 1.1rem;padding:0}.part .for{font-size:.9em;color:#667}figure{margin:1.6rem 0}figure img{width:100%;height:auto;display:block;border-radius:6px}.lang{float:right;font-size:.9em}@media(prefers-color-scheme:dark){.part .for{color:#9a9aa4}}`
+const T = {
+  en: { ids: 'Identifiers anchored here', idsText: 'The permanent identifiers of all three parts live under this domain. They follow the protocols, not the branding; a breaking change gets a new version, not a new word.', picture: 'The three parts: the Network Protocol beside the Stack, the Trust Protocol filling the layers below the connector.', other: 'Deutsch', otherHref: '/de/', rows: [['/rlnp/v1', 'terms of the Real Life Network Protocol'], ['/rls/v1', 'terms of the Real Life Stack'], ['/rltp/v1', 'vocabulary, context and schemas of the Real Life Trust Protocol'], ['/trust-tasks', 'RLTP Trust Task types (ToIP DTGWG framework 0.4)'], ['/meta/v1', 'the shared register: context, mappings between the three parts, register fields']], meta: 'Picture, seams and register: <a href="https://github.com/real-life-org/meta">real-life-org/meta</a>.' },
+  de: { ids: 'Kennungen, die hier verankert sind', idsText: 'Die dauerhaften Kennungen aller drei Teile liegen unter dieser Domain. Sie folgen den Protokollen, nicht dem Branding; ein Bruch bekommt eine neue Version, kein neues Wort.', picture: 'Die drei Teile: das Netzwerkprotokoll neben dem Stack, das Trust Protocol füllt die Schichten unter dem Connector.', other: 'English', otherHref: '/', rows: [['/rlnp/v1', 'Begriffe des Real Life Network Protocol'], ['/rls/v1', 'Begriffe des Real Life Stack'], ['/rltp/v1', 'Vokabular, Kontext und Schemas des Real Life Trust Protocol'], ['/trust-tasks', 'RLTP Trust-Task-Typen (ToIP DTGWG Framework 0.4)'], ['/meta/v1', 'das gemeinsame Register: Kontext, Verknüpfungen zwischen den drei Teilen, Registerfelder']], meta: 'Bild, Nähte und Register: <a href="https://github.com/real-life-org/meta">real-life-org/meta</a>.' },
+}
+const gatePage = (l) => {
+  const t = T[l]
+  const body = `<p class="lang"><a href="${t.otherHref}" lang="${l === 'en' ? 'de' : 'en'}">${t.other}</a></p>
+<h1>${esc(parts.gate.title[l])}</h1>
+<p>${esc(parts.gate.sentence[l])}</p>
+<figure><a href="/overview/layers.${l}.svg"><img src="/overview/layers.${l}.svg" alt="${esc(t.picture)}"></a></figure>
+<div class="parts">
+${parts.parts.map((p) => `<section class="part" id="${p.id}"><h2><a href="${p.url}">${esc(p.name[l])}</a></h2><p>${esc(p.sentence[l])}</p><ul>${p.points.map((x) => `<li>${esc(x[l])}</li>`).join('')}</ul><p class="for">${esc(p.for[l])}</p></section>`).join('\n')}
+</div>
+<h2>${t.ids}</h2>
+<p>${t.idsText}</p>
+<table>${t.rows.map(([path, what]) => `<tr><th><a href="${path}/">${path}</a></th><td>${what}</td></tr>`).join('\n')}</table>
+<p>${t.meta}</p>`
+  return `<!DOCTYPE html><html lang="${l}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(parts.gate.title[l])} — real-life.org</title><link rel="alternate" hreflang="${l === 'en' ? 'de' : 'en'}" href="https://real-life.org${t.otherHref}"><style>${GATE_STYLE}</style></head><body>\n${body}\n<footer>real-life.org · <a href="https://github.com/real-life-org">real-life-org</a> · generated from real-life-org/meta by scripts/generate-terms.mjs</footer></body></html>\n`
+}
+emit('index.html', gatePage('en'))
+emit('de/index.html', gatePage('de'))
 
 console.log(`\n${written} written, ${unchanged} unchanged.`)
 if (CHECK && errors) { console.error(`${errors} file(s) out of date — run without --check.`); process.exit(1) }
