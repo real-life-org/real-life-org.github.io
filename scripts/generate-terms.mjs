@@ -171,8 +171,8 @@ ${RL.map(([f, d]) => `<tr id="${f}"><td><code>#${f}</code></td><td>${esc(d)}</td
 <p>Definitions never live here. Each part defines its terms in its own repository and stays normative for them; the register only connects them. Source and checks: <a href="https://github.com/real-life-org/meta">real-life-org/meta</a>.</p>`))
 
 // ── the gate: real-life.org itself ───────────────────────────────────────
-// The root page shows the whole: the layer picture and the three parts, one sentence and
-// three points each, then the identifiers this domain anchors. English at /, German at /de/.
+// The root page shows the whole: the layer picture and the three parts, one sentence each,
+// then the identifiers this domain anchors. English at /, German at /de/.
 // Content comes from meta/overview/parts.json; the picture from meta/overview/layers.{en,de}.svg.
 console.log('\n── gate page')
 const parts = JSON.parse(readFileSync(join(META, 'overview/parts.json'), 'utf8'))
@@ -189,7 +189,7 @@ const gatePage = (l) => {
 <p>${esc(parts.gate.sentence[l])}</p>
 <figure><a href="/overview/layers.${l}.svg"><img src="/overview/layers.${l}.svg" alt="${esc(t.picture)}"></a></figure>
 <div class="parts">
-${parts.parts.map((p) => `<section class="part" id="${p.id}"><h2><a href="${p.url}">${esc(p.name[l])}</a></h2><p>${esc(p.sentence[l])}</p><ul>${p.points.map((x) => `<li>${esc(x[l])}</li>`).join('')}</ul><p class="for">${esc(p.for[l])}</p></section>`).join('\n')}
+${parts.parts.map((p) => `<section class="part" id="${p.id}"><h2><a href="${p.url}">${esc(p.name[l])}</a></h2><p>${esc(p.sentence[l])}</p><p class="for">${esc(p.for[l])}</p></section>`).join('\n')}
 </div>
 <h2>${t.ids}</h2>
 <p>${t.idsText}</p>
