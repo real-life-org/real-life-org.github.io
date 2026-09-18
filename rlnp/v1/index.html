@@ -1,7 +1,45 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RLNP terms — real-life.org/rlnp/v1</title><style>body{font-family:system-ui,sans-serif;max-width:760px;margin:3rem auto;padding:0 1.2rem;line-height:1.6;color:#1a2030}a{color:#2451b3}code{background:#f0f2f7;padding:.1em .35em;border-radius:4px;font-size:.92em}h1{font-size:1.5rem}h2{font-size:1.15rem;margin-top:2rem}h3{font-size:1rem;margin:1.6rem 0 .2rem}dl{margin:0}dt{font-weight:600;margin-top:.6rem}dd{margin:0 0 0 1rem;color:#333c4d}.de{color:#556}.src,.map{font-size:.9em}table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid #e2e6ef;padding:.4em .6em;text-align:left;font-size:.95em}footer{margin-top:3rem;font-size:.85em;color:#667}:target{background:#fdf3d8}@media(prefers-color-scheme:dark){body{background:#0e0e10;color:#e8e8ea}code{background:#1c1c22}dd{color:#c8c8d0}.de{color:#a9a9b4}td,th{border-color:#2c2c31}a{color:#7fb6d6}footer{color:#9a9aa4}:target{background:#2a2410}}</style><link rel="alternate" type="application/ld+json" href="terms.jsonld"><link rel="alternate" type="application/json" href="index.json"><script type="application/ld+json">{"@context":"https://schema.org","@type":"DefinedTermSet","@id":"https://real-life.org/rlnp/v1","name":"RLNP terms","description":"Term namespace of the Real Life Network Protocol. SKOS concept scheme: https://real-life.org/rlnp/v1/terms.jsonld","url":"https://real-life.org/rlnp/v1/"}</script></head><body>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RLNP terms · rlnp/v1 — real-life.org</title><style>:root{--bg:#fff;--ink:#1a2030;--muted:#667;--soft:#556;--text2:#333c4d;--line:#e2e6ef;--field:#d5dae6;--chip:#f0f2f7;--hover:#f6f7fa;--link:#2451b3;--warn:#b45309;--mark:#fdf3d8;--rlnp:#3f7a4e;--rlnp-t:#e6f0e7;--rls:#b36b1c;--rls-t:#f7ecdd;--rltp:#2f62c9;--rltp-t:#e5ecfa}
+@media(prefers-color-scheme:dark){:root{--bg:#0e0e10;--ink:#e8e8ea;--muted:#9a9aa4;--soft:#b9b9c3;--text2:#d0d0d6;--line:#2c2c31;--field:#3a3a42;--chip:#1c1c22;--hover:#18181d;--link:#7fb6d6;--warn:#fbbf24;--mark:#2a2410;--rlnp:#7cc48a;--rlnp-t:#1e2f23;--rls:#e0a25a;--rls-t:#33281a;--rltp:#7fa6f0;--rltp-t:#1d2738}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}a{color:var(--link)}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:18px 28px 14px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:inherit}.brand b{font-size:1.35rem;font-weight:650;letter-spacing:-.01em}.brand span{font-size:.85rem;color:var(--muted)}
+nav{display:flex;gap:2px;background:var(--chip);border-radius:8px;padding:3px}nav a{border-radius:6px;padding:5px 14px;font-size:.9rem;font-weight:500;text-decoration:none;color:var(--soft)}nav a.on{background:var(--bg);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+header input{flex:1 1 180px;max-width:320px;padding:6px 12px;border:1px solid var(--field);border-radius:8px;background:var(--bg);color:var(--ink);outline:none;font:inherit}header input:focus{border-color:var(--link)}
+.right{margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--field);background:var(--bg);border-radius:8px;padding:5px 12px;font-size:.9rem;white-space:nowrap;text-decoration:none;color:var(--ink)}.btn:hover{background:var(--chip)}.btn small{color:var(--muted);font-size:.78rem}
+main{padding:22px 28px 60px;max-width:900px}
+h1{font-size:1.5rem;margin:0 0 .6rem}h2{font-size:1.15rem;margin:2rem 0 .6rem}h3{font-size:1rem;margin:1.6rem 0 .2rem}
+p{max-width:760px;text-wrap:pretty}.sub{margin:0 0 6px;color:var(--text2);font-size:.95rem}
+code{background:var(--chip);padding:.1em .35em;border-radius:4px;font-size:.92em}
+table{border-collapse:collapse;width:100%;max-width:820px}td,th{border-bottom:1px solid var(--line);padding:.4em .6em;text-align:left;font-size:.95em;vertical-align:top}
+dl{margin:0}dt{font-weight:600;margin-top:.6rem}dd{margin:0 0 0 1rem;color:var(--text2)}.de{color:var(--soft)}.src,.map{font-size:.9em}
+:target{background:var(--mark)}
+footer{padding:0 28px 28px;font-size:.85em;color:var(--muted)}
+.stats{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.85rem;color:var(--muted);margin-bottom:22px}
+figure{margin:0 0 1.6rem;max-width:820px}figure img{width:100%;height:auto;display:block;border-radius:6px}
+.parts{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin:0 0 1.6rem;max-width:820px}@media(max-width:640px){.parts{grid-template-columns:1fr}}.part h2{margin:.2rem 0 .3rem}.part p{margin:.2rem 0}.part .for{font-size:.9em;color:var(--muted)}
+.rows{display:flex;flex-direction:column;gap:10px;max-width:820px}
+.row{border:1px solid var(--line);border-radius:10px;padding:12px 16px;background:var(--bg)}
+.rowhead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}.rowhead b{font-size:1.05rem;font-weight:650}.rowhead span{font-size:.85rem;color:var(--muted)}
+.entries{display:flex;flex-direction:column;gap:6px}
+.e{display:grid;grid-template-columns:126px minmax(0,1fr);gap:12px;align-items:start;padding:6px 8px;margin:0 -8px;border-radius:6px}.e:hover{background:var(--hover)}.e:target{background:var(--mark)}
+@media(max-width:560px){.e{grid-template-columns:1fr;gap:4px}}
+.w{justify-self:start;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;font-weight:600;border-radius:4px;padding:2px 7px;margin-top:3px;white-space:nowrap}
+.w-rlnp{color:var(--rlnp);background:var(--rlnp-t)}.w-rls{color:var(--rls);background:var(--rls-t)}.w-rltp{color:var(--rltp);background:var(--rltp-t)}
+.head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px}.head b a{color:inherit;text-decoration:none}.head b a:hover{text-decoration:underline}.head .o{font-size:.88em;color:var(--soft)}
+.tag{font-size:.72em;border:1px solid var(--warn);color:var(--warn);border-radius:4px;padding:0 .35em}
+.def{margin:2px 0 0;font-size:.92em;color:var(--text2)}
+.rels{display:flex;flex-wrap:wrap;gap:2px 10px;margin-top:4px;font-size:.82em;color:var(--soft)}.rels span{white-space:nowrap}.rels i{font-style:normal;color:var(--muted)}
+.act{margin-top:3px;font-size:.8em}.act a{margin-right:.7em;color:var(--muted)}.act a:hover{color:var(--link)}
+.note{margin:4px 0 0;font-size:.85em;color:var(--soft);font-style:italic}
+.empty{display:none;color:var(--muted);padding:24px 0}</style><link rel="alternate" type="application/ld+json" href="terms.jsonld"><link rel="alternate" type="application/json" href="index.json"><script type="application/ld+json">{"@context":"https://schema.org","@type":"DefinedTermSet","@id":"https://real-life.org/rlnp/v1","name":"RLNP terms","description":"Term namespace of the Real Life Network Protocol. SKOS concept scheme: https://real-life.org/rlnp/v1/terms.jsonld","url":"https://real-life.org/rlnp/v1/"}</script></head><body>
+<header><a class="brand" href="/"><b>Real Life</b><span>real-life.org</span></a>
+<nav><a href="/">Overview</a><a href="/terms/">Dictionary</a></nav>
+<div class="right"></div></header>
+<main>
 <h1><code>https://real-life.org/rlnp/v1</code></h1>
 <p>The term namespace of the <strong>Real Life Network Protocol</strong>, the social specification: what a circle, an encounter, a promise, a role mean. Permanent identifiers are <code>https://real-life.org/rlnp/v1#&lt;Fragment&gt;</code>; the fragments resolve to the entries below.</p>
-<p>Each term is defined by the RLNP specification itself (<a href="https://github.com/real-life-org/real-life-network-protocol">repository</a>). Mappings to the other parts of Real Life come from the <a href="/meta/v1/">shared register</a>: a term is <em>same as</em>, <em>close to</em>, <em>related to</em>, <em>broader</em> or <em>narrower than</em> its counterpart, or a deliberate <em>false friend</em>; <em>target: same as</em> marks a convergence the specifications still owe.</p>
+<p>Each term is defined by the RLNP specification itself (<a href="https://github.com/real-life-org/real-life-network-protocol">repository</a>). Mappings to the other parts of Real Life come from the <a href="/meta/v1/">shared register</a>: a term is <em>same as</em>, <em>close to</em>, <em>related to</em>, <em>broader</em> or <em>narrower than</em> its counterpart, or a deliberate <em>false friend</em>; <em>target: same as</em> marks a convergence the specifications still owe. The <a href="/terms/">dictionary</a> shows all three parts side by side.</p>
 <p>Machine-readable: <a href="terms.jsonld"><code>terms.jsonld</code></a> (SKOS concept scheme, JSON-LD) and <a href="index.json"><code>index.json</code></a> (registry with digests).</p>
 <h2>Terms</h2>
 <h3 id="Bezeugen"><code>#Bezeugen</code> Witnessing <span class="de">· Bezeugen</span></h3>
@@ -64,4 +102,6 @@
 <dt class="src">Source</dt><dd class="src"><a href="https://github.com/real-life-org/real-life-network-protocol/blob/main/real-life-network-protocol.md#83-menschen-verifizieren">real-life-network-protocol.md#83-menschen-verifizieren</a></dd>
 <dt class="map">Mappings</dt><dd class="map"><ul><li>same as <a href="https://real-life.org/rltp/v1#Enactment">Enactment</a> <span class="de">(RLTP)</span></li><li>related to <a href="https://real-life.org/rltp/v1#EncounterCredential">Encounter credential</a> <span class="de">(RLTP)</span></li></ul></dd>
 <dd class="map"><em>The act is the same; the credential is its result.</em></dd></dl>
-<footer>Real Life · <a href="https://github.com/real-life-org/meta">term register and mappings</a> · generated by scripts/generate-terms.mjs</footer></body></html>
+</main>
+<footer>real-life.org · <a href="https://github.com/real-life-org/meta">real-life-org/meta</a> · generated by scripts/generate-terms.mjs</footer>
+</body></html>
