@@ -22,7 +22,7 @@
   {
    "@id": "rlnp:Kreis",
    "skos:relatedMatch": "rlnp:Space",
-   "skos:note": "A circle is the people, a space is the vessel. A circle gives itself a space when it takes form. Deliberately not the same."
+   "skos:note": "A circle is the people, a space is the vessel. A circle chooses its own form and access; a space is meant to carry exactly that: publicly visible, open for anyone to post, or by invitation. Whether the two converge is open (2026-09-18)."
   },
   {
    "@id": "rlnp:Space",
