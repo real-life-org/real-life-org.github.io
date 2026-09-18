@@ -2,10 +2,6 @@
  "@context": "https://real-life.org/meta/v1/context.jsonld",
  "@graph": [
   {
-   "@id": "rlnp:Spiegel",
-   "skos:exactMatch": "rls:mirror"
-  },
-  {
    "@id": "rlnp:Mensch",
    "skos:relatedMatch": "rltp:Anchor",
    "skos:note": "Deliberately no exactMatch: RLTP has no person object, only anchors per context. This is by design (relationships never converge into a person)."
@@ -35,10 +31,10 @@
    "@id": "rlnp:Sichtbarkeit",
    "skos:relatedMatch": [
     "rltp:VisibilityMode",
-    "rls:mirror"
+    "rls:multi-space-item"
    ],
    "rl:convergesWith": "rls:visibility",
-   "skos:note": "Three ways, three constructions: \"within the circle\" = RLTP private; \"mirrored\" = Stack mirror bridge; \"published\" = RLTP open is only the origin, delivery of open data needs another backend (multi-connector). VisibilityMode covers the first two only."
+   "skos:note": "Three reaches, three constructions: \"within one circle\" is RLTP private; \"within several circles\" is the Stack's item in several spaces (the RLTP connector builds it as a mirror); \"published\" is RLTP open at the origin, delivery of open data needs another backend (multi-connector). VisibilityMode covers the first and third only."
   },
   {
    "@id": "rlnp:Verifikation",
@@ -80,6 +76,11 @@
    "@id": "rlnp:Begegnung",
    "skos:relatedMatch": "rlnp:Verifikation",
    "skos:note": "The event itself, deliberately without counterpart in the Stack or the Trust Protocol: the encounter belongs to the people; the Stack verifies it, the protocol proves it."
+  },
+  {
+   "@id": "rls:mirror",
+   "skos:relatedMatch": "rls:multi-space-item",
+   "skos:note": "Deliberately without counterpart in RLNP or RLTP: for the person it is simply a thing in several spaces; the mirror exists because the Trust Protocol partitions storage by access boundary. The protocol itself knows only groups and their replication."
   }
  ]
 }

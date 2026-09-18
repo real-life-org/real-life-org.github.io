@@ -10,11 +10,11 @@
   },
   "scheme": {
     "url": "https://real-life.org/rls/v1/terms.jsonld",
-    "sha256": "80a5ed882960c44d2bc282ede7f9cb73bc925c51602ed05764f9c62c4fb12611"
+    "sha256": "1bed81ed8c37b02edd90451cc2ebefd7c759139478a7877fbd36cf6dcd5b814e"
   },
   "mappings": {
     "url": "https://real-life.org/meta/v1/mappings.jsonld",
-    "sha256": "63cd3d79ddc26644dcc2ba1e313818f330b4ec9c6767f614401d7cf5edb35eba"
+    "sha256": "8237497c1c67c2e5ffcce06521e573ad9864882bd7ae7bc107871acd54768b7b"
   },
   "terms": [
     {
@@ -34,6 +34,12 @@
       "en": "Mirror",
       "de": "Spiegel",
       "status": "in specification"
+    },
+    {
+      "iri": "https://real-life.org/rls/v1#multi-space-item",
+      "en": "Item in several spaces",
+      "de": "Item in mehreren Spaces",
+      "status": "proposed"
     },
     {
       "iri": "https://real-life.org/rls/v1#profile",

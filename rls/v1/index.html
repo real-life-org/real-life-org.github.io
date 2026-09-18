@@ -54,8 +54,13 @@ figure{margin:0 0 1.6rem}figure img{width:100%;height:auto;display:block;border-
 </div></div>
 <div class="e" id="mirror"><span class="w w-rls">Stack</span><div>
 <div class="head"><b><a href="https://real-life.org/rls/v1#mirror">Mirror</a></b><span class="o">Spiegel</span></div>
-<p class="def">The projection of an item from its home space. Origin, freshness and permitted actions are considered separately.</p>
-<div class="rels"><span>same as <a href="https://real-life.org/rlnp/v1#Spiegel">Mirror</a> <i>(Network)</i></span><span>related to <a href="https://real-life.org/rlnp/v1#Sichtbarkeit">Visibility</a> <i>(Network)</i></span><span>source <a href="https://github.com/real-life-org/real-life-stack/blob/master/docs/spec/09-mirror-bridge.md">09-mirror-bridge.md</a></span></div>
+<p class="def">The RLTP connector's construction of an item in several spaces: a copy in the second space, because encrypted groups cannot read each other; origin, freshness and permitted actions are considered separately. A central database needs no mirrors.</p>
+<div class="rels"><span>related to <a href="https://real-life.org/rls/v1#multi-space-item">Item in several spaces</a> <i>(Stack)</i></span><span>source <a href="https://github.com/real-life-org/real-life-stack/blob/master/docs/spec/09-mirror-bridge.md">09-mirror-bridge.md</a></span></div><p class="note">Deliberately without counterpart in RLNP or RLTP: for the person it is simply a thing in several spaces; the mirror exists because the Trust Protocol partitions storage by access boundary. The protocol itself knows only groups and their replication.</p>
+</div></div>
+<div class="e" id="multi-space-item"><span class="w w-rls">Stack</span><div>
+<div class="head"><b><a href="https://real-life.org/rls/v1#multi-space-item">Item in several spaces</a></b><span class="o">Item in mehreren Spaces</span><span class="tag">proposed</span></div>
+<p class="def">Proposed: an item lies in more than one space and has a home space responsible for it. How this is done, by association in a central database or by copy with a bridge across distributed groups, is the connector's decision.</p>
+<div class="rels"><span>related to <a href="https://real-life.org/rlnp/v1#Sichtbarkeit">Visibility</a> <i>(Network)</i></span><span>related to <a href="https://real-life.org/rls/v1#mirror">Mirror</a> <i>(Stack)</i></span><span>source <a href="https://github.com/real-life-org/real-life-stack/blob/master/docs/spec/09-mirror-bridge.md">09-mirror-bridge.md</a></span></div>
 </div></div>
 <div class="e" id="profile"><span class="w w-rls">Stack</span><div>
 <div class="head"><b><a href="https://real-life.org/rls/v1#profile">Person profile</a></b><span class="o">Personenprofil</span></div>

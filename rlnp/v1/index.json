@@ -10,11 +10,11 @@
   },
   "scheme": {
     "url": "https://real-life.org/rlnp/v1/terms.jsonld",
-    "sha256": "ba2b42caaf1b0ef24f7bbc906c5c30d74af11284ab56bdf9094fa5864be32d40"
+    "sha256": "0ac2decccd2f57d5681c05f3d21a4e191d6b45fc39f6626967feca9b53958352"
   },
   "mappings": {
     "url": "https://real-life.org/meta/v1/mappings.jsonld",
-    "sha256": "63cd3d79ddc26644dcc2ba1e313818f330b4ec9c6767f614401d7cf5edb35eba"
+    "sha256": "8237497c1c67c2e5ffcce06521e573ad9864882bd7ae7bc107871acd54768b7b"
   },
   "terms": [
     {
@@ -57,12 +57,6 @@
       "iri": "https://real-life.org/rlnp/v1#Sichtbarkeit",
       "en": "Visibility",
       "de": "Sichtbarkeit",
-      "status": "in specification"
-    },
-    {
-      "iri": "https://real-life.org/rlnp/v1#Spiegel",
-      "en": "Mirror",
-      "de": "Spiegel",
       "status": "in specification"
     },
     {
