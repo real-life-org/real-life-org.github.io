@@ -30,7 +30,7 @@ figure{margin:0 0 1.6rem}figure img{width:100%;height:auto;display:block;border-
 .e{display:grid;grid-template-columns:126px minmax(0,1fr);gap:12px;align-items:start;padding:6px 8px;margin:0 -8px;border-radius:6px}.e:hover{background:var(--hover)}.e:target{background:var(--mark)}
 @media(max-width:560px){.e{grid-template-columns:1fr;gap:4px}}
 .w{justify-self:start;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;font-weight:600;border-radius:4px;padding:2px 7px;margin-top:3px;white-space:nowrap}
-.w-rlnp{color:var(--rlnp);background:var(--rlnp-t)}.w-rls{color:var(--rls);background:var(--rls-t)}.w-rltp,.w-task{color:var(--rltp);background:var(--rltp-t)}
+.w-rlnp{color:var(--rlnp);background:var(--rlnp-t)}.w-rls{color:var(--rls);background:var(--rls-t)}.w-rltp,.w-task{color:var(--rltp);background:var(--rltp-t)}.w-meta{color:var(--soft);background:var(--chip)}
 .head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px}.head b a{color:inherit;text-decoration:none}.head b a:hover{text-decoration:underline}.head .o{font-size:.88em;color:var(--soft)}
 .tag{font-size:.72em;border:1px solid var(--warn);color:var(--warn);border-radius:4px;padding:0 .35em}
 .def{margin:2px 0 0;font-size:.92em;color:var(--text2)}
@@ -56,7 +56,7 @@ ${script}</body></html>
 
 // One entry, everywhere a term or type is listed: a badge for the part, the label (linked), the
 // other-language label, a tag, the definition, one line of relations, one line of actions.
-export const WORLD_NAME = { en: { rlnp: 'Network', rls: 'Stack', rltp: 'Trust Protocol', task: 'Trust Task' }, de: { rlnp: 'Netzwerk', rls: 'Stack', rltp: 'Trust Protocol', task: 'Trust Task' } }
+export const WORLD_NAME = { en: { rlnp: 'Network', rls: 'Stack', rltp: 'Trust Protocol', task: 'Trust Task', meta: 'Register' }, de: { rlnp: 'Netzwerk', rls: 'Stack', rltp: 'Trust Protocol', task: 'Trust Task', meta: 'Register' } }
 export const entry = ({ id, world, href, label, other = '', tag = '', def = '', rels = [], note = '', actions = [], l = 'en' }) =>
   `<div class="e" id="${esc(id)}"><span class="w w-${world}">${WORLD_NAME[l][world]}</span><div>
 <div class="head"><b>${href ? `<a href="${href}">${esc(label)}</a>` : esc(label)}</b>${other ? `<span class="o">${esc(other)}</span>` : ''}${tag ? `<span class="tag">${esc(tag)}</span>` : ''}</div>

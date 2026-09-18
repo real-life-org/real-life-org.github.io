@@ -25,7 +25,7 @@ figure{margin:0 0 1.6rem}figure img{width:100%;height:auto;display:block;border-
 .e{display:grid;grid-template-columns:126px minmax(0,1fr);gap:12px;align-items:start;padding:6px 8px;margin:0 -8px;border-radius:6px}.e:hover{background:var(--hover)}.e:target{background:var(--mark)}
 @media(max-width:560px){.e{grid-template-columns:1fr;gap:4px}}
 .w{justify-self:start;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;font-weight:600;border-radius:4px;padding:2px 7px;margin-top:3px;white-space:nowrap}
-.w-rlnp{color:var(--rlnp);background:var(--rlnp-t)}.w-rls{color:var(--rls);background:var(--rls-t)}.w-rltp,.w-task{color:var(--rltp);background:var(--rltp-t)}
+.w-rlnp{color:var(--rlnp);background:var(--rlnp-t)}.w-rls{color:var(--rls);background:var(--rls-t)}.w-rltp,.w-task{color:var(--rltp);background:var(--rltp-t)}.w-meta{color:var(--soft);background:var(--chip)}
 .head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px}.head b a{color:inherit;text-decoration:none}.head b a:hover{text-decoration:underline}.head .o{font-size:.88em;color:var(--soft)}
 .tag{font-size:.72em;border:1px solid var(--warn);color:var(--warn);border-radius:4px;padding:0 .35em}
 .def{margin:2px 0 0;font-size:.92em;color:var(--text2)}
@@ -41,22 +41,22 @@ figure{margin:0 0 1.6rem}figure img{width:100%;height:auto;display:block;border-
 <p>The shared part of the Real Life term register. The three parts of Real Life keep their own SKOS concept schemes: <a href="/rlnp/v1/">RLNP</a> (meaning), <a href="/rltp/v1/">RLTP</a> (construction) and <a href="/rls/v1/">RLS</a> (interface and code). This namespace holds what none of them owns alone: the JSON-LD context all three use, the mappings between them, and the few fields SKOS does not have.</p>
 <p>Machine-readable: <a href="context.jsonld"><code>context.jsonld</code></a>, <a href="mappings.jsonld"><code>mappings.jsonld</code></a>, <a href="index.json"><code>index.json</code></a>.</p>
 <h2>Fields</h2>
-<div class="entries"><div class="e" id="convergesWith"><span class="w w-task">Trust Task</span><div>
+<div class="entries"><div class="e" id="convergesWith"><span class="w w-meta">Register</span><div>
 <div class="head"><b>rl:convergesWith</b></div>
 <p class="def">The target state: these two concepts are meant to become the same, and the specifications have a task until they are. The SKOS mapping relations describe today.</p>
 
 </div></div>
-<div class="e" id="falseFriend"><span class="w w-task">Trust Task</span><div>
+<div class="e" id="falseFriend"><span class="w w-meta">Register</span><div>
 <div class="head"><b>rl:falseFriend</b></div>
 <p class="def">Same word in at least one language, different thing, on purpose. Recorded so the pair is never reported as a missing mapping and so the pages show it explicitly.</p>
 
 </div></div>
-<div class="e" id="status"><span class="w w-task">Trust Task</span><div>
+<div class="e" id="status"><span class="w w-meta">Register</span><div>
 <div class="head"><b>rl:status</b></div>
 <p class="def">"proposed": the concept does not exist in its specification yet; it is a proposal from the register to that part.</p>
 
 </div></div>
-<div class="e" id="symbol"><span class="w w-task">Trust Task</span><div>
+<div class="e" id="symbol"><span class="w w-meta">Register</span><div>
 <div class="head"><b>rl:symbol</b></div>
 <p class="def">Code symbols that implement the term (Real Life Stack only).</p>
 

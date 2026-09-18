@@ -160,7 +160,7 @@ emit('meta/v1/index.html', shell({ title: 'Shared term register · meta/v1', act
 <p>The shared part of the Real Life term register. The three parts of Real Life keep their own SKOS concept schemes: <a href="/rlnp/v1/">RLNP</a> (meaning), <a href="/rltp/v1/">RLTP</a> (construction) and <a href="/rls/v1/">RLS</a> (interface and code). This namespace holds what none of them owns alone: the JSON-LD context all three use, the mappings between them, and the few fields SKOS does not have.</p>
 <p>Machine-readable: <a href="context.jsonld"><code>context.jsonld</code></a>, <a href="mappings.jsonld"><code>mappings.jsonld</code></a>, <a href="index.json"><code>index.json</code></a>.</p>
 <h2>Fields</h2>
-<div class="entries">${RL.map(([f, d]) => entry({ id: f, world: 'task', label: `rl:${f}`, def: d })).join('\n')}</div>
+<div class="entries">${RL.map(([f, d]) => entry({ id: f, world: 'meta', label: `rl:${f}`, def: d })).join('\n')}</div>
 <h2>Rule</h2>
 <p>Definitions never live here. Each part defines its terms in its own repository and stays normative for them; the register only connects them. Source and checks: <a href="https://github.com/real-life-org/meta">real-life-org/meta</a>.</p>` }))
 
