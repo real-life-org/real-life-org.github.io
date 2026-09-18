@@ -43,7 +43,7 @@ export const NAV = { en: [['/', 'Overview'], ['/terms/', 'Dictionary'], ['/#iden
 // alt: {lang, href} of the other-language page, if any.
 export const shell = ({ l = 'en', title, head = '', active = null, tools = '', right = '', body, script = '', alt = null }) =>
   `<!DOCTYPE html><html lang="${l}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} — real-life.org</title>${alt ? `<link rel="alternate" hreflang="${alt.lang}" href="https://real-life.org${alt.href}">` : ''}<style>${CSS}</style>${head}</head><body>
-<header><div class="bar"><a class="brand" href="${l === 'de' ? '/de/' : '/'}"><b>Real Life</b><span>real-life.org</span></a>
+<header><div class="bar"><a class="brand" href="${l === 'de' ? '/de/' : '/'}"><b>Real Life</b></a>
 <nav>${NAV[l].map(([h, n]) => `<a href="${h}"${h === active ? ' class="on"' : ''}>${n}</a>`).join('')}</nav>
 ${tools}<div class="right">${alt ? `<a class="btn" href="${alt.href}" lang="${alt.lang}">${alt.lang.toUpperCase()}</a>` : ''}${right}</div></div></header>
 <main>
