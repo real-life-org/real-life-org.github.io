@@ -54,11 +54,8 @@
   },
   {
    "@id": "rltp:Member",
-   "skos:exactMatch": [
-    "rls:member",
-    "rlnp:Mitglied"
-   ],
-   "skos:note": "Converged 2026-09-18 as a proposal: meaning in RLNP, construction in RLTP, read in the Stack."
+   "skos:exactMatch": "rls:member",
+   "skos:note": "Deliberately without a counterpart in RLNP (2026-09-18): the network knows membership only as what it must not require. Belonging to the network lives in relationships, not in lists; a circle chooses its own form and access, and membership is one of the forms the Stack and the Trust Protocol provide for it."
   },
   {
    "@id": "rlnp:Rolle",
@@ -71,10 +68,6 @@
    "rl:falseFriend": "rls:relation",
    "skos:note": "Decided 2026-09-18 (for now): an RLNP relationship is broader than an RLTP edge. Two kinds: person–person is an edge from an encounter (RLTP Edge); person–agent is an edge from appointment or vouching (future attestation). Proposal to RLNP 6.2: name both kinds. Relation (Stack) links items, not people: false friend.",
    "rl:convergesWith": "rltp:Attestation"
-  },
-  {
-   "@id": "rlnp:Mitglied",
-   "skos:exactMatch": "rls:member"
   }
  ]
 }

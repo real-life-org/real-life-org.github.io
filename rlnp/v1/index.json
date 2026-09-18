@@ -10,11 +10,11 @@
   },
   "scheme": {
     "url": "https://real-life.org/rlnp/v1/terms.jsonld",
-    "sha256": "4a2d2f2a94931fd3335f57e004c4eeef0c51636e29f509901f2c6ce40274f568"
+    "sha256": "b8d8d7e1485526786025e840d4f616d320fd07b20d2ca66a3bae58edeb9d8016"
   },
   "mappings": {
     "url": "https://real-life.org/meta/v1/mappings.jsonld",
-    "sha256": "0ebcc99acfbcc49dabb4f987839a3c33a55509c6957c4f8c4085bb37eb6e5dbd"
+    "sha256": "2923b4c51312db0a3f73a8c8fa9146a24030024551e6d46e809e995b2b9cc3e2"
   },
   "terms": [
     {
@@ -40,12 +40,6 @@
       "en": "Person",
       "de": "Mensch",
       "status": "in specification"
-    },
-    {
-      "iri": "https://real-life.org/rlnp/v1#Mitglied",
-      "en": "Member",
-      "de": "Mitglied",
-      "status": "proposed"
     },
     {
       "iri": "https://real-life.org/rlnp/v1#Rolle",
