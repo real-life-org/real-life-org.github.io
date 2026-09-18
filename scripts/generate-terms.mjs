@@ -18,6 +18,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createHash } from 'node:crypto'
+import { shell } from './shell.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const args = process.argv.slice(2)
@@ -92,60 +93,7 @@ for (const m of mappings) {
 }
 if (errors) { console.error(`\n${errors} error(s) — refusing to generate.`); process.exit(1) }
 
-// ── pages: one shell for everything real-life.org serves from the register ─
-// Tokens and header from the Claude Design prototype "Wörterbuch" (2026-09-18). The gate, the
-// dictionary and the namespace pages share brand, navigation, type and colours; light and dark
-// come from one token set.
-const CSS = `:root{--bg:#fff;--ink:#1a2030;--muted:#667;--soft:#556;--text2:#333c4d;--line:#e2e6ef;--field:#d5dae6;--chip:#f0f2f7;--hover:#f6f7fa;--link:#2451b3;--warn:#b45309;--mark:#fdf3d8;--rlnp:#3f7a4e;--rlnp-t:#e6f0e7;--rls:#b36b1c;--rls-t:#f7ecdd;--rltp:#2f62c9;--rltp-t:#e5ecfa}
-@media(prefers-color-scheme:dark){:root{--bg:#0e0e10;--ink:#e8e8ea;--muted:#9a9aa4;--soft:#b9b9c3;--text2:#d0d0d6;--line:#2c2c31;--field:#3a3a42;--chip:#1c1c22;--hover:#18181d;--link:#7fb6d6;--warn:#fbbf24;--mark:#2a2410;--rlnp:#7cc48a;--rlnp-t:#1e2f23;--rls:#e0a25a;--rls-t:#33281a;--rltp:#7fa6f0;--rltp-t:#1d2738}}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}a{color:var(--link)}
-header{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:18px 28px 14px;border-bottom:1px solid var(--line)}
-.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:inherit}.brand b{font-size:1.35rem;font-weight:650;letter-spacing:-.01em}.brand span{font-size:.85rem;color:var(--muted)}
-nav{display:flex;gap:2px;background:var(--chip);border-radius:8px;padding:3px}nav a{border-radius:6px;padding:5px 14px;font-size:.9rem;font-weight:500;text-decoration:none;color:var(--soft)}nav a.on{background:var(--bg);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
-header input{flex:1 1 180px;max-width:320px;padding:6px 12px;border:1px solid var(--field);border-radius:8px;background:var(--bg);color:var(--ink);outline:none;font:inherit}header input:focus{border-color:var(--link)}
-.right{margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--field);background:var(--bg);border-radius:8px;padding:5px 12px;font-size:.9rem;white-space:nowrap;text-decoration:none;color:var(--ink)}.btn:hover{background:var(--chip)}.btn small{color:var(--muted);font-size:.78rem}
-main{padding:22px 28px 60px;max-width:900px}
-h1{font-size:1.5rem;margin:0 0 .6rem}h2{font-size:1.15rem;margin:2rem 0 .6rem}h3{font-size:1rem;margin:1.6rem 0 .2rem}
-p{max-width:760px;text-wrap:pretty}.sub{margin:0 0 6px;color:var(--text2);font-size:.95rem}
-code{background:var(--chip);padding:.1em .35em;border-radius:4px;font-size:.92em}
-table{border-collapse:collapse;width:100%;max-width:820px}td,th{border-bottom:1px solid var(--line);padding:.4em .6em;text-align:left;font-size:.95em;vertical-align:top}
-dl{margin:0}dt{font-weight:600;margin-top:.6rem}dd{margin:0 0 0 1rem;color:var(--text2)}.de{color:var(--soft)}.src,.map{font-size:.9em}
-:target{background:var(--mark)}
-footer{padding:0 28px 28px;font-size:.85em;color:var(--muted)}
-.stats{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.85rem;color:var(--muted);margin-bottom:22px}
-figure{margin:0 0 1.6rem;max-width:820px}figure img{width:100%;height:auto;display:block;border-radius:6px}
-.parts{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin:0 0 1.6rem;max-width:820px}@media(max-width:640px){.parts{grid-template-columns:1fr}}.part h2{margin:.2rem 0 .3rem}.part p{margin:.2rem 0}.part .for{font-size:.9em;color:var(--muted)}
-.rows{display:flex;flex-direction:column;gap:10px;max-width:820px}
-.row{border:1px solid var(--line);border-radius:10px;padding:12px 16px;background:var(--bg)}
-.rowhead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}.rowhead b{font-size:1.05rem;font-weight:650}.rowhead span{font-size:.85rem;color:var(--muted)}
-.entries{display:flex;flex-direction:column;gap:6px}
-.e{display:grid;grid-template-columns:126px minmax(0,1fr);gap:12px;align-items:start;padding:6px 8px;margin:0 -8px;border-radius:6px}.e:hover{background:var(--hover)}.e:target{background:var(--mark)}
-@media(max-width:560px){.e{grid-template-columns:1fr;gap:4px}}
-.w{justify-self:start;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;font-weight:600;border-radius:4px;padding:2px 7px;margin-top:3px;white-space:nowrap}
-.w-rlnp{color:var(--rlnp);background:var(--rlnp-t)}.w-rls{color:var(--rls);background:var(--rls-t)}.w-rltp{color:var(--rltp);background:var(--rltp-t)}
-.head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px}.head b a{color:inherit;text-decoration:none}.head b a:hover{text-decoration:underline}.head .o{font-size:.88em;color:var(--soft)}
-.tag{font-size:.72em;border:1px solid var(--warn);color:var(--warn);border-radius:4px;padding:0 .35em}
-.def{margin:2px 0 0;font-size:.92em;color:var(--text2)}
-.rels{display:flex;flex-wrap:wrap;gap:2px 10px;margin-top:4px;font-size:.82em;color:var(--soft)}.rels span{white-space:nowrap}.rels i{font-style:normal;color:var(--muted)}
-.act{margin-top:3px;font-size:.8em}.act a{margin-right:.7em;color:var(--muted)}.act a:hover{color:var(--link)}
-.note{margin:4px 0 0;font-size:.85em;color:var(--soft);font-style:italic}
-.empty{display:none;color:var(--muted);padding:24px 0}`
-const NAV = { en: [['/', 'Overview'], ['/terms/', 'Dictionary']], de: [['/de/', 'Überblick'], ['/de/terms/', 'Wörterbuch']] }
-// l: page language; active: which nav item; tools: header middle (search); right: header right side;
-// alt: {lang, href} of the other-language page, if any.
-const shell = ({ l = 'en', title, head = '', active = null, tools = '', right = '', body, script = '', alt = null }) =>
-  `<!DOCTYPE html><html lang="${l}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} — real-life.org</title>${alt ? `<link rel="alternate" hreflang="${alt.lang}" href="https://real-life.org${alt.href}">` : ''}<style>${CSS}</style>${head}</head><body>
-<header><a class="brand" href="${l === 'de' ? '/de/' : '/'}"><b>Real Life</b><span>real-life.org</span></a>
-<nav>${NAV[l].map(([h, n]) => `<a href="${h}"${h === active ? ' class="on"' : ''}>${n}</a>`).join('')}</nav>
-${tools}<div class="right">${alt ? `<a class="btn" href="${alt.href}" lang="${alt.lang}">${alt.lang.toUpperCase()}</a>` : ''}${right}</div></header>
-<main>
-${body}
-</main>
-<footer>real-life.org · <a href="https://github.com/real-life-org/meta">real-life-org/meta</a> · generated by scripts/generate-terms.mjs</footer>
-${script}</body></html>
-`
-
+// ── pages: every page uses the shell from scripts/shell.mjs ─────────────
 const WORLDS = {
   rlnp: { name: 'Real Life Network Protocol', short: 'RLNP', what: 'the social specification: what a circle, an encounter, a promise, a role mean', repo: 'https://github.com/real-life-org/real-life-network-protocol' },
   rls: { name: 'Real Life Stack', short: 'RLS', what: 'the app toolkit: application, data and the connector socket', repo: 'https://github.com/real-life-org/real-life-stack' },
@@ -180,7 +128,7 @@ for (const [world, w] of Object.entries(WORLDS)) {
     mappings: { url: `${BASE}meta/v1/mappings.jsonld`, sha256: sha256(mappingsText) },
     terms: own.map((c) => ({ iri: iri(c['@id']), en: lang(c['skos:prefLabel'], 'en'), de: lang(c['skos:prefLabel'], 'de'), status: c['rl:status'] ?? 'in specification' })),
   }))
-  emit(`${world}/v1/index.html`, shell({ title: `${w.short} terms · ${world}/v1`,
+  emit(`${world}/v1/index.html`, shell({ title: `${w.short} terms · ${world}/v1`, active: '/#identifiers',
     head: `<link rel="alternate" type="application/ld+json" href="terms.jsonld"><link rel="alternate" type="application/json" href="index.json"><script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'DefinedTermSet', '@id': ns, name: `${w.short} terms`, description: `Term namespace of the ${w.name}. SKOS concept scheme: ${ns}/terms.jsonld`, url: `${ns}/` })}</script>`,
     body: `<h1><code>${ns}</code></h1>
 <p>The term namespace of the <strong>${w.name}</strong>, ${w.what}. Permanent identifiers are <code>${ns}#&lt;Fragment&gt;</code>; the fragments resolve to the entries below.</p>
@@ -209,7 +157,7 @@ emit('meta/v1/index.json', j({
   fields: RL.map(([f, d]) => ({ iri: `${BASE}meta/v1#${f}`, definition: d })),
   schemes: Object.fromEntries(Object.entries(PREFIX).map(([w, p]) => [w, p.slice(0, -1)])),
 }))
-emit('meta/v1/index.html', shell({ title: 'Shared term register · meta/v1',
+emit('meta/v1/index.html', shell({ title: 'Shared term register · meta/v1', active: '/#identifiers',
   head: `<link rel="alternate" type="application/ld+json" href="context.jsonld"><link rel="alternate" type="application/json" href="index.json">`,
   body: `<h1><code>${BASE}meta/v1</code></h1>
 <p>The shared part of the Real Life term register. The three parts of Real Life keep their own SKOS concept schemes: <a href="/rlnp/v1/">RLNP</a> (meaning), <a href="/rltp/v1/">RLTP</a> (construction) and <a href="/rls/v1/">RLS</a> (interface and code). This namespace holds what none of them owns alone: the JSON-LD context all three use, the mappings between them, and the few fields SKOS does not have.</p>
@@ -240,7 +188,7 @@ const gatePage = (l) => {
 <div class="parts">
 ${parts.parts.map((p) => `<section class="part" id="${p.id}"><h2><a href="${p.url}">${esc(p.name[l])}</a></h2><p>${esc(p.sentence[l])}</p><p class="for">${esc(p.for[l])}</p></section>`).join('\n')}
 </div>
-<h2>${t.ids}</h2>
+<h2 id="identifiers">${t.ids}</h2>
 <p>${t.idsText}</p>
 <table>${t.rows.map(([path, what]) => `<tr><th><a href="${path}/">${path}</a></th><td>${what}</td></tr>`).join('\n')}</table>` })
 }

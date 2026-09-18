@@ -1,4 +1,9 @@
-<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Real Life — real-life.org</title><link rel="alternate" hreflang="en" href="https://real-life.org/"><style>:root{--bg:#fff;--ink:#1a2030;--muted:#667;--soft:#556;--text2:#333c4d;--line:#e2e6ef;--field:#d5dae6;--chip:#f0f2f7;--hover:#f6f7fa;--link:#2451b3;--warn:#b45309;--mark:#fdf3d8;--rlnp:#3f7a4e;--rlnp-t:#e6f0e7;--rls:#b36b1c;--rls-t:#f7ecdd;--rltp:#2f62c9;--rltp-t:#e5ecfa}
+// The one shell for every page real-life.org serves: brand, navigation, language switch, type
+// and colours. Used by generate.mjs (/rltp/v1, /trust-tasks) and generate-terms.mjs (gate,
+// dictionary, /rlnp/v1, /rls/v1, /meta/v1). Tokens and header come from the Claude Design
+// prototype "Wörterbuch" (2026-09-18); light is the design, dark derives from the same set.
+export const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+export const CSS = `:root{--bg:#fff;--ink:#1a2030;--muted:#667;--soft:#556;--text2:#333c4d;--line:#e2e6ef;--field:#d5dae6;--chip:#f0f2f7;--hover:#f6f7fa;--link:#2451b3;--warn:#b45309;--mark:#fdf3d8;--rlnp:#3f7a4e;--rlnp-t:#e6f0e7;--rls:#b36b1c;--rls-t:#f7ecdd;--rltp:#2f62c9;--rltp-t:#e5ecfa}
 @media(prefers-color-scheme:dark){:root{--bg:#0e0e10;--ink:#e8e8ea;--muted:#9a9aa4;--soft:#b9b9c3;--text2:#d0d0d6;--line:#2c2c31;--field:#3a3a42;--chip:#1c1c22;--hover:#18181d;--link:#7fb6d6;--warn:#fbbf24;--mark:#2a2410;--rlnp:#7cc48a;--rlnp-t:#1e2f23;--rls:#e0a25a;--rls-t:#33281a;--rltp:#7fa6f0;--rltp-t:#1d2738}}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}a{color:var(--link)}
 header{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:18px 28px 14px;border-bottom:1px solid var(--line)}
@@ -32,26 +37,19 @@ figure{margin:0 0 1.6rem;max-width:820px}figure img{width:100%;height:auto;displ
 .rels{display:flex;flex-wrap:wrap;gap:2px 10px;margin-top:4px;font-size:.82em;color:var(--soft)}.rels span{white-space:nowrap}.rels i{font-style:normal;color:var(--muted)}
 .act{margin-top:3px;font-size:.8em}.act a{margin-right:.7em;color:var(--muted)}.act a:hover{color:var(--link)}
 .note{margin:4px 0 0;font-size:.85em;color:var(--soft);font-style:italic}
-.empty{display:none;color:var(--muted);padding:24px 0}</style></head><body>
-<header><a class="brand" href="/de/"><b>Real Life</b><span>real-life.org</span></a>
-<nav><a href="/de/" class="on">Überblick</a><a href="/de/terms/">Wörterbuch</a><a href="/de/#identifiers">Kennungen</a></nav>
-<div class="right"><a class="btn" href="/" lang="en">EN</a></div></header>
+.empty{display:none;color:var(--muted);padding:24px 0}`
+export const NAV = { en: [['/', 'Overview'], ['/terms/', 'Dictionary'], ['/#identifiers', 'Identifiers']], de: [['/de/', 'Überblick'], ['/de/terms/', 'Wörterbuch'], ['/de/#identifiers', 'Kennungen']] }
+// l: page language; active: which nav item; tools: header middle (search); right: header right side;
+// alt: {lang, href} of the other-language page, if any.
+export const shell = ({ l = 'en', title, head = '', active = null, tools = '', right = '', body, script = '', alt = null }) =>
+  `<!DOCTYPE html><html lang="${l}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} — real-life.org</title>${alt ? `<link rel="alternate" hreflang="${alt.lang}" href="https://real-life.org${alt.href}">` : ''}<style>${CSS}</style>${head}</head><body>
+<header><a class="brand" href="${l === 'de' ? '/de/' : '/'}"><b>Real Life</b><span>real-life.org</span></a>
+<nav>${NAV[l].map(([h, n]) => `<a href="${h}"${h === active ? ' class="on"' : ''}>${n}</a>`).join('')}</nav>
+${tools}<div class="right">${alt ? `<a class="btn" href="${alt.href}" lang="${alt.lang}">${alt.lang.toUpperCase()}</a>` : ''}${right}</div></header>
 <main>
-<p class="sub" style="margin-bottom:18px">Real Life besteht aus drei Teilen. Diese Seite zeigt, wie sie zusammengehören, und führt zu jedem.</p>
-<figure><a href="/overview/layers.de.svg"><img src="/overview/layers.de.svg" alt="Die drei Teile: das Netzwerkprotokoll neben dem Stack, das Trust Protocol füllt die Schichten unter dem Connector."></a></figure>
-<div class="parts">
-<section class="part" id="network"><h2><a href="https://reallife.network">Real Life Netzwerk</a></h2><p>Ein sich selbst replizierender sozialer Organismus.</p><p class="for">für alle, die sich vernetzen wollen</p></section>
-<section class="part" id="stack"><h2><a href="https://real-life-stack.de">Real Life Stack</a></h2><p>Werkzeuge für dezentrale Koordination im echten Leben.</p><p class="for">für Entwickler, Vibecoder und Agents</p></section>
-<section class="part" id="trust"><h2><a href="https://rltp.real-life.org">Real Life Trust Protocol</a></h2><p>Dezentrale Identitäten und Gemeinschaften auf Basis echter Beziehung.</p><p class="for">für Protokollentwickler</p></section>
-</div>
-<h2 id="identifiers">Kennungen, die hier verankert sind</h2>
-<p>Die dauerhaften Kennungen aller drei Teile liegen unter dieser Domain. Sie folgen den Protokollen, nicht dem Branding; ein Bruch bekommt eine neue Version, kein neues Wort.</p>
-<table><tr><th><a href="/terms/">/terms</a></th><td>das Wörterbuch: alle Begriffe der drei Teile nebeneinander</td></tr>
-<tr><th><a href="/rlnp/v1/">/rlnp/v1</a></th><td>Begriffe des Real Life Network Protocol</td></tr>
-<tr><th><a href="/rls/v1/">/rls/v1</a></th><td>Begriffe des Real Life Stack</td></tr>
-<tr><th><a href="/rltp/v1/">/rltp/v1</a></th><td>Vokabular, Kontext und Schemas des Real Life Trust Protocol</td></tr>
-<tr><th><a href="/trust-tasks/">/trust-tasks</a></th><td>RLTP Trust-Task-Typen (ToIP DTGWG Framework 0.4)</td></tr>
-<tr><th><a href="/meta/v1/">/meta/v1</a></th><td>das gemeinsame Register: Kontext, Verknüpfungen zwischen den drei Teilen, Registerfelder</td></tr></table>
+${body}
 </main>
 <footer>real-life.org · <a href="https://github.com/real-life-org">real-life-org</a> · generated from <a href="https://github.com/real-life-org/rltp-spec">rltp-spec</a> and <a href="https://github.com/real-life-org/meta">meta</a>; nothing here is written by hand</footer>
-</body></html>
+${script}</body></html>
+`
+

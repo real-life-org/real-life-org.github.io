@@ -21,6 +21,7 @@ import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync } from 
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createHash } from 'node:crypto'
+import { shell } from './shell.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const args = process.argv.slice(2)
@@ -142,11 +143,10 @@ emit('rltp/v1/index.json', j({
 // contract we hand to other ecosystems, and a 404 there is a broken promise.
 // The pages are generated, so a new type in rltp-spec can never ship without
 // its page again.
-const STYLE = `body{font-family:system-ui,sans-serif;max-width:760px;margin:3rem auto;padding:0 1.2rem;line-height:1.6;color:#1a2030}a{color:#2451b3}code{background:#f0f2f7;padding:.1em .35em;border-radius:4px;font-size:.92em}h1{font-size:1.5rem}h2{font-size:1.15rem;margin-top:2rem}table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid #e2e6ef;padding:.4em .6em;text-align:left;font-size:.95em}footer{margin-top:3rem;font-size:.85em;color:#667}:target{background:#fdf3d8}@media(prefers-color-scheme:dark){body{background:#0e0e10;color:#e8e8ea}code{background:#1c1c22}td,th{border-color:#2c2c31}a{color:#7fb6d6}footer{color:#9a9aa4}:target{background:#2a2410}}`
-const FOOT = `<footer>Real Life Trust Protocol · <a href="https://github.com/real-life-org/rltp-spec">specification repository</a> · <a href="https://rltp.real-life.org/simulator/">simulator</a></footer></body></html>`
+// Pages use the shared shell (scripts/shell.mjs); these are English identifier pages, so the
+// navigation marks "Identifiers".
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-const page = (title, extraHead, body) =>
-  `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)}</title><style>${STYLE}</style>${extraHead}</head><body>\n${body}\n${FOOT}\n`
+const page = (title, extraHead, body) => shell({ title, head: extraHead, active: '/#identifiers', body })
 
 console.log('\n── documentation pages')
 const OFFLINE_NOTE = '<p><em>Offline rule: conforming implementations pre-register every schema by its <code>$id</code> and never resolve over the network — this page is documentation, not infrastructure.</em></p>'
@@ -182,7 +182,7 @@ ${types.map((t) => { const m = meta.types[t.slug]
   return `<tr><td><a href="/trust-tasks/${t.slug}/"><code>${t.slug}</code></a></td><td>${esc(m.definedIn.specification)} ${esc(m.definedIn.section)}</td><td>${esc(m.summary)}</td></tr>` }).join('\n')}
 </table>`))
 
-emit('rltp/v1/index.html', page('RLTP vocabulary — real-life.org/rltp/v1',
+emit('rltp/v1/index.html', page('RLTP vocabulary · rltp/v1',
   `<link rel="alternate" type="application/ld+json" href="context.jsonld"><link rel="alternate" type="application/json" href="index.json"><script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'DefinedTermSet', '@id': `${BASE}rltp/v1`, name: 'RLTP vocabulary', description: `The vocabulary namespace of the Real Life Trust Protocol. JSON-LD context: ${BASE}rltp/v1/context.jsonld`, url: `${BASE}rltp/v1/` })}</script>`,
   `<h1><code>${BASE}rltp/v1</code></h1>
 <p>The vocabulary namespace of the <strong>Real Life Trust Protocol</strong>. Permanent term identifiers are <code>${BASE}rltp/v1#&lt;Fragment&gt;</code>; the fragments resolve to the table below.</p>
