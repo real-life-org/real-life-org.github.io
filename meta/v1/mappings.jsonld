@@ -1,0 +1,85 @@
+{
+ "@context": "https://real-life.org/meta/v1/context.jsonld",
+ "@graph": [
+  {
+   "@id": "rlnp:Spiegel",
+   "skos:exactMatch": "rls:mirror"
+  },
+  {
+   "@id": "rlnp:Mensch",
+   "skos:relatedMatch": "rltp:Anchor",
+   "skos:note": "Deliberately no exactMatch: RLTP has no person object, only anchors per context. This is by design (relationships never converge into a person)."
+  },
+  {
+   "@id": "rlnp:Mensch",
+   "skos:relatedMatch": "rls:profile",
+   "skos:note": "The profile is the view of a person, not the person."
+  },
+  {
+   "@id": "rls:connector",
+   "skos:note": "Deliberately without counterpart in RLNP and RLTP. The connector is pure Stack construction."
+  },
+  {
+   "@id": "rlnp:Kreis",
+   "skos:relatedMatch": "rlnp:Space",
+   "skos:note": "A circle is the people, a space is the vessel. A circle gives itself a space when it takes form. Deliberately not the same."
+  },
+  {
+   "@id": "rlnp:Space",
+   "skos:exactMatch": [
+    "rls:space",
+    "rltp:Group"
+   ],
+   "skos:note": "Converged 2026-09-18: all three say \"vessel with members\"."
+  },
+  {
+   "@id": "rls:space",
+   "skos:exactMatch": "rltp:Group"
+  },
+  {
+   "@id": "rlnp:Sichtbarkeit",
+   "skos:relatedMatch": [
+    "rltp:VisibilityMode",
+    "rls:mirror"
+   ],
+   "rl:convergesWith": "rls:visibility",
+   "skos:note": "Three ways, three constructions: \"within the circle\" = RLTP private; \"mirrored\" = Stack mirror bridge; \"published\" = RLTP open is only the origin, delivery of open data needs another backend (multi-connector). VisibilityMode covers the first two only."
+  },
+  {
+   "@id": "rlnp:Verifikation",
+   "skos:exactMatch": "rltp:Enactment",
+   "skos:relatedMatch": "rltp:EncounterCredential",
+   "skos:note": "The act is the same; the credential is its result."
+  },
+  {
+   "@id": "rlnp:Bezeugen",
+   "skos:relatedMatch": "rltp:EncounterCredential",
+   "rl:convergesWith": "rltp:Attestation",
+   "skos:note": "Target: a general attestation type in RLTP (candidate: DTG Endorsement Credential). Until then only the encounter has an artifact."
+  },
+  {
+   "@id": "rltp:Member",
+   "skos:exactMatch": [
+    "rls:member",
+    "rlnp:Mitglied"
+   ],
+   "skos:note": "Converged 2026-09-18 as a proposal: meaning in RLNP, construction in RLTP, read in the Stack."
+  },
+  {
+   "@id": "rlnp:Rolle",
+   "rl:convergesWith": "rltp:Attestation",
+   "skos:note": "A role taken on is a witnessed promise (RLNP 6.18, 8.13). Depends on the attestation type."
+  },
+  {
+   "@id": "rlnp:Beziehung",
+   "skos:narrowMatch": "rltp:Edge",
+   "rl:falseFriend": "rls:relation",
+   "skos:note": "Decided 2026-09-18 (for now): an RLNP relationship is broader than an RLTP edge. Two kinds: person–person is an edge from an encounter (RLTP Edge); person–agent is an edge from appointment or vouching (future attestation). Proposal to RLNP 6.2: name both kinds. Relation (Stack) links items, not people: false friend.",
+   "rl:convergesWith": "rltp:Attestation"
+  },
+  {
+   "@id": "rlnp:Mitglied",
+   "skos:exactMatch": "rls:member"
+  }
+ ]
+}

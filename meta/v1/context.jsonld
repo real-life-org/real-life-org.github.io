@@ -1,0 +1,37 @@
+{
+ "@context": {
+  "skos": "http://www.w3.org/2004/02/skos/core#",
+  "dct": "http://purl.org/dc/terms/",
+  "rl": "https://real-life.org/meta/v1#",
+  "rlnp": "https://real-life.org/rlnp/v1#",
+  "rltp": "https://real-life.org/rltp/v1#",
+  "rls": "https://real-life.org/rls/v1#",
+  "skos:inScheme": {
+   "@type": "@id"
+  },
+  "skos:exactMatch": {
+   "@type": "@id"
+  },
+  "skos:closeMatch": {
+   "@type": "@id"
+  },
+  "skos:relatedMatch": {
+   "@type": "@id"
+  },
+  "skos:broadMatch": {
+   "@type": "@id"
+  },
+  "skos:narrowMatch": {
+   "@type": "@id"
+  },
+  "rl:falseFriend": {
+   "@type": "@id"
+  },
+  "rl:convergesWith": {
+   "@type": "@id"
+  },
+  "dct:source": {
+   "@type": "@id"
+  }
+ }
+}

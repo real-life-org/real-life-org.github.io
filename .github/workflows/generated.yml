@@ -1,6 +1,6 @@
 name: generated
 
-# This site is a projection of rltp-spec, not a place where content is written.
+# This site is a projection of rltp-spec and real-life-org/meta, not a place where content is written.
 # Two different questions have to be asked about it, and they need opposite
 # answers:
 #
@@ -8,7 +8,7 @@ name: generated
 #               loudly. Silently regenerating over it would hide the fact that
 #               a person believed this was a place to write.
 #
-#   schedule    Has the specification repository moved without us? Then the
+#   schedule    Has a source repository moved without us? Then the
 #   dispatch    site is stale through no local change at all — the failure mode
 #               that left nine of eighteen schemas wrong within three days —
 #               and the answer is to regenerate and publish.
@@ -17,7 +17,10 @@ name: generated
 # trigger further workflows, so there is no loop. GitHub Pages redeploys from
 # the commit. A push from rltp-spec cannot reach across repositories without a
 # stored credential, so the cron is the coupling: the site can be at most one
-# day behind the specification, never indefinitely.
+# day behind its sources, never indefinitely.
+#
+# Sources: rltp-spec for /rltp/v1 and /trust-tasks (scripts/generate.mjs);
+# real-life-org/meta for /rlnp/v1, /rls/v1 and /meta/v1 (scripts/generate-terms.mjs).
 
 on:
   push:
@@ -38,6 +41,10 @@ jobs:
         with:
           repository: real-life-org/rltp-spec
           path: rltp-spec
+      - uses: actions/checkout@v4
+        with:
+          repository: real-life-org/meta
+          path: meta
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -46,21 +53,27 @@ jobs:
         if: github.event_name == 'push' || github.event_name == 'pull_request'
         run: node scripts/generate.mjs rltp-spec --check
 
+      - name: term namespaces match the register
+        if: github.event_name == 'push' || github.event_name == 'pull_request'
+        run: node scripts/generate-terms.mjs meta --check
+
       - name: regenerate and publish
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
           set -euo pipefail
           SPEC_SHA=$(git -C rltp-spec rev-parse --short HEAD)
+          META_SHA=$(git -C meta rev-parse --short HEAD)
           node scripts/generate.mjs rltp-spec
-          rm -rf rltp-spec                    # never let the source repo into this one
+          node scripts/generate-terms.mjs meta
+          rm -rf rltp-spec meta               # never let the source repos into this one
           if [ -z "$(git status --porcelain)" ]; then
-            echo "Already matches rltp-spec at ${SPEC_SHA} — nothing to publish."
+            echo "Already matches rltp-spec at ${SPEC_SHA} and meta at ${META_SHA} — nothing to publish."
             exit 0
           fi
           git config user.name  "rltp-generator"
           git config user.email "noreply@real-life.org"
           git add -A
-          git commit -m "Regenerate from rltp-spec ${SPEC_SHA}" \
+          git commit -m "Regenerate from rltp-spec ${SPEC_SHA}, meta ${META_SHA}" \
                      -m "Published by .github/workflows/generated.yml. Every file here is
           derived: schemas at the paths their own \$id promises, both registries
           with computed digests, the documentation pages. Edit rltp-spec or

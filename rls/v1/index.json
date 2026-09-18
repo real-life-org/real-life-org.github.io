@@ -1,0 +1,63 @@
+{
+  "name": "RLS term namespace",
+  "namespace": "https://real-life.org/rls/v1",
+  "publisher": "https://real-life.org/",
+  "specificationRepository": "https://github.com/real-life-org/real-life-stack",
+  "generatedFrom": "real-life-org/meta — do not edit by hand, run scripts/generate-terms.mjs",
+  "context": {
+    "url": "https://real-life.org/meta/v1/context.jsonld",
+    "sha256": "c1d42b127039ab756896b83b3a88622cad6353d6d3b3b2581f35acf7c6b1f324"
+  },
+  "scheme": {
+    "url": "https://real-life.org/rls/v1/terms.jsonld",
+    "sha256": "90357e8384fb1ccf07fb4be72008fa09875da31e9eaec7362419aad5604f484e"
+  },
+  "mappings": {
+    "url": "https://real-life.org/meta/v1/mappings.jsonld",
+    "sha256": "fb44b8f93bc4a0be7267d6113e59f52802b434fb471a5362f675a7d10a192d0e"
+  },
+  "terms": [
+    {
+      "iri": "https://real-life.org/rls/v1#connector",
+      "en": "Connector",
+      "de": "Connector",
+      "status": "in specification"
+    },
+    {
+      "iri": "https://real-life.org/rls/v1#member",
+      "en": "Member",
+      "de": "Mitglied",
+      "status": "proposed"
+    },
+    {
+      "iri": "https://real-life.org/rls/v1#mirror",
+      "en": "Mirror",
+      "de": "Spiegel",
+      "status": "in specification"
+    },
+    {
+      "iri": "https://real-life.org/rls/v1#profile",
+      "en": "Person profile",
+      "de": "Personenprofil",
+      "status": "in specification"
+    },
+    {
+      "iri": "https://real-life.org/rls/v1#relation",
+      "en": "Relation",
+      "de": "Relation",
+      "status": "in specification"
+    },
+    {
+      "iri": "https://real-life.org/rls/v1#space",
+      "en": "Space",
+      "de": "Space",
+      "status": "in specification"
+    },
+    {
+      "iri": "https://real-life.org/rls/v1#visibility",
+      "en": "Visibility",
+      "de": "Sichtbarkeit",
+      "status": "proposed"
+    }
+  ]
+}
