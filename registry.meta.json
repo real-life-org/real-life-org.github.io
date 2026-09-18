@@ -1,5 +1,5 @@
 {
-  "$comment": "Editorial data the generator cannot derive from the schemas: one-line summaries, the defining specification and section, and the vocabulary term meanings. The conformance profile is DERIVED from the schema title, never stored here. Everything else — schema files, digests, registries, type pages — is generated from rltp-spec by scripts/generate.mjs, which FAILS if a shipped type has no entry here or an entry has no shipped type.",
+  "$comment": "Editorial data the generator cannot derive from the schemas: one-line summaries, the defining specification and section, and the vocabulary term meanings. The conformance profile is DERIVED from the schema title, never stored here. Everything else — schema files, digests, registries, type pages — is generated from rltp-spec by scripts/generate.mjs, which FAILS if a shipped type has no entry here or an entry has no shipped type. 'superseded' lists retired type versions whose URIs keep resolving: their page says which version replaced them; their schema.json stays as published.",
   "publisher": "https://real-life.org/",
   "specRepo": "https://github.com/real-life-org/rltp-spec",
   "framework": "ToIP DTGWG Trust Tasks 0.4 (draft), §6.5 private specifications",
@@ -190,5 +190,9 @@
       "definedIn": "Access 8"
     }
   ],
-  "vocabularyOfflineRule": "Per the interim securing profile, credentials pin their @context by value and implementations never process JSON-LD or resolve schemas over the network at runtime; this registry is documentation and distribution, not runtime infrastructure."
+  "vocabularyOfflineRule": "Per the interim securing profile, credentials pin their @context by value and implementations never process JSON-LD or resolve schemas over the network at runtime; this registry is documentation and distribution, not runtime infrastructure.",
+  "superseded": {
+    "membership-invite/0.1": "membership-invite/0.2",
+    "membership-accept/0.1": "membership-accept/0.2"
+  }
 }

@@ -172,6 +172,16 @@ for (const t of types) {
 ${OFFLINE_NOTE}`))
 }
 
+// Retired versions keep their URI: a page that names the successor, the published schema untouched.
+for (const [old, next] of Object.entries(meta.superseded ?? {})) {
+  emit(`trust-tasks/${old}/index.html`, page(`${old} — superseded RLTP Trust Task type`,
+    `<link rel="alternate" type="application/schema+json" href="schema.json">`,
+    `<h1><code>${BASE}trust-tasks/${old}</code></h1>
+<p><strong>${old}</strong> is a retired version of a private Trust Task type of the Real Life Trust Protocol. It is superseded by <a href="/trust-tasks/${next}/"><code>${next}</code></a>.</p>
+<p>The URI keeps resolving because published identifiers do not disappear. The payload schema published under it stays available as <a href="schema.json">schema.json</a>; new documents use the current version.</p>
+${OFFLINE_NOTE}`))
+}
+
 emit('trust-tasks/index.html', page('RLTP Trust Task types',
   `<link rel="alternate" type="application/json" href="index.json"><script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'DefinedTermSet', '@id': `${BASE}trust-tasks/`, name: 'RLTP Trust Task types', description: `Private Trust Task types of the Real Life Trust Protocol. Machine-readable registry: ${BASE}trust-tasks/index.json`, url: `${BASE}trust-tasks/` })}</script>`,
   `<h1>RLTP Trust Task types</h1>
