@@ -239,30 +239,78 @@ const proposeUrl = (c, l) => {
   return `https://github.com/${repo}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`
 }
 const D = {
-  en: { title: 'Dictionary', intro: 'All terms of the three parts of Real Life, side by side. A row is one concept: what it means in the Network Protocol, how the Stack shows it, how the Trust Protocol constructs it. Terms that are only related, broader or narrower, or meant to converge, stay in their own rows and appear as cross-references under the entry. Each part defines its own terms; this page only puts them next to each other.', how: 'To change a term, use <em>edit</em>: it opens the defining file in the owning repository, and GitHub turns your change into a pull request. To suggest without editing, use <em>propose</em>: it opens a prefilled issue.', edit: 'edit', propose: 'propose', alone: 'no counterpart, on purpose', proposed: 'proposal', other: 'Deutsch', otherHref: '/de/terms/', pic: 'How the three parts fit together' },
-  de: { title: 'Wörterbuch', intro: 'Alle Begriffe der drei Teile von Real Life, nebeneinander. Eine Zeile ist ein Begriff: was er im Netzwerkprotokoll bedeutet, wie der Stack ihn zeigt, wie das Trust Protocol ihn konstruiert. Begriffe, die nur verwandt, allgemeiner oder spezieller sind oder erst noch zusammenwachsen sollen, bleiben in eigenen Zeilen und stehen als Querverweise unter dem Eintrag. Jeder Teil definiert seine Begriffe selbst; diese Seite stellt sie nur nebeneinander.', how: 'Um einen Begriff zu ändern, nimm <em>ändern</em>: Es öffnet die Definitionsdatei im zuständigen Repo, und GitHub macht aus der Änderung einen Pull Request. Wer nur vorschlagen will, nimmt <em>vorschlagen</em>: ein vorbefülltes Issue.', edit: 'ändern', propose: 'vorschlagen', alone: 'bewusst ohne Gegenstück', proposed: 'Vorschlag', other: 'English', otherHref: '/terms/', pic: 'Wie die drei Teile zusammengehören' },
+  en: { title: 'Dictionary', sub: 'All terms of the three parts of Real Life. Each part defines its own terms; this page puts them next to each other and shows how they relate.', search: 'Search terms…', termsN: 'terms', proposedN: 'proposals', convergeN: 'convergence tasks', guardOk: 'Guard: no findings', proposal: 'proposal', oneThing: 'one thing in', worlds: 'parts', alone: 'only here', newTerm: 'New term', edit: 'edit', propose: 'propose', how: '<em>edit</em> opens the defining file of the part; GitHub turns the change into a pull request. <em>propose</em> opens a prefilled issue. <em>New term</em> opens an issue with the fields a term needs.', noResults: 'No term matches the search.', other: 'DE', otherHref: '/de/terms/', pic: 'How the three parts fit together', newTermIssue: ['New term: ', 'Part (Network / Stack / Trust Protocol):', 'Label DE / EN:', 'Definition DE:', 'Definition EN:', 'Mappings to existing terms (same, related, false friend, target: same):', 'Source in the spec:', 'Why:'] },
+  de: { title: 'Wörterbuch', sub: 'Alle Begriffe der drei Teile von Real Life. Jeder Teil definiert seine Begriffe selbst; diese Seite stellt sie nebeneinander und zeigt, wie sie zusammenhängen.', search: 'Begriff suchen…', termsN: 'Begriffe', proposedN: 'Vorschläge', convergeN: 'Konvergenzaufgaben', guardOk: 'Guard: keine Hinweise', proposal: 'Vorschlag', oneThing: 'ein Ding in', worlds: 'Teilen', alone: 'nur hier', newTerm: 'Begriff anlegen', edit: 'ändern', propose: 'vorschlagen', how: '<em>ändern</em> öffnet die Definitionsdatei des Teils; GitHub macht aus der Änderung einen Pull Request. <em>vorschlagen</em> öffnet ein vorbefülltes Issue. <em>Begriff anlegen</em> öffnet ein Issue mit den Feldern, die ein Begriff braucht.', noResults: 'Kein Begriff passt zur Suche.', other: 'EN', otherHref: '/terms/', pic: 'Wie die drei Teile zusammengehören', newTermIssue: ['Neuer Begriff: ', 'Teil (Netzwerk / Stack / Trust Protocol):', 'Bezeichnung DE / EN:', 'Definition DE:', 'Definition EN:', 'Zuordnungen zu bestehenden Begriffen (gleich, verwandt, falscher Freund, Ziel: gleich):', 'Quelle in der Spec:', 'Warum:'] },
 }
-const DICT_STYLE = STYLE + `body{max-width:1100px}.cluster{border-top:1px solid #e2e6ef;padding:1.2rem 0 .6rem}.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}@media(max-width:720px){.cols{grid-template-columns:1fr}}.col h4{margin:0 0 .3rem;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#667}.t{margin:0 0 .9rem}.t b{font-size:1.02em}.t .de{font-size:.92em}.t p{margin:.15rem 0;font-size:.95em}.t .rel{font-size:.86em;color:#556;margin-top:.2rem}.t .act{font-size:.82em;margin-top:.25rem}.t .act a{margin-right:.6rem}.tag{font-size:.72em;border:1px solid #b45309;color:#b45309;border-radius:4px;padding:0 .3em;vertical-align:.1em}.lang{float:right;font-size:.9em}@media(prefers-color-scheme:dark){.cluster{border-color:#2c2c31}.col h4{color:#9a9aa4}.t .rel{color:#b9b9c3}.tag{border-color:#fbbf24;color:#fbbf24}}`
+const WCOL = { rlnp: ['#3f7a4e', '#e6f0e7', '#7cc48a', '#1e2f23'], rls: ['#b36b1c', '#f7ecdd', '#e0a25a', '#33281a'], rltp: ['#2f62c9', '#e5ecfa', '#7fa6f0', '#1d2738'] }
+// Layout from the Claude Design prototype "Wörterbuch" (list view), 2026-09-18: header with title,
+// search, language switch and "new term"; a stats line; one card per row; entries with a world badge.
+const DICT_STYLE = `:root{--bg:#fff;--ink:#1a2030;--muted:#667;--soft:#556;--text2:#333c4d;--line:#e2e6ef;--field:#d5dae6;--chip:#f0f2f7;--hover:#f6f7fa;--link:#2451b3;--warn:#b45309;--rlnp:#3f7a4e;--rlnp-t:#e6f0e7;--rls:#b36b1c;--rls-t:#f7ecdd;--rltp:#2f62c9;--rltp-t:#e5ecfa}
+@media(prefers-color-scheme:dark){:root{--bg:#0e0e10;--ink:#e8e8ea;--muted:#9a9aa4;--soft:#b9b9c3;--text2:#d0d0d6;--line:#2c2c31;--field:#3a3a42;--chip:#1c1c22;--hover:#18181d;--link:#7fb6d6;--warn:#fbbf24;--rlnp:#7cc48a;--rlnp-t:#1e2f23;--rls:#e0a25a;--rls-t:#33281a;--rltp:#7fa6f0;--rltp-t:#1d2738}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}a{color:var(--link)}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:18px 28px 14px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:baseline;gap:10px}.brand b{font-size:1.35rem;font-weight:650;letter-spacing:-.01em}.brand span{font-size:.85rem;color:var(--muted)}
+header input{flex:1 1 180px;max-width:320px;padding:6px 12px;border:1px solid var(--field);border-radius:8px;background:var(--bg);color:var(--ink);outline:none;font:inherit}header input:focus{border-color:var(--link)}
+.right{margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--field);background:var(--bg);border-radius:8px;padding:5px 12px;font-size:.9rem;white-space:nowrap;text-decoration:none;color:var(--ink)}.btn:hover{background:var(--chip)}.btn small{color:var(--muted);font-size:.78rem}
+main{padding:22px 28px 60px;max-width:900px}
+.sub{margin:0 0 6px;max-width:760px;color:var(--text2);font-size:.95rem;text-wrap:pretty}
+.stats{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.85rem;color:var(--muted);margin-bottom:22px}
+.rows{display:flex;flex-direction:column;gap:10px;max-width:820px}
+.row{border:1px solid var(--line);border-radius:10px;padding:12px 16px;background:var(--bg)}
+.rowhead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}.rowhead b{font-size:1.05rem;font-weight:650}.rowhead span{font-size:.85rem;color:var(--muted)}
+.entries{display:flex;flex-direction:column;gap:6px}
+.e{display:grid;grid-template-columns:126px minmax(0,1fr);gap:12px;align-items:start;padding:6px 8px;margin:0 -8px;border-radius:6px}.e:hover{background:var(--hover)}.e:target{background:#fdf3d8}
+@media(max-width:560px){.e{grid-template-columns:1fr;gap:4px}}
+.w{justify-self:start;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;font-weight:600;border-radius:4px;padding:2px 7px;margin-top:3px;white-space:nowrap}
+.w-rlnp{color:var(--rlnp);background:var(--rlnp-t)}.w-rls{color:var(--rls);background:var(--rls-t)}.w-rltp{color:var(--rltp);background:var(--rltp-t)}
+.head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px}.head b a{color:inherit;text-decoration:none}.head b a:hover{text-decoration:underline}.head .o{font-size:.88em;color:var(--soft)}
+.tag{font-size:.72em;border:1px solid var(--warn);color:var(--warn);border-radius:4px;padding:0 .35em}
+.def{margin:2px 0 0;font-size:.92em;color:var(--text2);text-wrap:pretty}
+.rels{display:flex;flex-wrap:wrap;gap:2px 10px;margin-top:4px;font-size:.82em;color:var(--soft)}.rels span{white-space:nowrap}.rels i{font-style:normal;color:var(--muted)}
+.act{margin-top:3px;font-size:.8em}.act a{margin-right:.7em;color:var(--muted)}.act a:hover{color:var(--link)}
+.note{margin:4px 0 0;font-size:.85em;color:var(--soft);font-style:italic}
+.empty{display:none;color:var(--muted);padding:24px 0}
+footer{padding:0 28px 28px;font-size:.85em;color:var(--muted)}`
+const REL_COLOR = { 'rl:convergesWith': 'var(--warn)', 'rl:falseFriend': '#b91c1c' }
 const dictPage = (l) => {
-  const t = D[l]
+  const t = D[l]; const O = l === 'en' ? 'de' : 'en'
+  const nProposed = Object.values(concepts).filter((c) => c['rl:status'] === 'proposed').length
+  const nConv = Object.entries(links).reduce((n, [a, v]) => n + v.filter(([r, b]) => r === 'rl:convergesWith' && a < b).length, 0)
+  const noteOf = (id) => (notes[id] ?? [])[0]
   const entry = (id) => {
     const c = concepts[id]
-    const rels = (links[id] ?? []).map(([rel, b]) => `${REL_L[l][rel]} <a href="${termHref(concepts[b])}">${esc(lang(concepts[b]['skos:prefLabel'], l) || b)}</a> <span class="de">(${WORLD_NAME[l][concepts[b].world]})</span>`).join(' · ')
-    return `<div class="t" id="${c.world}-${fragment(id)}"><b><a href="${termHref(c)}">${esc(lang(c['skos:prefLabel'], l))}</a></b> <span class="de">${esc(lang(c['skos:prefLabel'], l === 'en' ? 'de' : 'en'))}</span>${c['rl:status'] === 'proposed' ? ` <span class="tag">${t.proposed}</span>` : ''}
-<p>${esc(lang(c['skos:definition'], l))}</p>
-${rels ? `<div class="rel">${rels}</div>` : `<div class="rel">${t.alone}</div>`}
-<div class="act"><a href="${editUrl(c)}">${t.edit}</a><a href="${proposeUrl(c, l)}">${t.propose}</a></div></div>`
+    const others = (links[id] ?? []).filter(([rel]) => rel !== 'skos:exactMatch')
+    const rels = others.map(([rel, b]) => `<span style="${REL_COLOR[rel] ? `color:${REL_COLOR[rel]}` : ''}">${REL_L[l][rel]} <a href="${termHref(concepts[b])}">${esc(lang(concepts[b]['skos:prefLabel'], l) || b)}</a> <i>(${WORLD_NAME[l][concepts[b].world]})</i></span>`).join('')
+    const n = noteOf(id)
+    return `<div class="e" id="${c.world}-${fragment(id)}"><span class="w w-${c.world}">${WORLD_NAME[l][c.world]}</span><div>
+<div class="head"><b><a href="${termHref(c)}">${esc(lang(c['skos:prefLabel'], l))}</a></b><span class="o">${esc(lang(c['skos:prefLabel'], O))}</span>${c['rl:status'] === 'proposed' ? `<span class="tag">${t.proposal}</span>` : ''}</div>
+<p class="def">${esc(lang(c['skos:definition'], l))}</p>
+${rels ? `<div class="rels">${rels}</div>` : ''}${n && !others.length && !(links[id] ?? []).length ? `<p class="note">${esc(n)}</p>` : ''}
+<div class="act"><a href="${editUrl(c)}">${t.edit}</a><a href="${proposeUrl(c, l)}">${t.propose}</a></div></div></div>`
   }
-  const body = `<p class="lang"><a href="${t.otherHref}" lang="${l === 'en' ? 'de' : 'en'}">${t.other}</a></p>
-<h1>${t.title}</h1>
-<p>${t.intro}</p>
-<p>${t.how}</p>
-<p><a href="/${l === 'de' ? 'de/' : ''}">${t.pic}</a> · <a href="/meta/v1/">meta/v1</a></p>
-${sortedClusters.map((ids) => `<section class="cluster"><div class="cols">${WORLD_ORDER.map((w) => {
-    const own = ids.filter((id) => concepts[id].world === w).sort()
-    return `<div class="col"><h4>${WORLD_NAME[l][w]}</h4>${own.map(entry).join('\n') || ''}</div>`
-  }).join('\n')}</div></section>`).join('\n')}`
-  return `<!DOCTYPE html><html lang="${l}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${t.title} — real-life.org</title><link rel="alternate" hreflang="${l === 'en' ? 'de' : 'en'}" href="https://real-life.org${t.otherHref}"><style>${DICT_STYLE}</style></head><body>\n${body}\n<footer>real-life.org · <a href="https://github.com/real-life-org/meta">real-life-org/meta</a> · generated by scripts/generate-terms.mjs</footer></body></html>\n`
+  const rows = sortedClusters.map((ids) => {
+    const es = [...ids].sort((x, y) => WORLD_ORDER.indexOf(concepts[x].world) - WORLD_ORDER.indexOf(concepts[y].world))
+    const labels = [...new Set(es.map((id) => lang(concepts[id]['skos:prefLabel'], l)))]
+    const hint = ids.length > 1 ? `${t.oneThing} ${ids.length} ${t.worlds}` : t.alone
+    return `<section class="row" data-q="${esc(es.map((id) => [lang(concepts[id]['skos:prefLabel'], 'de'), lang(concepts[id]['skos:prefLabel'], 'en'), lang(concepts[id]['skos:definition'], 'de'), lang(concepts[id]['skos:definition'], 'en')].join(' ')).join(' ').toLowerCase())}"><div class="rowhead"><b>${esc(labels.join(' · '))}</b><span>${hint}</span></div><div class="entries">${es.map(entry).join('\n')}</div></section>`
+  }).join('\n')
+  const newTermUrl = `https://github.com/real-life-org/meta/issues/new?title=${encodeURIComponent(t.newTermIssue[0])}&body=${encodeURIComponent(t.newTermIssue.slice(1).join('\n\n') + '\n')}`
+  const body = `<header><div class="brand"><b>${t.title}</b><span>real-life.org</span></div>
+<input id="q" type="search" placeholder="${t.search}" aria-label="${t.search}">
+<div class="right"><a class="btn" href="${t.otherHref}" lang="${O}">${t.other}</a><a class="btn" href="${newTermUrl}">+ ${t.newTerm} <small>Issue ↗</small></a></div></header>
+<main>
+<p class="sub">${t.sub}</p>
+<div class="stats"><span>${Object.keys(concepts).length} ${t.termsN}</span><span>${nProposed} ${t.proposedN}</span><span>${nConv} ${t.convergeN}</span><span>${t.guardOk}</span><a href="/${l === 'de' ? 'de/' : ''}">${t.pic}</a></div>
+<div class="rows" id="rows">
+${rows}
+</div>
+<p class="empty" id="empty">${t.noResults}</p>
+<p class="sub" style="margin-top:22px;font-size:.88rem">${t.how}</p>
+</main>
+<footer>real-life.org · <a href="https://github.com/real-life-org/meta">real-life-org/meta</a> · generated by scripts/generate-terms.mjs</footer>
+<script>(function(){var q=document.getElementById('q'),rows=[].slice.call(document.querySelectorAll('.row')),empty=document.getElementById('empty');q.addEventListener('input',function(){var v=q.value.trim().toLowerCase(),n=0;rows.forEach(function(r){var hit=!v||r.getAttribute('data-q').indexOf(v)>-1;r.style.display=hit?'':'none';if(hit)n++});empty.style.display=n?'none':'block'})})()</script>`
+  return `<!DOCTYPE html><html lang="${l}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${t.title} — real-life.org</title><link rel="alternate" hreflang="${O}" href="https://real-life.org${t.otherHref}"><style>${DICT_STYLE}</style></head><body>\n${body}\n</body></html>\n`
 }
 emit('terms/index.html', dictPage('en'))
 emit('de/terms/index.html', dictPage('de'))
