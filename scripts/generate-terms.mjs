@@ -5,8 +5,9 @@
 // own SKOS concept scheme, and real-life-org/meta holds the mappings between them.
 // The identifiers of those concepts are promised under real-life.org; this script
 // makes the promise true, the same way generate.mjs does for RLTP. Nothing here is
-// written by hand: the source is meta/terms (and, once the parts carry their own
-// scheme files, the repositories named in meta/terms/sources.json).
+// written by hand: the source is meta/terms and the repositories pinned in
+// meta/terms/sources.json, checked out under meta/worlds/<world> by meta/scripts/fetch_worlds.py
+// (a world without a file of its own yet still comes from meta/terms/seed).
 //
 // /rltp/v1 stays with generate.mjs and rltp-spec. The RLTP concept scheme in the
 // register maps onto the fragments that page already serves.
@@ -55,10 +56,10 @@ const PREFIX = { rlnp: `${BASE}rlnp/v1#`, rltp: `${BASE}rltp/v1#`, rls: `${BASE}
 
 const schemeText = {}, concepts = {}
 for (const [world, s] of Object.entries(sources)) {
-  // Until a part carries its own file (ref is null), the seed copy in meta is the source.
-  // When ref is set, the workflow must check that repository out and the path below must exist.
-  const file = s.ref == null ? join(META, s.seed) : join(ROOT, world, s.path)
-  if (!existsSync(file)) { err(`${world}: scheme file ${file} not found`); continue }
+  // A pinned world is read from meta/worlds/<world> (meta/scripts/fetch_worlds.py); a world
+  // without a file of its own yet (ref is null) from the seed copy in meta.
+  const file = s.ref == null ? join(META, s.seed) : join(META, 'worlds', world, s.path)
+  if (!existsSync(file)) { err(`${world}: scheme file ${file} not found${s.ref == null ? '' : ' (run meta/scripts/fetch_worlds.py)'}`); continue }
   schemeText[world] = readFileSync(file, 'utf8')
   for (const n of JSON.parse(schemeText[world])['@graph']) {
     if (n['@type'] !== 'skos:Concept') continue

@@ -20,7 +20,10 @@ name: generated
 # day behind its sources, never indefinitely.
 #
 # Sources: rltp-spec for /rltp/v1 and /trust-tasks (scripts/generate.mjs);
-# real-life-org/meta for /rlnp/v1, /rls/v1 and /meta/v1 (scripts/generate-terms.mjs).
+# real-life-org/meta for /, /terms, /rlnp/v1, /rls/v1 and /meta/v1 (scripts/generate-terms.mjs).
+# The concept schemes themselves live in the three specification repositories; meta pins
+# them to a commit in terms/sources.json and meta/scripts/fetch_worlds.py checks them out
+# under meta-src/worlds before generating.
 
 on:
   push:
@@ -48,6 +51,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: fetch the concept schemes meta pins
+        run: python3 meta-src/scripts/fetch_worlds.py
 
       - name: site matches the specification repository
         if: github.event_name == 'push' || github.event_name == 'pull_request'

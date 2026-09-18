@@ -10,7 +10,7 @@
   },
   "scheme": {
     "url": "https://real-life.org/rls/v1/terms.jsonld",
-    "sha256": "90357e8384fb1ccf07fb4be72008fa09875da31e9eaec7362419aad5604f484e"
+    "sha256": "e013b7766ee87a5690d9dc82e3fc52102334df377218297d542da2feffc5c977"
   },
   "mappings": {
     "url": "https://real-life.org/meta/v1/mappings.jsonld",
