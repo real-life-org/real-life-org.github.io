@@ -10,11 +10,11 @@
   },
   "scheme": {
     "url": "https://real-life.org/rlnp/v1/terms.jsonld",
-    "sha256": "0ac2decccd2f57d5681c05f3d21a4e191d6b45fc39f6626967feca9b53958352"
+    "sha256": "162c1ab3036ac2f056c5d5814fcc48385d22809cad7a8c8075317972c7068ed3"
   },
   "mappings": {
     "url": "https://real-life.org/meta/v1/mappings.jsonld",
-    "sha256": "8237497c1c67c2e5ffcce06521e573ad9864882bd7ae7bc107871acd54768b7b"
+    "sha256": "59017d6885c4e90bf1a243e50eb1d9fc5ef8fdc13b17febd53230e3c9db42518"
   },
   "terms": [
     {

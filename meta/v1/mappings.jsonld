@@ -43,7 +43,7 @@
     "rltp:Enactment"
    ],
    "skos:relatedMatch": "rltp:EncounterCredential",
-   "skos:note": "One act in three parts (2026-09-18): the encounter happens in the network, the Stack verifies it in the app, the Trust Protocol constructs that verification as an enactment. The encounter credential is its result."
+   "skos:note": "One act in three parts (2026-09-18): the encounter happens in the network, the Stack verifies it in the app, the Trust Protocol constructs that verification as an enactment; the encounter credential is its result. Socially it happens once per relationship; the protocol allows repeated enactments, each with a fresh anchor, all landing on the same edge."
   },
   {
    "@id": "rlnp:Bezeugen",
@@ -75,7 +75,7 @@
   {
    "@id": "rlnp:Begegnung",
    "skos:relatedMatch": "rlnp:Verifikation",
-   "skos:note": "The event itself, deliberately without counterpart in the Stack or the Trust Protocol: the encounter belongs to the people; the Stack verifies it, the protocol proves it."
+   "skos:note": "The event itself, repeated and ordinary, deliberately without counterpart in the Stack or the Trust Protocol: the encounter belongs to the people. Verification is the one-time act that records the relationship; later encounters need none."
   },
   {
    "@id": "rls:mirror",
