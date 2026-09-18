@@ -71,6 +71,9 @@ const lang = (vals, l) => (Array.isArray(vals) ? vals : [vals]).find((v) => v &&
 const list = (x) => (x == null ? [] : Array.isArray(x) ? x : [x])
 const iri = (curie) => { const [p, f] = curie.split(':'); return PREFIX[p] ? PREFIX[p] + f : curie }
 const fragment = (curie) => curie.split(':')[1]
+// Where a term can be read. /rltp/v1 is generated from rltp-spec's fragment tables, so a concept the
+// register only proposes to RLTP has no section there yet; its link goes to the source it cites.
+const termHref = (c) => (c.world === 'rltp' && c['rl:status'] === 'proposed' ? list(c['dct:source'])[0] : iri(c['@id']))
 
 // Labels read "<this term> is <label> <other term>". SKOS: "A skos:narrowMatch B" states that B is
 // narrower than A, so A is broader than B; broadMatch is the reverse. Symmetric relations keep their
@@ -105,7 +108,7 @@ const conceptHtml = (c) => {
   const rows = (links[c['@id']] ?? []).map(([rel, b]) => {
     const o = concepts[b]
     const label = lang(o['skos:prefLabel'], 'en') || b
-    return `<li>${REL[rel]} <a href="${iri(b)}">${esc(label)}</a> <span class="de">(${o.world.toUpperCase()})</span></li>`
+    return `<li>${REL[rel]} <a href="${termHref(o)}">${esc(label)}</a> <span class="de">(${o.world.toUpperCase()})</span></li>`
   }).join('')
   const alts = list(c['skos:altLabel']).map((a) => a['@value']).filter(Boolean)
   return `<h3 id="${esc(f)}"><code>#${esc(f)}</code> ${esc(lang(c['skos:prefLabel'], 'en'))} <span class="de">· ${esc(lang(c['skos:prefLabel'], 'de'))}</span>${c['rl:status'] === 'proposed' ? ' <em>(proposed, not yet in the specification)</em>' : ''}</h3>
@@ -209,7 +212,11 @@ const parent = {}
 const find = (x) => (parent[x] === undefined || parent[x] === x) ? (parent[x] = x) : (parent[x] = find(parent[x]))
 const union = (a, b) => { parent[find(a)] = find(b) }
 for (const c of Object.keys(concepts)) find(c)
-for (const [a, rels] of Object.entries(links)) for (const [rel, b] of rels) if (rel !== 'rl:falseFriend') union(a, b)
+// A row is one concept, so only sameness joins two terms: exactMatch and closeMatch. Related,
+// broader, narrower and convergence targets stay cross-references under the entry; joining them
+// would put Bezeugen, Beziehung, Rolle and Verifikation in one row.
+const SAME = new Set(['skos:exactMatch', 'skos:closeMatch'])
+for (const [a, rels] of Object.entries(links)) for (const [rel, b] of rels) if (SAME.has(rel)) union(a, b)
 const clusters = {}
 for (const c of Object.keys(concepts)) (clusters[find(c)] ??= []).push(c)
 const WORLD_ORDER = ['rlnp', 'rls', 'rltp']
@@ -232,16 +239,16 @@ const proposeUrl = (c, l) => {
   return `https://github.com/${repo}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`
 }
 const D = {
-  en: { title: 'Dictionary', intro: 'All terms of the three parts of Real Life, side by side. A row is one concept: what it means in the Network Protocol, how the Stack shows it, how the Trust Protocol constructs it. Each part defines its own terms; this page only puts them next to each other.', how: 'To change a term, use <em>edit</em>: it opens the defining file in the owning repository, and GitHub turns your change into a pull request. To suggest without editing, use <em>propose</em>: it opens a prefilled issue.', edit: 'edit', propose: 'propose', alone: 'no counterpart, on purpose', proposed: 'proposal', other: 'Deutsch', otherHref: '/de/terms/', pic: 'How the three parts fit together' },
-  de: { title: 'Wörterbuch', intro: 'Alle Begriffe der drei Teile von Real Life, nebeneinander. Eine Zeile ist ein Begriff: was er im Netzwerkprotokoll bedeutet, wie der Stack ihn zeigt, wie das Trust Protocol ihn konstruiert. Jeder Teil definiert seine Begriffe selbst; diese Seite stellt sie nur nebeneinander.', how: 'Um einen Begriff zu ändern, nimm <em>ändern</em>: Es öffnet die Definitionsdatei im zuständigen Repo, und GitHub macht aus der Änderung einen Pull Request. Wer nur vorschlagen will, nimmt <em>vorschlagen</em>: ein vorbefülltes Issue.', edit: 'ändern', propose: 'vorschlagen', alone: 'bewusst ohne Gegenstück', proposed: 'Vorschlag', other: 'English', otherHref: '/terms/', pic: 'Wie die drei Teile zusammengehören' },
+  en: { title: 'Dictionary', intro: 'All terms of the three parts of Real Life, side by side. A row is one concept: what it means in the Network Protocol, how the Stack shows it, how the Trust Protocol constructs it. Terms that are only related, broader or narrower, or meant to converge, stay in their own rows and appear as cross-references under the entry. Each part defines its own terms; this page only puts them next to each other.', how: 'To change a term, use <em>edit</em>: it opens the defining file in the owning repository, and GitHub turns your change into a pull request. To suggest without editing, use <em>propose</em>: it opens a prefilled issue.', edit: 'edit', propose: 'propose', alone: 'no counterpart, on purpose', proposed: 'proposal', other: 'Deutsch', otherHref: '/de/terms/', pic: 'How the three parts fit together' },
+  de: { title: 'Wörterbuch', intro: 'Alle Begriffe der drei Teile von Real Life, nebeneinander. Eine Zeile ist ein Begriff: was er im Netzwerkprotokoll bedeutet, wie der Stack ihn zeigt, wie das Trust Protocol ihn konstruiert. Begriffe, die nur verwandt, allgemeiner oder spezieller sind oder erst noch zusammenwachsen sollen, bleiben in eigenen Zeilen und stehen als Querverweise unter dem Eintrag. Jeder Teil definiert seine Begriffe selbst; diese Seite stellt sie nur nebeneinander.', how: 'Um einen Begriff zu ändern, nimm <em>ändern</em>: Es öffnet die Definitionsdatei im zuständigen Repo, und GitHub macht aus der Änderung einen Pull Request. Wer nur vorschlagen will, nimmt <em>vorschlagen</em>: ein vorbefülltes Issue.', edit: 'ändern', propose: 'vorschlagen', alone: 'bewusst ohne Gegenstück', proposed: 'Vorschlag', other: 'English', otherHref: '/terms/', pic: 'Wie die drei Teile zusammengehören' },
 }
 const DICT_STYLE = STYLE + `body{max-width:1100px}.cluster{border-top:1px solid #e2e6ef;padding:1.2rem 0 .6rem}.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}@media(max-width:720px){.cols{grid-template-columns:1fr}}.col h4{margin:0 0 .3rem;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#667}.t{margin:0 0 .9rem}.t b{font-size:1.02em}.t .de{font-size:.92em}.t p{margin:.15rem 0;font-size:.95em}.t .rel{font-size:.86em;color:#556;margin-top:.2rem}.t .act{font-size:.82em;margin-top:.25rem}.t .act a{margin-right:.6rem}.tag{font-size:.72em;border:1px solid #b45309;color:#b45309;border-radius:4px;padding:0 .3em;vertical-align:.1em}.lang{float:right;font-size:.9em}@media(prefers-color-scheme:dark){.cluster{border-color:#2c2c31}.col h4{color:#9a9aa4}.t .rel{color:#b9b9c3}.tag{border-color:#fbbf24;color:#fbbf24}}`
 const dictPage = (l) => {
   const t = D[l]
   const entry = (id) => {
     const c = concepts[id]
-    const rels = (links[id] ?? []).map(([rel, b]) => `${REL_L[l][rel]} <a href="${iri(b)}">${esc(lang(concepts[b]['skos:prefLabel'], l) || b)}</a> <span class="de">(${WORLD_NAME[l][concepts[b].world]})</span>`).join(' · ')
-    return `<div class="t" id="${c.world}-${fragment(id)}"><b><a href="${iri(id)}">${esc(lang(c['skos:prefLabel'], l))}</a></b> <span class="de">${esc(lang(c['skos:prefLabel'], l === 'en' ? 'de' : 'en'))}</span>${c['rl:status'] === 'proposed' ? ` <span class="tag">${t.proposed}</span>` : ''}
+    const rels = (links[id] ?? []).map(([rel, b]) => `${REL_L[l][rel]} <a href="${termHref(concepts[b])}">${esc(lang(concepts[b]['skos:prefLabel'], l) || b)}</a> <span class="de">(${WORLD_NAME[l][concepts[b].world]})</span>`).join(' · ')
+    return `<div class="t" id="${c.world}-${fragment(id)}"><b><a href="${termHref(c)}">${esc(lang(c['skos:prefLabel'], l))}</a></b> <span class="de">${esc(lang(c['skos:prefLabel'], l === 'en' ? 'de' : 'en'))}</span>${c['rl:status'] === 'proposed' ? ` <span class="tag">${t.proposed}</span>` : ''}
 <p>${esc(lang(c['skos:definition'], l))}</p>
 ${rels ? `<div class="rel">${rels}</div>` : `<div class="rel">${t.alone}</div>`}
 <div class="act"><a href="${editUrl(c)}">${t.edit}</a><a href="${proposeUrl(c, l)}">${t.propose}</a></div></div>`
