@@ -254,9 +254,8 @@ const dictPage = (l) => {
   const newTermUrl = `https://github.com/real-life-org/meta/issues/new?title=${encodeURIComponent(t.newTermIssue[0])}&body=${encodeURIComponent(t.newTermIssue.slice(1).join('\n\n') + '\n')}`
   return shell({ l, title: t.title, active: l === 'de' ? '/de/terms/' : '/terms/', alt: { lang: O, href: O === 'de' ? '/de/terms/' : '/terms/' },
     tools: `<input id="q" type="search" placeholder="${t.search}" aria-label="${t.search}">`,
-    right: `<a class="btn" href="${newTermUrl}">+ ${t.newTerm} <small>Issue ↗</small></a>`,
     body: `<p class="sub">${t.sub}</p>
-<div class="stats"><span>${Object.keys(concepts).length} ${t.termsN}</span><span>${nProposed} ${t.proposedN}</span><span>${nConv} ${t.convergeN}</span><span>${t.guardOk}</span></div>
+<div class="stats"><span>${Object.keys(concepts).length} ${t.termsN}</span><span>${nProposed} ${t.proposedN}</span><span>${nConv} ${t.convergeN}</span><span>${t.guardOk}</span><a href="${newTermUrl}">+ ${t.newTerm} ↗</a></div>
 <div class="rows" id="rows">
 ${rows}
 </div>
