@@ -10,13 +10,19 @@
   },
   "scheme": {
     "url": "https://real-life.org/rlnp/v1/terms.jsonld",
-    "sha256": "b8d8d7e1485526786025e840d4f616d320fd07b20d2ca66a3bae58edeb9d8016"
+    "sha256": "ba2b42caaf1b0ef24f7bbc906c5c30d74af11284ab56bdf9094fa5864be32d40"
   },
   "mappings": {
     "url": "https://real-life.org/meta/v1/mappings.jsonld",
-    "sha256": "2923b4c51312db0a3f73a8c8fa9146a24030024551e6d46e809e995b2b9cc3e2"
+    "sha256": "63cd3d79ddc26644dcc2ba1e313818f330b4ec9c6767f614401d7cf5edb35eba"
   },
   "terms": [
+    {
+      "iri": "https://real-life.org/rlnp/v1#Begegnung",
+      "en": "Encounter",
+      "de": "Begegnung",
+      "status": "in specification"
+    },
     {
       "iri": "https://real-life.org/rlnp/v1#Bezeugen",
       "en": "Witnessing",

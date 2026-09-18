@@ -42,9 +42,12 @@
   },
   {
    "@id": "rlnp:Verifikation",
-   "skos:exactMatch": "rltp:Enactment",
+   "skos:exactMatch": [
+    "rls:verification",
+    "rltp:Enactment"
+   ],
    "skos:relatedMatch": "rltp:EncounterCredential",
-   "skos:note": "The act is the same; the credential is its result."
+   "skos:note": "One act in three parts (2026-09-18): the encounter happens in the network, the Stack verifies it in the app, the Trust Protocol constructs that verification as an enactment. The encounter credential is its result."
   },
   {
    "@id": "rlnp:Bezeugen",
@@ -68,6 +71,15 @@
    "rl:falseFriend": "rls:relation",
    "skos:note": "Decided 2026-09-18 (for now): an RLNP relationship is broader than an RLTP edge. Two kinds: person–person is an edge from an encounter (RLTP Edge); person–agent is an edge from appointment or vouching (future attestation). Proposal to RLNP 6.2: name both kinds. Relation (Stack) links items, not people: false friend.",
    "rl:convergesWith": "rltp:Attestation"
+  },
+  {
+   "@id": "rls:verification",
+   "skos:exactMatch": "rltp:Enactment"
+  },
+  {
+   "@id": "rlnp:Begegnung",
+   "skos:relatedMatch": "rlnp:Verifikation",
+   "skos:note": "The event itself, deliberately without counterpart in the Stack or the Trust Protocol: the encounter belongs to the people; the Stack verifies it, the protocol proves it."
   }
  ]
 }
