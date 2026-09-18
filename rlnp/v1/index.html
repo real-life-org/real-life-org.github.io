@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RLNP terms — real-life.org/rlnp/v1</title><style>body{font-family:system-ui,sans-serif;max-width:760px;margin:3rem auto;padding:0 1.2rem;line-height:1.6;color:#1a2030}a{color:#2451b3}code{background:#f0f2f7;padding:.1em .35em;border-radius:4px;font-size:.92em}h1{font-size:1.5rem}h2{font-size:1.15rem;margin-top:2rem}h3{font-size:1rem;margin:1.6rem 0 .2rem}dl{margin:0}dt{font-weight:600;margin-top:.6rem}dd{margin:0 0 0 1rem;color:#333c4d}.de{color:#556}.src,.map{font-size:.9em}table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid #e2e6ef;padding:.4em .6em;text-align:left;font-size:.95em}footer{margin-top:3rem;font-size:.85em;color:#667}:target{background:#fdf3d8}@media(prefers-color-scheme:dark){body{background:#0e0e10;color:#e8e8ea}code{background:#1c1c22}dd{color:#c8c8d0}.de{color:#a9a9b4}td,th{border-color:#2c2c31}a{color:#7fb6d6}footer{color:#9a9aa4}:target{background:#2a2410}}</style><link rel="alternate" type="application/ld+json" href="terms.jsonld"><link rel="alternate" type="application/json" href="index.json"><script type="application/ld+json">{"@context":"https://schema.org","@type":"DefinedTermSet","@id":"https://real-life.org/rlnp/v1","name":"RLNP terms","description":"Term namespace of the Real Life Network Protocol. SKOS concept scheme: https://real-life.org/rlnp/v1/terms.jsonld","url":"https://real-life.org/rlnp/v1/"}</script></head><body>
+<h1><code>https://real-life.org/rlnp/v1</code></h1>
+<p>The term namespace of the <strong>Real Life Network Protocol</strong>, the social specification: what a circle, an encounter, a promise, a role mean. Permanent identifiers are <code>https://real-life.org/rlnp/v1#&lt;Fragment&gt;</code>; the fragments resolve to the entries below.</p>
+<p>Each term is defined by the RLNP specification itself (<a href="https://github.com/real-life-org/real-life-network-protocol">repository</a>). Mappings to the other parts of Real Life come from the <a href="/meta/v1/">shared register</a>: a term is <em>same as</em>, <em>close to</em>, <em>related to</em>, <em>broader</em> or <em>narrower than</em> its counterpart, or a deliberate <em>false friend</em>; <em>target: same as</em> marks a convergence the specifications still owe.</p>
+<p>Machine-readable: <a href="terms.jsonld"><code>terms.jsonld</code></a> (SKOS concept scheme, JSON-LD) and <a href="index.json"><code>index.json</code></a> (registry with digests).</p>
+<h2>Terms</h2>
+<h3 id="Bezeugen"><code>#Bezeugen</code> Witnessing <span class="de">· Bezeugen</span></h3>
+<dl><dt>Definition</dt><dd>Honouring what a person did or contributed. Recognition, not approval. The person witnessed decides about display, not about the statement.</dd><dd class="de">Würdigen, was ein Mensch getan oder eingebracht hat. Anerkennung, keine Abnahme. Die bezeugte Person entscheidet über die Anzeige, nicht über die Aussage.</dd>
+<dt>Also</dt><dd>Confirmation, Attestation</dd>
+<dt class="src">Source</dt><dd class="src"><a href="https://github.com/real-life-org/real-life-network-protocol/blob/main/real-life-network-protocol.md#8.4">real-life-network-protocol.md#8.4</a></dd>
+<dt class="map">Mappings</dt><dd class="map"><ul><li>related to <a href="https://real-life.org/rltp/v1#EncounterCredential">Encounter credential</a> <span class="de">(RLTP)</span></li><li>target: same as <a href="https://real-life.org/rltp/v1#Attestation">Attestation</a> <span class="de">(RLTP)</span></li></ul></dd>
+<dd class="map"><em>Target: a general attestation type in RLTP (candidate: DTG Endorsement Credential). Until then only the encounter has an artifact.</em></dd></dl>
+<h3 id="Beziehung"><code>#Beziehung</code> Relationship <span class="de">· Beziehung</span></h3>
+<dl><dt>Definition</dt><dd>A social connection between people, or between people and agents. Arises from encounter, communication, collaboration or shared experience.</dd><dd class="de">Soziale Verbindung zwischen Menschen oder zwischen Menschen und Agenten. Entsteht durch Begegnung, Kommunikation, Zusammenarbeit oder geteilte Erfahrung.</dd>
+
+<dt class="src">Source</dt><dd class="src"><a href="https://github.com/real-life-org/real-life-network-protocol/blob/main/real-life-network-protocol.md#6.2">real-life-network-protocol.md#6.2</a></dd>
+<dt class="map">Mappings</dt><dd class="map"><ul><li>broader than <a href="https://real-life.org/rltp/v1#Edge">Edge</a> <span class="de">(RLTP)</span></li><li>target: same as <a href="https://real-life.org/rltp/v1#Attestation">Attestation</a> <span class="de">(RLTP)</span></li><li>false friend of <a href="https://real-life.org/rls/v1#relation">Relation</a> <span class="de">(RLS)</span></li></ul></dd>
+<dd class="map"><em>Decided 2026-09-18 (for now): an RLNP relationship is broader than an RLTP edge. Two kinds: person–person is an edge from an encounter (RLTP Edge); person–agent is an edge from appointment or vouching (future attestation). Proposal to RLNP 6.2: name both kinds. Relation (Stack) links items, not people: false friend.</em></dd></dl>
+<h3 id="Kreis"><code>#Kreis</code> Circle <span class="de">· Kreis</span></h3>
+<dl><dt>Definition</dt><dd>A recurring space of encounter. Needs no formal membership; chooses its own form and access. Circles connect through people, not through parent circles.</dd><dd class="de">Wiederkehrender Begegnungsraum. Braucht keine formelle Mitgliedschaft; wählt Form und Zugang selbst. Kreise verbinden sich durch Menschen, nicht durch übergeordnete Kreise.</dd>
+
+<dt class="src">Source</dt><dd class="src"><a href="https://github.com/real-life-org/real-life-network-protocol/blob/main/real-life-network-protocol.md#6.4">real-life-network-protocol.md#6.4</a></dd>
+<dt class="map">Mappings</dt><dd class="map"><ul><li>related to <a href="https://real-life.org/rlnp/v1#Space">Space</a> <span class="de">(RLNP)</span></li></ul></dd>
+<dd class="map"><em>A circle is the people, a space is the vessel. A circle gives itself a space when it takes form. Deliberately not the same.</em></dd></dl>
+<h3 id="Mensch"><code>#Mensch</code> Person <span class="de">· Mensch</span></h3>
+<dl><dt>Definition</dt><dd>The smallest unit of the network. Known not by a directory entry but by those who know them. Identity belongs to the person.</dd><dd class="de">Kleinste Einheit des Netzwerks. Kenntlich nicht durch einen Verzeichniseintrag, sondern durch die, die ihn kennen. Die Identität gehört ihm selbst.</dd>
+
+<dt class="src">Source</dt><dd class="src"><a href="https://github.com/real-life-org/real-life-network-protocol/blob/main/real-life-network-protocol.md#6.1">real-life-network-protocol.md#6.1</a></dd>
+<dt class="map">Mappings</dt><dd class="map"><ul><li>related to <a href="https://real-life.org/rltp/v1#Anchor">Anchor</a> <span class="de">(RLTP)</span></li><li>related to <a href="https://real-life.org/rls/v1#profile">Person profile</a> <span class="de">(RLS)</span></li></ul></dd>
+<dd class="map"><em>Deliberately no exactMatch: RLTP has no person object, only anchors per context. This is by design (relationships never converge into a person).</em></dd><dd class="map"><em>The profile is the view of a person, not the person.</em></dd></dl>
+<h3 id="Mitglied"><code>#Mitglied</code> Member <span class="de">· Mitglied</span> <em>(proposed, not yet in the specification)</em></h3>
+<dl><dt>Definition</dt><dd>Proposed: who belongs to a space. Applies to the space, not to the network: belonging to the network lives in relationships, not in lists (6.1).</dd><dd class="de">Vorgeschlagen: wer zu einem Space gehört. Gilt für den Space, nicht für das Netzwerk: Zugehörigkeit zum Netzwerk lebt in Beziehungen, nicht in Listen (6.1).</dd>
+
+<dt class="src">Source</dt><dd class="src"><a href="https://github.com/real-life-org/real-life-network-protocol/blob/main/real-life-network-protocol.md#6.4">real-life-network-protocol.md#6.4</a></dd>
+<dt class="map">Mappings</dt><dd class="map"><ul><li>same as <a href="https://real-life.org/rltp/v1#Member">Member</a> <span class="de">(RLTP)</span></li><li>same as <a href="https://real-life.org/rls/v1#member">Member</a> <span class="de">(RLS)</span></li></ul></dd>
+</dl>
+<h3 id="Rolle"><code>#Rolle</code> Role <span class="de">· Rolle</span></h3>
+<dl><dt>Definition</dt><dd>Responsibility a person takes on toward a circle. A promise that something happens. Voluntary, returnable, not a rank.</dd><dd class="de">Verantwortung, die ein Mensch gegenüber einem Kreis übernimmt. Sagt zu, dass etwas geschieht. Freiwillig, zurückgebbar, kein Rang.</dd>
+
+<dt class="src">Source</dt><dd class="src"><a href="https://github.com/real-life-org/real-life-network-protocol/blob/main/real-life-network-protocol.md#6.13">real-life-network-protocol.md#6.13</a></dd>
+<dt class="map">Mappings</dt><dd class="map"><ul><li>target: same as <a href="https://real-life.org/rltp/v1#Attestation">Attestation</a> <span class="de">(RLTP)</span></li></ul></dd>
+<dd class="map"><em>A role taken on is a witnessed promise (RLNP 6.18, 8.13). Depends on the attestation type.</em></dd></dl>
+<h3 id="Sichtbarkeit"><code>#Sichtbarkeit</code> Visibility <span class="de">· Sichtbarkeit</span></h3>
+<dl><dt>Definition</dt><dd>Not a property of a thing but a consequence of where it lies: within a circle, mirrored, or published.</dd><dd class="de">Keine Eigenschaft einer Sache, sondern Folge davon, wo sie liegt: im Kreis, gespiegelt oder veröffentlicht.</dd>
+
+<dt class="src">Source</dt><dd class="src"><a href="https://github.com/real-life-org/real-life-network-protocol/blob/main/real-life-network-protocol.md#6.16">real-life-network-protocol.md#6.16</a></dd>
+<dt class="map">Mappings</dt><dd class="map"><ul><li>related to <a href="https://real-life.org/rltp/v1#VisibilityMode">Visibility mode</a> <span class="de">(RLTP)</span></li><li>related to <a href="https://real-life.org/rls/v1#mirror">Mirror</a> <span class="de">(RLS)</span></li><li>target: same as <a href="https://real-life.org/rls/v1#visibility">Visibility</a> <span class="de">(RLS)</span></li></ul></dd>
+<dd class="map"><em>Three ways, three constructions: "within the circle" = RLTP private; "mirrored" = Stack mirror bridge; "published" = RLTP open is only the origin, delivery of open data needs another backend (multi-connector). VisibilityMode covers the first two only.</em></dd></dl>
+<h3 id="Space"><code>#Space</code> Space <span class="de">· Space</span></h3>
+<dl><dt>Definition</dt><dd>A digital or social room for a group, initiative, project or circle. A vessel for shared understanding, not a state of the thing itself.</dd><dd class="de">Digitaler oder sozialer Raum für eine Gruppe, Initiative, ein Projekt oder einen Kreis. Ein Gefäß für Verständigung, kein Zustand der Sache.</dd>
+
+<dt class="src">Source</dt><dd class="src"><a href="https://github.com/real-life-org/real-life-network-protocol/blob/main/GLOSSARY.md#space">GLOSSARY.md#space</a></dd>
+<dt class="map">Mappings</dt><dd class="map"><ul><li>related to <a href="https://real-life.org/rlnp/v1#Kreis">Circle</a> <span class="de">(RLNP)</span></li><li>same as <a href="https://real-life.org/rls/v1#space">Space</a> <span class="de">(RLS)</span></li><li>same as <a href="https://real-life.org/rltp/v1#Group">Group</a> <span class="de">(RLTP)</span></li></ul></dd>
+<dd class="map"><em>Converged 2026-09-18: all three say "vessel with members".</em></dd></dl>
+<h3 id="Spiegel"><code>#Spiegel</code> Mirror <span class="de">· Spiegel</span></h3>
+<dl><dt>Definition</dt><dd>A readable copy of a thing in a second place. The thing lives only at its origin; a mirror never writes back. Whoever is to take part needs access to the origin.</dd><dd class="de">Lesbare Kopie einer Sache an einem zweiten Ort. Die Sache lebt nur am Ursprung; ein Spiegel schreibt nie zurück. Wer mitwirken soll, braucht Zugang zum Ursprung.</dd>
+
+<dt class="src">Source</dt><dd class="src"><a href="https://github.com/real-life-org/real-life-network-protocol/blob/main/real-life-network-protocol.md#6.16">real-life-network-protocol.md#6.16</a></dd>
+<dt class="map">Mappings</dt><dd class="map"><ul><li>same as <a href="https://real-life.org/rls/v1#mirror">Mirror</a> <span class="de">(RLS)</span></li></ul></dd>
+</dl>
+<h3 id="Verifikation"><code>#Verifikation</code> Verification <span class="de">· Verifikation</span></h3>
+<dl><dt>Definition</dt><dd>Confirmation of a real encounter or identity relationship. Does not mean general trustworthiness.</dd><dd class="de">Bestätigung einer realen Begegnung oder Identitätsbeziehung. Bedeutet nicht allgemeine Vertrauenswürdigkeit.</dd>
+
+<dt class="src">Source</dt><dd class="src"><a href="https://github.com/real-life-org/real-life-network-protocol/blob/main/real-life-network-protocol.md#8.3">real-life-network-protocol.md#8.3</a></dd>
+<dt class="map">Mappings</dt><dd class="map"><ul><li>same as <a href="https://real-life.org/rltp/v1#Enactment">Enactment</a> <span class="de">(RLTP)</span></li><li>related to <a href="https://real-life.org/rltp/v1#EncounterCredential">Encounter credential</a> <span class="de">(RLTP)</span></li></ul></dd>
+<dd class="map"><em>The act is the same; the credential is its result.</em></dd></dl>
+<footer>Real Life · <a href="https://github.com/real-life-org/meta">term register and mappings</a> · generated by scripts/generate-terms.mjs</footer></body></html>

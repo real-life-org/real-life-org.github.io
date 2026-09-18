@@ -1,0 +1,81 @@
+{
+  "name": "RLNP term namespace",
+  "namespace": "https://real-life.org/rlnp/v1",
+  "publisher": "https://real-life.org/",
+  "specificationRepository": "https://github.com/real-life-org/real-life-network-protocol",
+  "generatedFrom": "real-life-org/meta — do not edit by hand, run scripts/generate-terms.mjs",
+  "context": {
+    "url": "https://real-life.org/meta/v1/context.jsonld",
+    "sha256": "c1d42b127039ab756896b83b3a88622cad6353d6d3b3b2581f35acf7c6b1f324"
+  },
+  "scheme": {
+    "url": "https://real-life.org/rlnp/v1/terms.jsonld",
+    "sha256": "5ba7702dfdc1f844def6784a47134d0b69d74f476a79be9f78387b1f790b70ab"
+  },
+  "mappings": {
+    "url": "https://real-life.org/meta/v1/mappings.jsonld",
+    "sha256": "fb44b8f93bc4a0be7267d6113e59f52802b434fb471a5362f675a7d10a192d0e"
+  },
+  "terms": [
+    {
+      "iri": "https://real-life.org/rlnp/v1#Bezeugen",
+      "en": "Witnessing",
+      "de": "Bezeugen",
+      "status": "in specification"
+    },
+    {
+      "iri": "https://real-life.org/rlnp/v1#Beziehung",
+      "en": "Relationship",
+      "de": "Beziehung",
+      "status": "in specification"
+    },
+    {
+      "iri": "https://real-life.org/rlnp/v1#Kreis",
+      "en": "Circle",
+      "de": "Kreis",
+      "status": "in specification"
+    },
+    {
+      "iri": "https://real-life.org/rlnp/v1#Mensch",
+      "en": "Person",
+      "de": "Mensch",
+      "status": "in specification"
+    },
+    {
+      "iri": "https://real-life.org/rlnp/v1#Mitglied",
+      "en": "Member",
+      "de": "Mitglied",
+      "status": "proposed"
+    },
+    {
+      "iri": "https://real-life.org/rlnp/v1#Rolle",
+      "en": "Role",
+      "de": "Rolle",
+      "status": "in specification"
+    },
+    {
+      "iri": "https://real-life.org/rlnp/v1#Sichtbarkeit",
+      "en": "Visibility",
+      "de": "Sichtbarkeit",
+      "status": "in specification"
+    },
+    {
+      "iri": "https://real-life.org/rlnp/v1#Space",
+      "en": "Space",
+      "de": "Space",
+      "status": "in specification"
+    },
+    {
+      "iri": "https://real-life.org/rlnp/v1#Spiegel",
+      "en": "Mirror",
+      "de": "Spiegel",
+      "status": "in specification"
+    },
+    {
+      "iri": "https://real-life.org/rlnp/v1#Verifikation",
+      "en": "Verification",
+      "de": "Verifikation",
+      "status": "in specification"
+    }
+  ]
+}

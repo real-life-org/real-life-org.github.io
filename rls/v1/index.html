@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RLS terms — real-life.org/rls/v1</title><style>body{font-family:system-ui,sans-serif;max-width:760px;margin:3rem auto;padding:0 1.2rem;line-height:1.6;color:#1a2030}a{color:#2451b3}code{background:#f0f2f7;padding:.1em .35em;border-radius:4px;font-size:.92em}h1{font-size:1.5rem}h2{font-size:1.15rem;margin-top:2rem}h3{font-size:1rem;margin:1.6rem 0 .2rem}dl{margin:0}dt{font-weight:600;margin-top:.6rem}dd{margin:0 0 0 1rem;color:#333c4d}.de{color:#556}.src,.map{font-size:.9em}table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid #e2e6ef;padding:.4em .6em;text-align:left;font-size:.95em}footer{margin-top:3rem;font-size:.85em;color:#667}:target{background:#fdf3d8}@media(prefers-color-scheme:dark){body{background:#0e0e10;color:#e8e8ea}code{background:#1c1c22}dd{color:#c8c8d0}.de{color:#a9a9b4}td,th{border-color:#2c2c31}a{color:#7fb6d6}footer{color:#9a9aa4}:target{background:#2a2410}}</style><link rel="alternate" type="application/ld+json" href="terms.jsonld"><link rel="alternate" type="application/json" href="index.json"><script type="application/ld+json">{"@context":"https://schema.org","@type":"DefinedTermSet","@id":"https://real-life.org/rls/v1","name":"RLS terms","description":"Term namespace of the Real Life Stack. SKOS concept scheme: https://real-life.org/rls/v1/terms.jsonld","url":"https://real-life.org/rls/v1/"}</script></head><body>
+<h1><code>https://real-life.org/rls/v1</code></h1>
+<p>The term namespace of the <strong>Real Life Stack</strong>, the app toolkit: application, data and the connector socket. Permanent identifiers are <code>https://real-life.org/rls/v1#&lt;Fragment&gt;</code>; the fragments resolve to the entries below.</p>
+<p>Each term is defined by the RLS specification itself (<a href="https://github.com/real-life-org/real-life-stack">repository</a>). Mappings to the other parts of Real Life come from the <a href="/meta/v1/">shared register</a>: a term is <em>same as</em>, <em>close to</em>, <em>related to</em>, <em>broader</em> or <em>narrower than</em> its counterpart, or a deliberate <em>false friend</em>; <em>target: same as</em> marks a convergence the specifications still owe.</p>
+<p>Machine-readable: <a href="terms.jsonld"><code>terms.jsonld</code></a> (SKOS concept scheme, JSON-LD) and <a href="index.json"><code>index.json</code></a> (registry with digests).</p>
+<h2>Terms</h2>
+<h3 id="connector"><code>#connector</code> Connector <span class="de">· Connector</span></h3>
+<dl><dt>Definition</dt><dd>The implementation of the DataInterface for one data source, plus the capabilities it supports. The stack's socket downward.</dd><dd class="de">Die Implementierung des DataInterface für eine konkrete Datenquelle, ergänzt um unterstützte Capabilities. Die Steckstelle des Stacks nach unten.</dd>
+
+<dt class="src">Source</dt><dd class="src"><a href="https://github.com/real-life-org/real-life-stack/blob/master/docs/spec/02-data-interface.md">02-data-interface.md</a></dd>
+
+<dd class="map"><em>Deliberately without counterpart in RLNP and RLTP. The connector is pure Stack construction.</em></dd></dl>
+<h3 id="member"><code>#member</code> Member <span class="de">· Mitglied</span> <em>(proposed, not yet in the specification)</em></h3>
+<dl><dt>Definition</dt><dd>Proposed: who belongs to a space. The stack reads membership from the data source and never stores it itself; the construction (state in the group log plus key) belongs to RLTP.</dd><dd class="de">Vorgeschlagen: wer zu einem Space gehört. Der Stack liest Mitgliedschaft aus der Datenquelle und speichert sie nie selbst; die Konstruktion (Zustand im Gruppen-Log plus Schlüssel) liegt bei RLTP.</dd>
+
+<dt class="src">Source</dt><dd class="src"><a href="https://github.com/real-life-org/real-life-stack/blob/master/docs/spec/04-items-relations-groups-spaces.md">04-items-relations-groups-spaces.md</a></dd>
+<dt class="map">Mappings</dt><dd class="map"><ul><li>same as <a href="https://real-life.org/rltp/v1#Member">Member</a> <span class="de">(RLTP)</span></li><li>same as <a href="https://real-life.org/rlnp/v1#Mitglied">Member</a> <span class="de">(RLNP)</span></li></ul></dd>
+</dl>
+<h3 id="mirror"><code>#mirror</code> Mirror <span class="de">· Spiegel</span></h3>
+<dl><dt>Definition</dt><dd>The projection of an item from its home space. Origin, freshness and permitted actions are considered separately.</dd><dd class="de">Die Projektion eines Items aus seinem Home-Space. Herkunft, Aktualität und erlaubte Aktionen werden getrennt betrachtet.</dd>
+
+<dt class="src">Source</dt><dd class="src"><a href="https://github.com/real-life-org/real-life-stack/blob/master/docs/spec/09-mirror-bridge.md">09-mirror-bridge.md</a></dd>
+<dt class="map">Mappings</dt><dd class="map"><ul><li>same as <a href="https://real-life.org/rlnp/v1#Spiegel">Mirror</a> <span class="de">(RLNP)</span></li><li>related to <a href="https://real-life.org/rlnp/v1#Sichtbarkeit">Visibility</a> <span class="de">(RLNP)</span></li></ul></dd>
+</dl>
+<h3 id="profile"><code>#profile</code> Person profile <span class="de">· Personenprofil</span></h3>
+<dl><dt>Definition</dt><dd>The domain representation of a person as an item under the profile contract. The user identity is a separate term.</dd><dd class="de">Die fachliche Darstellung einer Person als Item nach Profilvertrag. Die User-Identität ist ein eigener Begriff.</dd>
+
+<dt class="src">Source</dt><dd class="src"><a href="https://github.com/real-life-org/real-life-stack/blob/master/docs/spec/12-profile.md">12-profile.md</a></dd>
+<dt class="map">Mappings</dt><dd class="map"><ul><li>related to <a href="https://real-life.org/rlnp/v1#Mensch">Person</a> <span class="de">(RLNP)</span></li></ul></dd>
+</dl>
+<h3 id="relation"><code>#relation</code> Relation <span class="de">· Relation</span></h3>
+<dl><dt>Definition</dt><dd>A directed link between items with predicate and target. Back-references show it from the opposite direction.</dd><dd class="de">Eine gerichtete Beziehung zwischen Items mit Prädikat und Ziel. Rückverweise zeigen sie aus der Gegenrichtung.</dd>
+
+<dt class="src">Source</dt><dd class="src"><a href="https://github.com/real-life-org/real-life-stack/blob/master/docs/spec/04-items-relations-groups-spaces.md">04-items-relations-groups-spaces.md</a></dd>
+<dt class="map">Mappings</dt><dd class="map"><ul><li>false friend of <a href="https://real-life.org/rlnp/v1#Beziehung">Relationship</a> <span class="de">(RLNP)</span></li></ul></dd>
+</dl>
+<h3 id="space"><code>#space</code> Space <span class="de">· Space</span></h3>
+<dl><dt>Definition</dt><dd>The shared context for work, membership and visibility. In the data contract it is called Group.</dd><dd class="de">Der gemeinsame Arbeits-, Mitgliedschafts- und Sichtbarkeitskontext. Im Datenvertrag heißt er Group.</dd>
+<dt>Also</dt><dd>Group, Gruppe</dd>
+<dt class="src">Source</dt><dd class="src"><a href="https://github.com/real-life-org/real-life-stack/blob/master/docs/spec/04-items-relations-groups-spaces.md">04-items-relations-groups-spaces.md</a></dd>
+<dt class="map">Mappings</dt><dd class="map"><ul><li>same as <a href="https://real-life.org/rlnp/v1#Space">Space</a> <span class="de">(RLNP)</span></li><li>same as <a href="https://real-life.org/rltp/v1#Group">Group</a> <span class="de">(RLTP)</span></li></ul></dd>
+</dl>
+<h3 id="visibility"><code>#visibility</code> Visibility <span class="de">· Sichtbarkeit</span> <em>(proposed, not yet in the specification)</em></h3>
+<dl><dt>Definition</dt><dd>Proposed: where an item lives and who therefore sees it: within its space, mirrored into another space, or published without sign-in. Which backend serves a published item is the connector's decision.</dd><dd class="de">Vorgeschlagen: wo ein Item liegt und wer es deshalb sieht: im Space, gespiegelt in einen anderen Space, oder veröffentlicht ohne Anmeldung. Welches Backend ein veröffentlichtes Item ausliefert, entscheidet der Connector.</dd>
+
+<dt class="src">Source</dt><dd class="src"><a href="https://github.com/real-life-org/real-life-stack/blob/master/docs/spec/09-mirror-bridge.md">09-mirror-bridge.md</a></dd>
+<dt class="map">Mappings</dt><dd class="map"><ul><li>target: same as <a href="https://real-life.org/rlnp/v1#Sichtbarkeit">Visibility</a> <span class="de">(RLNP)</span></li></ul></dd>
+</dl>
+<footer>Real Life · <a href="https://github.com/real-life-org/meta">term register and mappings</a> · generated by scripts/generate-terms.mjs</footer></body></html>
