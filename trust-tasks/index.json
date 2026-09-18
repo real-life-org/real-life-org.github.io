@@ -7,7 +7,7 @@
   "digestAlgorithm": "SHA-256, lowercase hex, over the served bytes of the referenced file",
   "documentProfile": {
     "schema": "https://real-life.org/rltp/v1/schemas/rltp-delivery-document.schema.json",
-    "sha256": "3613f8af5cd58ac0448c4501c764a56da95d734c4cf8e168887a5a69f1486704"
+    "sha256": "36ecb1a3e9597e28639fcb4a2e8461e7fcc2f9c4ae2f9144c8edd8bfd985c01e"
   },
   "offlineRule": "Conforming implementations pre-register every schema by its $id and never resolve schemas or contexts over the network at runtime; this registry is documentation and distribution, not runtime infrastructure.",
   "types": [
@@ -15,7 +15,7 @@
       "type": "https://real-life.org/trust-tasks/access-operation/0.1",
       "name": "access-operation",
       "version": "0.1",
-      "profile": "rltp-membership@0.11",
+      "profile": "rltp-membership@0.16",
       "summary": "The generic carrier for Access-layer operations crossing the replica boundary, incl. the member.add admission profile and the welcome seal.",
       "definedIn": {
         "specification": "RLTP Membership Tasks",
@@ -23,14 +23,14 @@
         "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
       },
       "schema": "https://real-life.org/trust-tasks/access-operation/0.1/schema.json",
-      "schemaSha256": "2571f2621e4b09b59fb62b818960f0a6166b4b8bbdf8bf08870511592026c280",
+      "schemaSha256": "f70824cc329aa3771503bd369b7bbdec23c0443bce9000d92ca393f411feeaba",
       "documentation": "https://real-life.org/trust-tasks/access-operation/0.1/"
     },
     {
       "type": "https://real-life.org/trust-tasks/delivery-ack/0.1",
       "name": "delivery-ack",
       "version": "0.1",
-      "profile": "rltp-delivery@0.17",
+      "profile": "rltp-delivery@0.79",
       "summary": "The arrival acknowledgement: proof-carrying, terminal, arrival-only semantics.",
       "definedIn": {
         "specification": "RLTP Delivery Contract",
@@ -38,14 +38,14 @@
         "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
       },
       "schema": "https://real-life.org/trust-tasks/delivery-ack/0.1/schema.json",
-      "schemaSha256": "86b46b2d3bb763ee237c68a909ae0c5a0cbddfa581e284da93d3f70785409b47",
+      "schemaSha256": "2b3c4a7b31a0ca0c6e9c85039889c867307591d0b15763d4be55db45c1620bba",
       "documentation": "https://real-life.org/trust-tasks/delivery-ack/0.1/"
     },
     {
       "type": "https://real-life.org/trust-tasks/encounter-bundle/0.1",
       "name": "encounter-bundle",
       "version": "0.1",
-      "profile": "rltp-delivery@0.17",
+      "profile": "rltp-delivery@0.79",
       "summary": "The one-scan transmission: the scanner's sent card and step credential.",
       "definedIn": {
         "specification": "RLTP Delivery Contract",
@@ -53,14 +53,14 @@
         "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
       },
       "schema": "https://real-life.org/trust-tasks/encounter-bundle/0.1/schema.json",
-      "schemaSha256": "17608ec5833b77df51f66ad58e1745018cedf3992ec1d5d1cf55122d80fa301b",
+      "schemaSha256": "7ceffef0782a90630bc152187c8725c966f83b54ad6504d8d4b6d1113dc6cc83",
       "documentation": "https://real-life.org/trust-tasks/encounter-bundle/0.1/"
     },
     {
       "type": "https://real-life.org/trust-tasks/encounter-credential-delivery/0.1",
       "name": "encounter-credential-delivery",
       "version": "0.1",
-      "profile": "rltp-delivery@0.17",
+      "profile": "rltp-delivery@0.79",
       "summary": "Post-enactment delivery of a step credential (counter-step or standalone).",
       "definedIn": {
         "specification": "RLTP Delivery Contract",
@@ -68,7 +68,7 @@
         "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
       },
       "schema": "https://real-life.org/trust-tasks/encounter-credential-delivery/0.1/schema.json",
-      "schemaSha256": "6325c81584170c9bdd874a9370d7d2a2de44113333ab7899298fb4e2d7c926dd",
+      "schemaSha256": "301a981a1c52e9185cac25b5203107e6845cc8ca90537e069b27477f5b36d40e",
       "documentation": "https://real-life.org/trust-tasks/encounter-credential-delivery/0.1/"
     },
     {
@@ -83,29 +83,29 @@
         "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md"
       },
       "schema": "https://real-life.org/trust-tasks/key-delivery/0.1/schema.json",
-      "schemaSha256": "d8da8308143661ec8088f77c32f3244b14d030e908ec24f6c6435d59082e1eca",
+      "schemaSha256": "d1df384f76f7200317d186a5e9be4c3a413e58cadf27639c221051b994a1bda3",
       "documentation": "https://real-life.org/trust-tasks/key-delivery/0.1/"
     },
     {
-      "type": "https://real-life.org/trust-tasks/membership-accept/0.1",
+      "type": "https://real-life.org/trust-tasks/membership-accept/0.2",
       "name": "membership-accept",
-      "version": "0.1",
-      "profile": "rltp-membership@0.11",
-      "summary": "The consent artifact: signed by the person consenting, content-bound to exactly one invitation.",
+      "version": "0.2",
+      "profile": "rltp-membership@0.16",
+      "summary": "The consent artifact: signed by the person consenting, subject equals issuer and the invite's invitee, content-bound by credential digest to exactly one invitation.",
       "definedIn": {
         "specification": "RLTP Membership Tasks",
         "section": "3.2",
         "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
       },
-      "schema": "https://real-life.org/trust-tasks/membership-accept/0.1/schema.json",
-      "schemaSha256": "25627efff23e2d9768e08f998251140009baab44f4f14b45c41ef7b4f428e85b",
-      "documentation": "https://real-life.org/trust-tasks/membership-accept/0.1/"
+      "schema": "https://real-life.org/trust-tasks/membership-accept/0.2/schema.json",
+      "schemaSha256": "62cd6e7be1ab57801273d3e35d224881131fb91c842fc55123b72cf9b5550913",
+      "documentation": "https://real-life.org/trust-tasks/membership-accept/0.2/"
     },
     {
       "type": "https://real-life.org/trust-tasks/membership-evidence/0.1",
       "name": "membership-evidence",
       "version": "0.1",
-      "profile": "rltp-membership@0.11",
+      "profile": "rltp-membership@0.16",
       "summary": "The evidence relay: the complete invite and accept documents, enclosed, so any authorized member can admit.",
       "definedIn": {
         "specification": "RLTP Membership Tasks",
@@ -113,23 +113,38 @@
         "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
       },
       "schema": "https://real-life.org/trust-tasks/membership-evidence/0.1/schema.json",
-      "schemaSha256": "66a6af43df00b3030affebcf19a275de9ec03c5cc34dbeda0b7776387cec2ee7",
+      "schemaSha256": "7c7b776e5832ea03c20f6a291388ab8193e9d1c7e316af278fafd16344f8e6a9",
       "documentation": "https://real-life.org/trust-tasks/membership-evidence/0.1/"
     },
     {
-      "type": "https://real-life.org/trust-tasks/membership-invite/0.1",
+      "type": "https://real-life.org/trust-tasks/membership-invite/0.2",
       "name": "membership-invite",
-      "version": "0.1",
-      "profile": "rltp-membership@0.11",
-      "summary": "The invitation: no key material, invitee signed into the payload, inviter card and validity window.",
+      "version": "0.2",
+      "profile": "rltp-membership@0.16",
+      "summary": "The invitation as a conformant DTG InvitationCredential: issued by the inviting member, subject is the invitee, no key material; bound to the membership thread.",
       "definedIn": {
         "specification": "RLTP Membership Tasks",
         "section": "3.1",
         "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
       },
-      "schema": "https://real-life.org/trust-tasks/membership-invite/0.1/schema.json",
-      "schemaSha256": "4ca8342a27e2e8af4839435a8e0fcd9dc586a069e98c5ca660825f140ebbfed1",
-      "documentation": "https://real-life.org/trust-tasks/membership-invite/0.1/"
+      "schema": "https://real-life.org/trust-tasks/membership-invite/0.2/schema.json",
+      "schemaSha256": "d89f39ab37985f5cace8b8bfb9d0f67bcaa1bdbcea2ee417e5bbea000c7f9e9e",
+      "documentation": "https://real-life.org/trust-tasks/membership-invite/0.2/"
+    },
+    {
+      "type": "https://real-life.org/trust-tasks/registry-declaration/0.1",
+      "name": "registry-declaration",
+      "version": "0.1",
+      "profile": "rltp-delivery@0.79",
+      "summary": "Per-party declaration of fixed operational constants for a served role; the envelope is generic, each role's specification registers the constant names.",
+      "definedIn": {
+        "specification": "RLTP Delivery Contract",
+        "section": "4.4",
+        "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
+      },
+      "schema": "https://real-life.org/trust-tasks/registry-declaration/0.1/schema.json",
+      "schemaSha256": "70465ddc659f329c730afc75f0268b371aca22c68de00aeff3875d8114cb6631",
+      "documentation": "https://real-life.org/trust-tasks/registry-declaration/0.1/"
     },
     {
       "type": "https://real-life.org/trust-tasks/removal-notice/0.1",
@@ -143,7 +158,7 @@
         "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md"
       },
       "schema": "https://real-life.org/trust-tasks/removal-notice/0.1/schema.json",
-      "schemaSha256": "dfeba3b2a588bc9f1e42bafe5fdb35f29eab760e1f9801d05a1184d54fce2508",
+      "schemaSha256": "8d497897d910d83e309c300031d9afec223aa03d95056f8310de2b820bef5fc6",
       "documentation": "https://real-life.org/trust-tasks/removal-notice/0.1/"
     }
   ]

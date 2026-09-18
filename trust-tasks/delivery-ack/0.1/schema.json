@@ -1,22 +1,22 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://real-life.org/trust-tasks/delivery-ack/0.1",
-  "title": "Payload: delivery-ack/0.1 (rltp-delivery@0.17, target Trust Tasks framework 0.4)",
-  "description": "Payload schema per Trust Tasks 6.3 ($id = Type URI, describes only the payload). Arrival acknowledgement per Delivery Contract 4.2: machine-generated at the durable recording of the referenced document's defined effect; the document carrying this payload MUST carry a proof under its issuer anchor; meaning is arrival only, never acceptance or any human act.",
-  "type": "object",
-  "required": [
-    "ref",
-    "meaning"
-  ],
-  "additionalProperties": false,
-  "properties": {
-    "ref": {
-      "type": "string",
-      "description": "multibase-encoded multihash (sha2-256: 0x12 0x20 + 32 bytes) over JCS-canonicalized input; emit 'u' (46 chars after header), accept 'u'/'z' per CID 1.0; decoded multihash verified at parse",
-      "pattern": "^(u[A-Za-z0-9_-]{46}|z[1-9A-HJ-NP-Za-km-z]{44,48})$"
-    },
-    "meaning": {
-      "const": "received"
-    }
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://real-life.org/trust-tasks/delivery-ack/0.1",
+ "title": "Payload: delivery-ack/0.1 (rltp-delivery@0.79, target Trust Tasks framework 0.4)",
+ "description": "Payload schema per Trust Tasks 6.3 ($id = Type URI, describes only the payload). Arrival acknowledgement per Delivery Contract 4.2: machine-generated at the durable recording of the referenced document's defined effect; the document carrying this payload MUST carry a proof in the form the 4.2/4.4 acknowledgement class rule selects: eddsa-jcs-2022 under the issuer anchor for signature-class payloads, the deniable channel-keyed MAC for designated-verifier payloads; meaning is arrival only, never acceptance or any human act.",
+ "type": "object",
+ "required": [
+  "ref",
+  "meaning"
+ ],
+ "additionalProperties": false,
+ "properties": {
+  "ref": {
+   "type": "string",
+   "description": "multibase-encoded multihash (sha2-256: 0x12 0x20 + 32 bytes) over JCS-canonicalized input; emit 'u' (46 chars after header), accept 'u'/'z' per CID 1.0; decoded multihash verified at parse",
+   "pattern": "^(u[A-Za-z0-9_-]{45}[AQgw]|z[1-9A-HJ-NP-Za-km-z]{44,48})$"
+  },
+  "meaning": {
+   "const": "received"
   }
+ }
 }

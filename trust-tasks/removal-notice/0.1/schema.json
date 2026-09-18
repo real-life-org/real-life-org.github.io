@@ -60,7 +60,7 @@
     },
     "oid": {
       "type": "string",
-      "pattern": "^oid:[A-Za-z0-9_-]{43}$"
+      "pattern": "^oid:[A-Za-z0-9_-]{42}[AEIMQUYcgkosw048]$"
     },
     "digest": {
       "type": "string",

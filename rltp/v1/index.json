@@ -7,7 +7,7 @@
   "digestAlgorithm": "SHA-256, lowercase hex, over the served bytes of the referenced file",
   "context": {
     "url": "https://real-life.org/rltp/v1/context.jsonld",
-    "sha256": "e94b3544b45cf61dbbc06987b5a4acaecf5ceab301213948c932d47b8bfb5412"
+    "sha256": "4a279e46af7e4df1bfeaa143b1ed37c3ced06aa1a82c8d72736a5623f151de1a"
   },
   "offlineRule": "Per the interim securing profile, credentials pin their @context by value and implementations never process JSON-LD or resolve schemas over the network at runtime; this registry is documentation and distribution, not runtime infrastructure.",
   "terms": [
@@ -94,23 +94,41 @@
       "iri": "https://real-life.org/rltp/v1#DeliveryAck",
       "meaning": "the arrival acknowledgement: machine-generated at the durable recording of a document's defined effect; arrival, never acceptance",
       "definedIn": "Delivery 4.2"
+    },
+    {
+      "fragment": "Group",
+      "iri": "https://real-life.org/rltp/v1#Group",
+      "meaning": "a collective actor with members, a policy, an authority log and documents; its identity is the digest of its genesis operation, its address the group DID",
+      "definedIn": "Access 2"
+    },
+    {
+      "fragment": "Member",
+      "iri": "https://real-life.org/rltp/v1#Member",
+      "meaning": "a party whose membership is a fact in the authority log plus possession of the epoch key material, never a certificate",
+      "definedIn": "Access 2, 5"
+    },
+    {
+      "fragment": "VisibilityMode",
+      "iri": "https://real-life.org/rltp/v1#VisibilityMode",
+      "meaning": "private (reading requires membership) or open (document content world-readable from a stated epoch on; the log, admission evidence and membership stay sealed)",
+      "definedIn": "Access 8"
     }
   ],
   "schemas": [
     {
       "name": "access-material",
       "url": "https://real-life.org/rltp/v1/schemas/access-material.schema.json",
-      "sha256": "4e3c298a8e6f6917dd120e49c6dc906ccceb9da8520f4863155c12c3c37ce80b"
+      "sha256": "71c2360c7138418ba398595634bcceff728802ab199c11569745f7a4d82ba29f"
     },
     {
       "name": "access-operation-envelope",
       "url": "https://real-life.org/rltp/v1/schemas/access-operation-envelope.schema.json",
-      "sha256": "a762ead03ae971abd3e0585a6b3df5250c21ccf9db1f19383b544a4c0fcc0dfb"
+      "sha256": "3786efa6ae507aead12f5b0ab40615f3e9562b401a5f60ff1bbfc21373e7a1a6"
     },
     {
       "name": "access-registration",
       "url": "https://real-life.org/rltp/v1/schemas/access-registration.schema.json",
-      "sha256": "feb4f0e4bb38b1b0f3d86e9597b69de02190ed8d59318b82ba6b12f74ee922aa"
+      "sha256": "231e2388dc864343e368b4288011999b2dbb72d5700ecd9ed7dea359243ec30c"
     },
     {
       "name": "authorization-view",
@@ -118,29 +136,39 @@
       "sha256": "2a37090d64cf93392c7d509fa7e7841d8b812c9a2032f88de107c8fe3e1ddd75"
     },
     {
+      "name": "contact-card-0.25",
+      "url": "https://real-life.org/rltp/v1/schemas/contact-card-0.25.schema.json",
+      "sha256": "f15283f390baad5edcf6a671365c81aa61127d612a8b6467253968545350dc76"
+    },
+    {
       "name": "contact-card",
       "url": "https://real-life.org/rltp/v1/schemas/contact-card.schema.json",
-      "sha256": "4064174d8fe855fb0a5aee2391126cc504936085ddd0deebf7844672bd44c804"
+      "sha256": "b1db4afde2c1181ec096c5187371f6f3836f75ffc8ee768143d3a31b425755fd"
+    },
+    {
+      "name": "encounter-credential-0.25",
+      "url": "https://real-life.org/rltp/v1/schemas/encounter-credential-0.25.schema.json",
+      "sha256": "8e41a17c130d23d267db06462db53a224aaa779e9900fa4f2924b53f678edb61"
     },
     {
       "name": "encounter-credential",
       "url": "https://real-life.org/rltp/v1/schemas/encounter-credential.schema.json",
-      "sha256": "2cb3198bb4b3e54450770c66b27589ce89300119de8d96167dddb7666c6a6ea3"
+      "sha256": "b4d456663f1bf9657532c7fd57a1ad9ab19b7bc477d4c43d570fc98f5532caac"
     },
     {
       "name": "rltp-delivery-document",
       "url": "https://real-life.org/rltp/v1/schemas/rltp-delivery-document.schema.json",
-      "sha256": "3613f8af5cd58ac0448c4501c764a56da95d734c4cf8e168887a5a69f1486704"
+      "sha256": "36ecb1a3e9597e28639fcb4a2e8461e7fcc2f9c4ae2f9144c8edd8bfd985c01e"
     },
     {
       "name": "sealed-envelope",
       "url": "https://real-life.org/rltp/v1/schemas/sealed-envelope.schema.json",
-      "sha256": "a7074c073f0dd394b6f7ac7e36f75b70bad67901e4f6456431e3952ac7c5e224"
+      "sha256": "522df780e4bfc20d004f2a01e6a9ec76cf8ea0c2432e326eb2e6fe78370ae942"
     },
     {
       "name": "welcome",
       "url": "https://real-life.org/rltp/v1/schemas/welcome.schema.json",
-      "sha256": "2778e9a92cbb050594145550cb6013cfa7ce4b2ecd95f331713106a9c1317942"
+      "sha256": "635510250812c033e1f8d3ff02c0be15717c8b3ee66615accc1b6319a4299a92"
     }
   ],
   "taskTypeRegistry": "https://real-life.org/trust-tasks/index.json"

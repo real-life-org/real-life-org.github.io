@@ -1,0 +1,45 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://real-life.org/trust-tasks/registry-declaration/0.1",
+ "title": "RLTP payload registry-declaration (rltp-delivery@0.79)",
+ "description": "Per-party declaration of fixed operational constants for a served role (Delivery 4.4). The schema is deliberately generic \u2014 it fixes the envelope of a declaration, never the constant names, which each role's specification registers. The first constant registered this way was the introduction mediator's ack-delay (Visibility 8.4); the carrier role of Delivery 4.4 has since registered seven carrier constants, and further roles may register others without touching this file.",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "declaration"
+ ],
+ "properties": {
+  "declaration": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "role",
+    "revision",
+    "constants"
+   ],
+   "properties": {
+    "role": {
+     "type": "string",
+     "pattern": "^https://real-life\\.org/trust-tasks/[a-z0-9-]+/[0-9]+\\.[0-9]+$"
+    },
+    "revision": {
+     "type": "string",
+     "pattern": "^[1-9][0-9]{0,17}$",
+     "description": "per (issuer, role); generic revision rule of Delivery 4.4 - higher wins, no rollback"
+    },
+    "constants": {
+     "type": "object",
+     "minProperties": 1,
+     "maxProperties": 16,
+     "propertyNames": {
+      "pattern": "^[a-z][a-z0-9-]{0,31}$"
+     },
+     "additionalProperties": {
+      "type": "string",
+      "maxLength": 64
+     }
+    }
+   }
+  }
+ }
+}

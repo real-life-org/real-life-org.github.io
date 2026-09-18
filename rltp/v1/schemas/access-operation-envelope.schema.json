@@ -118,7 +118,7 @@
           "maxItems": 8192,
           "items": {
             "type": "object",
-            "description": "complete encounter credential per Encounter section 7; validated against encounter-credential.schema.json by the consumer"
+            "description": "complete vouch@1 artifact per Access 5.3 (the wire member keeps its 0.24 name); validated against access-vouch.schema.json by the consumer"
           }
         }
       },
@@ -598,7 +598,7 @@
     },
     "oid": {
       "type": "string",
-      "pattern": "^oid:[A-Za-z0-9_-]{43}$",
+      "pattern": "^oid:[A-Za-z0-9_-]{42}[AEIMQUYcgkosw048]$",
       "description": "self-addressing operation id: base64url(SHA-256) without padding over the JCS serialization with id empty and proof omitted"
     },
     "digest": {

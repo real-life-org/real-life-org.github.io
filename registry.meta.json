@@ -29,27 +29,35 @@
         "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
       }
     },
-    "access-operation/0.1": {
-      "summary": "The generic carrier for Access-layer operations crossing the replica boundary, incl. the member.add admission profile and the welcome seal.",
+    "registry-declaration/0.1": {
+      "summary": "Per-party declaration of fixed operational constants for a served role; the envelope is generic, each role's specification registers the constant names.",
       "definedIn": {
-        "specification": "RLTP Membership Tasks",
-        "section": "3.3",
-        "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
+        "specification": "RLTP Delivery Contract",
+        "section": "4.4",
+        "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
       }
     },
-    "membership-invite/0.1": {
-      "summary": "The invitation: no key material, invitee signed into the payload, inviter card and validity window.",
+    "membership-invite/0.2": {
+      "summary": "The invitation as a conformant DTG InvitationCredential: issued by the inviting member, subject is the invitee, no key material; bound to the membership thread.",
       "definedIn": {
         "specification": "RLTP Membership Tasks",
         "section": "3.1",
         "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
       }
     },
-    "membership-accept/0.1": {
-      "summary": "The consent artifact: signed by the person consenting, content-bound to exactly one invitation.",
+    "membership-accept/0.2": {
+      "summary": "The consent artifact: signed by the person consenting, subject equals issuer and the invite's invitee, content-bound by credential digest to exactly one invitation.",
       "definedIn": {
         "specification": "RLTP Membership Tasks",
         "section": "3.2",
+        "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
+      }
+    },
+    "access-operation/0.1": {
+      "summary": "The generic carrier for Access-layer operations crossing the replica boundary, incl. the member.add admission profile and the welcome seal.",
+      "definedIn": {
+        "specification": "RLTP Membership Tasks",
+        "section": "3.3",
         "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
       }
     },
@@ -162,6 +170,24 @@
       "iri": "https://real-life.org/rltp/v1#DeliveryAck",
       "meaning": "the arrival acknowledgement: machine-generated at the durable recording of a document's defined effect; arrival, never acceptance",
       "definedIn": "Delivery 4.2"
+    },
+    {
+      "fragment": "Group",
+      "iri": "https://real-life.org/rltp/v1#Group",
+      "meaning": "a collective actor with members, a policy, an authority log and documents; its identity is the digest of its genesis operation, its address the group DID",
+      "definedIn": "Access 2"
+    },
+    {
+      "fragment": "Member",
+      "iri": "https://real-life.org/rltp/v1#Member",
+      "meaning": "a party whose membership is a fact in the authority log plus possession of the epoch key material, never a certificate",
+      "definedIn": "Access 2, 5"
+    },
+    {
+      "fragment": "VisibilityMode",
+      "iri": "https://real-life.org/rltp/v1#VisibilityMode",
+      "meaning": "private (reading requires membership) or open (document content world-readable from a stated epoch on; the log, admission evidence and membership stay sealed)",
+      "definedIn": "Access 8"
     }
   ],
   "vocabularyOfflineRule": "Per the interim securing profile, credentials pin their @context by value and implementations never process JSON-LD or resolve schemas over the network at runtime; this registry is documentation and distribution, not runtime infrastructure."

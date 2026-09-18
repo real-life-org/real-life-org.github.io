@@ -1,14 +1,16 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://real-life.org/trust-tasks/encounter-credential-delivery/0.1",
-  "title": "Payload: encounter-credential-delivery/0.1 (rltp-delivery@0.17, target Trust Tasks framework 0.4)",
-  "description": "Payload schema per Trust Tasks 6.3 ($id = Type URI, describes only the payload). Post-enactment delivery of a step credential per Delivery Contract 4.3. Outer/inner consistency (document issuer = credential issuer, recipient = credential subject) is normative in Delivery Contract 4.3; credential acceptance is entirely Encounter 5.6.",
-  "type": "object",
-  "required": ["credential"],
-  "additionalProperties": false,
-  "properties": {
-    "credential": {
-      "$ref": "https://real-life.org/rltp/v1/schemas/encounter-credential.schema.json"
-    }
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://real-life.org/trust-tasks/encounter-credential-delivery/0.1",
+ "title": "Payload: encounter-credential-delivery/0.1 (rltp-delivery@0.79, target Trust Tasks framework 0.4)",
+ "description": "Payload schema per Trust Tasks 6.3 ($id = Type URI, describes only the payload). Post-enactment delivery of a step credential per Delivery Contract 4.3. Outer/inner consistency (document issuer = credential issuer, recipient = credential subject) is normative in Delivery Contract 4.3; credential acceptance is entirely Encounter 5.6.",
+ "type": "object",
+ "required": [
+  "credential"
+ ],
+ "additionalProperties": false,
+ "properties": {
+  "credential": {
+   "$ref": "https://real-life.org/rltp/v1/schemas/encounter-credential.schema.json"
   }
+ }
 }

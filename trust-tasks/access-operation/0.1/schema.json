@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://real-life.org/trust-tasks/access-operation/0.1",
-  "title": "Payload: access-operation/0.1 (rltp-membership@0.11, target Trust Tasks framework 0.4)",
+  "title": "Payload: access-operation/0.1 (rltp-membership@0.16, target Trust Tasks framework 0.4)",
   "description": "Payload schema per Trust Tasks 6.3 ($id = Type URI, describes only the payload). Carries EXACTLY ONE thing across the replica boundary: an admitting member.add with its welcome, delivered to its own subject (the bootstrap). This is the only operation that genuinely crosses the boundary (Membership Tasks 3.3): replication owns the inside, a removed member's notice is Access's removal-notice/0.1 (its 10.2), transition key material travels per recipient via key-delivery/0.1 (its 10.1), and transition-carrying envelopes never leave the replica (Access 5.3). The schema therefore REQUIRES op = member.add, the member.add body, and the welcome seal; it additionally rejects any operation body carrying a transition (defence in depth). The envelope carries its own signatures, so the task document carries no proof, and the document issuer MUST be the operation's author or one of its signers (Membership Tasks 3.3). The enclosed member.add proof is a TRANSPORTED VARIANT capped at 64 signatures and 16 credentials (each credential at most 2048 bytes JCS — prose rule; Access 5.3): never a replica's merged proof. Validity, canonicality, consumption, and every merge question are Access 5.3's; this schema is transport shape only.",
   "type": "object",
   "required": ["operation", "welcome"],
@@ -65,14 +65,14 @@
                         "allOf": [
                           { "$ref": "https://real-life.org/rltp/v1/schemas/rltp-delivery-document.schema.json" },
                           {
-                            "required": ["proof"],
                             "properties": {
-                              "type": { "const": "https://real-life.org/trust-tasks/membership-invite/0.1" },
-                              "payload": { "$ref": "https://real-life.org/trust-tasks/membership-invite/0.1" }
+                              "type": { "const": "https://real-life.org/trust-tasks/membership-invite/0.2" },
+                              "payload": { "$ref": "https://real-life.org/trust-tasks/membership-invite/0.2" },
+                              "proof": false
                             }
                           }
                         ],
-                        "description": "the COMPLETE membership-invite document, proof REQUIRED — verifiable by every replica"
+                        "description": "the COMPLETE membership-invite document; authenticity = the enclosed credential's DataIntegrityProof (document-level proof absent) — verifiable by every replica"
                       },
                       "accept": {
                         "allOf": [
@@ -80,8 +80,8 @@
                           {
                             "required": ["proof"],
                             "properties": {
-                              "type": { "const": "https://real-life.org/trust-tasks/membership-accept/0.1" },
-                              "payload": { "$ref": "https://real-life.org/trust-tasks/membership-accept/0.1" }
+                              "type": { "const": "https://real-life.org/trust-tasks/membership-accept/0.2" },
+                              "payload": { "$ref": "https://real-life.org/trust-tasks/membership-accept/0.2" }
                             }
                           }
                         ],
@@ -89,7 +89,7 @@
                       },
                       "welcome": {
                         "type": "string",
-                        "pattern": "^(u[A-Za-z0-9_-]{46}|z[1-9A-HJ-NP-Za-km-z]{44,48})$",
+                        "pattern": "^(u[A-Za-z0-9_-]{45}[AQgw]|z[1-9A-HJ-NP-Za-km-z]{44,48})$",
                         "description": "multibase multihash over JCS of the welcome plaintext (Membership Tasks section 4)"
                       }
                     }
