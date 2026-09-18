@@ -44,7 +44,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: real-life-org/meta
-          path: meta
+          path: meta-src            # not "meta": that is an output directory (/meta/v1)
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -55,17 +55,17 @@ jobs:
 
       - name: term namespaces match the register
         if: github.event_name == 'push' || github.event_name == 'pull_request'
-        run: node scripts/generate-terms.mjs meta --check
+        run: node scripts/generate-terms.mjs meta-src --check
 
       - name: regenerate and publish
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
           set -euo pipefail
           SPEC_SHA=$(git -C rltp-spec rev-parse --short HEAD)
-          META_SHA=$(git -C meta rev-parse --short HEAD)
+          META_SHA=$(git -C meta-src rev-parse --short HEAD)
           node scripts/generate.mjs rltp-spec
-          node scripts/generate-terms.mjs meta
-          rm -rf rltp-spec meta               # never let the source repos into this one
+          node scripts/generate-terms.mjs meta-src
+          rm -rf rltp-spec meta-src           # never let the source repos into this one
           if [ -z "$(git status --porcelain)" ]; then
             echo "Already matches rltp-spec at ${SPEC_SHA} and meta at ${META_SHA} — nothing to publish."
             exit 0

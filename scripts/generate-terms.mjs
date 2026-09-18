@@ -72,7 +72,11 @@ const list = (x) => (x == null ? [] : Array.isArray(x) ? x : [x])
 const iri = (curie) => { const [p, f] = curie.split(':'); return PREFIX[p] ? PREFIX[p] + f : curie }
 const fragment = (curie) => curie.split(':')[1]
 
-const REL = { 'skos:exactMatch': 'same as', 'skos:closeMatch': 'close to', 'skos:relatedMatch': 'related to', 'skos:broadMatch': 'broader than', 'skos:narrowMatch': 'narrower than', 'rl:convergesWith': 'target: same as', 'rl:falseFriend': 'false friend of' }
+// Labels read "<this term> is <label> <other term>". SKOS: "A skos:narrowMatch B" states that B is
+// narrower than A, so A is broader than B; broadMatch is the reverse. Symmetric relations keep their
+// predicate when shown from the other side; the two hierarchical ones swap.
+const REL = { 'skos:exactMatch': 'same as', 'skos:closeMatch': 'close to', 'skos:relatedMatch': 'related to', 'skos:narrowMatch': 'broader than', 'skos:broadMatch': 'narrower than', 'rl:convergesWith': 'target: same as', 'rl:falseFriend': 'false friend of' }
+const INVERSE = { 'skos:narrowMatch': 'skos:broadMatch', 'skos:broadMatch': 'skos:narrowMatch' }
 const links = {}
 const notes = {}
 for (const m of mappings) {
@@ -80,7 +84,7 @@ for (const m of mappings) {
   if (m['skos:note']) (notes[a] ??= []).push(m['skos:note'])
   for (const rel of Object.keys(REL)) for (const b of list(m[rel])) {
     if (!concepts[a] || !concepts[b]) { err(`mapping ${a} ${rel} ${b}: unknown concept`); continue }
-    ;(links[a] ??= []).push([rel, b]); (links[b] ??= []).push([rel, a])
+    ;(links[a] ??= []).push([rel, b]); (links[b] ??= []).push([INVERSE[rel] ?? rel, a])
   }
 }
 if (errors) { console.error(`\n${errors} error(s) — refusing to generate.`); process.exit(1) }
