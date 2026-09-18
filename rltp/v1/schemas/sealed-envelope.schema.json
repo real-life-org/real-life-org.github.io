@@ -1,33 +1,38 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://real-life.org/rltp/v1/schemas/sealed-envelope.schema.json",
-  "title": "RLTP Sealed Envelope (rltp-delivery@0.17)",
-  "description": "Encrypted travel form per Delivery Contract section 5: fresh ephemeral X25519 per envelope, HKDF-SHA-256 (empty salt, info 'rltp/v1/seal'), AES-256-GCM with 128-bit tag and empty AAD. Plaintext is JCS(document), 1..65536 bytes; the document digest is computed over the plaintext, never the ciphertext. Shipped vector: vectors/seal.json.",
-  "type": "object",
-  "required": ["rkid", "epk", "nonce", "ciphertext"],
-  "additionalProperties": false,
-  "properties": {
-    "rkid": {
-      "type": "string",
-      "description": "recipient key-agreement key identifier: the X25519 Multikey the envelope is sealed to ('z6LS' + 44 base58btc chars)",
-      "pattern": "^z6LS[1-9A-HJ-NP-Za-km-z]{44}$"
-    },
-    "epk": {
-      "type": "string",
-      "description": "ephemeral X25519 public key, 32 raw bytes, base64url without padding (43 chars); fresh per envelope, never reused",
-      "pattern": "^[A-Za-z0-9_-]{43}$"
-    },
-    "nonce": {
-      "type": "string",
-      "description": "96-bit CSPRNG nonce, base64url without padding (16 chars)",
-      "pattern": "^[A-Za-z0-9_-]{16}$"
-    },
-    "ciphertext": {
-      "type": "string",
-      "description": "AES-256-GCM ciphertext including 128-bit tag, base64url without padding, CANONICAL lengths only (length mod 4 is never 1; non-zero trailing bits are rejected at parse). Minimum 23 chars (1-byte plaintext + 16-byte tag); maximum 87403 chars (65536 + 16 bytes). Tag-only values are structurally invalid.",
-      "pattern": "^(?:[A-Za-z0-9_-]{4})*[A-Za-z0-9_-]{2,3}$|^(?:[A-Za-z0-9_-]{4})+$",
-      "minLength": 23,
-      "maxLength": 87403
-    }
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://real-life.org/rltp/v1/schemas/sealed-envelope.schema.json",
+ "title": "RLTP Sealed Envelope (rltp-delivery@0.79)",
+ "description": "Encrypted travel form per Delivery Contract section 5: fresh ephemeral X25519 per envelope, HKDF-SHA-256 (empty salt, info 'rltp/v1/seal'), AES-256-GCM with 128-bit tag and empty AAD. Plaintext is JCS(document), 1..65536 bytes; the document digest is computed over the plaintext, never the ciphertext. Shipped vector: vectors/seal.json.",
+ "type": "object",
+ "required": [
+  "rkid",
+  "epk",
+  "nonce",
+  "ciphertext"
+ ],
+ "additionalProperties": false,
+ "properties": {
+  "rkid": {
+   "type": "string",
+   "description": "recipient key-agreement key identifier: the X25519 Multikey the envelope is sealed to ('z6LS' + 44 base58btc chars)",
+   "pattern": "^z6LS[1-9A-HJ-NP-Za-km-z]{44}$"
+  },
+  "epk": {
+   "type": "string",
+   "description": "ephemeral X25519 public key, 32 raw bytes, base64url without padding (43 chars); fresh per envelope, never reused",
+   "pattern": "^[A-Za-z0-9_-]{42}[AEIMQUYcgkosw048]$"
+  },
+  "nonce": {
+   "type": "string",
+   "description": "96-bit CSPRNG nonce, base64url without padding (16 chars)",
+   "pattern": "^[A-Za-z0-9_-]{16}$"
+  },
+  "ciphertext": {
+   "type": "string",
+   "description": "AES-256-GCM ciphertext including 128-bit tag, base64url without padding, CANONICAL lengths only (length mod 4 is never 1; non-zero trailing bits are rejected at parse). Minimum 23 chars (1-byte plaintext + 16-byte tag); maximum 87403 chars (65536 + 16 bytes). Tag-only values are structurally invalid.",
+   "pattern": "^(?:[A-Za-z0-9_-]{4})*[A-Za-z0-9_-]{2,3}$|^(?:[A-Za-z0-9_-]{4})+$",
+   "minLength": 23,
+   "maxLength": 87403
   }
+ }
 }

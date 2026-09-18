@@ -1,15 +1,87 @@
 {
   "@context": {
+    "@version": 1.1,
     "@protected": true,
     "EncounterCredential": {
       "@id": "https://real-life.org/rltp/v1#EncounterCredential",
       "@context": {
+        "@version": 1.1,
         "@protected": true,
+        "@propagate": true,
         "format": "https://real-life.org/rltp/v1#credentialFormat",
         "ceremony": "https://real-life.org/rltp/v1#Ceremony",
-        "challenge": "https://real-life.org/rltp/v1#Challenge",
         "enactmentBinding": "https://real-life.org/rltp/v1#EnactmentBinding",
-        "channel": "https://real-life.org/rltp/v1#channel"
+        "channel": "https://real-life.org/rltp/v1#channel",
+        "commitment": {
+          "@id": "https://real-life.org/rltp/v1#commitment",
+          "@context": {
+            "@version": 1.1,
+            "@protected": true,
+            "suite": "https://real-life.org/rltp/v1#commitmentSuite",
+            "value": "https://real-life.org/rltp/v1#commitmentValue"
+          }
+        },
+        "challenge": {
+          "@id": "https://real-life.org/rltp/v1#Challenge",
+          "@protected": false
+        }
+      }
+    },
+    "MembershipInvite": {
+      "@id": "https://real-life.org/rltp/v1#MembershipInvite",
+      "@context": {
+        "@version": 1.1,
+        "@protected": true,
+        "@propagate": true,
+        "group": "https://real-life.org/rltp/v1#group",
+        "genesisDigest": "https://real-life.org/rltp/v1#genesisDigest",
+        "note": "https://real-life.org/rltp/v1#displayNote",
+        "card": {
+          "@id": "https://real-life.org/rltp/v1#contactCard",
+          "@context": {
+            "@version": 1.1,
+            "@protected": true,
+            "version": "https://real-life.org/rltp/v1#cardVersion",
+            "anchor": "https://real-life.org/rltp/v1#anchor",
+            "keyAgreement": "https://real-life.org/rltp/v1#keyAgreement",
+            "sentTo": "https://real-life.org/rltp/v1#sentTo",
+            "boundTo": "https://real-life.org/rltp/v1#boundTo",
+            "deliveryHints": "https://real-life.org/rltp/v1#deliveryHints",
+            "challenge": {
+              "@id": "https://real-life.org/rltp/v1#Challenge",
+              "@protected": false,
+              "@context": {
+                "@version": 1.1,
+                "@protected": true,
+                "value": "https://real-life.org/rltp/v1#challengeValue",
+                "issuedAt": "https://real-life.org/rltp/v1#challengeIssuedAt"
+              }
+            },
+            "proof": {
+              "@id": "https://w3id.org/security#proof",
+              "@type": "@id",
+              "@container": "@graph"
+            }
+          }
+        }
+      }
+    },
+    "AdmissionVouch": {
+      "@id": "https://real-life.org/rltp/v1#AdmissionVouch",
+      "@context": {
+        "@version": 1.1,
+        "@protected": true,
+        "@propagate": true,
+        "endorsement": {
+          "@id": "https://real-life.org/rltp/v1#endorsement",
+          "@context": {
+            "@version": 1.1,
+            "@protected": true,
+            "genesisDigest": "https://real-life.org/rltp/v1#genesisDigest",
+            "accept": "https://real-life.org/rltp/v1#acceptDigest",
+            "provenance": "https://real-life.org/rltp/v1#provenance"
+          }
+        }
       }
     }
   }

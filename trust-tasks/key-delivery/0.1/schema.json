@@ -37,7 +37,7 @@
         },
         "op": {
           "type": "string",
-          "pattern": "^oid:[A-Za-z0-9_-]{43}$",
+          "pattern": "^oid:[A-Za-z0-9_-]{42}[AEIMQUYcgkosw048]$",
           "description": "the transition (keydist), the canonical admission (re-welcome), any canonical admission of the recipient (refresh — none is distinguished, Access 5.3), or the operation the claim rests on (request)"
         },
         "kind": {

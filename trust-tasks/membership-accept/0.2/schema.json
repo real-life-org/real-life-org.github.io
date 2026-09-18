@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://real-life.org/trust-tasks/membership-accept/0.2",
+  "title": "Payload: membership-accept/0.2 (rltp-membership@0.16, target Trust Tasks framework 0.4)",
+  "description": "Payload schema per Trust Tasks 6.3 ($id = Type URI, describes only the payload). The consent artifact: subject MUST equal the document issuer AND the referenced invite's invitee (no transplantation); ref binds this accept to exactly one invitation by CREDENTIAL digest: the multibase multihash over the JCS of the invite's complete payload.invite including its proof (Membership Tasks section 2 — consent binds to the credential, so byte-different delivery wrappers around the same credential are one invitation); card is the subject's contact card, whose key-agreement key the welcome will be sealed to (card proof MUST verify and card.anchor MUST equal subject \u2014 a foreign card would redirect the group keys; retained per Contract section 5 from the accept's issuance; key transport, no freshness claimed). The document MUST carry a proof verifying under the issuer. An accept is consent to ONE MEMBERSHIP: the subject is a member once, however many canonical admissions enclose the accept (concurrent same-subject admissions are idempotent \u2014 Access 5.3), and the accept is consumed content-bound and never freed. Normative rules in Membership Tasks 3.2, 3.3; canonicality and consumption in Access 5.3.",
+  "type": "object",
+  "required": [
+    "accept"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "accept": {
+      "type": "object",
+      "required": [
+        "group",
+        "subject",
+        "ref",
+        "card",
+        "candidacy"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "group": {
+          "$ref": "#/$defs/didKey"
+        },
+        "subject": {
+          "$ref": "#/$defs/didKey"
+        },
+        "ref": {
+          "$ref": "#/$defs/multibaseMultihash"
+        },
+        "card": {
+          "$ref": "https://real-life.org/rltp/v1/schemas/contact-card.schema.json",
+          "description": "the subject's contact card (displayed form): carries the key-agreement key the welcome will be sealed to"
+        },
+        "candidacy": {
+          "type": "boolean",
+          "description": "the subject's explicit, signed consent (true) or refusal (false) to the pre-admission candidacy surfacing into the group space (Membership 3.4); false means silent evidence relay only"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "didKey": {
+      "type": "string",
+      "pattern": "^did:key:z6Mk[1-9A-HJ-NP-Za-km-z]{44}$"
+    },
+    "multibaseMultihash": {
+      "type": "string",
+      "pattern": "^(u[A-Za-z0-9_-]{45}[AQgw]|z[1-9A-HJ-NP-Za-km-z]{44,48})$",
+      "description": "credential digest of the invite being accepted: multibase multihash over the JCS of the complete payload.invite including its proof (Membership Tasks 3.2, section 2)"
+    }
+  }
+}

@@ -54,7 +54,7 @@
             "properties": {
               "contentKey": {
                 "type": "string",
-                "pattern": "^[A-Za-z0-9_-]{43}$",
+                "pattern": "^[A-Za-z0-9_-]{42}[AEIMQUYcgkosw048]$",
                 "description": "base64url (unpadded) 32-byte AES-256 content key; its commitment is the multihash over the raw 32 bytes (Access 7.1); the per-epoch secret is derived, never transported"
               }
             }

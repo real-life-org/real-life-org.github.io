@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://real-life.org/trust-tasks/membership-evidence/0.1",
-  "title": "Payload: membership-evidence/0.1 (rltp-membership@0.11, target Trust Tasks framework 0.4)",
+  "title": "Payload: membership-evidence/0.1 (rltp-membership@0.16, target Trust Tasks framework 0.4)",
   "description": "Payload schema per Trust Tasks 6.3 ($id = Type URI, describes only the payload). The evidence relay: the COMPLETE invite and accept documents travel enclosed (their signed recipients are historical facts of the pair, not the task's recipient), so any authorized member can verify the consent chain and complete the admission. The task document carries no proof — the enclosed documents carry their own (one carrier). Normative rules in Membership Tasks 3.4.",
   "type": "object",
   "required": ["evidence"],
@@ -16,10 +16,10 @@
           "allOf": [
             { "$ref": "https://real-life.org/rltp/v1/schemas/rltp-delivery-document.schema.json" },
             {
-              "required": ["proof"],
               "properties": {
-                "type": { "const": "https://real-life.org/trust-tasks/membership-invite/0.1" },
-                "payload": { "$ref": "https://real-life.org/trust-tasks/membership-invite/0.1" }
+                "type": { "const": "https://real-life.org/trust-tasks/membership-invite/0.2" },
+                "payload": { "$ref": "https://real-life.org/trust-tasks/membership-invite/0.2" },
+                "proof": false
               }
             }
           ]
@@ -30,8 +30,8 @@
             {
               "required": ["proof"],
               "properties": {
-                "type": { "const": "https://real-life.org/trust-tasks/membership-accept/0.1" },
-                "payload": { "$ref": "https://real-life.org/trust-tasks/membership-accept/0.1" }
+                "type": { "const": "https://real-life.org/trust-tasks/membership-accept/0.2" },
+                "payload": { "$ref": "https://real-life.org/trust-tasks/membership-accept/0.2" }
               }
             }
           ]

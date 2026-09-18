@@ -1,86 +1,227 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://real-life.org/rltp/v1/schemas/access-registration.schema.json",
-  "title": "RLTP Service Registration (Access Layer 0.24 section 7.3)",
-  "description": "The versioned wire artifact by which a group registers at a service (trust-on-first-use binding genesisDigest -> view chain). Signature input = JCS serialization with sig omitted; sig MUST verify under the named identity field (the seq-0 service identity, which MUST also sign the seq-0 view). service names the ONE service this registration is for — a service MUST reject a registration not naming itself (no cross-service replay). Durations use the profile day/time subset with fixed-seconds arithmetic (Access 7.3); divergenceQuota is the retained-full-artifact bound of Access 7.3 obligation 5 (the digest skeleton is hard-bounded at 8 x divergenceQuota entries with mandatory compaction). Out-of-range values, missing fields, or a failing signature make the registration invalid — services MUST NOT repair or default them.",
-  "type": "object",
-  "required": [
-    "v",
-    "type",
-    "group",
-    "genesisDigest",
-    "identity",
-    "service",
-    "m",
-    "stalenessBound",
-    "terminalRetention",
-    "divergenceQuota",
-    "sig"
-  ],
-  "additionalProperties": false,
-  "properties": {
-    "v": {
-      "const": "rltp-access-registration/0.24"
-    },
-    "type": {
-      "const": "service-registration"
-    },
-    "group": {
-      "$ref": "#/$defs/didKey"
-    },
-    "genesisDigest": {
-      "$ref": "#/$defs/digest"
-    },
-    "identity": {
-      "$ref": "#/$defs/didKey",
-      "description": "the seq-0 derived service identity: sig verifies under it, and the seq-0 view MUST be signed by exactly it"
-    },
-    "service": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 256,
-      "description": "canonical identifier of the one service this registration is for; comparison is EXACT BYTE EQUALITY of the UTF-8 string, no normalization of any kind (no case folding, percent-decoding, default-port or trailing-slash equivalence, no alias or DID resolution) — a service is configured with exactly one canonical string (RECOMMENDED: a service DID or an absolute https URI) and MUST reject a registration whose service field is not byte-identical to it (Access 7.3)"
-    },
-    "m": {
-      "const": 1,
-      "description": "the initial quorum size is always 1 (the seq-0 identity seeds the chain); growth happens via the m field of later views (Access 7.3)"
-    },
-    "stalenessBound": {
-      "$ref": "#/$defs/duration",
-      "description": "maximum validUntil - issuedAt a view may claim (Access 7.3 obligation 1)"
-    },
-    "terminalRetention": {
-      "$ref": "#/$defs/duration",
-      "description": "terminal grace window, measured from the service's local acceptance of a terminal view (Access 7.3 obligation 5); RECOMMENDED default P30D"
-    },
-    "divergenceQuota": {
-      "type": "integer",
-      "minimum": 16,
-      "maximum": 4096,
-      "description": "bound on retained full view artifacts per group while fail-closed (Access 7.3 obligation 5); RECOMMENDED default 64"
-    },
-    "sig": {
-      "type": "string",
-      "pattern": "^z[1-9A-HJ-NP-Za-km-z]+$",
-      "maxLength": 128,
-      "description": "signature by the seq-0 service identity over the JCS serialization with sig omitted"
-    }
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://real-life.org/rltp/v1/schemas/access-registration.schema.json",
+ "title": "RLTP Service Registration (artifact 0.26, Access Layer section 7.3)",
+ "description": "The versioned wire artifact by which a group registers at a service (trust-on-first-use binding genesisDigest -> view chain). Signature input = JCS serialization with sig omitted; sig MUST verify under the named identity field (the seq-0 service identity, which MUST also sign the seq-0 view). service names the ONE service this registration is for — a service MUST reject a registration not naming itself (no cross-service replay). Durations use the profile day/time subset with fixed-seconds arithmetic (Access 7.3); divergenceQuota is the retained-full-artifact bound of Access 7.3 obligation 5 (the digest skeleton is hard-bounded at 8 x divergenceQuota entries with mandatory compaction). Out-of-range values, missing fields, or a failing signature make the registration invalid — services MUST NOT repair or default them. New in 0.26 (the replication-seam castings; supersedes the never-instantiated interim 0.25): attestationKey, registrationGeneration, previousRegistration, authorizationRoot — the generation chain is the group-authorized service rebind; a replayed old registration cannot re-open a superseded generation.",
+ "type": "object",
+ "required": [
+  "v",
+  "type",
+  "group",
+  "genesisDigest",
+  "identity",
+  "service",
+  "m",
+  "stalenessBound",
+  "terminalRetention",
+  "divergenceQuota",
+  "sig",
+  "attestationKey",
+  "registrationGeneration",
+  "previousRegistration",
+  "authorizationRoot"
+ ],
+ "additionalProperties": false,
+ "properties": {
+  "v": {
+   "const": "rltp-access-registration/0.26"
   },
-  "$defs": {
-    "didKey": {
-      "type": "string",
-      "pattern": "^did:key:z6Mk[1-9A-HJ-NP-Za-km-z]{44}$"
+  "type": {
+   "const": "service-registration"
+  },
+  "group": {
+   "$ref": "#/$defs/didKey"
+  },
+  "genesisDigest": {
+   "$ref": "#/$defs/digest"
+  },
+  "identity": {
+   "$ref": "#/$defs/didKey",
+   "description": "the seq-0 derived service identity: sig verifies under it, and the seq-0 view MUST be signed by exactly it"
+  },
+  "service": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 256,
+   "description": "canonical identifier of the one service this registration is for; comparison is EXACT BYTE EQUALITY of the UTF-8 string, no normalization of any kind (no case folding, percent-decoding, default-port or trailing-slash equivalence, no alias or DID resolution) — a service is configured with exactly one canonical string (RECOMMENDED: a service DID or an absolute https URI) and MUST reject a registration whose service field is not byte-identical to it (Access 7.3)"
+  },
+  "m": {
+   "const": 1,
+   "description": "the initial quorum size is always 1 (the seq-0 identity seeds the chain); growth happens via the m field of later views (Access 7.3)"
+  },
+  "stalenessBound": {
+   "type": "string",
+   "pattern": "^P([1-9]|[12][0-9]|30)D$",
+   "description": "Freshness window bound for authorization views (Access 7.3). JOINT PROFILE: whole days only, P1D..P30D - the schema enforces the P30D cap (Access 7.3 / Replication 9, one validity boundary on both sides)."
+  },
+  "terminalRetention": {
+   "$ref": "#/$defs/duration",
+   "description": "terminal grace window, measured from the service's local acceptance of a terminal view (Access 7.3 obligation 5); RECOMMENDED default P30D"
+  },
+  "divergenceQuota": {
+   "type": "integer",
+   "minimum": 16,
+   "maximum": 4096,
+   "description": "bound on retained full view artifacts per group while fail-closed (Access 7.3 obligation 5); RECOMMENDED default 64"
+  },
+  "sig": {
+   "type": "string",
+   "pattern": "^z[1-9A-HJ-NP-Za-km-z]+$",
+   "maxLength": 128,
+   "description": "signature by the seq-0 service identity over the JCS serialization with sig omitted"
+  },
+  "attestationKey": {
+   "type": "string",
+   "pattern": "^z6Mk[1-9A-HJ-NP-Za-km-z]{40,48}$",
+   "description": "The service's target-attestation public key as an Ed25519 Multikey (z6Mk...), bound by the group at registration (Access 7.3 / Replication Contract 4.1, 6)."
+  },
+  "registrationGeneration": {
+   "type": "integer",
+   "minimum": 1,
+   "description": "Registration-chain generation; a generation g+1 registration naming the accepted generation-g digest in previousRegistration supersedes it (the group-authorized service rebind). Generations never decrease."
+  },
+  "previousRegistration": {
+   "description": "registrationCoreDigest of the superseded registration (multihash over JCS with sig AND authorization omitted), or null iff registrationGeneration = 1.",
+   "oneOf": [
+    {
+     "type": "null"
     },
-    "digest": {
-      "type": "string",
-      "pattern": "^(z[1-9A-HJ-NP-Za-km-z]+|u[A-Za-z0-9_-]+)$",
-      "maxLength": 128
-    },
-    "duration": {
-      "type": "string",
-      "pattern": "^P(?!$)(\\d{1,3}D)?(T(?=\\d)(\\d{1,3}H)?(\\d{1,3}M)?(\\d{1,3}S)?)?$",
-      "maxLength": 20,
-      "description": "profile day/time subset: PnD and/or TnHnMnS in descending order, 1-3 digits each, no years/months/weeks; arithmetic is fixed-seconds (1D = 86400 s)"
+    {
+     "type": "string",
+     "pattern": "^(u[A-Za-z0-9_-]{40,120}|z[1-9A-HJ-NP-Za-km-z]{40,120})$"
     }
+   ]
+  },
+  "authorization": {
+   "type": "array",
+   "minItems": 1,
+   "maxItems": 8192,
+   "description": "REQUIRED iff registrationGeneration > 1: quorum signatures over the JCS serialization of the complete registration with sig and authorization omitted (Access 7.3 generation rule; domain-separated). Signers unique, sorted by unsigned bytewise order of signer; each in the sole-tip view's identities.",
+   "items": {
+    "type": "object",
+    "required": [
+     "signer",
+     "sig"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "signer": {
+      "$ref": "#/$defs/didKey"
+     },
+     "sig": {
+      "type": "string",
+      "pattern": "^z[1-9A-HJ-NP-Za-km-z]{64,96}$"
+     }
+    }
+   },
+   "uniqueItems": true
+  },
+  "abandon": {
+   "type": "object",
+   "required": [
+    "abandonedRoot",
+    "abandonedTipsDigest"
+   ],
+   "additionalProperties": false,
+   "description": "OPTIONAL, registrationGeneration > 1 only (enforced): the quorum-authorized abandon of an unreconcilable view divergence (Access 7.3). Part of the registration core digest and the quorum's signed input; only a registration carrying this block ends a divergence irreversibly; concurrent distinct abandons of one generation are a registration equivocation.",
+   "properties": {
+    "abandonedRoot": {
+     "type": "string",
+     "pattern": "^(u[A-Za-z0-9_-]{40,120}|z[1-9A-HJ-NP-Za-km-z]{40,120})$",
+     "description": "Signature-input digest of the last pre-divergence sole-tip view (the view-skeleton digest form)."
+    },
+    "abandonedTipsDigest": {
+     "type": "string",
+     "pattern": "^(u[A-Za-z0-9_-]{40,120}|z[1-9A-HJ-NP-Za-km-z]{40,120})$",
+     "description": "Multihash over the UTF-8 bytes of the JCS array of the abandoned tips' signature-input digest strings, sorted by unsigned bytewise order."
+    }
+   }
+  },
+  "authorizationRoot": {
+   "description": "Signature-input digest of the sole-tip view this registration was authorized against (Access 7.3) — bound inside registrationCoreDigest and the quorum's signed input; null iff registrationGeneration = 1.",
+   "oneOf": [
+    {
+     "type": "null"
+    },
+    {
+     "type": "string",
+     "pattern": "^(u[A-Za-z0-9_-]{40,120}|z[1-9A-HJ-NP-Za-km-z]{40,120})$"
+    }
+   ]
   }
+ },
+ "$defs": {
+  "didKey": {
+   "type": "string",
+   "pattern": "^did:key:z6Mk[1-9A-HJ-NP-Za-km-z]{44}$"
+  },
+  "digest": {
+   "type": "string",
+   "pattern": "^(z[1-9A-HJ-NP-Za-km-z]+|u[A-Za-z0-9_-]+)$",
+   "maxLength": 128
+  },
+  "duration": {
+   "type": "string",
+   "pattern": "^P(?!$)(\\d{1,3}D)?(T(?=\\d)(\\d{1,3}H)?(\\d{1,3}M)?(\\d{1,3}S)?)?$",
+   "maxLength": 20,
+   "description": "profile day/time subset: PnD and/or TnHnMnS in descending order, 1-3 digits each, no years/months/weeks; arithmetic is fixed-seconds (1D = 86400 s)"
+  }
+ },
+ "allOf": [
+  {
+   "if": {
+    "properties": {
+     "registrationGeneration": {
+      "const": 1
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "previousRegistration": {
+      "type": "null"
+     },
+     "authorizationRoot": {
+      "type": "null"
+     }
+    },
+    "not": {
+     "anyOf": [
+      {
+       "required": [
+        "authorization"
+       ]
+      },
+      {
+       "required": [
+        "abandon"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "registrationGeneration": {
+      "exclusiveMinimum": 1
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "previousRegistration": {
+      "type": "string"
+     },
+     "authorizationRoot": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "authorization"
+    ]
+   }
+  }
+ ]
 }
