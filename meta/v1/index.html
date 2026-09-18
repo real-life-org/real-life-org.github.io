@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Shared term register · meta/v1 — real-life.org</title><style>:root{--bg:#fff;--ink:#1a2030;--muted:#667;--soft:#556;--text2:#333c4d;--line:#e2e6ef;--field:#d5dae6;--chip:#f0f2f7;--hover:#f6f7fa;--link:#2451b3;--warn:#b45309;--mark:#fdf3d8;--rlnp:#3f7a4e;--rlnp-t:#e6f0e7;--rls:#b36b1c;--rls-t:#f7ecdd;--rltp:#2f62c9;--rltp-t:#e5ecfa}
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Shared term register · meta/v1 — real-life.org</title><link rel="alternate" hreflang="de" href="https://real-life.org/de/meta/v1/"><style>:root{--bg:#fff;--ink:#1a2030;--muted:#667;--soft:#556;--text2:#333c4d;--line:#e2e6ef;--field:#d5dae6;--chip:#f0f2f7;--hover:#f6f7fa;--link:#2451b3;--warn:#b45309;--mark:#fdf3d8;--rlnp:#3f7a4e;--rlnp-t:#e6f0e7;--rls:#b36b1c;--rls-t:#f7ecdd;--rltp:#2f62c9;--rltp-t:#e5ecfa}
 @media(prefers-color-scheme:dark){:root{--bg:#0e0e10;--ink:#e8e8ea;--muted:#9a9aa4;--soft:#b9b9c3;--text2:#d0d0d6;--line:#2c2c31;--field:#3a3a42;--chip:#1c1c22;--hover:#18181d;--link:#7fb6d6;--warn:#fbbf24;--mark:#2a2410;--rlnp:#7cc48a;--rlnp-t:#1e2f23;--rls:#e0a25a;--rls-t:#33281a;--rltp:#7fa6f0;--rltp-t:#1d2738}}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}a{color:var(--link)}
 header{border-bottom:1px solid var(--line)}.bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:18px 24px 14px;max-width:880px;margin:0 auto}
@@ -32,37 +32,38 @@ figure{margin:0 0 1.6rem}figure img{width:100%;height:auto;display:block;border-
 .rels{display:flex;flex-wrap:wrap;gap:2px 10px;margin-top:4px;font-size:.82em;color:var(--soft)}.rels span{white-space:nowrap}.rels i{font-style:normal;color:var(--muted)}
 .act{margin-top:3px;font-size:.8em}.act a{margin-right:.7em;color:var(--muted)}.act a:hover{color:var(--link)}
 .note{margin:4px 0 0;font-size:.85em;color:var(--soft);font-style:italic}
-.empty{display:none;color:var(--muted);padding:24px 0}</style><link rel="alternate" type="application/ld+json" href="context.jsonld"><link rel="alternate" type="application/json" href="index.json"></head><body>
+.empty{display:none;color:var(--muted);padding:24px 0}</style><link rel="alternate" type="application/ld+json" href="/meta/v1/context.jsonld"><link rel="alternate" type="application/json" href="/meta/v1/index.json"></head><body>
 <header><div class="bar"><a class="brand" href="/"><b>Real Life</b></a>
 <nav><a href="/">Overview</a><a href="/terms/">Dictionary</a><a href="/#identifiers" class="on">Identifiers</a></nav>
-<div class="right"></div></div></header>
+<input id="q" type="search" placeholder="Search…" aria-label="Search…"><div class="right"><a class="btn" href="/de/meta/v1/" lang="de">DE</a></div></div></header>
 <main>
 <h1><code>https://real-life.org/meta/v1</code></h1>
 <p>The shared part of the Real Life term register. The three parts of Real Life keep their own SKOS concept schemes: <a href="/rlnp/v1/">RLNP</a> (meaning), <a href="/rltp/v1/">RLTP</a> (construction) and <a href="/rls/v1/">RLS</a> (interface and code). This namespace holds what none of them owns alone: the JSON-LD context all three use, the mappings between them, and the few fields SKOS does not have.</p>
-<p>Machine-readable: <a href="context.jsonld"><code>context.jsonld</code></a>, <a href="mappings.jsonld"><code>mappings.jsonld</code></a>, <a href="index.json"><code>index.json</code></a>.</p>
+<p>Machine-readable: <a href="/meta/v1/context.jsonld"><code>context.jsonld</code></a>, <a href="/meta/v1/mappings.jsonld"><code>mappings.jsonld</code></a>, <a href="/meta/v1/index.json"><code>index.json</code></a>.</p>
 <h2>Fields</h2>
-<div class="entries"><div class="e" id="convergesWith"><span class="w w-meta">Register</span><div>
+<div class="entries"><div class="e" id="convergesWith" data-q="rl:convergeswith  the target state: these two concepts are meant to become the same, and the specifications have a task until they are. the skos mapping relations describe today."><span class="w w-meta">Register</span><div>
 <div class="head"><b>rl:convergesWith</b></div>
 <p class="def">The target state: these two concepts are meant to become the same, and the specifications have a task until they are. The SKOS mapping relations describe today.</p>
 
 </div></div>
-<div class="e" id="falseFriend"><span class="w w-meta">Register</span><div>
+<div class="e" id="falseFriend" data-q="rl:falsefriend  same word in at least one language, different thing, on purpose. recorded so the pair is never reported as a missing mapping and so the pages show it explicitly."><span class="w w-meta">Register</span><div>
 <div class="head"><b>rl:falseFriend</b></div>
 <p class="def">Same word in at least one language, different thing, on purpose. Recorded so the pair is never reported as a missing mapping and so the pages show it explicitly.</p>
 
 </div></div>
-<div class="e" id="status"><span class="w w-meta">Register</span><div>
+<div class="e" id="status" data-q="rl:status  "proposed": the concept does not exist in its specification yet; it is a proposal from the register to that part."><span class="w w-meta">Register</span><div>
 <div class="head"><b>rl:status</b></div>
 <p class="def">"proposed": the concept does not exist in its specification yet; it is a proposal from the register to that part.</p>
 
 </div></div>
-<div class="e" id="symbol"><span class="w w-meta">Register</span><div>
+<div class="e" id="symbol" data-q="rl:symbol  code symbols that implement the term (real life stack only)."><span class="w w-meta">Register</span><div>
 <div class="head"><b>rl:symbol</b></div>
 <p class="def">Code symbols that implement the term (Real Life Stack only).</p>
 
 </div></div></div>
 <h2>Rule</h2>
 <p>Definitions never live here. Each part defines its terms in its own repository and stays normative for them; the register only connects them. Source and checks: <a href="https://github.com/real-life-org/meta">real-life-org/meta</a>.</p>
+<p class="empty" id="empty">Nothing matches the search.</p>
 </main>
 <footer>real-life.org · <a href="https://github.com/real-life-org">real-life-org</a> · generated from <a href="https://github.com/real-life-org/rltp-spec">rltp-spec</a> and <a href="https://github.com/real-life-org/meta">meta</a>; nothing here is written by hand</footer>
-</body></html>
+<script>(function(){var q=document.getElementById('q');if(!q)return;var rows=[].slice.call(document.querySelectorAll('.row'));var items=rows.length?rows:[].slice.call(document.querySelectorAll('.e'));var empty=document.getElementById('empty');function run(){var v=q.value.trim().toLowerCase(),n=0;items.forEach(function(r){var hit=!v||(r.getAttribute('data-q')||r.textContent.toLowerCase()).indexOf(v)>-1;r.style.display=hit?'':'none';if(hit)n++});if(empty)empty.style.display=n?'none':'block'}q.addEventListener('input',run);var m=/[?&]q=([^&]*)/.exec(location.search);if(m){q.value=decodeURIComponent(m[1].replace(/\+/g,' '));run()}})()</script></body></html>

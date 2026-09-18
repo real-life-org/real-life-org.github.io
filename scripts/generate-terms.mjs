@@ -81,6 +81,7 @@ const termHref = (c) => (c.world === 'rltp' && c['rl:status'] === 'proposed' ? l
 // predicate when shown from the other side; the two hierarchical ones swap.
 const REL = { 'skos:exactMatch': 'same as', 'skos:closeMatch': 'close to', 'skos:relatedMatch': 'related to', 'skos:narrowMatch': 'broader than', 'skos:broadMatch': 'narrower than', 'rl:convergesWith': 'target: same as', 'rl:falseFriend': 'false friend of' }
 const INVERSE = { 'skos:narrowMatch': 'skos:broadMatch', 'skos:broadMatch': 'skos:narrowMatch' }
+const REL_L = { en: REL, de: { 'skos:exactMatch': 'gleich', 'skos:closeMatch': 'nahezu gleich', 'skos:relatedMatch': 'verwandt mit', 'skos:narrowMatch': 'allgemeiner als', 'skos:broadMatch': 'spezieller als', 'rl:convergesWith': 'Ziel: gleich mit', 'rl:falseFriend': 'falscher Freund von' } }
 const links = {}
 const notes = {}
 for (const m of mappings) {
@@ -95,22 +96,30 @@ if (errors) { console.error(`\n${errors} error(s) — refusing to generate.`); p
 
 // ── pages: every page uses the shell from scripts/shell.mjs ─────────────
 const WORLDS = {
-  rlnp: { name: 'Real Life Network Protocol', short: 'RLNP', what: 'the social specification: what a circle, an encounter, a promise, a role mean', repo: 'https://github.com/real-life-org/real-life-network-protocol' },
-  rls: { name: 'Real Life Stack', short: 'RLS', what: 'the app toolkit: application, data and the connector socket', repo: 'https://github.com/real-life-org/real-life-stack' },
+  rlnp: { name: 'Real Life Network Protocol', short: 'RLNP', what: { en: 'the social specification: what a circle, an encounter, a promise, a role mean', de: 'die soziale Spezifikation: was ein Kreis, eine Begegnung, ein Versprechen, eine Rolle bedeuten' }, repo: 'https://github.com/real-life-org/real-life-network-protocol' },
+  rls: { name: 'Real Life Stack', short: 'RLS', what: { en: 'the app toolkit: application, data and the connector socket', de: 'der App-Baukasten: Anwendung, Daten und die Steckstelle des Connectors' }, repo: 'https://github.com/real-life-org/real-life-stack' },
+}
+const NS = {
+  en: { intro: (w, ns) => `The term namespace of the <strong>${w.name}</strong>, ${w.what.en}. Permanent identifiers are <code>${ns}#&lt;Fragment&gt;</code>; the fragments resolve to the entries below.`,
+        how: (w) => `Each term is defined by the ${w.short} specification itself (<a href="${w.repo}">repository</a>). Mappings to the other parts of Real Life come from the <a href="/meta/v1/">shared register</a>: a term is <em>same as</em>, <em>close to</em>, <em>related to</em>, <em>broader</em> or <em>narrower than</em> its counterpart, or a deliberate <em>false friend</em>; <em>target: same as</em> marks a convergence the specifications still owe. The <a href="/terms/">dictionary</a> shows all three parts side by side.`,
+        machine: 'Machine-readable: <a href="terms.jsonld"><code>terms.jsonld</code></a> (SKOS concept scheme, JSON-LD) and <a href="index.json"><code>index.json</code></a> (registry with digests).', terms: 'Terms', also: 'also', source: 'source', proposed: 'proposed' },
+  de: { intro: (w, ns) => `Der Begriffs-Namensraum des <strong>${w.name}</strong>, ${w.what.de}. Dauerhafte Kennungen sind <code>${ns}#&lt;Fragment&gt;</code>; die Fragmente lösen zu den Einträgen unten auf.`,
+        how: (w) => `Jeden Begriff definiert die ${w.short}-Spezifikation selbst (<a href="${w.repo}">Repository</a>). Die Verknüpfungen zu den anderen Teilen von Real Life kommen aus dem <a href="/de/meta/v1/">gemeinsamen Register</a>: Ein Begriff ist <em>gleich</em>, <em>nahezu gleich</em>, <em>verwandt mit</em>, <em>allgemeiner</em> oder <em>spezieller als</em> sein Gegenstück, oder ein bewusster <em>falscher Freund</em>; <em>Ziel: gleich mit</em> markiert eine Konvergenz, die die Spezifikationen noch schulden. Das <a href="/de/terms/">Wörterbuch</a> zeigt alle drei Teile nebeneinander.`,
+        machine: 'Maschinenlesbar: <a href="/{world}/v1/terms.jsonld"><code>terms.jsonld</code></a> (SKOS-Konzeptschema, JSON-LD) und <a href="/{world}/v1/index.json"><code>index.json</code></a> (Register mit Prüfsummen).', terms: 'Begriffe', also: 'auch', source: 'Quelle', proposed: 'Vorschlag' },
 }
 
-const conceptEntry = (c) => entry({
-  id: fragment(c['@id']), world: c.world, href: termHref(c),
-  label: lang(c['skos:prefLabel'], 'en'), other: lang(c['skos:prefLabel'], 'de'),
-  tag: c['rl:status'] === 'proposed' ? 'proposed' : '',
-  def: lang(c['skos:definition'], 'en'),
+const conceptEntry = (c, l = 'en') => { const O = l === 'en' ? 'de' : 'en'; return entry({
+  id: fragment(c['@id']), world: c.world, href: termHref(c), l,
+  label: lang(c['skos:prefLabel'], l), other: lang(c['skos:prefLabel'], O),
+  tag: c['rl:status'] === 'proposed' ? NS[l].proposed : '',
+  def: lang(c['skos:definition'], l),
   rels: [
-    ...list(c['skos:altLabel']).length ? [{ text: 'also', target: list(c['skos:altLabel']).map((a) => a['@value']).join(', ') }] : [],
-    ...(links[c['@id']] ?? []).map(([rel, b]) => ({ text: REL[rel], target: lang(concepts[b]['skos:prefLabel'], 'en') || b, href: termHref(concepts[b]), world: WORLD_NAME.en[concepts[b].world] })),
-    ...list(c['dct:source']).map((u) => ({ text: 'source', target: u.split('/').slice(-1)[0], href: u })),
+    ...list(c['skos:altLabel']).length ? [{ text: NS[l].also, target: [...new Set(list(c['skos:altLabel']).map((a) => a['@value']))].join(', ') }] : [],
+    ...(links[c['@id']] ?? []).map(([rel, b]) => ({ text: REL_L[l][rel], target: lang(concepts[b]['skos:prefLabel'], l) || b, href: termHref(concepts[b]), world: WORLD_NAME[l][concepts[b].world] })),
+    ...list(c['dct:source']).map((u) => ({ text: NS[l].source, target: u.split('/').slice(-1)[0], href: u })),
   ],
   note: (notes[c['@id']] ?? [])[0] ?? '',
-})
+}) }
 
 console.log('\n── term namespaces')
 for (const [world, w] of Object.entries(WORLDS)) {
@@ -125,14 +134,18 @@ for (const [world, w] of Object.entries(WORLDS)) {
     mappings: { url: `${BASE}meta/v1/mappings.jsonld`, sha256: sha256(mappingsText) },
     terms: own.map((c) => ({ iri: iri(c['@id']), en: lang(c['skos:prefLabel'], 'en'), de: lang(c['skos:prefLabel'], 'de'), status: c['rl:status'] ?? 'in specification' })),
   }))
-  emit(`${world}/v1/index.html`, shell({ title: `${w.short} terms · ${world}/v1`, active: '/#identifiers',
-    head: `<link rel="alternate" type="application/ld+json" href="terms.jsonld"><link rel="alternate" type="application/json" href="index.json"><script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'DefinedTermSet', '@id': ns, name: `${w.short} terms`, description: `Term namespace of the ${w.name}. SKOS concept scheme: ${ns}/terms.jsonld`, url: `${ns}/` })}</script>`,
-    body: `<h1><code>${ns}</code></h1>
-<p>The term namespace of the <strong>${w.name}</strong>, ${w.what}. Permanent identifiers are <code>${ns}#&lt;Fragment&gt;</code>; the fragments resolve to the entries below.</p>
-<p>Each term is defined by the ${w.short} specification itself (<a href="${w.repo}">repository</a>). Mappings to the other parts of Real Life come from the <a href="/meta/v1/">shared register</a>: a term is <em>same as</em>, <em>close to</em>, <em>related to</em>, <em>broader</em> or <em>narrower than</em> its counterpart, or a deliberate <em>false friend</em>; <em>target: same as</em> marks a convergence the specifications still owe. The <a href="/terms/">dictionary</a> shows all three parts side by side.</p>
-<p>Machine-readable: <a href="terms.jsonld"><code>terms.jsonld</code></a> (SKOS concept scheme, JSON-LD) and <a href="index.json"><code>index.json</code></a> (registry with digests).</p>
-<h2>Terms</h2>
-<div class="entries">${own.map(conceptEntry).join('\n')}</div>` }))
+  for (const l of ['en', 'de']) {
+    const n = NS[l]; const O = l === 'en' ? 'de' : 'en'
+    emit(`${l === 'de' ? 'de/' : ''}${world}/v1/index.html`, shell({ l, title: `${w.short} ${n.terms} · ${world}/v1`, active: l === 'de' ? '/de/#identifiers' : '/#identifiers', search: true,
+      alt: { lang: O, href: `${O === 'de' ? '/de' : ''}/${world}/v1/` },
+      head: `<link rel="alternate" type="application/ld+json" href="/${world}/v1/terms.jsonld"><link rel="alternate" type="application/json" href="/${world}/v1/index.json"><script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'DefinedTermSet', '@id': ns, name: `${w.short} terms`, description: `Term namespace of the ${w.name}. SKOS concept scheme: ${ns}/terms.jsonld`, url: `${ns}/` })}</script>`,
+      body: `<h1><code>${ns}</code></h1>
+<p>${n.intro(w, ns)}</p>
+<p>${n.how(w)}</p>
+<p>${n.machine.replaceAll('{world}', world)}</p>
+<h2>${n.terms}</h2>
+<div class="entries">${own.map((c) => conceptEntry(c, l)).join('\n')}</div>` }))
+  }
 }
 
 // ── /meta/v1: the shared context, the rl: fields, the mappings ───────────
@@ -154,15 +167,24 @@ emit('meta/v1/index.json', j({
   fields: RL.map(([f, d]) => ({ iri: `${BASE}meta/v1#${f}`, definition: d })),
   schemes: Object.fromEntries(Object.entries(PREFIX).map(([w, p]) => [w, p.slice(0, -1)])),
 }))
-emit('meta/v1/index.html', shell({ title: 'Shared term register · meta/v1', active: '/#identifiers',
-  head: `<link rel="alternate" type="application/ld+json" href="context.jsonld"><link rel="alternate" type="application/json" href="index.json">`,
-  body: `<h1><code>${BASE}meta/v1</code></h1>
-<p>The shared part of the Real Life term register. The three parts of Real Life keep their own SKOS concept schemes: <a href="/rlnp/v1/">RLNP</a> (meaning), <a href="/rltp/v1/">RLTP</a> (construction) and <a href="/rls/v1/">RLS</a> (interface and code). This namespace holds what none of them owns alone: the JSON-LD context all three use, the mappings between them, and the few fields SKOS does not have.</p>
-<p>Machine-readable: <a href="context.jsonld"><code>context.jsonld</code></a>, <a href="mappings.jsonld"><code>mappings.jsonld</code></a>, <a href="index.json"><code>index.json</code></a>.</p>
-<h2>Fields</h2>
-<div class="entries">${RL.map(([f, d]) => entry({ id: f, world: 'meta', label: `rl:${f}`, def: d })).join('\n')}</div>
-<h2>Rule</h2>
-<p>Definitions never live here. Each part defines its terms in its own repository and stays normative for them; the register only connects them. Source and checks: <a href="https://github.com/real-life-org/meta">real-life-org/meta</a>.</p>` }))
+const META_T = {
+  en: { title: 'Shared term register · meta/v1', p1: 'The shared part of the Real Life term register. The three parts of Real Life keep their own SKOS concept schemes: <a href="/rlnp/v1/">RLNP</a> (meaning), <a href="/rltp/v1/">RLTP</a> (construction) and <a href="/rls/v1/">RLS</a> (interface and code). This namespace holds what none of them owns alone: the JSON-LD context all three use, the mappings between them, and the few fields SKOS does not have.', p2: 'Machine-readable: <a href="/meta/v1/context.jsonld"><code>context.jsonld</code></a>, <a href="/meta/v1/mappings.jsonld"><code>mappings.jsonld</code></a>, <a href="/meta/v1/index.json"><code>index.json</code></a>.', fields: 'Fields', rule: 'Rule', p3: 'Definitions never live here. Each part defines its terms in its own repository and stays normative for them; the register only connects them. Source and checks: <a href="https://github.com/real-life-org/meta">real-life-org/meta</a>.' },
+  de: { title: 'Gemeinsames Begriffsregister · meta/v1', p1: 'Der gemeinsame Teil des Real-Life-Begriffsregisters. Die drei Teile von Real Life halten ihre eigenen SKOS-Konzeptschemata: <a href="/de/rlnp/v1/">RLNP</a> (Bedeutung), <a href="/rltp/v1/">RLTP</a> (Konstruktion) und <a href="/de/rls/v1/">RLS</a> (Oberfläche und Code). Dieser Namensraum hält, was keiner allein besitzt: den JSON-LD-Kontext aller drei, die Verknüpfungen zwischen ihnen und die wenigen Felder, die SKOS nicht hat.', p2: 'Maschinenlesbar: <a href="/meta/v1/context.jsonld"><code>context.jsonld</code></a>, <a href="/meta/v1/mappings.jsonld"><code>mappings.jsonld</code></a>, <a href="/meta/v1/index.json"><code>index.json</code></a>.', fields: 'Felder', rule: 'Regel', p3: 'Definitionen leben nie hier. Jeder Teil definiert seine Begriffe im eigenen Repository und bleibt dafür normativ; das Register verbindet sie nur. Quelle und Prüfungen: <a href="https://github.com/real-life-org/meta">real-life-org/meta</a>.' },
+}
+const RL_DE = { convergesWith: 'Der Zielzustand: Diese zwei Begriffe sollen gleich werden, und die Spezifikationen haben eine Aufgabe, bis sie es sind. Die SKOS-Relationen beschreiben das Heute.', falseFriend: 'Gleiches Wort in mindestens einer Sprache, andere Sache, mit Absicht. Festgehalten, damit das Paar nie als fehlende Verknüpfung gemeldet wird und die Seiten es ausdrücklich zeigen.', status: '„proposed": Der Begriff existiert in seiner Spezifikation noch nicht; er ist ein Vorschlag des Registers an diesen Teil.', symbol: 'Codesymbole, die den Begriff implementieren (nur Real Life Stack).' }
+for (const l of ['en', 'de']) {
+  const m = META_T[l]; const O = l === 'en' ? 'de' : 'en'
+  emit(`${l === 'de' ? 'de/' : ''}meta/v1/index.html`, shell({ l, title: m.title, active: l === 'de' ? '/de/#identifiers' : '/#identifiers', search: true,
+    alt: { lang: O, href: `${O === 'de' ? '/de' : ''}/meta/v1/` },
+    head: `<link rel="alternate" type="application/ld+json" href="/meta/v1/context.jsonld"><link rel="alternate" type="application/json" href="/meta/v1/index.json">`,
+    body: `<h1><code>${BASE}meta/v1</code></h1>
+<p>${m.p1}</p>
+<p>${m.p2}</p>
+<h2>${m.fields}</h2>
+<div class="entries">${RL.map(([f, d]) => entry({ id: f, world: 'meta', label: `rl:${f}`, def: l === 'de' ? RL_DE[f] : d, l })).join('\n')}</div>
+<h2>${m.rule}</h2>
+<p>${m.p3}</p>` }))
+}
 
 // ── the gate: real-life.org itself ───────────────────────────────────────
 // The root page shows the whole: the layer picture and the three parts, one sentence each,
@@ -177,7 +199,7 @@ const T = {
 }
 const gatePage = (l) => {
   const t = T[l]; const O = l === 'en' ? 'de' : 'en'
-  return shell({ l, title: parts.gate.title[l], active: l === 'de' ? '/de/' : '/', alt: { lang: O, href: O === 'de' ? '/de/' : '/' },
+  return shell({ l, title: parts.gate.title[l], active: l === 'de' ? '/de/' : '/', alt: { lang: O, href: O === 'de' ? '/de/' : '/' }, search: 'forward',
     body: `<p class="sub" style="margin-bottom:18px">${esc(parts.gate.sentence[l])}</p>
 <figure><a href="/overview/layers.${l}.svg"><img src="/overview/layers.${l}.svg" alt="${esc(t.picture)}"></a></figure>
 <div class="parts">
@@ -208,7 +230,6 @@ for (const [a, rels] of Object.entries(links)) for (const [rel, b] of rels) if (
 const clusters = {}
 for (const c of Object.keys(concepts)) (clusters[find(c)] ??= []).push(c)
 const WORLD_ORDER = ['rlnp', 'rls', 'rltp']
-const REL_L = { en: REL, de: { 'skos:exactMatch': 'gleich', 'skos:closeMatch': 'nahezu gleich', 'skos:relatedMatch': 'verwandt mit', 'skos:narrowMatch': 'allgemeiner als', 'skos:broadMatch': 'spezieller als', 'rl:convergesWith': 'Ziel: gleich mit', 'rl:falseFriend': 'falscher Freund von' } }
 const sortedClusters = Object.values(clusters).sort((x, y) => (y.length - x.length) || x[0].localeCompare(y[0]))
 const editUrl = (c) => {
   const s = sources[c.world]
@@ -253,15 +274,14 @@ const dictPage = (l) => {
   }).join('\n')
   const newTermUrl = `https://github.com/real-life-org/meta/issues/new?title=${encodeURIComponent(t.newTermIssue[0])}&body=${encodeURIComponent(t.newTermIssue.slice(1).join('\n\n') + '\n')}`
   return shell({ l, title: t.title, active: l === 'de' ? '/de/terms/' : '/terms/', alt: { lang: O, href: O === 'de' ? '/de/terms/' : '/terms/' },
-    tools: `<input id="q" type="search" placeholder="${t.search}" aria-label="${t.search}">`,
+    search: true,
     body: `<p class="sub">${t.sub}</p>
 <div class="stats"><span>${Object.keys(concepts).length} ${t.termsN}</span><span>${nProposed} ${t.proposedN}</span><span>${nConv} ${t.convergeN}</span><span>${t.guardOk}</span><a href="${newTermUrl}">+ ${t.newTerm} ↗</a></div>
 <div class="rows" id="rows">
 ${rows}
 </div>
-<p class="empty" id="empty">${t.noResults}</p>
 <p class="sub" style="margin-top:22px;font-size:.88rem">${t.how}</p>`,
-    script: `<script>(function(){var q=document.getElementById('q'),rows=[].slice.call(document.querySelectorAll('.row')),empty=document.getElementById('empty');q.addEventListener('input',function(){var v=q.value.trim().toLowerCase(),n=0;rows.forEach(function(r){var hit=!v||r.getAttribute('data-q').indexOf(v)>-1;r.style.display=hit?'':'none';if(hit)n++});empty.style.display=n?'none':'block'})})()</script>` })
+  })
 }
 emit('terms/index.html', dictPage('en'))
 emit('de/terms/index.html', dictPage('de'))

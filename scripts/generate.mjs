@@ -146,7 +146,7 @@ emit('rltp/v1/index.json', j({
 // Pages use the shared shell (scripts/shell.mjs); these are English identifier pages, so the
 // navigation marks "Identifiers".
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-const page = (title, extraHead, body) => shell({ title, head: extraHead, active: '/#identifiers', body })
+const page = (title, extraHead, body, opts = {}) => shell({ title, head: extraHead, active: (opts.l === 'de' ? '/de/#identifiers' : '/#identifiers'), body, ...opts })
 
 console.log('\n── documentation pages')
 const OFFLINE_NOTE = '<p><em>Offline rule: conforming implementations pre-register every schema by its <code>$id</code> and never resolve over the network — this page is documentation, not infrastructure.</em></p>'
@@ -182,25 +182,41 @@ for (const [old, next] of Object.entries(meta.superseded ?? {})) {
 ${OFFLINE_NOTE}`))
 }
 
-emit('trust-tasks/index.html', page('RLTP Trust Task types',
-  `<link rel="alternate" type="application/json" href="index.json"><script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'DefinedTermSet', '@id': `${BASE}trust-tasks/`, name: 'RLTP Trust Task types', description: `Private Trust Task types of the Real Life Trust Protocol. Machine-readable registry: ${BASE}trust-tasks/index.json`, url: `${BASE}trust-tasks/` })}</script>`,
-  `<h1>RLTP Trust Task types</h1>
-<p>Private Trust Task types registered under <code>${BASE}trust-tasks/</code> by the Real Life Trust Protocol (${esc(meta.framework)}).</p>
-<p>Machine-readable registry: <a href="index.json"><code>index.json</code></a> — every type with its Type URI, payload-schema URL, defining section and SHA-256 digest. Each payload schema resolves as raw JSON at <code>&lt;Type&nbsp;URI&gt;/schema.json</code>.</p>
+const TT = {
+  en: { h: 'RLTP Trust Task types', p1: `Private Trust Task types registered under <code>${BASE}trust-tasks/</code> by the Real Life Trust Protocol (${esc(meta.framework)}).`, p2: 'Machine-readable registry: <a href="/trust-tasks/index.json"><code>index.json</code></a> — every type with its Type URI, payload-schema URL, defining section and SHA-256 digest. Each payload schema resolves as raw JSON at <code>&lt;Type&nbsp;URI&gt;/schema.json</code>.', profile: 'profile', defined: 'defined in' },
+  de: { h: 'RLTP Trust-Task-Typen', p1: `Private Trust-Task-Typen, die das Real Life Trust Protocol unter <code>${BASE}trust-tasks/</code> registriert (${esc(meta.framework)}). Die Beschreibungen sind englisch, wie die Spezifikation.`, p2: 'Maschinenlesbares Register: <a href="/trust-tasks/index.json"><code>index.json</code></a> — jeder Typ mit Type URI, Payload-Schema-URL, definierendem Abschnitt und SHA-256-Prüfsumme. Jedes Payload-Schema löst als rohes JSON unter <code>&lt;Type&nbsp;URI&gt;/schema.json</code> auf.', profile: 'Profil', defined: 'definiert in' },
+}
+for (const l of ['en', 'de']) {
+  const tt = TT[l]; const O = l === 'en' ? 'de' : 'en'
+  emit(`${l === 'de' ? 'de/' : ''}trust-tasks/index.html`, page(tt.h,
+    `<link rel="alternate" type="application/json" href="/trust-tasks/index.json"><script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'DefinedTermSet', '@id': `${BASE}trust-tasks/`, name: 'RLTP Trust Task types', description: `Private Trust Task types of the Real Life Trust Protocol. Machine-readable registry: ${BASE}trust-tasks/index.json`, url: `${BASE}trust-tasks/` })}</script>`,
+    `<h1>${tt.h}</h1>
+<p>${tt.p1}</p>
+<p>${tt.p2}</p>
 <div class="entries">${types.map((t) => { const m = meta.types[t.slug]
-  return entry({ id: t.slug.replace('/', '-'), world: 'task', label: t.slug, href: `/trust-tasks/${t.slug}/`, def: m.summary, rels: [{ text: 'profile', target: profileOf(t.doc, t.file) }, { text: 'defined in', target: `${m.definedIn.specification} ${m.definedIn.section}`, href: m.definedIn.url }] }) }).join('\n')}</div>`))
+  return entry({ id: t.slug.replace('/', '-'), world: 'task', href: `/trust-tasks/${t.slug}/`, label: t.slug, def: m.summary, l, rels: [{ text: tt.profile, target: profileOf(t.doc, t.file) }, { text: tt.defined, target: `${m.definedIn.specification} ${m.definedIn.section}`, href: m.definedIn.url }] }) }).join('\n')}</div>`,
+    { l, search: true, alt: { lang: O, href: `${O === 'de' ? '/de' : ''}/trust-tasks/` } }))
+}
 
-emit('rltp/v1/index.html', page('RLTP vocabulary · rltp/v1',
-  `<link rel="alternate" type="application/ld+json" href="context.jsonld"><link rel="alternate" type="application/json" href="index.json"><script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'DefinedTermSet', '@id': `${BASE}rltp/v1`, name: 'RLTP vocabulary', description: `The vocabulary namespace of the Real Life Trust Protocol. JSON-LD context: ${BASE}rltp/v1/context.jsonld`, url: `${BASE}rltp/v1/` })}</script>`,
-  `<h1><code>${BASE}rltp/v1</code></h1>
-<p>The vocabulary namespace of the <strong>Real Life Trust Protocol</strong>. Permanent term identifiers are <code>${BASE}rltp/v1#&lt;Fragment&gt;</code>; the fragments resolve to the table below.</p>
-<p>The JSON-LD context document is <a href="context.jsonld">context.jsonld</a>. Per the interim securing profile, credentials pin their <code>@context</code> by value and implementations never process JSON-LD at runtime — this document defines meaning, not machinery.</p>
-<p>Machine-readable registry: <a href="index.json"><code>index.json</code></a> — all terms with IRI and definition, plus context and schema URLs with SHA-256 digests.</p>
-<h2>Terms</h2>
-<div class="entries">${meta.terms.map((t) => entry({ id: t.fragment, world: 'rltp', label: t.fragment, href: `#${t.fragment}`, def: t.meaning, rels: [{ text: 'defined in', target: t.definedIn }] })).join('\n')}</div>
-<h2>Normative schemas</h2>
-<p>${core.map((s) => `<a href="schemas/${s.file}">${s.file.replace('.schema.json', '')}</a>`).join(' · ')}</p>
-<p>Task payload schemas live at their Type URIs under <a href="/trust-tasks/">/trust-tasks/</a>.</p>`))
+const RV = {
+  en: { p1: `The vocabulary namespace of the <strong>Real Life Trust Protocol</strong>. Permanent term identifiers are <code>${BASE}rltp/v1#&lt;Fragment&gt;</code>; the fragments resolve to the entries below.`, p2: 'The JSON-LD context document is <a href="/rltp/v1/context.jsonld">context.jsonld</a>. Per the interim securing profile, credentials pin their <code>@context</code> by value and implementations never process JSON-LD at runtime — this document defines meaning, not machinery.', p3: 'Machine-readable registry: <a href="/rltp/v1/index.json"><code>index.json</code></a> — all terms with IRI and definition, plus context and schema URLs with SHA-256 digests.', terms: 'Terms', defined: 'defined in', schemas: 'Normative schemas', tasks: 'Task payload schemas live at their Type URIs under <a href="/trust-tasks/">/trust-tasks/</a>.' },
+  de: { p1: `Der Vokabular-Namensraum des <strong>Real Life Trust Protocol</strong>. Dauerhafte Kennungen sind <code>${BASE}rltp/v1#&lt;Fragment&gt;</code>; die Fragmente lösen zu den Einträgen unten auf. Die Bedeutungen sind englisch, wie die Spezifikation.`, p2: 'Das JSON-LD-Kontextdokument ist <a href="/rltp/v1/context.jsonld">context.jsonld</a>. Nach dem vorläufigen Sicherungsprofil binden Credentials ihren <code>@context</code> per Wert, und Implementierungen verarbeiten JSON-LD nie zur Laufzeit — dieses Dokument definiert Bedeutung, nicht Maschinerie.', p3: 'Maschinenlesbares Register: <a href="/rltp/v1/index.json"><code>index.json</code></a> — alle Begriffe mit IRI und Definition, dazu Kontext- und Schema-URLs mit SHA-256-Prüfsummen.', terms: 'Begriffe', defined: 'definiert in', schemas: 'Normative Schemas', tasks: 'Payload-Schemas der Task-Typen liegen unter ihren Type URIs unter <a href="/de/trust-tasks/">/trust-tasks/</a>.' },
+}
+for (const l of ['en', 'de']) {
+  const r = RV[l]; const O = l === 'en' ? 'de' : 'en'
+  emit(`${l === 'de' ? 'de/' : ''}rltp/v1/index.html`, page(l === 'de' ? 'RLTP-Vokabular · rltp/v1' : 'RLTP vocabulary · rltp/v1',
+    `<link rel="alternate" type="application/ld+json" href="/rltp/v1/context.jsonld"><link rel="alternate" type="application/json" href="/rltp/v1/index.json"><script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'DefinedTermSet', '@id': `${BASE}rltp/v1`, name: 'RLTP vocabulary', description: `The vocabulary namespace of the Real Life Trust Protocol. JSON-LD context: ${BASE}rltp/v1/context.jsonld`, url: `${BASE}rltp/v1/` })}</script>`,
+    `<h1><code>${BASE}rltp/v1</code></h1>
+<p>${r.p1}</p>
+<p>${r.p2}</p>
+<p>${r.p3}</p>
+<h2>${r.terms}</h2>
+<div class="entries">${meta.terms.map((t) => entry({ id: t.fragment, world: 'rltp', label: t.fragment, href: `/rltp/v1/#${t.fragment}`, def: t.meaning, l, rels: [{ text: r.defined, target: t.definedIn }] })).join('\n')}</div>
+<h2>${r.schemas}</h2>
+<p>${core.map((s) => `<a href="/rltp/v1/schemas/${s.file}">${s.file.replace('.schema.json', '')}</a>`).join(' · ')}</p>
+<p>${r.tasks}</p>`,
+    { l, search: true, alt: { lang: O, href: `${O === 'de' ? '/de' : ''}/rltp/v1/` } }))
+}
 
 console.log(`\n${written} written, ${unchanged} unchanged.`)
 if (CHECK && errors) { console.error(`${errors} file(s) out of date — run without --check.`); process.exit(1) }

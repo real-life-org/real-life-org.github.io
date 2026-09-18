@@ -41,16 +41,20 @@ figure{margin:0 0 1.6rem}figure img{width:100%;height:auto;display:block;border-
 export const NAV = { en: [['/', 'Overview'], ['/terms/', 'Dictionary'], ['/#identifiers', 'Identifiers']], de: [['/de/', 'Überblick'], ['/de/terms/', 'Wörterbuch'], ['/de/#identifiers', 'Kennungen']] }
 // l: page language; active: which nav item; tools: header middle (search); right: header right side;
 // alt: {lang, href} of the other-language page, if any.
-export const shell = ({ l = 'en', title, head = '', active = null, tools = '', right = '', body, script = '', alt = null }) =>
+const SEARCH = { en: 'Search…', de: 'Suchen…' }
+const NORES = { en: 'Nothing matches the search.', de: 'Nichts passt zur Suche.' }
+// search: true adds the header search box and a filter over .row (dictionary) or .e (every other list).
+export const shell = ({ l = 'en', title, head = '', active = null, tools = '', right = '', body, script = '', alt = null, search = false }) =>
   `<!DOCTYPE html><html lang="${l}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} — real-life.org</title>${alt ? `<link rel="alternate" hreflang="${alt.lang}" href="https://real-life.org${alt.href}">` : ''}<style>${CSS}</style>${head}</head><body>
 <header><div class="bar"><a class="brand" href="${l === 'de' ? '/de/' : '/'}"><b>Real Life</b></a>
 <nav>${NAV[l].map(([h, n]) => `<a href="${h}"${h === active ? ' class="on"' : ''}>${n}</a>`).join('')}</nav>
-${tools}<div class="right">${alt ? `<a class="btn" href="${alt.href}" lang="${alt.lang}">${alt.lang.toUpperCase()}</a>` : ''}${right}</div></div></header>
+${search === 'forward' ? `<form action="${l === 'de' ? '/de/terms/' : '/terms/'}" method="get" style="display:contents"><input id="q" name="q" type="search" placeholder="${SEARCH[l]}" aria-label="${SEARCH[l]}"></form>` : search ? `<input id="q" type="search" placeholder="${SEARCH[l]}" aria-label="${SEARCH[l]}">` : ''}${tools}<div class="right">${alt ? `<a class="btn" href="${alt.href}" lang="${alt.lang}">${alt.lang.toUpperCase()}</a>` : ''}${right}</div></div></header>
 <main>
 ${body}
+${search === true ? `<p class="empty" id="empty">${NORES[l]}</p>` : ''}
 </main>
 <footer>real-life.org · <a href="https://github.com/real-life-org">real-life-org</a> · generated from <a href="https://github.com/real-life-org/rltp-spec">rltp-spec</a> and <a href="https://github.com/real-life-org/meta">meta</a>; nothing here is written by hand</footer>
-${script}</body></html>
+${search === true ? `<script>(function(){var q=document.getElementById('q');if(!q)return;var rows=[].slice.call(document.querySelectorAll('.row'));var items=rows.length?rows:[].slice.call(document.querySelectorAll('.e'));var empty=document.getElementById('empty');function run(){var v=q.value.trim().toLowerCase(),n=0;items.forEach(function(r){var hit=!v||(r.getAttribute('data-q')||r.textContent.toLowerCase()).indexOf(v)>-1;r.style.display=hit?'':'none';if(hit)n++});if(empty)empty.style.display=n?'none':'block'}q.addEventListener('input',run);var m=/[?&]q=([^&]*)/.exec(location.search);if(m){q.value=decodeURIComponent(m[1].replace(/\\+/g,' '));run()}})()</script>` : ''}${script}</body></html>
 `
 
 
@@ -58,7 +62,7 @@ ${script}</body></html>
 // other-language label, a tag, the definition, one line of relations, one line of actions.
 export const WORLD_NAME = { en: { rlnp: 'Network', rls: 'Stack', rltp: 'Trust Protocol', task: 'Trust Task', meta: 'Register' }, de: { rlnp: 'Netzwerk', rls: 'Stack', rltp: 'Trust Protocol', task: 'Trust Task', meta: 'Register' } }
 export const entry = ({ id, world, href, label, other = '', tag = '', def = '', rels = [], note = '', actions = [], l = 'en' }) =>
-  `<div class="e" id="${esc(id)}"><span class="w w-${world}">${WORLD_NAME[l][world]}</span><div>
+  `<div class="e" id="${esc(id)}" data-q="${esc([label, other, def].join(' ').toLowerCase())}"><span class="w w-${world}">${WORLD_NAME[l][world]}</span><div>
 <div class="head"><b>${href ? `<a href="${href}">${esc(label)}</a>` : esc(label)}</b>${other ? `<span class="o">${esc(other)}</span>` : ''}${tag ? `<span class="tag">${esc(tag)}</span>` : ''}</div>
 ${def ? `<p class="def">${esc(def)}</p>` : ''}
 ${rels.length ? `<div class="rels">${rels.map((r) => `<span${r.color ? ` style="color:${r.color}"` : ''}>${esc(r.text)} ${r.href ? `<a href="${r.href}">${esc(r.target)}</a>` : `<b>${esc(r.target)}</b>`}${r.world ? ` <i>(${esc(r.world)})</i>` : ''}</span>`).join('')}</div>` : ''}${note ? `<p class="note">${esc(note)}</p>` : ''}
