@@ -21,7 +21,7 @@ import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync } from 
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createHash } from 'node:crypto'
-import { shell } from './shell.mjs'
+import { shell, entry } from './shell.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const args = process.argv.slice(2)
@@ -177,10 +177,8 @@ emit('trust-tasks/index.html', page('RLTP Trust Task types',
   `<h1>RLTP Trust Task types</h1>
 <p>Private Trust Task types registered under <code>${BASE}trust-tasks/</code> by the Real Life Trust Protocol (${esc(meta.framework)}).</p>
 <p>Machine-readable registry: <a href="index.json"><code>index.json</code></a> — every type with its Type URI, payload-schema URL, defining section and SHA-256 digest. Each payload schema resolves as raw JSON at <code>&lt;Type&nbsp;URI&gt;/schema.json</code>.</p>
-<table><tr><th>Type</th><th>Defined in</th><th></th></tr>
-${types.map((t) => { const m = meta.types[t.slug]
-  return `<tr><td><a href="/trust-tasks/${t.slug}/"><code>${t.slug}</code></a></td><td>${esc(m.definedIn.specification)} ${esc(m.definedIn.section)}</td><td>${esc(m.summary)}</td></tr>` }).join('\n')}
-</table>`))
+<div class="entries">${types.map((t) => { const m = meta.types[t.slug]
+  return entry({ id: t.slug.replace('/', '-'), world: 'task', label: t.slug, href: `/trust-tasks/${t.slug}/`, def: m.summary, rels: [{ text: 'profile', target: profileOf(t.doc, t.file) }, { text: 'defined in', target: `${m.definedIn.specification} ${m.definedIn.section}`, href: m.definedIn.url }] }) }).join('\n')}</div>`))
 
 emit('rltp/v1/index.html', page('RLTP vocabulary · rltp/v1',
   `<link rel="alternate" type="application/ld+json" href="context.jsonld"><link rel="alternate" type="application/json" href="index.json"><script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'DefinedTermSet', '@id': `${BASE}rltp/v1`, name: 'RLTP vocabulary', description: `The vocabulary namespace of the Real Life Trust Protocol. JSON-LD context: ${BASE}rltp/v1/context.jsonld`, url: `${BASE}rltp/v1/` })}</script>`,
@@ -189,9 +187,7 @@ emit('rltp/v1/index.html', page('RLTP vocabulary · rltp/v1',
 <p>The JSON-LD context document is <a href="context.jsonld">context.jsonld</a>. Per the interim securing profile, credentials pin their <code>@context</code> by value and implementations never process JSON-LD at runtime — this document defines meaning, not machinery.</p>
 <p>Machine-readable registry: <a href="index.json"><code>index.json</code></a> — all terms with IRI and definition, plus context and schema URLs with SHA-256 digests.</p>
 <h2>Terms</h2>
-<table><tr><th>Fragment</th><th>Meaning</th><th>Defined in</th></tr>
-${meta.terms.map((t) => `<tr id="${t.fragment}"><td><code>#${t.fragment}</code></td><td>${esc(t.meaning)}</td><td>${esc(t.definedIn)}</td></tr>`).join('\n')}
-</table>
+<div class="entries">${meta.terms.map((t) => entry({ id: t.fragment, world: 'rltp', label: t.fragment, href: `#${t.fragment}`, def: t.meaning, rels: [{ text: 'defined in', target: t.definedIn }] })).join('\n')}</div>
 <h2>Normative schemas</h2>
 <p>${core.map((s) => `<a href="schemas/${s.file}">${s.file.replace('.schema.json', '')}</a>`).join(' · ')}</p>
 <p>Task payload schemas live at their Type URIs under <a href="/trust-tasks/">/trust-tasks/</a>.</p>`))

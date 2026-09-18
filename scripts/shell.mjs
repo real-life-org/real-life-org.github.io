@@ -9,7 +9,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple
 header{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:18px 28px 14px;border-bottom:1px solid var(--line)}
 .brand{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:inherit}.brand b{font-size:1.35rem;font-weight:650;letter-spacing:-.01em}.brand span{font-size:.85rem;color:var(--muted)}
 nav{display:flex;gap:2px;background:var(--chip);border-radius:8px;padding:3px}nav a{border-radius:6px;padding:5px 14px;font-size:.9rem;font-weight:500;text-decoration:none;color:var(--soft)}nav a.on{background:var(--bg);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
-header input{flex:1 1 180px;max-width:320px;padding:6px 12px;border:1px solid var(--field);border-radius:8px;background:var(--bg);color:var(--ink);outline:none;font:inherit}header input:focus{border-color:var(--link)}
+header input{flex:1 1 160px;max-width:260px;padding:6px 12px;border:1px solid var(--field);border-radius:8px;background:var(--bg);color:var(--ink);outline:none;font:inherit}header input:focus{border-color:var(--link)}
 .right{margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--field);background:var(--bg);border-radius:8px;padding:5px 12px;font-size:.9rem;white-space:nowrap;text-decoration:none;color:var(--ink)}.btn:hover{background:var(--chip)}.btn small{color:var(--muted);font-size:.78rem}
 main{padding:22px 28px 60px;max-width:900px}
@@ -26,11 +26,11 @@ figure{margin:0 0 1.6rem;max-width:820px}figure img{width:100%;height:auto;displ
 .rows{display:flex;flex-direction:column;gap:10px;max-width:820px}
 .row{border:1px solid var(--line);border-radius:10px;padding:12px 16px;background:var(--bg)}
 .rowhead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}.rowhead b{font-size:1.05rem;font-weight:650}.rowhead span{font-size:.85rem;color:var(--muted)}
-.entries{display:flex;flex-direction:column;gap:6px}
+.entries{display:flex;flex-direction:column;gap:6px;max-width:820px}.rels b{font-weight:500;color:var(--ink)}
 .e{display:grid;grid-template-columns:126px minmax(0,1fr);gap:12px;align-items:start;padding:6px 8px;margin:0 -8px;border-radius:6px}.e:hover{background:var(--hover)}.e:target{background:var(--mark)}
 @media(max-width:560px){.e{grid-template-columns:1fr;gap:4px}}
 .w{justify-self:start;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;font-weight:600;border-radius:4px;padding:2px 7px;margin-top:3px;white-space:nowrap}
-.w-rlnp{color:var(--rlnp);background:var(--rlnp-t)}.w-rls{color:var(--rls);background:var(--rls-t)}.w-rltp{color:var(--rltp);background:var(--rltp-t)}
+.w-rlnp{color:var(--rlnp);background:var(--rlnp-t)}.w-rls{color:var(--rls);background:var(--rls-t)}.w-rltp,.w-task{color:var(--rltp);background:var(--rltp-t)}
 .head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px}.head b a{color:inherit;text-decoration:none}.head b a:hover{text-decoration:underline}.head .o{font-size:.88em;color:var(--soft)}
 .tag{font-size:.72em;border:1px solid var(--warn);color:var(--warn);border-radius:4px;padding:0 .35em}
 .def{margin:2px 0 0;font-size:.92em;color:var(--text2)}
@@ -53,3 +53,13 @@ ${body}
 ${script}</body></html>
 `
 
+
+// One entry, everywhere a term or type is listed: a badge for the part, the label (linked), the
+// other-language label, a tag, the definition, one line of relations, one line of actions.
+export const WORLD_NAME = { en: { rlnp: 'Network', rls: 'Stack', rltp: 'Trust Protocol', task: 'Trust Task' }, de: { rlnp: 'Netzwerk', rls: 'Stack', rltp: 'Trust Protocol', task: 'Trust Task' } }
+export const entry = ({ id, world, href, label, other = '', tag = '', def = '', rels = [], note = '', actions = [], l = 'en' }) =>
+  `<div class="e" id="${esc(id)}"><span class="w w-${world}">${WORLD_NAME[l][world]}</span><div>
+<div class="head"><b>${href ? `<a href="${href}">${esc(label)}</a>` : esc(label)}</b>${other ? `<span class="o">${esc(other)}</span>` : ''}${tag ? `<span class="tag">${esc(tag)}</span>` : ''}</div>
+${def ? `<p class="def">${esc(def)}</p>` : ''}
+${rels.length ? `<div class="rels">${rels.map((r) => `<span${r.color ? ` style="color:${r.color}"` : ''}>${esc(r.text)} ${r.href ? `<a href="${r.href}">${esc(r.target)}</a>` : `<b>${esc(r.target)}</b>`}${r.world ? ` <i>(${esc(r.world)})</i>` : ''}</span>`).join('')}</div>` : ''}${note ? `<p class="note">${esc(note)}</p>` : ''}
+${actions.length ? `<div class="act">${actions.map((a) => `<a href="${a.href}">${esc(a.text)}</a>`).join('')}</div>` : ''}</div></div>`

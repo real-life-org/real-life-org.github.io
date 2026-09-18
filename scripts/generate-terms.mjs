@@ -18,7 +18,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createHash } from 'node:crypto'
-import { shell } from './shell.mjs'
+import { shell, entry, WORLD_NAME } from './shell.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const args = process.argv.slice(2)
@@ -99,21 +99,18 @@ const WORLDS = {
   rls: { name: 'Real Life Stack', short: 'RLS', what: 'the app toolkit: application, data and the connector socket', repo: 'https://github.com/real-life-org/real-life-stack' },
 }
 
-const conceptHtml = (c) => {
-  const f = fragment(c['@id'])
-  const rows = (links[c['@id']] ?? []).map(([rel, b]) => {
-    const o = concepts[b]
-    const label = lang(o['skos:prefLabel'], 'en') || b
-    return `<li>${REL[rel]} <a href="${termHref(o)}">${esc(label)}</a> <span class="de">(${o.world.toUpperCase()})</span></li>`
-  }).join('')
-  const alts = list(c['skos:altLabel']).map((a) => a['@value']).filter(Boolean)
-  return `<h3 id="${esc(f)}"><code>#${esc(f)}</code> ${esc(lang(c['skos:prefLabel'], 'en'))} <span class="de">· ${esc(lang(c['skos:prefLabel'], 'de'))}</span>${c['rl:status'] === 'proposed' ? ' <em>(proposed, not yet in the specification)</em>' : ''}</h3>
-<dl><dt>Definition</dt><dd>${esc(lang(c['skos:definition'], 'en'))}</dd><dd class="de">${esc(lang(c['skos:definition'], 'de'))}</dd>
-${alts.length ? `<dt>Also</dt><dd>${esc(alts.join(', '))}</dd>` : ''}
-<dt class="src">Source</dt><dd class="src">${list(c['dct:source']).map((u) => `<a href="${u}">${esc(u.split('/').slice(-1)[0])}</a>`).join(', ')}</dd>
-${rows ? `<dt class="map">Mappings</dt><dd class="map"><ul>${rows}</ul></dd>` : ''}
-${(notes[c['@id']] ?? []).map((n) => `<dd class="map"><em>${esc(n)}</em></dd>`).join('')}</dl>`
-}
+const conceptEntry = (c) => entry({
+  id: fragment(c['@id']), world: c.world, href: termHref(c),
+  label: lang(c['skos:prefLabel'], 'en'), other: lang(c['skos:prefLabel'], 'de'),
+  tag: c['rl:status'] === 'proposed' ? 'proposed' : '',
+  def: lang(c['skos:definition'], 'en'),
+  rels: [
+    ...list(c['skos:altLabel']).length ? [{ text: 'also', target: list(c['skos:altLabel']).map((a) => a['@value']).join(', ') }] : [],
+    ...(links[c['@id']] ?? []).map(([rel, b]) => ({ text: REL[rel], target: lang(concepts[b]['skos:prefLabel'], 'en') || b, href: termHref(concepts[b]), world: WORLD_NAME.en[concepts[b].world] })),
+    ...list(c['dct:source']).map((u) => ({ text: 'source', target: u.split('/').slice(-1)[0], href: u })),
+  ],
+  note: (notes[c['@id']] ?? [])[0] ?? '',
+})
 
 console.log('\n── term namespaces')
 for (const [world, w] of Object.entries(WORLDS)) {
@@ -135,7 +132,7 @@ for (const [world, w] of Object.entries(WORLDS)) {
 <p>Each term is defined by the ${w.short} specification itself (<a href="${w.repo}">repository</a>). Mappings to the other parts of Real Life come from the <a href="/meta/v1/">shared register</a>: a term is <em>same as</em>, <em>close to</em>, <em>related to</em>, <em>broader</em> or <em>narrower than</em> its counterpart, or a deliberate <em>false friend</em>; <em>target: same as</em> marks a convergence the specifications still owe. The <a href="/terms/">dictionary</a> shows all three parts side by side.</p>
 <p>Machine-readable: <a href="terms.jsonld"><code>terms.jsonld</code></a> (SKOS concept scheme, JSON-LD) and <a href="index.json"><code>index.json</code></a> (registry with digests).</p>
 <h2>Terms</h2>
-${own.map(conceptHtml).join('\n')}` }))
+<div class="entries">${own.map(conceptEntry).join('\n')}</div>` }))
 }
 
 // ── /meta/v1: the shared context, the rl: fields, the mappings ───────────
@@ -163,9 +160,7 @@ emit('meta/v1/index.html', shell({ title: 'Shared term register · meta/v1', act
 <p>The shared part of the Real Life term register. The three parts of Real Life keep their own SKOS concept schemes: <a href="/rlnp/v1/">RLNP</a> (meaning), <a href="/rltp/v1/">RLTP</a> (construction) and <a href="/rls/v1/">RLS</a> (interface and code). This namespace holds what none of them owns alone: the JSON-LD context all three use, the mappings between them, and the few fields SKOS does not have.</p>
 <p>Machine-readable: <a href="context.jsonld"><code>context.jsonld</code></a>, <a href="mappings.jsonld"><code>mappings.jsonld</code></a>, <a href="index.json"><code>index.json</code></a>.</p>
 <h2>Fields</h2>
-<table><tr><th>Fragment</th><th>Meaning</th></tr>
-${RL.map(([f, d]) => `<tr id="${f}"><td><code>#${f}</code></td><td>${esc(d)}</td></tr>`).join('\n')}
-</table>
+<div class="entries">${RL.map(([f, d]) => entry({ id: f, world: 'task', label: `rl:${f}`, def: d })).join('\n')}</div>
 <h2>Rule</h2>
 <p>Definitions never live here. Each part defines its terms in its own repository and stays normative for them; the register only connects them. Source and checks: <a href="https://github.com/real-life-org/meta">real-life-org/meta</a>.</p>` }))
 
@@ -213,7 +208,6 @@ for (const [a, rels] of Object.entries(links)) for (const [rel, b] of rels) if (
 const clusters = {}
 for (const c of Object.keys(concepts)) (clusters[find(c)] ??= []).push(c)
 const WORLD_ORDER = ['rlnp', 'rls', 'rltp']
-const WORLD_NAME = { en: { rlnp: 'Network', rls: 'Stack', rltp: 'Trust Protocol' }, de: { rlnp: 'Netzwerk', rls: 'Stack', rltp: 'Trust Protocol' } }
 const REL_L = { en: REL, de: { 'skos:exactMatch': 'gleich', 'skos:closeMatch': 'nahezu gleich', 'skos:relatedMatch': 'verwandt mit', 'skos:narrowMatch': 'allgemeiner als', 'skos:broadMatch': 'spezieller als', 'rl:convergesWith': 'Ziel: gleich mit', 'rl:falseFriend': 'falscher Freund von' } }
 const sortedClusters = Object.values(clusters).sort((x, y) => (y.length - x.length) || x[0].localeCompare(y[0]))
 const editUrl = (c) => {
@@ -241,22 +235,21 @@ const dictPage = (l) => {
   const nProposed = Object.values(concepts).filter((c) => c['rl:status'] === 'proposed').length
   const nConv = Object.entries(links).reduce((n, [a, v]) => n + v.filter(([r, b]) => r === 'rl:convergesWith' && a < b).length, 0)
   const noteOf = (id) => (notes[id] ?? [])[0]
-  const entry = (id) => {
+  const item = (id) => {
     const c = concepts[id]
     const others = (links[id] ?? []).filter(([rel]) => rel !== 'skos:exactMatch')
-    const rels = others.map(([rel, b]) => `<span style="${REL_COLOR[rel] ? `color:${REL_COLOR[rel]}` : ''}">${REL_L[l][rel]} <a href="${termHref(concepts[b])}">${esc(lang(concepts[b]['skos:prefLabel'], l) || b)}</a> <i>(${WORLD_NAME[l][concepts[b].world]})</i></span>`).join('')
-    const n = noteOf(id)
-    return `<div class="e" id="${c.world}-${fragment(id)}"><span class="w w-${c.world}">${WORLD_NAME[l][c.world]}</span><div>
-<div class="head"><b><a href="${termHref(c)}">${esc(lang(c['skos:prefLabel'], l))}</a></b><span class="o">${esc(lang(c['skos:prefLabel'], O))}</span>${c['rl:status'] === 'proposed' ? `<span class="tag">${t.proposal}</span>` : ''}</div>
-<p class="def">${esc(lang(c['skos:definition'], l))}</p>
-${rels ? `<div class="rels">${rels}</div>` : ''}${n && !(links[id] ?? []).length ? `<p class="note">${esc(n)}</p>` : ''}
-<div class="act"><a href="${editUrl(c)}">${t.edit}</a><a href="${proposeUrl(c, l)}">${t.propose}</a></div></div></div>`
+    return entry({ id: `${c.world}-${fragment(id)}`, world: c.world, href: termHref(c), l,
+      label: lang(c['skos:prefLabel'], l), other: lang(c['skos:prefLabel'], O), tag: c['rl:status'] === 'proposed' ? t.proposal : '',
+      def: lang(c['skos:definition'], l),
+      rels: others.map(([rel, b]) => ({ text: REL_L[l][rel], target: lang(concepts[b]['skos:prefLabel'], l) || b, href: termHref(concepts[b]), world: WORLD_NAME[l][concepts[b].world], color: REL_COLOR[rel] })),
+      note: !(links[id] ?? []).length ? (noteOf(id) ?? '') : '',
+      actions: [{ text: t.edit, href: editUrl(c) }, { text: t.propose, href: proposeUrl(c, l) }] })
   }
   const rows = sortedClusters.map((ids) => {
     const es = [...ids].sort((x, y) => WORLD_ORDER.indexOf(concepts[x].world) - WORLD_ORDER.indexOf(concepts[y].world))
     const labels = [...new Set(es.map((id) => lang(concepts[id]['skos:prefLabel'], l)))]
     const hint = ids.length > 1 ? `${t.oneThing} ${ids.length} ${t.worlds}` : t.alone
-    return `<section class="row" data-q="${esc(es.map((id) => [lang(concepts[id]['skos:prefLabel'], 'de'), lang(concepts[id]['skos:prefLabel'], 'en'), lang(concepts[id]['skos:definition'], 'de'), lang(concepts[id]['skos:definition'], 'en')].join(' ')).join(' ').toLowerCase())}"><div class="rowhead"><b>${esc(labels.join(' · '))}</b><span>${hint}</span></div><div class="entries">${es.map(entry).join('\n')}</div></section>`
+    return `<section class="row" data-q="${esc(es.map((id) => [lang(concepts[id]['skos:prefLabel'], 'de'), lang(concepts[id]['skos:prefLabel'], 'en'), lang(concepts[id]['skos:definition'], 'de'), lang(concepts[id]['skos:definition'], 'en')].join(' ')).join(' ').toLowerCase())}"><div class="rowhead"><b>${esc(labels.join(' · '))}</b><span>${hint}</span></div><div class="entries">${es.map(item).join('\n')}</div></section>`
   }).join('\n')
   const newTermUrl = `https://github.com/real-life-org/meta/issues/new?title=${encodeURIComponent(t.newTermIssue[0])}&body=${encodeURIComponent(t.newTermIssue.slice(1).join('\n\n') + '\n')}`
   return shell({ l, title: t.title, active: l === 'de' ? '/de/terms/' : '/terms/', alt: { lang: O, href: O === 'de' ? '/de/terms/' : '/terms/' },
