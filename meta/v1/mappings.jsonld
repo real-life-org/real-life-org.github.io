@@ -21,16 +21,11 @@
   },
   {
    "@id": "rlnp:Kreis",
-   "skos:relatedMatch": "rlnp:Space",
-   "skos:note": "A circle is the people, a space is the vessel. A circle chooses its own form and access; a space is meant to carry exactly that: publicly visible, open for anyone to post, or by invitation. Whether the two converge is open (2026-09-18)."
-  },
-  {
-   "@id": "rlnp:Space",
+   "skos:note": "Converged 2026-09-18: a circle is the thing itself; the Stack constructs it as a space, the Trust Protocol as a group. A circle chooses its own form and access, and the space carries exactly that: publicly visible, open for anyone to post, or by invitation. \"Space\" in the RLNP text is a reference to the Stack space, not a term of its own.",
    "skos:exactMatch": [
     "rls:space",
     "rltp:Group"
-   ],
-   "skos:note": "Converged 2026-09-18: all three say \"vessel with members\"."
+   ]
   },
   {
    "@id": "rls:space",

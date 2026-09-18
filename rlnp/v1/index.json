@@ -10,11 +10,11 @@
   },
   "scheme": {
     "url": "https://real-life.org/rlnp/v1/terms.jsonld",
-    "sha256": "c58cd5aff47f98f4d0ca71dcb3d5bd62f24b7270fe6054a41c0a3447c08805fd"
+    "sha256": "4a2d2f2a94931fd3335f57e004c4eeef0c51636e29f509901f2c6ce40274f568"
   },
   "mappings": {
     "url": "https://real-life.org/meta/v1/mappings.jsonld",
-    "sha256": "477fc5ea381b136b5d7cb6b28a0ced48aa09e97b6dd3e2a6e96554569d41c279"
+    "sha256": "0ebcc99acfbcc49dabb4f987839a3c33a55509c6957c4f8c4085bb37eb6e5dbd"
   },
   "terms": [
     {
@@ -57,12 +57,6 @@
       "iri": "https://real-life.org/rlnp/v1#Sichtbarkeit",
       "en": "Visibility",
       "de": "Sichtbarkeit",
-      "status": "in specification"
-    },
-    {
-      "iri": "https://real-life.org/rlnp/v1#Space",
-      "en": "Space",
-      "de": "Space",
       "status": "in specification"
     },
     {
