@@ -62,7 +62,7 @@ h2+p.muted{margin:-6px 0 14px;font-size:14px}
 .part{display:flex;flex-direction:column;gap:14px;padding:22px 22px 20px;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);color:inherit;box-shadow:var(--shadow-sm);transition:box-shadow .15s,border-color .15s}
 .part:hover{text-decoration:none;box-shadow:var(--shadow-md);border-color:color-mix(in oklab,var(--border) 40%,var(--muted-foreground))}
 .part__text{display:flex;flex-direction:column;gap:6px}.part__title{font-size:19px;font-weight:650;letter-spacing:-.015em;line-height:1.25}.part__claim{font-size:15px;line-height:1.5;text-wrap:pretty}
-.part__meta{display:flex;flex-direction:column;gap:2px;margin-top:auto;font-size:13px;color:var(--muted-foreground)}
+.part__meta{margin-top:auto;font-size:13px;line-height:1.5;color:var(--muted-foreground);text-wrap:pretty}
 .part__link{font-size:13px;font-weight:500;color:var(--primary);display:inline-flex;align-items:center;gap:6px}.part__link svg{width:14px;height:14px}
 .diagram{position:relative;margin:0 0 48px;padding:20px 22px 18px;border:1px solid var(--border);border-radius:var(--radius-xl);background:color-mix(in oklab,var(--muted) 55%,var(--background))}
 .diagram__grid{display:grid;grid-template-columns:minmax(200px,5fr) clamp(110px,18%,190px) minmax(260px,7fr);gap:0 4px;align-items:start}

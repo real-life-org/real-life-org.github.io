@@ -189,7 +189,7 @@ for (const l of ['en', 'de']) {
     body: `<div class="page-head"><h1 class="hero">${esc(parts.gate.title[l])}</h1><p class="lead">${esc(parts.gate.sentence[l])}</p></div>
 ${diagram(l)}
 <div class="parts">
-${parts.parts.map((p) => `<a class="part" id="${p.id}" href="${p.url}"><span class="w w-${p.spec.world}">${esc(p.spec.abbr)}</span><span class="part__text"><span class="part__title">${esc(p.name[l])}</span><span class="part__claim">${esc(p.sentence[l])}</span></span><span class="part__meta"><span>${esc(p.spec.name[l])}</span><span>${esc(p.for[l])}</span></span><span class="part__link">${esc(p.url.replace(/^https?:\/\//, ''))} ${ARROW}</span></a>`).join('\n')}
+${parts.parts.map((p) => `<a class="part" id="${p.id}" href="${p.url}"><span class="w w-${p.spec.world}">${esc(p.spec.abbr)}</span><span class="part__text"><span class="part__title">${esc(p.name[l])}</span><span class="part__claim">${esc(p.sentence[l])}</span></span><span class="part__meta">${esc(p.spec.name[l])} · ${esc(p.for[l])}</span><span class="part__link">${esc(p.url.replace(/^https?:\/\//, ''))} ${ARROW}</span></a>`).join('\n')}
 </div>
 <div class="section-head" id="identifiers"><h2 class="section">${t.ids}</h2><p>${t.idsText}</p></div>
 <div class="list">${t.rows.map(([path, what, world, label]) => `<a class="row" href="/${de(l)}${path.slice(1)}/"><span class="path">${path}</span><span class="desc">${what}</span><span class="w w-${world}">${label ?? WORLD_NAME[l][world]}</span></a>`).join('\n')}</div>` }))
