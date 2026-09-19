@@ -267,7 +267,7 @@ for (const l of ['en', 'de']) {
       return `<section class="concept" data-w="${[...new Set(es.map((e) => e.world))].join(' ')}" data-q="${esc(es.map((e) => [e.label.de, e.label.en, e.def.de, e.def.en].join(' ')).join(' ').toLowerCase())}">${es.length > 1 ? `<div class="concept__head"><b>${esc(labels.join(' · '))}</b><span>${D.oneThing} ${es.length} ${D.parts}</span></div>` : ''}${entriesHtml(es, l, { hideSame: true })}</section>` }).join('\n')
   const filters = [['all', D.all], ['rlnp', WORLD_NAME[l].rlnp], ['rls', WORLD_NAME[l].rls], ['rltp', WORLD_NAME[l].rltp], ['task', WORLD_NAME[l].task], ['meta', WORLD_NAME[l].meta]]
   emit(`${de(l)}terms/index.html`, shell({ l, title: D.title, active: `/${de(l)}terms/`, search: true, alt: { lang: other(l), href: `/${de(other(l))}terms/` },
-    body: `<div class="page-head page-head--wide"><div><h1>${D.title}</h1><p class="intro intro--muted">${D.sub}</p></div><span>${all.length} ${D.termsN} · ${all.filter((e) => e.status === 'proposed').length} ${D.proposedN} · ${nConv} ${D.convergeN}</span></div>
+    body: `<div class="page-head"><h1>${D.title}</h1><p class="intro intro--muted">${D.sub}</p><p class="stats">${all.length} ${D.termsN} · ${all.filter((e) => e.status === 'proposed').length} ${D.proposedN} · ${nConv} ${D.convergeN}</p></div>
 <div class="segmented" role="tablist">${filters.map(([k, label], i) => `<button type="button" role="tab" data-filter="${k}" aria-selected="${i === 0}">${label}</button>`).join('')}</div>
 <div class="list">${concepts}${empty(l)}</div>
 <p class="muted" style="font-size:13.5px;margin:0">${D.how} <a href="${newTermUrl(l)}">${W[l].newTerm} ↗</a></p>` }))

@@ -26,7 +26,6 @@ code{font-family:var(--font-mono);font-size:.9em;background:var(--muted);padding
 main{flex:1;width:100%;max-width:var(--container);margin:0 auto;padding:40px 24px 80px}
 .crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13px;color:var(--muted-foreground);margin-bottom:20px}.crumbs a{color:inherit}.crumbs b{font-weight:400;color:var(--foreground)}
 .page-head{display:flex;flex-direction:column;gap:14px;margin-bottom:28px}
-.page-head--wide{max-width:none;flex-direction:row;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 24px;margin-bottom:24px}.page-head--wide>div{flex:1 1 60ch;display:flex;flex-direction:column;gap:10px}.page-head--wide>span{font-size:13px;color:var(--muted-foreground);white-space:nowrap}
 h1{margin:0;font-size:clamp(28px,4vw,36px);font-weight:700;letter-spacing:-.025em;line-height:1.1}
 h1.hero{font-size:clamp(32px,5vw,44px);line-height:1.08}
 h1.uri{font-family:var(--font-mono);font-weight:600;font-size:clamp(18px,3vw,26px);letter-spacing:-.01em;line-height:1.25;word-break:break-all}
@@ -97,7 +96,7 @@ h2+p.muted{margin:-6px 0 14px;font-size:14px}
 .segmented{display:inline-flex;flex-wrap:wrap;gap:2px;padding:3px;border-radius:var(--radius-lg);background:var(--muted);margin-bottom:20px}
 .segmented button{border:0;cursor:pointer;font:inherit;font-size:13.5px;font-weight:500;height:30px;padding:0 14px;border-radius:var(--radius-md);background:transparent;color:var(--muted-foreground)}
 .segmented button[aria-selected="true"]{background:var(--card);color:var(--foreground);box-shadow:var(--shadow-xs)}
-.stats{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted-foreground);margin:0 0 20px}
+.stats{margin:0;font-size:13px;color:var(--muted-foreground)}
 .tasks{display:flex;flex-direction:column;gap:10px;margin-bottom:40px}
 .task{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;padding:16px 20px;border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--card);color:inherit}
 .task:hover{text-decoration:none;border-color:color-mix(in oklab,var(--border) 40%,var(--muted-foreground));background:var(--muted)}
