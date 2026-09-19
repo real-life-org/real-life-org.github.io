@@ -247,7 +247,7 @@
     }
    ],
    "dct:source": [
-    "https://github.com/real-life-org/rltp-spec/blob/main/README.md#alignment-with-the-toip-dtgwg"
+    "https://github.com/real-life-org/rltp-spec/blob/main/README.md"
    ],
    "rl:status": "proposed",
    "skos:editorialNote": "Does not exist in the spec yet. Evaluation of the DTG Endorsement Credential is pending (2026-09-18)."
