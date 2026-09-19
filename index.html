@@ -17,7 +17,7 @@ dl{margin:0}dt{font-weight:600;margin-top:.6rem}dd{margin:0 0 0 1rem;color:var(-
 footer{padding:0 24px 28px;font-size:.85em;color:var(--muted);max-width:880px;margin:0 auto}
 .stats{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.85rem;color:var(--muted);margin-bottom:22px}
 figure{margin:0 0 1.6rem}figure img{width:100%;height:auto;display:block;border-radius:6px}
-.parts{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin:0 0 1.6rem}@media(max-width:640px){.parts{grid-template-columns:1fr}}.part h2{margin:.2rem 0 .3rem}.part p{margin:.2rem 0}.part .for{font-size:.9em;color:var(--muted)}
+.parts{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin:0 0 1.6rem}@media(max-width:640px){.parts{grid-template-columns:1fr}}.part{border-top:3px solid var(--c);padding-top:.7rem}.part.p-rlnp{--c:var(--rlnp)}.part.p-rls{--c:var(--rls)}.part.p-rltp{--c:var(--rltp)}.part h2{margin:.2rem 0 .3rem}.part h2 a{color:var(--c)}.part p{margin:.2rem 0}.part .for,.part .spec{font-size:.9em;color:var(--muted)}.part .spec b{color:var(--c);font-weight:600;letter-spacing:.04em}
 .rows{display:flex;flex-direction:column;gap:10px}
 .row{border:1px solid var(--line);border-radius:10px;padding:12px 16px;background:var(--bg)}
 .rowhead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}.rowhead b{font-size:1.05rem;font-weight:650}.rowhead span{font-size:.85rem;color:var(--muted)}
@@ -40,9 +40,9 @@ figure{margin:0 0 1.6rem}figure img{width:100%;height:auto;display:block;border-
 <p class="sub" style="margin-bottom:18px">Real Life consists of three parts. This page shows how they fit together and leads to each.</p>
 <figure><a href="/overview/layers.en.svg"><img src="/overview/layers.en.svg" alt="The three parts: the Network Protocol beside the Stack, the Trust Protocol filling the layers below the connector."></a></figure>
 <div class="parts">
-<section class="part" id="network"><h2><a href="https://reallife.network">Real Life Network</a></h2><p>A social organism that replicates itself.</p><p class="for">for everyone who wants to connect</p></section>
-<section class="part" id="stack"><h2><a href="https://real-life-stack.de">Real Life Stack</a></h2><p>Tools for decentralized coordination in real life.</p><p class="for">for developers, vibecoders and agents</p></section>
-<section class="part" id="trust"><h2><a href="https://rltp.real-life.org">Real Life Trust Protocol</a></h2><p>Decentralized identities and communities grounded in real relationships.</p><p class="for">for protocol developers</p></section>
+<section class="part p-rlnp" id="network"><h2><a href="https://reallife.network">Real Life Network</a></h2><p>A social organism that replicates itself.</p><p class="spec"><b>RLNP</b> · Real Life Network Protocol, the social specification</p><p class="for">for everyone who wants to connect</p></section>
+<section class="part p-rls" id="stack"><h2><a href="https://real-life-stack.de">Real Life Stack</a></h2><p>Tools for decentralized coordination in real life.</p><p class="spec"><b>RLS</b> · Real Life Stack, the app toolkit</p><p class="for">for developers, vibecoders and agents</p></section>
+<section class="part p-rltp" id="trust"><h2><a href="https://rltp.real-life.org">Real Life Trust Protocol</a></h2><p>Decentralized identities and communities grounded in real relationships.</p><p class="spec"><b>RLTP</b> · Real Life Trust Protocol, the technical specification</p><p class="for">for protocol developers</p></section>
 </div>
 <h2 id="identifiers">Identifiers anchored here</h2>
 <p>The permanent identifiers of all three parts live under this domain. They follow the protocols, not the branding; a breaking change gets a new version, not a new word.</p>

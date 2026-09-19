@@ -142,7 +142,7 @@ for (const l of ['en', 'de']) {
     body: `<p class="sub" style="margin-bottom:18px">${esc(parts.gate.sentence[l])}</p>
 <figure><a href="/overview/layers.${l}.svg"><img src="/overview/layers.${l}.svg" alt="${esc(t.picture)}"></a></figure>
 <div class="parts">
-${parts.parts.map((p) => `<section class="part" id="${p.id}"><h2><a href="${p.url}">${esc(p.name[l])}</a></h2><p>${esc(p.sentence[l])}</p><p class="for">${esc(p.for[l])}</p></section>`).join('\n')}
+${parts.parts.map((p) => `<section class="part p-${p.spec.world}" id="${p.id}"><h2><a href="${p.url}">${esc(p.name[l])}</a></h2><p>${esc(p.sentence[l])}</p><p class="spec"><b>${esc(p.spec.abbr)}</b> · ${esc(p.spec.name[l])}</p><p class="for">${esc(p.for[l])}</p></section>`).join('\n')}
 </div>
 <h2 id="identifiers">${t.ids}</h2>
 <p>${t.idsText}</p>
