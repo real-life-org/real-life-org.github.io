@@ -21,6 +21,9 @@ name: generated
 #
 # Sources: rltp-spec for /rltp/v1 and /trust-tasks (scripts/generate.mjs);
 # both together for every HTML page and the register data (scripts/generate-pages.mjs).
+# The concept schemes themselves live in the three specification repositories; meta pins
+# them to a commit in terms/sources.json and meta/scripts/fetch_worlds.py checks them out
+# under meta-src/worlds before anything is generated.
 
 on:
   push:
@@ -48,6 +51,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: fetch the concept schemes meta pins
+        # The script arrives with real-life-org/meta#3; until then every world uses its seed.
+        run: test -f meta-src/scripts/fetch_worlds.py && python3 meta-src/scripts/fetch_worlds.py || echo "meta pins no world yet"
 
       - name: site matches the specification repository
         if: github.event_name == 'push' || github.event_name == 'pull_request'

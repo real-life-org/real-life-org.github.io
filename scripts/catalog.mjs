@@ -48,7 +48,8 @@ export function buildCatalog({ META, SPEC, ROOT, err }) {
   // ── terms from the three SKOS schemes ─────────────────────────────────
   const schemeText = {}
   for (const [world, s] of Object.entries(sources)) {
-    const file = s.ref == null ? join(META, s.seed) : join(ROOT, world, s.path)
+    // A pinned world was checked out by meta/scripts/fetch_worlds.py under meta/worlds/<world>.
+    const file = s.ref == null ? join(META, s.seed) : join(META, 'worlds', world, s.path)
     if (!existsSync(file)) { err(`${world}: scheme file ${file} not found`); continue }
     schemeText[world] = readFileSync(file, 'utf8')
     for (const n of JSON.parse(schemeText[world])['@graph']) {
@@ -121,7 +122,7 @@ export function buildCatalog({ META, SPEC, ROOT, err }) {
       ;(links[a] ??= []).push({ rel, key: b }); (links[b] ??= []).push({ rel: INVERSE[rel] ?? rel, key: a })
     }
   }
-  for (const [k, ns] of Object.entries(notes)) entries[k].note = ns[0]
+  for (const [k, ns] of Object.entries(notes)) entries[k].note = ns.join(' ')
 
   // ── rows: a row is one concept, so only sameness joins entries ────────
   const parent = {}

@@ -103,7 +103,7 @@
       ],
       "symbols": [],
       "facts": [],
-      "note": "Deliberately no exactMatch: RLTP has no person object, only anchors per context. This is by design (relationships never converge into a person).",
+      "note": "Deliberately no exactMatch: RLTP has no person object, only anchors per context. This is by design (relationships never converge into a person). The profile is the view of a person, not the person.",
       "mappings": [
         {
           "rel": "skos:relatedMatch",
@@ -329,7 +329,10 @@
       "symbols": [],
       "facts": [
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "Access 2"
         }
       ],
@@ -373,7 +376,10 @@
       "symbols": [],
       "facts": [
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "Access 2, 5"
         }
       ],
@@ -413,7 +419,10 @@
       "symbols": [],
       "facts": [
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "Encounter 2.2"
         }
       ],
@@ -450,7 +459,10 @@
       "symbols": [],
       "facts": [
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "Encounter 4.2"
         }
       ],
@@ -487,7 +499,10 @@
       "symbols": [],
       "facts": [
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "Encounter 7"
         }
       ],
@@ -529,7 +544,10 @@
       "symbols": [],
       "facts": [
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "Access 8"
         }
       ],
@@ -566,7 +584,10 @@
       "symbols": [],
       "facts": [
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "Encounter 5.2"
         }
       ],
@@ -965,7 +986,10 @@
       "symbols": [],
       "facts": [
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "Encounter 6"
         }
       ],
@@ -995,7 +1019,10 @@
       "symbols": [],
       "facts": [
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "Encounter 5.3"
         }
       ],
@@ -1025,7 +1052,10 @@
       "symbols": [],
       "facts": [
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "Encounter 5.1"
         }
       ],
@@ -1055,7 +1085,10 @@
       "symbols": [],
       "facts": [
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "Encounter 5.2"
         }
       ],
@@ -1085,7 +1118,10 @@
       "symbols": [],
       "facts": [
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "Encounter 5.4"
         }
       ],
@@ -1115,7 +1151,10 @@
       "symbols": [],
       "facts": [
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "Encounter 2.2"
         }
       ],
@@ -1145,7 +1184,10 @@
       "symbols": [],
       "facts": [
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "Delivery 2"
         }
       ],
@@ -1175,7 +1217,10 @@
       "symbols": [],
       "facts": [
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "Delivery 5"
         }
       ],
@@ -1205,7 +1250,10 @@
       "symbols": [],
       "facts": [
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "Delivery 6.2"
         }
       ],
@@ -1235,7 +1283,10 @@
       "symbols": [],
       "facts": [
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "Delivery 4.2"
         }
       ],
@@ -1267,11 +1318,17 @@
       "symbols": [],
       "facts": [
         {
-          "text": "profile",
+          "text": {
+            "de": "Profil",
+            "en": "profile"
+          },
           "target": "rltp-membership@0.16"
         },
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "RLTP Membership Tasks 3.3",
           "href": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
         }
@@ -1304,11 +1361,17 @@
       "symbols": [],
       "facts": [
         {
-          "text": "profile",
+          "text": {
+            "de": "Profil",
+            "en": "profile"
+          },
           "target": "rltp-delivery@0.79"
         },
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "RLTP Delivery Contract 4.2",
           "href": "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
         }
@@ -1341,11 +1404,17 @@
       "symbols": [],
       "facts": [
         {
-          "text": "profile",
+          "text": {
+            "de": "Profil",
+            "en": "profile"
+          },
           "target": "rltp-delivery@0.79"
         },
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "RLTP Delivery Contract 4.1",
           "href": "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
         }
@@ -1378,11 +1447,17 @@
       "symbols": [],
       "facts": [
         {
-          "text": "profile",
+          "text": {
+            "de": "Profil",
+            "en": "profile"
+          },
           "target": "rltp-delivery@0.79"
         },
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "RLTP Delivery Contract 4.3",
           "href": "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
         }
@@ -1415,11 +1490,17 @@
       "symbols": [],
       "facts": [
         {
-          "text": "profile",
+          "text": {
+            "de": "Profil",
+            "en": "profile"
+          },
           "target": "rltp-access@0.24"
         },
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "RLTP Access Layer 10.1",
           "href": "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md"
         }
@@ -1452,11 +1533,17 @@
       "symbols": [],
       "facts": [
         {
-          "text": "profile",
+          "text": {
+            "de": "Profil",
+            "en": "profile"
+          },
           "target": "rltp-membership@0.16"
         },
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "RLTP Membership Tasks 3.2",
           "href": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
         }
@@ -1489,11 +1576,17 @@
       "symbols": [],
       "facts": [
         {
-          "text": "profile",
+          "text": {
+            "de": "Profil",
+            "en": "profile"
+          },
           "target": "rltp-membership@0.16"
         },
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "RLTP Membership Tasks 3.4",
           "href": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
         }
@@ -1526,11 +1619,17 @@
       "symbols": [],
       "facts": [
         {
-          "text": "profile",
+          "text": {
+            "de": "Profil",
+            "en": "profile"
+          },
           "target": "rltp-membership@0.16"
         },
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "RLTP Membership Tasks 3.1",
           "href": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
         }
@@ -1563,11 +1662,17 @@
       "symbols": [],
       "facts": [
         {
-          "text": "profile",
+          "text": {
+            "de": "Profil",
+            "en": "profile"
+          },
           "target": "rltp-delivery@0.79"
         },
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "RLTP Delivery Contract 4.4",
           "href": "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
         }
@@ -1600,11 +1705,17 @@
       "symbols": [],
       "facts": [
         {
-          "text": "profile",
+          "text": {
+            "de": "Profil",
+            "en": "profile"
+          },
           "target": "rltp-access@0.24"
         },
         {
-          "text": "defined in",
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
           "target": "RLTP Access Layer 10.2",
           "href": "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md"
         }
@@ -1635,7 +1746,10 @@
       "symbols": [],
       "facts": [
         {
-          "text": "superseded by",
+          "text": {
+            "de": "abgelöst durch",
+            "en": "superseded by"
+          },
           "target": "membership-invite/0.2",
           "href": "/trust-tasks/membership-invite/0.2/"
         }
@@ -1666,7 +1780,10 @@
       "symbols": [],
       "facts": [
         {
-          "text": "superseded by",
+          "text": {
+            "de": "abgelöst durch",
+            "en": "superseded by"
+          },
           "target": "membership-accept/0.2",
           "href": "/trust-tasks/membership-accept/0.2/"
         }

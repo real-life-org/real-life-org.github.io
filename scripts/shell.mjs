@@ -1,9 +1,9 @@
 // The one shell for every page real-life.org serves: brand, navigation, language switch, type
 // and colours. Used by generate-pages.mjs for every page. Tokens and header come from the Claude Design
 // prototype "Wörterbuch" (2026-09-18); light is the design, dark derives from the same set.
-export const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-export const CSS = `:root{--bg:#fff;--ink:#1a2030;--muted:#667;--soft:#556;--text2:#333c4d;--line:#e2e6ef;--field:#d5dae6;--chip:#f0f2f7;--hover:#f6f7fa;--link:#2451b3;--warn:#b45309;--mark:#fdf3d8;--rlnp:#3f7a4e;--rlnp-t:#e6f0e7;--rls:#b36b1c;--rls-t:#f7ecdd;--rltp:#2f62c9;--rltp-t:#e5ecfa}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e0e10;--ink:#e8e8ea;--muted:#9a9aa4;--soft:#b9b9c3;--text2:#d0d0d6;--line:#2c2c31;--field:#3a3a42;--chip:#1c1c22;--hover:#18181d;--link:#7fb6d6;--warn:#fbbf24;--mark:#2a2410;--rlnp:#7cc48a;--rlnp-t:#1e2f23;--rls:#e0a25a;--rls-t:#33281a;--rltp:#7fa6f0;--rltp-t:#1d2738}}:root[data-theme="dark"]{--bg:#0e0e10;--ink:#e8e8ea;--muted:#9a9aa4;--soft:#b9b9c3;--text2:#d0d0d6;--line:#2c2c31;--field:#3a3a42;--chip:#1c1c22;--hover:#18181d;--link:#7fb6d6;--warn:#fbbf24;--mark:#2a2410;--rlnp:#7cc48a;--rlnp-t:#1e2f23;--rls:#e0a25a;--rls-t:#33281a;--rltp:#7fa6f0;--rltp-t:#1d2738}
+export const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+export const CSS = `:root{--bg:#fff;--ink:#1a2030;--muted:#667;--soft:#556;--text2:#333c4d;--line:#e2e6ef;--field:#d5dae6;--chip:#f0f2f7;--hover:#f6f7fa;--link:#2451b3;--warn:#b45309;--bad:#b91c1c;--mark:#fdf3d8;--rlnp:#3f7a4e;--rlnp-t:#e6f0e7;--rls:#b36b1c;--rls-t:#f7ecdd;--rltp:#2f62c9;--rltp-t:#e5ecfa}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e0e10;--ink:#e8e8ea;--muted:#9a9aa4;--soft:#b9b9c3;--text2:#d0d0d6;--line:#2c2c31;--field:#3a3a42;--chip:#1c1c22;--hover:#18181d;--link:#7fb6d6;--warn:#fbbf24;--bad:#ff6b6b;--mark:#2a2410;--rlnp:#7cc48a;--rlnp-t:#1e2f23;--rls:#e0a25a;--rls-t:#33281a;--rltp:#7fa6f0;--rltp-t:#1d2738}}:root[data-theme="dark"]{--bg:#0e0e10;--ink:#e8e8ea;--muted:#9a9aa4;--soft:#b9b9c3;--text2:#d0d0d6;--line:#2c2c31;--field:#3a3a42;--chip:#1c1c22;--hover:#18181d;--link:#7fb6d6;--warn:#fbbf24;--bad:#ff6b6b;--mark:#2a2410;--rlnp:#7cc48a;--rlnp-t:#1e2f23;--rls:#e0a25a;--rls-t:#33281a;--rltp:#7fa6f0;--rltp-t:#1d2738}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}a{color:var(--link)}
 header{border-bottom:1px solid var(--line)}.bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:18px 24px 14px;max-width:880px;margin:0 auto}
 .brand{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:inherit}.brand b{font-size:1.35rem;font-weight:650;letter-spacing:-.01em}.brand span{font-size:.85rem;color:var(--muted)}
@@ -35,7 +35,7 @@ figure{margin:0 0 1.6rem}figure img,figure svg.layers{width:100%;height:auto;dis
 .def{margin:2px 0 0;font-size:.92em;color:var(--text2)}
 .rels{display:flex;flex-wrap:wrap;gap:2px 10px;margin-top:4px;font-size:.82em;color:var(--soft)}.rels span{white-space:nowrap}.rels i{font-style:normal;color:var(--muted)}
 .act{margin-top:3px;font-size:.8em}.act a{margin-right:.7em;color:var(--muted)}.act a:hover{color:var(--link)}
-.note{margin:4px 0 0;font-size:.85em;color:var(--soft);font-style:italic}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.note{margin:4px 0 0;font-size:.85em;color:var(--soft);font-style:italic}
 .empty{display:none;color:var(--muted);padding:24px 0}`
 export const NAV = { en: [['/', 'Overview'], ['/terms/', 'Dictionary'], ['/#identifiers', 'Identifiers']], de: [['/de/', 'Überblick'], ['/de/terms/', 'Wörterbuch'], ['/de/#identifiers', 'Kennungen']] }
 // l: page language; active: which nav item; tools: header middle (search); right: header right side;

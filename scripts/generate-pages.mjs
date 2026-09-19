@@ -25,6 +25,8 @@ let errors = 0, written = 0, unchanged = 0
 const err = (m) => { console.error(`  ERROR ${m}`); errors++ }
 const sha256 = (s) => createHash('sha256').update(s).digest('hex')
 const j = (o) => JSON.stringify(o, null, 2) + '\n'
+// Inline JSON-LD sits in a <script>; a '<' in a value must not be able to close it.
+const ld = (o) => `<script type="application/ld+json">${JSON.stringify(o).replace(/</g, '\\u003c')}</script>`
 if (!existsSync(join(META, 'terms/sources.json'))) { console.error(`No meta repository at ${META}`); process.exit(1) }
 if (!existsSync(join(SPEC, 'schemas'))) { console.error(`No rltp-spec repository at ${SPEC}`); process.exit(1) }
 
@@ -53,7 +55,7 @@ const REL_L = {
   en: { 'skos:exactMatch': 'same as', 'skos:closeMatch': 'close to', 'skos:relatedMatch': 'related to', 'skos:narrowMatch': 'broader than', 'skos:broadMatch': 'narrower than', 'rl:convergesWith': 'target: same as', 'rl:falseFriend': 'false friend of' },
   de: { 'skos:exactMatch': 'gleich', 'skos:closeMatch': 'nahezu gleich', 'skos:relatedMatch': 'verwandt mit', 'skos:narrowMatch': 'allgemeiner als', 'skos:broadMatch': 'spezieller als', 'rl:convergesWith': 'Ziel: gleich mit', 'rl:falseFriend': 'falscher Freund von' },
 }
-const REL_COLOR = { 'rl:convergesWith': 'var(--warn)', 'rl:falseFriend': '#b91c1c' }
+const REL_COLOR = { 'rl:convergesWith': 'var(--warn)', 'rl:falseFriend': 'var(--bad)' }
 const W = {
   en: { proposed: 'proposal', superseded: 'superseded', also: 'also', source: 'source', edit: 'edit', propose: 'propose', oneThing: 'one thing in', parts: 'parts', alone: 'only here', newTerm: 'New term' },
   de: { proposed: 'Vorschlag', superseded: 'abgelöst', also: 'auch', source: 'Quelle', edit: 'ändern', propose: 'vorschlagen', oneThing: 'ein Ding in', parts: 'Teilen', alone: 'nur hier', newTerm: 'Begriff anlegen' },
@@ -123,7 +125,7 @@ emit('meta/v1/index.json', j({
 // the catalog itself: every entry of every list, one shape, both languages
 emit('terms/index.json', j({
   name: 'Real Life catalog', generatedFrom: 'real-life-org/meta and rltp-spec — do not edit by hand, run scripts/generate-pages.mjs',
-  entries: all.map((e) => ({ key: e.key, kind: e.kind, world: e.world, iri: e.iri, page: `${BASE}${e.href.slice(1)}`, label: e.label, alt: e.alt, definition: e.def, status: e.status, sources: e.sources.map((s) => s.url), symbols: e.symbols, facts: e.facts.map((f) => ({ ...f, text: f.text.en })), note: e.note, mappings: (links[e.key] ?? []).map(({ rel, key }) => ({ rel, key })), row: e.row })),
+  entries: all.map((e) => ({ key: e.key, kind: e.kind, world: e.world, iri: e.iri, page: `${BASE}${e.href.slice(1)}`, label: e.label, alt: e.alt, definition: e.def, status: e.status, sources: e.sources.map((s) => s.url), symbols: e.symbols, facts: e.facts, note: e.note, mappings: (links[e.key] ?? []).map(({ rel, key }) => ({ rel, key })), row: e.row })),
 }))
 
 // ── the layer picture ─────────────────────────────────────────────────────
@@ -145,7 +147,7 @@ const G = {
 for (const l of ['en', 'de']) {
   const t = G[l]
   emit(`${de(l)}index.html`, shell({ l, title: parts.gate.title[l], active: `/${de(l)}`, alt: { lang: other(l), href: `/${de(other(l))}` }, search: 'forward',
-    body: `<p class="sub" style="margin-bottom:18px">${esc(parts.gate.sentence[l])}</p>
+    body: `<h1 class="vh">${esc(parts.gate.title[l])}</h1><p class="sub" style="margin-bottom:18px">${esc(parts.gate.sentence[l])}</p>
 <figure><a class="pic" href="/overview/layers.${l}.svg" aria-label="${esc(t.picture)}">${inlineSvg(l)}</a></figure>
 <div class="parts">
 ${parts.parts.map((p) => `<section class="part p-${p.spec.world}" id="${p.id}"><h2><a href="${p.url}">${esc(p.name[l])}</a></h2><p>${esc(p.sentence[l])}</p><p class="spec"><b>${esc(p.spec.abbr)}</b> · ${esc(p.spec.name[l])}</p><p class="for">${esc(p.for[l])}</p></section>`).join('\n')}
@@ -186,7 +188,7 @@ for (const l of ['en', 'de']) {
   for (const world of ['rlnp', 'rls', 'rltp']) {
     const w = NSW[world]; const ns = `${BASE}${world}/v1`; const n = NS[l]
     listPage({ l, path: `${world}/v1/`, title: `${w.short} ${n.terms} · ${world}/v1`, active: `/${de(l)}#identifiers`,
-      head: `<link rel="alternate" type="application/ld+json" href="/${world}/v1/${world === 'rltp' ? 'context.jsonld' : 'terms.jsonld'}"><link rel="alternate" type="application/json" href="/${world}/v1/index.json"><script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'DefinedTermSet', '@id': ns, name: `${w.short} terms`, description: `Term namespace of the ${w.name}.`, url: `${ns}/` })}</script>`,
+      head: `<link rel="alternate" type="application/ld+json" href="/${world}/v1/${world === 'rltp' ? 'context.jsonld' : 'terms.jsonld'}"><link rel="alternate" type="application/json" href="/${world}/v1/index.json">${ld({ '@context': 'https://schema.org', '@type': 'DefinedTermSet', '@id': ns, name: `${w.short} terms`, description: `Term namespace of the ${w.name}.`, url: `${ns}/` })}`,
       intro: `<h1><code>${ns}</code></h1><p>${n.intro(w, ns)}</p>${world === 'rltp' ? RLTP_EXTRA[l] : ''}<p>${n.machine(world)}</p><h2>${n.terms}</h2>`,
       filter: (e) => e.kind === 'term' && e.world === world, tail: world === 'rltp' ? RLTP_TAIL[l] : '' })
   }
@@ -204,7 +206,7 @@ for (const l of ['en', 'de']) {
     de: { h: 'RLTP Trust-Task-Typen', p1: `Private Trust-Task-Typen, die das Real Life Trust Protocol unter <code>${BASE}trust-tasks/</code> registriert (${esc(registry.framework)}). Die Beschreibungen sind englisch, wie die Spezifikation.`, p2: 'Maschinenlesbares Register: <a href="/trust-tasks/index.json"><code>index.json</code></a> — jeder Typ mit Type URI, Payload-Schema-URL, definierendem Abschnitt und SHA-256-Prüfsumme. Jedes Payload-Schema löst als rohes JSON unter <code>&lt;Type&nbsp;URI&gt;/schema.json</code> auf.' },
   }[l]
   listPage({ l, path: 'trust-tasks/', title: TT.h, active: `/${de(l)}#identifiers`,
-    head: `<link rel="alternate" type="application/json" href="/trust-tasks/index.json"><script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'DefinedTermSet', '@id': `${BASE}trust-tasks/`, name: 'RLTP Trust Task types', url: `${BASE}trust-tasks/` })}</script>`,
+    head: `<link rel="alternate" type="application/json" href="/trust-tasks/index.json">${ld({ '@context': 'https://schema.org', '@type': 'DefinedTermSet', '@id': `${BASE}trust-tasks/`, name: 'RLTP Trust Task types', url: `${BASE}trust-tasks/` })}`,
     intro: `<h1>${TT.h}</h1><p>${TT.p1}</p><p>${TT.p2}</p>`, filter: (e) => e.kind === 'task' })
   // /terms/: everything, grouped into rows
   const D = {
@@ -213,14 +215,14 @@ for (const l of ['en', 'de']) {
   }[l]
   const nConv = Object.entries(links).reduce((n, [a, v]) => n + v.filter(({ rel, key }) => rel === 'rl:convergesWith' && a < key).length, 0)
   listPage({ l, path: 'terms/', title: D.title, active: `/${de(l)}terms/`, rowsMode: true, filter: () => true,
-    intro: `<p class="sub">${D.sub}</p><div class="stats"><span>${all.length} ${D.termsN}</span><span>${all.filter((e) => e.status === 'proposed').length} ${D.proposedN}</span><span>${nConv} ${D.convergeN}</span><span>${D.guardOk}</span><a href="${newTermUrl(l)}">+ ${W[l].newTerm} ↗</a></div>`,
+    intro: `<h1>${D.title}</h1><p class="sub">${D.sub}</p><div class="stats"><span>${all.length} ${D.termsN}</span><span>${all.filter((e) => e.status === 'proposed').length} ${D.proposedN}</span><span>${nConv} ${D.convergeN}</span><span>${D.guardOk}</span><a href="${newTermUrl(l)}">+ ${W[l].newTerm} ↗</a></div>`,
     tail: `<p class="sub" style="margin-top:22px;font-size:.88rem">${D.how}</p>` })
 }
 
 // ── detail pages: one per Trust Task type, from the same entry ────────────
 const OFFLINE = '<p><em>Offline rule: conforming implementations pre-register every schema by its <code>$id</code> and never resolve over the network — this page is documentation, not infrastructure.</em></p>'
 for (const e of all.filter((x) => x.kind === 'task')) {
-  const head = `<link rel="alternate" type="application/schema+json" href="schema.json">` + (e.status === 'superseded' ? '' : `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'DefinedTerm', '@id': e.iri, name: e.fragment, description: `RLTP Trust Task type — ${e.def.en} Payload schema: ${e.iri}/schema.json`, inDefinedTermSet: `${BASE}trust-tasks/`, url: `${e.iri}/` })}</script>`)
+  const head = `<link rel="alternate" type="application/schema+json" href="schema.json">` + (e.status === 'superseded' ? '' : `${ld({ '@context': 'https://schema.org', '@type': 'DefinedTerm', '@id': e.iri, name: e.fragment, description: `RLTP Trust Task type — ${e.def.en} Payload schema: ${e.iri}/schema.json`, inDefinedTermSet: `${BASE}trust-tasks/`, url: `${e.iri}/` })}`)
   const body = e.status === 'superseded'
     ? `<h1><code>${e.iri}</code></h1>
 <p><strong>${e.fragment}</strong> is a retired version of a private Trust Task type of the Real Life Trust Protocol. It is superseded by <a href="/trust-tasks/${e.supersededBy}/"><code>${e.supersededBy}</code></a>.</p>
