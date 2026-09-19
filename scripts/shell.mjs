@@ -1,6 +1,5 @@
 // The one shell for every page real-life.org serves: brand, navigation, language switch, type
-// and colours. Used by generate.mjs (/rltp/v1, /trust-tasks) and generate-terms.mjs (gate,
-// dictionary, /rlnp/v1, /rls/v1, /meta/v1). Tokens and header come from the Claude Design
+// and colours. Used by generate-pages.mjs for every page. Tokens and header come from the Claude Design
 // prototype "Wörterbuch" (2026-09-18); light is the design, dark derives from the same set.
 export const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 export const CSS = `:root{--bg:#fff;--ink:#1a2030;--muted:#667;--soft:#556;--text2:#333c4d;--line:#e2e6ef;--field:#d5dae6;--chip:#f0f2f7;--hover:#f6f7fa;--link:#2451b3;--warn:#b45309;--mark:#fdf3d8;--rlnp:#3f7a4e;--rlnp-t:#e6f0e7;--rls:#b36b1c;--rls-t:#f7ecdd;--rltp:#2f62c9;--rltp-t:#e5ecfa}

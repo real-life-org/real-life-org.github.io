@@ -3,7 +3,7 @@
   "namespace": "https://real-life.org/rls/v1",
   "publisher": "https://real-life.org/",
   "specificationRepository": "https://github.com/real-life-org/real-life-stack",
-  "generatedFrom": "real-life-org/meta — do not edit by hand, run scripts/generate-terms.mjs",
+  "generatedFrom": "real-life-org/meta — do not edit by hand, run scripts/generate-pages.mjs",
   "context": {
     "url": "https://real-life.org/meta/v1/context.jsonld",
     "sha256": "c1d42b127039ab756896b83b3a88622cad6353d6d3b3b2581f35acf7c6b1f324"
@@ -18,10 +18,34 @@
   },
   "terms": [
     {
+      "iri": "https://real-life.org/rls/v1#space",
+      "en": "Space",
+      "de": "Space",
+      "status": "specified"
+    },
+    {
+      "iri": "https://real-life.org/rls/v1#mirror",
+      "en": "Mirror",
+      "de": "Spiegel",
+      "status": "specified"
+    },
+    {
+      "iri": "https://real-life.org/rls/v1#relation",
+      "en": "Relation",
+      "de": "Relation",
+      "status": "specified"
+    },
+    {
+      "iri": "https://real-life.org/rls/v1#profile",
+      "en": "Person profile",
+      "de": "Personenprofil",
+      "status": "specified"
+    },
+    {
       "iri": "https://real-life.org/rls/v1#connector",
       "en": "Connector",
       "de": "Connector",
-      "status": "in specification"
+      "status": "specified"
     },
     {
       "iri": "https://real-life.org/rls/v1#member",
@@ -30,45 +54,21 @@
       "status": "proposed"
     },
     {
-      "iri": "https://real-life.org/rls/v1#mirror",
-      "en": "Mirror",
-      "de": "Spiegel",
-      "status": "in specification"
-    },
-    {
-      "iri": "https://real-life.org/rls/v1#multi-space-item",
-      "en": "Item in several spaces",
-      "de": "Item in mehreren Spaces",
+      "iri": "https://real-life.org/rls/v1#visibility",
+      "en": "Visibility",
+      "de": "Sichtbarkeit",
       "status": "proposed"
-    },
-    {
-      "iri": "https://real-life.org/rls/v1#profile",
-      "en": "Person profile",
-      "de": "Personenprofil",
-      "status": "in specification"
-    },
-    {
-      "iri": "https://real-life.org/rls/v1#relation",
-      "en": "Relation",
-      "de": "Relation",
-      "status": "in specification"
-    },
-    {
-      "iri": "https://real-life.org/rls/v1#space",
-      "en": "Space",
-      "de": "Space",
-      "status": "in specification"
     },
     {
       "iri": "https://real-life.org/rls/v1#verification",
       "en": "Verification",
       "de": "Verifikation",
-      "status": "in specification"
+      "status": "specified"
     },
     {
-      "iri": "https://real-life.org/rls/v1#visibility",
-      "en": "Visibility",
-      "de": "Sichtbarkeit",
+      "iri": "https://real-life.org/rls/v1#multi-space-item",
+      "en": "Item in several spaces",
+      "de": "Item in mehreren Spaces",
       "status": "proposed"
     }
   ]

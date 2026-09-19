@@ -3,7 +3,7 @@
   "namespace": "https://real-life.org/meta/v1",
   "publisher": "https://real-life.org/",
   "registerRepository": "https://github.com/real-life-org/meta",
-  "generatedFrom": "real-life-org/meta — do not edit by hand, run scripts/generate-terms.mjs",
+  "generatedFrom": "real-life-org/meta — do not edit by hand, run scripts/generate-pages.mjs",
   "context": {
     "url": "https://real-life.org/meta/v1/context.jsonld",
     "sha256": "c1d42b127039ab756896b83b3a88622cad6353d6d3b3b2581f35acf7c6b1f324"

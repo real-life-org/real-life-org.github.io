@@ -3,7 +3,7 @@
   "namespace": "https://real-life.org/rlnp/v1",
   "publisher": "https://real-life.org/",
   "specificationRepository": "https://github.com/real-life-org/real-life-network-protocol",
-  "generatedFrom": "real-life-org/meta — do not edit by hand, run scripts/generate-terms.mjs",
+  "generatedFrom": "real-life-org/meta — do not edit by hand, run scripts/generate-pages.mjs",
   "context": {
     "url": "https://real-life.org/meta/v1/context.jsonld",
     "sha256": "c1d42b127039ab756896b83b3a88622cad6353d6d3b3b2581f35acf7c6b1f324"
@@ -18,52 +18,52 @@
   },
   "terms": [
     {
-      "iri": "https://real-life.org/rlnp/v1#Begegnung",
-      "en": "Encounter",
-      "de": "Begegnung",
-      "status": "in specification"
-    },
-    {
-      "iri": "https://real-life.org/rlnp/v1#Bezeugen",
-      "en": "Witnessing",
-      "de": "Bezeugen",
-      "status": "in specification"
-    },
-    {
-      "iri": "https://real-life.org/rlnp/v1#Beziehung",
-      "en": "Relationship",
-      "de": "Beziehung",
-      "status": "in specification"
-    },
-    {
       "iri": "https://real-life.org/rlnp/v1#Kreis",
       "en": "Circle",
       "de": "Kreis",
-      "status": "in specification"
-    },
-    {
-      "iri": "https://real-life.org/rlnp/v1#Mensch",
-      "en": "Person",
-      "de": "Mensch",
-      "status": "in specification"
-    },
-    {
-      "iri": "https://real-life.org/rlnp/v1#Rolle",
-      "en": "Role",
-      "de": "Rolle",
-      "status": "in specification"
+      "status": "specified"
     },
     {
       "iri": "https://real-life.org/rlnp/v1#Sichtbarkeit",
       "en": "Visibility",
       "de": "Sichtbarkeit",
-      "status": "in specification"
+      "status": "specified"
+    },
+    {
+      "iri": "https://real-life.org/rlnp/v1#Mensch",
+      "en": "Person",
+      "de": "Mensch",
+      "status": "specified"
+    },
+    {
+      "iri": "https://real-life.org/rlnp/v1#Beziehung",
+      "en": "Relationship",
+      "de": "Beziehung",
+      "status": "specified"
+    },
+    {
+      "iri": "https://real-life.org/rlnp/v1#Begegnung",
+      "en": "Encounter",
+      "de": "Begegnung",
+      "status": "specified"
     },
     {
       "iri": "https://real-life.org/rlnp/v1#Verifikation",
       "en": "Verification",
       "de": "Verifikation",
-      "status": "in specification"
+      "status": "specified"
+    },
+    {
+      "iri": "https://real-life.org/rlnp/v1#Bezeugen",
+      "en": "Witnessing",
+      "de": "Bezeugen",
+      "status": "specified"
+    },
+    {
+      "iri": "https://real-life.org/rlnp/v1#Rolle",
+      "en": "Role",
+      "de": "Rolle",
+      "status": "specified"
     }
   ]
 }

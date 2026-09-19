@@ -1,0 +1,1781 @@
+{
+  "name": "Real Life catalog",
+  "generatedFrom": "real-life-org/meta and rltp-spec — do not edit by hand, run scripts/generate-pages.mjs",
+  "entries": [
+    {
+      "key": "rlnp:Kreis",
+      "kind": "term",
+      "world": "rlnp",
+      "iri": "https://real-life.org/rlnp/v1#Kreis",
+      "page": "https://real-life.org/rlnp/v1/#Kreis",
+      "label": {
+        "de": "Kreis",
+        "en": "Circle"
+      },
+      "alt": [
+        "Space"
+      ],
+      "definition": {
+        "de": "Wiederkehrender Begegnungsraum. Wählt Form und Zugang selbst. Kreise verbinden sich durch Menschen, nicht durch übergeordnete Kreise.",
+        "en": "A recurring space of encounter. Chooses its own form and access. Circles connect through people, not through parent circles."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/real-life-network-protocol/blob/main/real-life-network-protocol.md#64-kreis"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Converged 2026-09-18: a circle is the thing itself; the Stack constructs it as a space, the Trust Protocol as a group. A circle chooses its own form and access, and the space carries exactly that: publicly visible, open for anyone to post, or by invitation. \"Space\" in the RLNP text is a reference to the Stack space, not a term of its own.",
+      "mappings": [
+        {
+          "rel": "skos:exactMatch",
+          "key": "rls:space"
+        },
+        {
+          "rel": "skos:exactMatch",
+          "key": "rltp:Group"
+        }
+      ],
+      "row": [
+        "rlnp:Kreis",
+        "rls:space",
+        "rltp:Group"
+      ]
+    },
+    {
+      "key": "rlnp:Sichtbarkeit",
+      "kind": "term",
+      "world": "rlnp",
+      "iri": "https://real-life.org/rlnp/v1#Sichtbarkeit",
+      "page": "https://real-life.org/rlnp/v1/#Sichtbarkeit",
+      "label": {
+        "de": "Sichtbarkeit",
+        "en": "Visibility"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Keine Eigenschaft einer Sache, sondern Folge davon, wo sie liegt. Drei Reichweiten: in einem Kreis, in mehreren Kreisen, veröffentlicht. Wer eine Sache in Kreise stellt, entscheidet, in welchen sie liegt, und sieht vorher, wen sie erreicht.",
+        "en": "Not a property of a thing but a consequence of where it lies. Three reaches: within one circle, within several circles, published. Whoever puts a thing into circles decides which ones, and sees beforehand whom it reaches."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/real-life-network-protocol/blob/main/real-life-network-protocol.md#616-wie-etwas-sichtbar-wird"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Three reaches, three constructions: \"within one circle\" is RLTP private; \"within several circles\" is the Stack's item in several spaces (the RLTP connector builds it as a mirror); \"published\" is RLTP open at the origin, delivery of open data needs another backend (multi-connector). VisibilityMode covers the first and third only.",
+      "mappings": [
+        {
+          "rel": "skos:relatedMatch",
+          "key": "rltp:VisibilityMode"
+        },
+        {
+          "rel": "skos:relatedMatch",
+          "key": "rls:multi-space-item"
+        },
+        {
+          "rel": "rl:convergesWith",
+          "key": "rls:visibility"
+        }
+      ],
+      "row": [
+        "rlnp:Sichtbarkeit"
+      ]
+    },
+    {
+      "key": "rlnp:Mensch",
+      "kind": "term",
+      "world": "rlnp",
+      "iri": "https://real-life.org/rlnp/v1#Mensch",
+      "page": "https://real-life.org/rlnp/v1/#Mensch",
+      "label": {
+        "de": "Mensch",
+        "en": "Person"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Kleinste Einheit des Netzwerks. Kenntlich nicht durch einen Verzeichniseintrag, sondern durch die, die ihn kennen. Die Identität gehört ihm selbst.",
+        "en": "The smallest unit of the network. Known not by a directory entry but by those who know them. Identity belongs to the person."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/real-life-network-protocol/blob/main/real-life-network-protocol.md#61-mensch"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately no exactMatch: RLTP has no person object, only anchors per context. This is by design (relationships never converge into a person).",
+      "mappings": [
+        {
+          "rel": "skos:relatedMatch",
+          "key": "rltp:Anchor"
+        },
+        {
+          "rel": "skos:relatedMatch",
+          "key": "rls:profile"
+        }
+      ],
+      "row": [
+        "rlnp:Mensch"
+      ]
+    },
+    {
+      "key": "rlnp:Beziehung",
+      "kind": "term",
+      "world": "rlnp",
+      "iri": "https://real-life.org/rlnp/v1#Beziehung",
+      "page": "https://real-life.org/rlnp/v1/#Beziehung",
+      "label": {
+        "de": "Beziehung",
+        "en": "Relationship"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Soziale Verbindung zwischen Menschen oder zwischen Menschen und Agenten. Entsteht durch Begegnung, Kommunikation, Zusammenarbeit oder geteilte Erfahrung.",
+        "en": "A social connection between people, or between people and agents. Arises from encounter, communication, collaboration or shared experience."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/real-life-network-protocol/blob/main/real-life-network-protocol.md#62-beziehung"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Decided 2026-09-18 (for now): an RLNP relationship is broader than an RLTP edge. Two kinds: person–person is an edge from an encounter (RLTP Edge); person–agent is an edge from appointment or vouching (future attestation). Proposal to RLNP 6.2: name both kinds. Relation (Stack) links items, not people: false friend.",
+      "mappings": [
+        {
+          "rel": "skos:narrowMatch",
+          "key": "rltp:Edge"
+        },
+        {
+          "rel": "rl:convergesWith",
+          "key": "rltp:Attestation"
+        },
+        {
+          "rel": "rl:falseFriend",
+          "key": "rls:relation"
+        }
+      ],
+      "row": [
+        "rlnp:Beziehung"
+      ]
+    },
+    {
+      "key": "rlnp:Begegnung",
+      "kind": "term",
+      "world": "rlnp",
+      "iri": "https://real-life.org/rlnp/v1#Begegnung",
+      "page": "https://real-life.org/rlnp/v1/#Begegnung",
+      "label": {
+        "de": "Begegnung",
+        "en": "Encounter"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Zwei Menschen begegnen sich, real oder digital, tauschen aus, wer sie sind, und bleiben verbunden, wenn es stimmig ist. Begegnung wiederholt sich und ist der Normalfall des Netzwerks: Ein Mensch wird Teil davon, sobald er in Beziehung tritt.",
+        "en": "Two people meet, in person or digitally, exchange who they are, and stay connected if it fits. Encounters repeat and are the normal case of the network: a person becomes part of it the moment they enter a relationship."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/real-life-network-protocol/blob/main/real-life-network-protocol.md#81-menschen-kennenlernen"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "The event itself, repeated and ordinary, deliberately without counterpart in the Stack or the Trust Protocol: the encounter belongs to the people. Verification is the one-time act that records the relationship; later encounters need none.",
+      "mappings": [
+        {
+          "rel": "skos:relatedMatch",
+          "key": "rlnp:Verifikation"
+        }
+      ],
+      "row": [
+        "rlnp:Begegnung"
+      ]
+    },
+    {
+      "key": "rlnp:Verifikation",
+      "kind": "term",
+      "world": "rlnp",
+      "iri": "https://real-life.org/rlnp/v1#Verifikation",
+      "page": "https://real-life.org/rlnp/v1/#Verifikation",
+      "label": {
+        "de": "Verifikation",
+        "en": "Verification"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Der einmalige Akt, in dem zwei Menschen bestätigen, dass sie einander als diese Person erlebt haben, meist bei der ersten Begegnung; danach begegnet man sich einfach. Bedeutet nicht allgemeine Vertrauenswürdigkeit.",
+        "en": "The one-time act in which two people confirm that they have met each other as this person, usually at the first encounter; after that, they simply meet. Does not mean general trustworthiness."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/real-life-network-protocol/blob/main/real-life-network-protocol.md#83-menschen-verifizieren"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "One act in three parts (2026-09-18): the encounter happens in the network, the Stack verifies it in the app, the Trust Protocol constructs that verification as an enactment; the encounter credential is its result. Socially it happens once per relationship; the protocol allows repeated enactments, each with a fresh anchor, all landing on the same edge.",
+      "mappings": [
+        {
+          "rel": "skos:exactMatch",
+          "key": "rls:verification"
+        },
+        {
+          "rel": "skos:exactMatch",
+          "key": "rltp:Enactment"
+        },
+        {
+          "rel": "skos:relatedMatch",
+          "key": "rltp:EncounterCredential"
+        },
+        {
+          "rel": "skos:relatedMatch",
+          "key": "rlnp:Begegnung"
+        }
+      ],
+      "row": [
+        "rlnp:Verifikation",
+        "rls:verification",
+        "rltp:Enactment"
+      ]
+    },
+    {
+      "key": "rlnp:Bezeugen",
+      "kind": "term",
+      "world": "rlnp",
+      "iri": "https://real-life.org/rlnp/v1#Bezeugen",
+      "page": "https://real-life.org/rlnp/v1/#Bezeugen",
+      "label": {
+        "de": "Bezeugen",
+        "en": "Witnessing"
+      },
+      "alt": [
+        "Confirmation",
+        "Attestation"
+      ],
+      "definition": {
+        "de": "Würdigen, was ein Mensch getan oder eingebracht hat. Anerkennung, keine Abnahme. Die bezeugte Person entscheidet über die Anzeige, nicht über die Aussage.",
+        "en": "Honouring what a person did or contributed. Recognition, not approval. The person witnessed decides about display, not about the statement."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/real-life-network-protocol/blob/main/real-life-network-protocol.md#84-bezeugen"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Target: a general attestation type in RLTP (candidate: DTG Endorsement Credential). Until then only the encounter has an artifact.",
+      "mappings": [
+        {
+          "rel": "skos:relatedMatch",
+          "key": "rltp:EncounterCredential"
+        },
+        {
+          "rel": "rl:convergesWith",
+          "key": "rltp:Attestation"
+        }
+      ],
+      "row": [
+        "rlnp:Bezeugen"
+      ]
+    },
+    {
+      "key": "rlnp:Rolle",
+      "kind": "term",
+      "world": "rlnp",
+      "iri": "https://real-life.org/rlnp/v1#Rolle",
+      "page": "https://real-life.org/rlnp/v1/#Rolle",
+      "label": {
+        "de": "Rolle",
+        "en": "Role"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Verantwortung, die ein Mensch gegenüber einem Kreis übernimmt. Sagt zu, dass etwas geschieht. Freiwillig, zurückgebbar, kein Rang.",
+        "en": "Responsibility a person takes on toward a circle. A promise that something happens. Voluntary, returnable, not a rank."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/real-life-network-protocol/blob/main/real-life-network-protocol.md#613-rolle"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "A role taken on is a witnessed promise (RLNP 6.18, 8.13). Depends on the attestation type.",
+      "mappings": [
+        {
+          "rel": "rl:convergesWith",
+          "key": "rltp:Attestation"
+        }
+      ],
+      "row": [
+        "rlnp:Rolle"
+      ]
+    },
+    {
+      "key": "rltp:Group",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#Group",
+      "page": "https://real-life.org/rltp/v1/#Group",
+      "label": {
+        "de": "Gruppe",
+        "en": "Group"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Kollektiver Akteur mit Mitgliedern, Policy, Autoritäts-Log und Dokumenten. Identität ist der Digest der Genesis-Operation, Adresse die Gruppen-DID.",
+        "en": "A collective actor with members, a policy, an authority log, and documents. Its identity is the digest of its genesis operation; its address is its group DID."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md#2-conventions-and-terminology"
+      ],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "defined in",
+          "target": "Access 2"
+        }
+      ],
+      "note": "",
+      "mappings": [
+        {
+          "rel": "skos:exactMatch",
+          "key": "rlnp:Kreis"
+        },
+        {
+          "rel": "skos:exactMatch",
+          "key": "rls:space"
+        }
+      ],
+      "row": [
+        "rlnp:Kreis",
+        "rls:space",
+        "rltp:Group"
+      ]
+    },
+    {
+      "key": "rltp:Member",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#Member",
+      "page": "https://real-life.org/rltp/v1/#Member",
+      "label": {
+        "de": "Mitglied",
+        "en": "Member"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Zustand im Autoritäts-Log plus Schlüsselbesitz, kein Zertifikat. Eintritt nur durch explizite, kryptografisch gebundene Zustimmung.",
+        "en": "A fact in the authority log plus key possession, not a certificate. Entered only by explicit, cryptographically bound consent."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md#5-members",
+        "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
+      ],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "defined in",
+          "target": "Access 2, 5"
+        }
+      ],
+      "note": "Deliberately without a counterpart in RLNP (2026-09-18): the network knows membership only as what it must not require. Belonging to the network lives in relationships, not in lists; a circle chooses its own form and access, and membership is one of the forms the Stack and the Trust Protocol provide for it.",
+      "mappings": [
+        {
+          "rel": "skos:exactMatch",
+          "key": "rls:member"
+        }
+      ],
+      "row": [
+        "rls:member",
+        "rltp:Member"
+      ]
+    },
+    {
+      "key": "rltp:Anchor",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#Anchor",
+      "page": "https://real-life.org/rltp/v1/#Anchor",
+      "label": {
+        "de": "Anker",
+        "en": "Anchor"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Kennung einer Person gegenüber einem Kontext (did:key). Jede Durchführung einer Zeremonie läuft unter einem frisch abgeleiteten Paaranker, auch eine Wiederbegegnung; ein stehender Anker erscheint nie auf dem Zeremoniedraht, und Anker laufen nie zu einer Person zusammen.",
+        "en": "A person's identifier toward one context (did:key). Every enactment of a ceremony runs under a freshly derived pair anchor, a re-encounter too; a standing anchor never appears on the ceremony wire, and anchors never converge into a person."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/rltp-spec/blob/main/spec/encounter-layer.md#22-terms",
+        "https://github.com/real-life-org/rltp-spec/blob/main/spec/encounter-layer.md#44-the-enacting-anchor-fresh-always-normative",
+        "https://github.com/real-life-org/rltp-spec/blob/main/spec/identity-layer.md"
+      ],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "defined in",
+          "target": "Encounter 2.2"
+        }
+      ],
+      "note": "",
+      "mappings": [
+        {
+          "rel": "skos:relatedMatch",
+          "key": "rlnp:Mensch"
+        }
+      ],
+      "row": [
+        "rltp:Anchor"
+      ]
+    },
+    {
+      "key": "rltp:Edge",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#Edge",
+      "page": "https://real-life.org/rltp/v1/#Edge",
+      "label": {
+        "de": "Kante",
+        "en": "Edge"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Die Relation zwischen zwei Ankern, gebildet aus den Begegnungs-Credentials zwischen ihnen; eingehend, ausgehend oder beidseitig. Eine Kante je Ankerpaar.",
+        "en": "The relation between two anchors constituted by the encounter credentials between them; incoming, outgoing, or mutual. One edge per anchor pair."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/rltp-spec/blob/main/spec/encounter-layer.md#42-the-edge-is-the-relation-and-it-is-per-anchor-pair"
+      ],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "defined in",
+          "target": "Encounter 4.2"
+        }
+      ],
+      "note": "",
+      "mappings": [
+        {
+          "rel": "skos:broadMatch",
+          "key": "rlnp:Beziehung"
+        }
+      ],
+      "row": [
+        "rltp:Edge"
+      ]
+    },
+    {
+      "key": "rltp:EncounterCredential",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#EncounterCredential",
+      "page": "https://real-life.org/rltp/v1/#EncounterCredential",
+      "label": {
+        "de": "Begegnungs-Credential",
+        "en": "Encounter credential"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Unveränderliches Credential, in dem eine Partei festhält, dass sie eine andere erkannt hat. Ausgestellt von einer Partei über die andere, offline prüfbar.",
+        "en": "The immutable credential in which one party records that they recognized another. Issued by one party about the other, verifiable offline."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/rltp-spec/blob/main/spec/encounter-layer.md#7-the-encounter-credential"
+      ],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "defined in",
+          "target": "Encounter 7"
+        }
+      ],
+      "note": "",
+      "mappings": [
+        {
+          "rel": "skos:relatedMatch",
+          "key": "rlnp:Verifikation"
+        },
+        {
+          "rel": "skos:relatedMatch",
+          "key": "rlnp:Bezeugen"
+        }
+      ],
+      "row": [
+        "rltp:EncounterCredential"
+      ]
+    },
+    {
+      "key": "rltp:VisibilityMode",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#VisibilityMode",
+      "page": "https://real-life.org/rltp/v1/#VisibilityMode",
+      "label": {
+        "de": "Sichtbarkeitsmodus",
+        "en": "Visibility mode"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Der Modus, in dem eine Gruppe nach außen lesbar ist; Veröffentlichung läuft über den Publikations-Port (offene Sichtbarkeit: weltlesbar).",
+        "en": "The mode in which a group is readable from outside; publication runs through the publication port (open visibility: world-readable)."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md#8-visibility-modes",
+        "https://github.com/real-life-org/rltp-spec/blob/main/spec/network-visibility.md"
+      ],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "defined in",
+          "target": "Access 8"
+        }
+      ],
+      "note": "",
+      "mappings": [
+        {
+          "rel": "skos:relatedMatch",
+          "key": "rlnp:Sichtbarkeit"
+        }
+      ],
+      "row": [
+        "rltp:VisibilityMode"
+      ]
+    },
+    {
+      "key": "rltp:Enactment",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#Enactment",
+      "page": "https://real-life.org/rltp/v1/#Enactment",
+      "label": {
+        "de": "Begegnungsvorgang",
+        "en": "Enactment"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Ein durchgeführter Lauf einer Zeremonie zwischen zwei Menschen. Nie wiederverwendet; vollständig, wenn beide Seiten ihre Aufzeichnung halten.",
+        "en": "One performed run of a ceremony between two people. Never reused; complete when both parties hold records."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/rltp-spec/blob/main/spec/encounter-layer.md#22-terms"
+      ],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "defined in",
+          "target": "Encounter 5.2"
+        }
+      ],
+      "note": "",
+      "mappings": [
+        {
+          "rel": "skos:exactMatch",
+          "key": "rlnp:Verifikation"
+        },
+        {
+          "rel": "skos:exactMatch",
+          "key": "rls:verification"
+        }
+      ],
+      "row": [
+        "rlnp:Verifikation",
+        "rls:verification",
+        "rltp:Enactment"
+      ]
+    },
+    {
+      "key": "rltp:Attestation",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#Attestation",
+      "page": "https://real-life.org/rltp/v1/#Attestation",
+      "label": {
+        "de": "Attestation",
+        "en": "Attestation"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Vorgeschlagen: signierte, portable Aussage einer Person über Beitrag, Rolle, Fähigkeit oder Versprechen einer anderen, unabhängig prüfbar. Kandidat: DTG Endorsement Credential.",
+        "en": "Proposed: a signed, portable statement by one person about another's contribution, role, skill or promise, independently verifiable. Candidate: DTG Endorsement Credential."
+      },
+      "status": "proposed",
+      "sources": [
+        "https://github.com/real-life-org/rltp-spec/blob/main/README.md#alignment-with-the-toip-dtgwg"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "",
+      "mappings": [
+        {
+          "rel": "rl:convergesWith",
+          "key": "rlnp:Bezeugen"
+        },
+        {
+          "rel": "rl:convergesWith",
+          "key": "rlnp:Rolle"
+        },
+        {
+          "rel": "rl:convergesWith",
+          "key": "rlnp:Beziehung"
+        }
+      ],
+      "row": [
+        "rltp:Attestation"
+      ]
+    },
+    {
+      "key": "rls:space",
+      "kind": "term",
+      "world": "rls",
+      "iri": "https://real-life.org/rls/v1#space",
+      "page": "https://real-life.org/rls/v1/#space",
+      "label": {
+        "de": "Space",
+        "en": "Space"
+      },
+      "alt": [
+        "Group",
+        "Gruppe"
+      ],
+      "definition": {
+        "de": "Der gemeinsame Arbeits-, Mitgliedschafts- und Sichtbarkeitskontext. Im Datenvertrag heißt er Group.",
+        "en": "The shared context for work, membership and visibility. In the data contract it is called Group."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/real-life-stack/blob/master/docs/spec/04-items-relations-groups-spaces.md"
+      ],
+      "symbols": [
+        "Group"
+      ],
+      "facts": [],
+      "note": "",
+      "mappings": [
+        {
+          "rel": "skos:exactMatch",
+          "key": "rlnp:Kreis"
+        },
+        {
+          "rel": "skos:exactMatch",
+          "key": "rltp:Group"
+        }
+      ],
+      "row": [
+        "rlnp:Kreis",
+        "rls:space",
+        "rltp:Group"
+      ]
+    },
+    {
+      "key": "rls:mirror",
+      "kind": "term",
+      "world": "rls",
+      "iri": "https://real-life.org/rls/v1#mirror",
+      "page": "https://real-life.org/rls/v1/#mirror",
+      "label": {
+        "de": "Spiegel",
+        "en": "Mirror"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Die Konstruktion des RLTP-Connectors für ein Item in mehreren Spaces: eine Kopie im zweiten Space, weil verschlüsselte Gruppen einander nicht lesen können; Herkunft, Aktualität und erlaubte Aktionen werden getrennt betrachtet. Eine zentrale Datenbank braucht keine Spiegel.",
+        "en": "The RLTP connector's construction of an item in several spaces: a copy in the second space, because encrypted groups cannot read each other; origin, freshness and permitted actions are considered separately. A central database needs no mirrors."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/real-life-stack/blob/master/docs/spec/09-mirror-bridge.md"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or RLTP: for the person it is simply a thing in several spaces; the mirror exists because the Trust Protocol partitions storage by access boundary. The protocol itself knows only groups and their replication.",
+      "mappings": [
+        {
+          "rel": "skos:relatedMatch",
+          "key": "rls:multi-space-item"
+        }
+      ],
+      "row": [
+        "rls:mirror"
+      ]
+    },
+    {
+      "key": "rls:relation",
+      "kind": "term",
+      "world": "rls",
+      "iri": "https://real-life.org/rls/v1#relation",
+      "page": "https://real-life.org/rls/v1/#relation",
+      "label": {
+        "de": "Relation",
+        "en": "Relation"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Eine gerichtete Beziehung zwischen Items mit Prädikat und Ziel. Rückverweise zeigen sie aus der Gegenrichtung.",
+        "en": "A directed link between items with predicate and target. Back-references show it from the opposite direction."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/real-life-stack/blob/master/docs/spec/04-items-relations-groups-spaces.md"
+      ],
+      "symbols": [
+        "Relation"
+      ],
+      "facts": [],
+      "note": "",
+      "mappings": [
+        {
+          "rel": "rl:falseFriend",
+          "key": "rlnp:Beziehung"
+        }
+      ],
+      "row": [
+        "rls:relation"
+      ]
+    },
+    {
+      "key": "rls:profile",
+      "kind": "term",
+      "world": "rls",
+      "iri": "https://real-life.org/rls/v1#profile",
+      "page": "https://real-life.org/rls/v1/#profile",
+      "label": {
+        "de": "Personenprofil",
+        "en": "Person profile"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Die fachliche Darstellung einer Person als Item nach Profilvertrag. Die User-Identität ist ein eigener Begriff.",
+        "en": "The domain representation of a person as an item under the profile contract. The user identity is a separate term."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/real-life-stack/blob/master/docs/spec/12-profile.md"
+      ],
+      "symbols": [
+        "ProfilePanelContent"
+      ],
+      "facts": [],
+      "note": "",
+      "mappings": [
+        {
+          "rel": "skos:relatedMatch",
+          "key": "rlnp:Mensch"
+        }
+      ],
+      "row": [
+        "rls:profile"
+      ]
+    },
+    {
+      "key": "rls:connector",
+      "kind": "term",
+      "world": "rls",
+      "iri": "https://real-life.org/rls/v1#connector",
+      "page": "https://real-life.org/rls/v1/#connector",
+      "label": {
+        "de": "Connector",
+        "en": "Connector"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Die Implementierung des DataInterface für eine konkrete Datenquelle, ergänzt um unterstützte Capabilities. Die Steckstelle des Stacks nach unten.",
+        "en": "The implementation of the DataInterface for one data source, plus the capabilities it supports. The stack's socket downward."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/real-life-stack/blob/master/docs/spec/02-data-interface.md"
+      ],
+      "symbols": [
+        "DataInterface"
+      ],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP and RLTP. The connector is pure Stack construction.",
+      "mappings": [],
+      "row": [
+        "rls:connector"
+      ]
+    },
+    {
+      "key": "rls:member",
+      "kind": "term",
+      "world": "rls",
+      "iri": "https://real-life.org/rls/v1#member",
+      "page": "https://real-life.org/rls/v1/#member",
+      "label": {
+        "de": "Mitglied",
+        "en": "Member"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Vorgeschlagen: wer zu einem Space gehört. Die Anwendungsschicht liest Mitgliedschaft über den Connector und konstruiert sie nicht selbst; wie sie gespeichert und belegt wird, entscheidet der jeweilige Connector (der lokale Connector hält sie in groupMembers, der RLTP-Connector leitet sie aus Gruppen-Log und Schlüssel ab).",
+        "en": "Proposed: who belongs to a space. The application layer reads membership through the connector and does not construct it; how it is stored and proven is decided by the connector in use (the local connector keeps it in groupMembers, the RLTP connector derives it from the group log and key)."
+      },
+      "status": "proposed",
+      "sources": [
+        "https://github.com/real-life-org/real-life-stack/blob/master/docs/spec/04-items-relations-groups-spaces.md"
+      ],
+      "symbols": [
+        "_members",
+        "groupMembers"
+      ],
+      "facts": [],
+      "note": "",
+      "mappings": [
+        {
+          "rel": "skos:exactMatch",
+          "key": "rltp:Member"
+        }
+      ],
+      "row": [
+        "rls:member",
+        "rltp:Member"
+      ]
+    },
+    {
+      "key": "rls:visibility",
+      "kind": "term",
+      "world": "rls",
+      "iri": "https://real-life.org/rls/v1#visibility",
+      "page": "https://real-life.org/rls/v1/#visibility",
+      "label": {
+        "de": "Sichtbarkeit",
+        "en": "Visibility"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Vorgeschlagen: wo ein Item liegt und wer es deshalb sieht: im Space, gespiegelt in einen anderen Space, oder veröffentlicht ohne Anmeldung. Welches Backend ein veröffentlichtes Item ausliefert, entscheidet der Connector.",
+        "en": "Proposed: where an item lives and who therefore sees it: within its space, mirrored into another space, or published without sign-in. Which backend serves a published item is the connector's decision."
+      },
+      "status": "proposed",
+      "sources": [
+        "https://github.com/real-life-org/real-life-stack/blob/master/docs/spec/09-mirror-bridge.md"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "",
+      "mappings": [
+        {
+          "rel": "rl:convergesWith",
+          "key": "rlnp:Sichtbarkeit"
+        }
+      ],
+      "row": [
+        "rls:visibility"
+      ]
+    },
+    {
+      "key": "rls:verification",
+      "kind": "term",
+      "world": "rls",
+      "iri": "https://real-life.org/rls/v1#verification",
+      "page": "https://real-life.org/rls/v1/#verification",
+      "label": {
+        "de": "Verifikation",
+        "en": "Verification"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Der Ablauf, in dem zwei Menschen eine Begegnung in der App festhalten, etwa per QR-Code; eine eigene Capability des Connectors. Kontakte und Verifikationen sind nicht dasselbe wie Profile.",
+        "en": "The flow in which two people record an encounter in the app, for example by QR code; a capability of the connector in its own right. Contacts and verifications are not the same as profiles."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/real-life-stack/blob/master/docs/spec/03-capabilities.md",
+        "https://github.com/real-life-org/real-life-stack/blob/master/docs/spec/04-items-relations-groups-spaces.md"
+      ],
+      "symbols": [
+        "EncounterVerificationCapable",
+        "VerificationDialog"
+      ],
+      "facts": [],
+      "note": "",
+      "mappings": [
+        {
+          "rel": "skos:exactMatch",
+          "key": "rlnp:Verifikation"
+        },
+        {
+          "rel": "skos:exactMatch",
+          "key": "rltp:Enactment"
+        }
+      ],
+      "row": [
+        "rlnp:Verifikation",
+        "rls:verification",
+        "rltp:Enactment"
+      ]
+    },
+    {
+      "key": "rls:multi-space-item",
+      "kind": "term",
+      "world": "rls",
+      "iri": "https://real-life.org/rls/v1#multi-space-item",
+      "page": "https://real-life.org/rls/v1/#multi-space-item",
+      "label": {
+        "de": "Item in mehreren Spaces",
+        "en": "Item in several spaces"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Vorgeschlagen: ein Item liegt in mehr als einem Space und hat einen Heimat-Space, der es verantwortet. Wie das gemacht wird, per Zuordnung in einer zentralen Datenbank oder per Kopie mit Brücke bei verteilten Gruppen, entscheidet der Connector.",
+        "en": "Proposed: an item lies in more than one space and has a home space responsible for it. How this is done, by association in a central database or by copy with a bridge across distributed groups, is the connector's decision."
+      },
+      "status": "proposed",
+      "sources": [
+        "https://github.com/real-life-org/real-life-stack/blob/master/docs/spec/09-mirror-bridge.md"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "",
+      "mappings": [
+        {
+          "rel": "skos:relatedMatch",
+          "key": "rlnp:Sichtbarkeit"
+        },
+        {
+          "rel": "skos:relatedMatch",
+          "key": "rls:mirror"
+        }
+      ],
+      "row": [
+        "rls:multi-space-item"
+      ]
+    },
+    {
+      "key": "rltp:ContactCard",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#ContactCard",
+      "page": "https://real-life.org/rltp/v1/#ContactCard",
+      "label": {
+        "de": "",
+        "en": "ContactCard"
+      },
+      "alt": [],
+      "definition": {
+        "de": "",
+        "en": "a person's signed self-description: verification material, key-agreement key, challenge when used in an enactment"
+      },
+      "status": "specified",
+      "sources": [],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "defined in",
+          "target": "Encounter 6"
+        }
+      ],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "rltp:ContactCard"
+      ]
+    },
+    {
+      "key": "rltp:Challenge",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#Challenge",
+      "page": "https://real-life.org/rltp/v1/#Challenge",
+      "label": {
+        "de": "",
+        "en": "Challenge"
+      },
+      "alt": [],
+      "definition": {
+        "de": "",
+        "en": "a fresh, single-use, high-entropy value carried in a contact card for one enactment; governed by the own-challenge state model"
+      },
+      "status": "specified",
+      "sources": [],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "defined in",
+          "target": "Encounter 5.3"
+        }
+      ],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "rltp:Challenge"
+      ]
+    },
+    {
+      "key": "rltp:Ceremony",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#Ceremony",
+      "page": "https://real-life.org/rltp/v1/#Ceremony",
+      "label": {
+        "de": "",
+        "en": "Ceremony"
+      },
+      "alt": [],
+      "definition": {
+        "de": "",
+        "en": "a registered, versioned definition of an encounter interaction, including its time parameters"
+      },
+      "status": "specified",
+      "sources": [],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "defined in",
+          "target": "Encounter 5.1"
+        }
+      ],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "rltp:Ceremony"
+      ]
+    },
+    {
+      "key": "rltp:Step",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#Step",
+      "page": "https://real-life.org/rltp/v1/#Step",
+      "label": {
+        "de": "",
+        "en": "Step"
+      },
+      "alt": [],
+      "definition": {
+        "de": "",
+        "en": "one credential issuance within an enactment"
+      },
+      "status": "specified",
+      "sources": [],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "defined in",
+          "target": "Encounter 5.2"
+        }
+      ],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "rltp:Step"
+      ]
+    },
+    {
+      "key": "rltp:EnactmentBinding",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#EnactmentBinding",
+      "page": "https://real-life.org/rltp/v1/#EnactmentBinding",
+      "label": {
+        "de": "",
+        "en": "EnactmentBinding"
+      },
+      "alt": [],
+      "definition": {
+        "de": "",
+        "en": "the digest, identical in both step credentials, tying them to one exchange descriptor"
+      },
+      "status": "specified",
+      "sources": [],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "defined in",
+          "target": "Encounter 5.4"
+        }
+      ],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "rltp:EnactmentBinding"
+      ]
+    },
+    {
+      "key": "rltp:CredentialDigest",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#CredentialDigest",
+      "page": "https://real-life.org/rltp/v1/#CredentialDigest",
+      "label": {
+        "de": "",
+        "en": "CredentialDigest"
+      },
+      "alt": [],
+      "definition": {
+        "de": "",
+        "en": "the multibase multihash over JCS(document) of the complete credential including its proof"
+      },
+      "status": "specified",
+      "sources": [],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "defined in",
+          "target": "Encounter 2.2"
+        }
+      ],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "rltp:CredentialDigest"
+      ]
+    },
+    {
+      "key": "rltp:DocumentDigest",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#DocumentDigest",
+      "page": "https://real-life.org/rltp/v1/#DocumentDigest",
+      "label": {
+        "de": "",
+        "en": "DocumentDigest"
+      },
+      "alt": [],
+      "definition": {
+        "de": "",
+        "en": "the multibase multihash over JCS(document) of a delivery document's plaintext; its identity for idempotency and acknowledgement"
+      },
+      "status": "specified",
+      "sources": [],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "defined in",
+          "target": "Delivery 2"
+        }
+      ],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "rltp:DocumentDigest"
+      ]
+    },
+    {
+      "key": "rltp:SealedEnvelope",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#SealedEnvelope",
+      "page": "https://real-life.org/rltp/v1/#SealedEnvelope",
+      "label": {
+        "de": "",
+        "en": "SealedEnvelope"
+      },
+      "alt": [],
+      "definition": {
+        "de": "",
+        "en": "the encrypted form in which a document travels: ephemeral X25519, HKDF, AES-256-GCM"
+      },
+      "status": "specified",
+      "sources": [],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "defined in",
+          "target": "Delivery 5"
+        }
+      ],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "rltp:SealedEnvelope"
+      ]
+    },
+    {
+      "key": "rltp:Disposition",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#Disposition",
+      "page": "https://real-life.org/rltp/v1/#Disposition",
+      "label": {
+        "de": "",
+        "en": "Disposition"
+      },
+      "alt": [],
+      "definition": {
+        "de": "",
+        "en": "the receiver's classification of a processed envelope (staged, first failing stage names it)"
+      },
+      "status": "specified",
+      "sources": [],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "defined in",
+          "target": "Delivery 6.2"
+        }
+      ],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "rltp:Disposition"
+      ]
+    },
+    {
+      "key": "rltp:DeliveryAck",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#DeliveryAck",
+      "page": "https://real-life.org/rltp/v1/#DeliveryAck",
+      "label": {
+        "de": "",
+        "en": "DeliveryAck"
+      },
+      "alt": [],
+      "definition": {
+        "de": "",
+        "en": "the arrival acknowledgement: machine-generated at the durable recording of a document's defined effect; arrival, never acceptance"
+      },
+      "status": "specified",
+      "sources": [],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "defined in",
+          "target": "Delivery 4.2"
+        }
+      ],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "rltp:DeliveryAck"
+      ]
+    },
+    {
+      "key": "task:access-operation/0.1",
+      "kind": "task",
+      "world": "task",
+      "iri": "https://real-life.org/trust-tasks/access-operation/0.1",
+      "page": "https://real-life.org/trust-tasks/access-operation/0.1/",
+      "label": {
+        "de": "access-operation/0.1",
+        "en": "access-operation/0.1"
+      },
+      "alt": [],
+      "definition": {
+        "de": "",
+        "en": "The generic carrier for Access-layer operations crossing the replica boundary, incl. the member.add admission profile and the welcome seal."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
+      ],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "profile",
+          "target": "rltp-membership@0.16"
+        },
+        {
+          "text": "defined in",
+          "target": "RLTP Membership Tasks 3.3",
+          "href": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
+        }
+      ],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "task:access-operation/0.1"
+      ]
+    },
+    {
+      "key": "task:delivery-ack/0.1",
+      "kind": "task",
+      "world": "task",
+      "iri": "https://real-life.org/trust-tasks/delivery-ack/0.1",
+      "page": "https://real-life.org/trust-tasks/delivery-ack/0.1/",
+      "label": {
+        "de": "delivery-ack/0.1",
+        "en": "delivery-ack/0.1"
+      },
+      "alt": [],
+      "definition": {
+        "de": "",
+        "en": "The arrival acknowledgement: proof-carrying, terminal, arrival-only semantics."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
+      ],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "profile",
+          "target": "rltp-delivery@0.79"
+        },
+        {
+          "text": "defined in",
+          "target": "RLTP Delivery Contract 4.2",
+          "href": "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
+        }
+      ],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "task:delivery-ack/0.1"
+      ]
+    },
+    {
+      "key": "task:encounter-bundle/0.1",
+      "kind": "task",
+      "world": "task",
+      "iri": "https://real-life.org/trust-tasks/encounter-bundle/0.1",
+      "page": "https://real-life.org/trust-tasks/encounter-bundle/0.1/",
+      "label": {
+        "de": "encounter-bundle/0.1",
+        "en": "encounter-bundle/0.1"
+      },
+      "alt": [],
+      "definition": {
+        "de": "",
+        "en": "The one-scan transmission: the scanner's sent card and step credential."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
+      ],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "profile",
+          "target": "rltp-delivery@0.79"
+        },
+        {
+          "text": "defined in",
+          "target": "RLTP Delivery Contract 4.1",
+          "href": "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
+        }
+      ],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "task:encounter-bundle/0.1"
+      ]
+    },
+    {
+      "key": "task:encounter-credential-delivery/0.1",
+      "kind": "task",
+      "world": "task",
+      "iri": "https://real-life.org/trust-tasks/encounter-credential-delivery/0.1",
+      "page": "https://real-life.org/trust-tasks/encounter-credential-delivery/0.1/",
+      "label": {
+        "de": "encounter-credential-delivery/0.1",
+        "en": "encounter-credential-delivery/0.1"
+      },
+      "alt": [],
+      "definition": {
+        "de": "",
+        "en": "Post-enactment delivery of a step credential (counter-step or standalone)."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
+      ],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "profile",
+          "target": "rltp-delivery@0.79"
+        },
+        {
+          "text": "defined in",
+          "target": "RLTP Delivery Contract 4.3",
+          "href": "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
+        }
+      ],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "task:encounter-credential-delivery/0.1"
+      ]
+    },
+    {
+      "key": "task:key-delivery/0.1",
+      "kind": "task",
+      "world": "task",
+      "iri": "https://real-life.org/trust-tasks/key-delivery/0.1",
+      "page": "https://real-life.org/trust-tasks/key-delivery/0.1/",
+      "label": {
+        "de": "key-delivery/0.1",
+        "en": "key-delivery/0.1"
+      },
+      "alt": [],
+      "definition": {
+        "de": "",
+        "en": "Epoch key material to a specific party, and the authenticated request for it: transition key envelopes, welcomes and re-welcomes, refreshes under the key service duty."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md"
+      ],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "profile",
+          "target": "rltp-access@0.24"
+        },
+        {
+          "text": "defined in",
+          "target": "RLTP Access Layer 10.1",
+          "href": "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md"
+        }
+      ],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "task:key-delivery/0.1"
+      ]
+    },
+    {
+      "key": "task:membership-accept/0.2",
+      "kind": "task",
+      "world": "task",
+      "iri": "https://real-life.org/trust-tasks/membership-accept/0.2",
+      "page": "https://real-life.org/trust-tasks/membership-accept/0.2/",
+      "label": {
+        "de": "membership-accept/0.2",
+        "en": "membership-accept/0.2"
+      },
+      "alt": [],
+      "definition": {
+        "de": "",
+        "en": "The consent artifact: signed by the person consenting, subject equals issuer and the invite's invitee, content-bound by credential digest to exactly one invitation."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
+      ],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "profile",
+          "target": "rltp-membership@0.16"
+        },
+        {
+          "text": "defined in",
+          "target": "RLTP Membership Tasks 3.2",
+          "href": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
+        }
+      ],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "task:membership-accept/0.2"
+      ]
+    },
+    {
+      "key": "task:membership-evidence/0.1",
+      "kind": "task",
+      "world": "task",
+      "iri": "https://real-life.org/trust-tasks/membership-evidence/0.1",
+      "page": "https://real-life.org/trust-tasks/membership-evidence/0.1/",
+      "label": {
+        "de": "membership-evidence/0.1",
+        "en": "membership-evidence/0.1"
+      },
+      "alt": [],
+      "definition": {
+        "de": "",
+        "en": "The evidence relay: the complete invite and accept documents, enclosed, so any authorized member can admit."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
+      ],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "profile",
+          "target": "rltp-membership@0.16"
+        },
+        {
+          "text": "defined in",
+          "target": "RLTP Membership Tasks 3.4",
+          "href": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
+        }
+      ],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "task:membership-evidence/0.1"
+      ]
+    },
+    {
+      "key": "task:membership-invite/0.2",
+      "kind": "task",
+      "world": "task",
+      "iri": "https://real-life.org/trust-tasks/membership-invite/0.2",
+      "page": "https://real-life.org/trust-tasks/membership-invite/0.2/",
+      "label": {
+        "de": "membership-invite/0.2",
+        "en": "membership-invite/0.2"
+      },
+      "alt": [],
+      "definition": {
+        "de": "",
+        "en": "The invitation as a conformant DTG InvitationCredential: issued by the inviting member, subject is the invitee, no key material; bound to the membership thread."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
+      ],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "profile",
+          "target": "rltp-membership@0.16"
+        },
+        {
+          "text": "defined in",
+          "target": "RLTP Membership Tasks 3.1",
+          "href": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
+        }
+      ],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "task:membership-invite/0.2"
+      ]
+    },
+    {
+      "key": "task:registry-declaration/0.1",
+      "kind": "task",
+      "world": "task",
+      "iri": "https://real-life.org/trust-tasks/registry-declaration/0.1",
+      "page": "https://real-life.org/trust-tasks/registry-declaration/0.1/",
+      "label": {
+        "de": "registry-declaration/0.1",
+        "en": "registry-declaration/0.1"
+      },
+      "alt": [],
+      "definition": {
+        "de": "",
+        "en": "Per-party declaration of fixed operational constants for a served role; the envelope is generic, each role's specification registers the constant names."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
+      ],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "profile",
+          "target": "rltp-delivery@0.79"
+        },
+        {
+          "text": "defined in",
+          "target": "RLTP Delivery Contract 4.4",
+          "href": "https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md"
+        }
+      ],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "task:registry-declaration/0.1"
+      ]
+    },
+    {
+      "key": "task:removal-notice/0.1",
+      "kind": "task",
+      "world": "task",
+      "iri": "https://real-life.org/trust-tasks/removal-notice/0.1",
+      "page": "https://real-life.org/trust-tasks/removal-notice/0.1/",
+      "label": {
+        "de": "removal-notice/0.1",
+        "en": "removal-notice/0.1"
+      },
+      "alt": [],
+      "definition": {
+        "de": "",
+        "en": "The compact notice a removed member is owed: it states the removal without carrying the transition-bearing envelope, which never crosses the replica boundary."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md"
+      ],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "profile",
+          "target": "rltp-access@0.24"
+        },
+        {
+          "text": "defined in",
+          "target": "RLTP Access Layer 10.2",
+          "href": "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md"
+        }
+      ],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "task:removal-notice/0.1"
+      ]
+    },
+    {
+      "key": "task:membership-invite/0.1",
+      "kind": "task",
+      "world": "task",
+      "iri": "https://real-life.org/trust-tasks/membership-invite/0.1",
+      "page": "https://real-life.org/trust-tasks/membership-invite/0.1/",
+      "label": {
+        "de": "membership-invite/0.1",
+        "en": "membership-invite/0.1"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Zurückgezogene Version, abgelöst durch membership-invite/0.2. Die Kennung löst weiter auf, das veröffentlichte Schema bleibt.",
+        "en": "Retired version, superseded by membership-invite/0.2. The URI keeps resolving; the published schema stays."
+      },
+      "status": "superseded",
+      "sources": [],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "superseded by",
+          "target": "membership-invite/0.2",
+          "href": "/trust-tasks/membership-invite/0.2/"
+        }
+      ],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "task:membership-invite/0.1"
+      ]
+    },
+    {
+      "key": "task:membership-accept/0.1",
+      "kind": "task",
+      "world": "task",
+      "iri": "https://real-life.org/trust-tasks/membership-accept/0.1",
+      "page": "https://real-life.org/trust-tasks/membership-accept/0.1/",
+      "label": {
+        "de": "membership-accept/0.1",
+        "en": "membership-accept/0.1"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Zurückgezogene Version, abgelöst durch membership-accept/0.2. Die Kennung löst weiter auf, das veröffentlichte Schema bleibt.",
+        "en": "Retired version, superseded by membership-accept/0.2. The URI keeps resolving; the published schema stays."
+      },
+      "status": "superseded",
+      "sources": [],
+      "symbols": [],
+      "facts": [
+        {
+          "text": "superseded by",
+          "target": "membership-accept/0.2",
+          "href": "/trust-tasks/membership-accept/0.2/"
+        }
+      ],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "task:membership-accept/0.1"
+      ]
+    },
+    {
+      "key": "field:convergesWith",
+      "kind": "field",
+      "world": "meta",
+      "iri": "https://real-life.org/meta/v1#convergesWith",
+      "page": "https://real-life.org/meta/v1/#convergesWith",
+      "label": {
+        "de": "rl:convergesWith",
+        "en": "rl:convergesWith"
+      },
+      "alt": [],
+      "definition": {
+        "en": "The target state: these two concepts are meant to become the same, and the specifications have a task until they are. The SKOS mapping relations describe today.",
+        "de": "Der Zielzustand: Diese zwei Begriffe sollen gleich werden, und die Spezifikationen haben eine Aufgabe, bis sie es sind. Die SKOS-Relationen beschreiben das Heute."
+      },
+      "status": "specified",
+      "sources": [],
+      "symbols": [],
+      "facts": [],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "field:convergesWith"
+      ]
+    },
+    {
+      "key": "field:falseFriend",
+      "kind": "field",
+      "world": "meta",
+      "iri": "https://real-life.org/meta/v1#falseFriend",
+      "page": "https://real-life.org/meta/v1/#falseFriend",
+      "label": {
+        "de": "rl:falseFriend",
+        "en": "rl:falseFriend"
+      },
+      "alt": [],
+      "definition": {
+        "en": "Same word in at least one language, different thing, on purpose. Recorded so the pair is never reported as a missing mapping and so the pages show it explicitly.",
+        "de": "Gleiches Wort in mindestens einer Sprache, andere Sache, mit Absicht. Festgehalten, damit das Paar nie als fehlende Verknüpfung gemeldet wird und die Seiten es ausdrücklich zeigen."
+      },
+      "status": "specified",
+      "sources": [],
+      "symbols": [],
+      "facts": [],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "field:falseFriend"
+      ]
+    },
+    {
+      "key": "field:status",
+      "kind": "field",
+      "world": "meta",
+      "iri": "https://real-life.org/meta/v1#status",
+      "page": "https://real-life.org/meta/v1/#status",
+      "label": {
+        "de": "rl:status",
+        "en": "rl:status"
+      },
+      "alt": [],
+      "definition": {
+        "en": "\"proposed\": the concept does not exist in its specification yet; it is a proposal from the register to that part.",
+        "de": "„proposed\": Der Begriff existiert in seiner Spezifikation noch nicht; er ist ein Vorschlag des Registers an diesen Teil."
+      },
+      "status": "specified",
+      "sources": [],
+      "symbols": [],
+      "facts": [],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "field:status"
+      ]
+    },
+    {
+      "key": "field:symbol",
+      "kind": "field",
+      "world": "meta",
+      "iri": "https://real-life.org/meta/v1#symbol",
+      "page": "https://real-life.org/meta/v1/#symbol",
+      "label": {
+        "de": "rl:symbol",
+        "en": "rl:symbol"
+      },
+      "alt": [],
+      "definition": {
+        "en": "Code symbols that implement the term (Real Life Stack only).",
+        "de": "Codesymbole, die den Begriff implementieren (nur Real Life Stack)."
+      },
+      "status": "specified",
+      "sources": [],
+      "symbols": [],
+      "facts": [],
+      "note": "",
+      "mappings": [],
+      "row": [
+        "field:symbol"
+      ]
+    }
+  ]
+}

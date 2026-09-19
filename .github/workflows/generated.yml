@@ -20,7 +20,7 @@ name: generated
 # day behind its sources, never indefinitely.
 #
 # Sources: rltp-spec for /rltp/v1 and /trust-tasks (scripts/generate.mjs);
-# real-life-org/meta for /rlnp/v1, /rls/v1 and /meta/v1 (scripts/generate-terms.mjs).
+# both together for every HTML page and the register data (scripts/generate-pages.mjs).
 
 on:
   push:
@@ -53,9 +53,9 @@ jobs:
         if: github.event_name == 'push' || github.event_name == 'pull_request'
         run: node scripts/generate.mjs rltp-spec --check
 
-      - name: term namespaces match the register
+      - name: pages and register match their sources
         if: github.event_name == 'push' || github.event_name == 'pull_request'
-        run: node scripts/generate-terms.mjs meta-src --check
+        run: node scripts/generate-pages.mjs meta-src rltp-spec --check
 
       - name: regenerate and publish
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
@@ -64,7 +64,7 @@ jobs:
           SPEC_SHA=$(git -C rltp-spec rev-parse --short HEAD)
           META_SHA=$(git -C meta-src rev-parse --short HEAD)
           node scripts/generate.mjs rltp-spec
-          node scripts/generate-terms.mjs meta-src
+          node scripts/generate-pages.mjs meta-src rltp-spec
           rm -rf rltp-spec meta-src           # never let the source repos into this one
           if [ -z "$(git status --porcelain)" ]; then
             echo "Already matches rltp-spec at ${SPEC_SHA} and meta at ${META_SHA} — nothing to publish."

@@ -32,63 +32,70 @@ figure{margin:0 0 1.6rem}figure img{width:100%;height:auto;display:block;border-
 .rels{display:flex;flex-wrap:wrap;gap:2px 10px;margin-top:4px;font-size:.82em;color:var(--soft)}.rels span{white-space:nowrap}.rels i{font-style:normal;color:var(--muted)}
 .act{margin-top:3px;font-size:.8em}.act a{margin-right:.7em;color:var(--muted)}.act a:hover{color:var(--link)}
 .note{margin:4px 0 0;font-size:.85em;color:var(--soft);font-style:italic}
-.empty{display:none;color:var(--muted);padding:24px 0}</style><link rel="alternate" type="application/json" href="/trust-tasks/index.json"><script type="application/ld+json">{"@context":"https://schema.org","@type":"DefinedTermSet","@id":"https://real-life.org/trust-tasks/","name":"RLTP Trust Task types","description":"Private Trust Task types of the Real Life Trust Protocol. Machine-readable registry: https://real-life.org/trust-tasks/index.json","url":"https://real-life.org/trust-tasks/"}</script></head><body>
+.empty{display:none;color:var(--muted);padding:24px 0}</style><link rel="alternate" type="application/json" href="/trust-tasks/index.json"><script type="application/ld+json">{"@context":"https://schema.org","@type":"DefinedTermSet","@id":"https://real-life.org/trust-tasks/","name":"RLTP Trust Task types","url":"https://real-life.org/trust-tasks/"}</script></head><body>
 <header><div class="bar"><a class="brand" href="/de/"><b>Real Life</b></a>
 <nav><a href="/de/">Überblick</a><a href="/de/terms/">Wörterbuch</a><a href="/de/#identifiers" class="on">Kennungen</a></nav>
 <input id="q" type="search" placeholder="Suchen…" aria-label="Suchen…"><div class="right"><a class="btn" href="/trust-tasks/" lang="en">EN</a></div></div></header>
 <main>
-<h1>RLTP Trust-Task-Typen</h1>
-<p>Private Trust-Task-Typen, die das Real Life Trust Protocol unter <code>https://real-life.org/trust-tasks/</code> registriert (ToIP DTGWG Trust Tasks 0.4 (draft), §6.5 private specifications). Die Beschreibungen sind englisch, wie die Spezifikation.</p>
-<p>Maschinenlesbares Register: <a href="/trust-tasks/index.json"><code>index.json</code></a> — jeder Typ mit Type URI, Payload-Schema-URL, definierendem Abschnitt und SHA-256-Prüfsumme. Jedes Payload-Schema löst als rohes JSON unter <code>&lt;Type&nbsp;URI&gt;/schema.json</code> auf.</p>
-<div class="entries"><div class="e" id="access-operation-0.1" data-q="access-operation/0.1  the generic carrier for access-layer operations crossing the replica boundary, incl. the member.add admission profile and the welcome seal."><span class="w w-task">Trust Task</span><div>
+<h1>RLTP Trust-Task-Typen</h1><p>Private Trust-Task-Typen, die das Real Life Trust Protocol unter <code>https://real-life.org/trust-tasks/</code> registriert (ToIP DTGWG Trust Tasks 0.4 (draft), §6.5 private specifications). Die Beschreibungen sind englisch, wie die Spezifikation.</p><p>Maschinenlesbares Register: <a href="/trust-tasks/index.json"><code>index.json</code></a> — jeder Typ mit Type URI, Payload-Schema-URL, definierendem Abschnitt und SHA-256-Prüfsumme. Jedes Payload-Schema löst als rohes JSON unter <code>&lt;Type&nbsp;URI&gt;/schema.json</code> auf.</p><div class="entries"><div class="e" id="access-operation/0.1" data-q="access-operation/0.1  the generic carrier for access-layer operations crossing the replica boundary, incl. the member.add admission profile and the welcome seal."><span class="w w-task">Trust Task</span><div>
 <div class="head"><b><a href="/trust-tasks/access-operation/0.1/">access-operation/0.1</a></b></div>
 <p class="def">The generic carrier for Access-layer operations crossing the replica boundary, incl. the member.add admission profile and the welcome seal.</p>
-<div class="rels"><span>Profil <b>rltp-membership@0.16</b></span><span>definiert in <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md">RLTP Membership Tasks 3.3</a></span></div>
+<div class="rels"><span>Profil <b>rltp-membership@0.16</b></span><span>definiert in <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md">RLTP Membership Tasks 3.3</a></span><span>Quelle <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md">RLTP Membership Tasks 3.3</a></span></div>
 </div></div>
-<div class="e" id="delivery-ack-0.1" data-q="delivery-ack/0.1  the arrival acknowledgement: proof-carrying, terminal, arrival-only semantics."><span class="w w-task">Trust Task</span><div>
+<div class="e" id="delivery-ack/0.1" data-q="delivery-ack/0.1  the arrival acknowledgement: proof-carrying, terminal, arrival-only semantics."><span class="w w-task">Trust Task</span><div>
 <div class="head"><b><a href="/trust-tasks/delivery-ack/0.1/">delivery-ack/0.1</a></b></div>
 <p class="def">The arrival acknowledgement: proof-carrying, terminal, arrival-only semantics.</p>
-<div class="rels"><span>Profil <b>rltp-delivery@0.79</b></span><span>definiert in <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md">RLTP Delivery Contract 4.2</a></span></div>
+<div class="rels"><span>Profil <b>rltp-delivery@0.79</b></span><span>definiert in <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md">RLTP Delivery Contract 4.2</a></span><span>Quelle <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md">RLTP Delivery Contract 4.2</a></span></div>
 </div></div>
-<div class="e" id="encounter-bundle-0.1" data-q="encounter-bundle/0.1  the one-scan transmission: the scanner's sent card and step credential."><span class="w w-task">Trust Task</span><div>
+<div class="e" id="encounter-bundle/0.1" data-q="encounter-bundle/0.1  the one-scan transmission: the scanner's sent card and step credential."><span class="w w-task">Trust Task</span><div>
 <div class="head"><b><a href="/trust-tasks/encounter-bundle/0.1/">encounter-bundle/0.1</a></b></div>
 <p class="def">The one-scan transmission: the scanner's sent card and step credential.</p>
-<div class="rels"><span>Profil <b>rltp-delivery@0.79</b></span><span>definiert in <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md">RLTP Delivery Contract 4.1</a></span></div>
+<div class="rels"><span>Profil <b>rltp-delivery@0.79</b></span><span>definiert in <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md">RLTP Delivery Contract 4.1</a></span><span>Quelle <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md">RLTP Delivery Contract 4.1</a></span></div>
 </div></div>
-<div class="e" id="encounter-credential-delivery-0.1" data-q="encounter-credential-delivery/0.1  post-enactment delivery of a step credential (counter-step or standalone)."><span class="w w-task">Trust Task</span><div>
+<div class="e" id="encounter-credential-delivery/0.1" data-q="encounter-credential-delivery/0.1  post-enactment delivery of a step credential (counter-step or standalone)."><span class="w w-task">Trust Task</span><div>
 <div class="head"><b><a href="/trust-tasks/encounter-credential-delivery/0.1/">encounter-credential-delivery/0.1</a></b></div>
 <p class="def">Post-enactment delivery of a step credential (counter-step or standalone).</p>
-<div class="rels"><span>Profil <b>rltp-delivery@0.79</b></span><span>definiert in <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md">RLTP Delivery Contract 4.3</a></span></div>
+<div class="rels"><span>Profil <b>rltp-delivery@0.79</b></span><span>definiert in <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md">RLTP Delivery Contract 4.3</a></span><span>Quelle <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md">RLTP Delivery Contract 4.3</a></span></div>
 </div></div>
-<div class="e" id="key-delivery-0.1" data-q="key-delivery/0.1  epoch key material to a specific party, and the authenticated request for it: transition key envelopes, welcomes and re-welcomes, refreshes under the key service duty."><span class="w w-task">Trust Task</span><div>
+<div class="e" id="key-delivery/0.1" data-q="key-delivery/0.1  epoch key material to a specific party, and the authenticated request for it: transition key envelopes, welcomes and re-welcomes, refreshes under the key service duty."><span class="w w-task">Trust Task</span><div>
 <div class="head"><b><a href="/trust-tasks/key-delivery/0.1/">key-delivery/0.1</a></b></div>
 <p class="def">Epoch key material to a specific party, and the authenticated request for it: transition key envelopes, welcomes and re-welcomes, refreshes under the key service duty.</p>
-<div class="rels"><span>Profil <b>rltp-access@0.24</b></span><span>definiert in <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md">RLTP Access Layer 10.1</a></span></div>
+<div class="rels"><span>Profil <b>rltp-access@0.24</b></span><span>definiert in <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md">RLTP Access Layer 10.1</a></span><span>Quelle <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md">RLTP Access Layer 10.1</a></span></div>
 </div></div>
-<div class="e" id="membership-accept-0.2" data-q="membership-accept/0.2  the consent artifact: signed by the person consenting, subject equals issuer and the invite's invitee, content-bound by credential digest to exactly one invitation."><span class="w w-task">Trust Task</span><div>
+<div class="e" id="membership-accept/0.2" data-q="membership-accept/0.2  the consent artifact: signed by the person consenting, subject equals issuer and the invite's invitee, content-bound by credential digest to exactly one invitation."><span class="w w-task">Trust Task</span><div>
 <div class="head"><b><a href="/trust-tasks/membership-accept/0.2/">membership-accept/0.2</a></b></div>
 <p class="def">The consent artifact: signed by the person consenting, subject equals issuer and the invite's invitee, content-bound by credential digest to exactly one invitation.</p>
-<div class="rels"><span>Profil <b>rltp-membership@0.16</b></span><span>definiert in <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md">RLTP Membership Tasks 3.2</a></span></div>
+<div class="rels"><span>Profil <b>rltp-membership@0.16</b></span><span>definiert in <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md">RLTP Membership Tasks 3.2</a></span><span>Quelle <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md">RLTP Membership Tasks 3.2</a></span></div>
 </div></div>
-<div class="e" id="membership-evidence-0.1" data-q="membership-evidence/0.1  the evidence relay: the complete invite and accept documents, enclosed, so any authorized member can admit."><span class="w w-task">Trust Task</span><div>
+<div class="e" id="membership-evidence/0.1" data-q="membership-evidence/0.1  the evidence relay: the complete invite and accept documents, enclosed, so any authorized member can admit."><span class="w w-task">Trust Task</span><div>
 <div class="head"><b><a href="/trust-tasks/membership-evidence/0.1/">membership-evidence/0.1</a></b></div>
 <p class="def">The evidence relay: the complete invite and accept documents, enclosed, so any authorized member can admit.</p>
-<div class="rels"><span>Profil <b>rltp-membership@0.16</b></span><span>definiert in <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md">RLTP Membership Tasks 3.4</a></span></div>
+<div class="rels"><span>Profil <b>rltp-membership@0.16</b></span><span>definiert in <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md">RLTP Membership Tasks 3.4</a></span><span>Quelle <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md">RLTP Membership Tasks 3.4</a></span></div>
 </div></div>
-<div class="e" id="membership-invite-0.2" data-q="membership-invite/0.2  the invitation as a conformant dtg invitationcredential: issued by the inviting member, subject is the invitee, no key material; bound to the membership thread."><span class="w w-task">Trust Task</span><div>
+<div class="e" id="membership-invite/0.2" data-q="membership-invite/0.2  the invitation as a conformant dtg invitationcredential: issued by the inviting member, subject is the invitee, no key material; bound to the membership thread."><span class="w w-task">Trust Task</span><div>
 <div class="head"><b><a href="/trust-tasks/membership-invite/0.2/">membership-invite/0.2</a></b></div>
 <p class="def">The invitation as a conformant DTG InvitationCredential: issued by the inviting member, subject is the invitee, no key material; bound to the membership thread.</p>
-<div class="rels"><span>Profil <b>rltp-membership@0.16</b></span><span>definiert in <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md">RLTP Membership Tasks 3.1</a></span></div>
+<div class="rels"><span>Profil <b>rltp-membership@0.16</b></span><span>definiert in <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md">RLTP Membership Tasks 3.1</a></span><span>Quelle <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md">RLTP Membership Tasks 3.1</a></span></div>
 </div></div>
-<div class="e" id="registry-declaration-0.1" data-q="registry-declaration/0.1  per-party declaration of fixed operational constants for a served role; the envelope is generic, each role's specification registers the constant names."><span class="w w-task">Trust Task</span><div>
+<div class="e" id="registry-declaration/0.1" data-q="registry-declaration/0.1  per-party declaration of fixed operational constants for a served role; the envelope is generic, each role's specification registers the constant names."><span class="w w-task">Trust Task</span><div>
 <div class="head"><b><a href="/trust-tasks/registry-declaration/0.1/">registry-declaration/0.1</a></b></div>
 <p class="def">Per-party declaration of fixed operational constants for a served role; the envelope is generic, each role's specification registers the constant names.</p>
-<div class="rels"><span>Profil <b>rltp-delivery@0.79</b></span><span>definiert in <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md">RLTP Delivery Contract 4.4</a></span></div>
+<div class="rels"><span>Profil <b>rltp-delivery@0.79</b></span><span>definiert in <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md">RLTP Delivery Contract 4.4</a></span><span>Quelle <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/delivery-contract.md">RLTP Delivery Contract 4.4</a></span></div>
 </div></div>
-<div class="e" id="removal-notice-0.1" data-q="removal-notice/0.1  the compact notice a removed member is owed: it states the removal without carrying the transition-bearing envelope, which never crosses the replica boundary."><span class="w w-task">Trust Task</span><div>
+<div class="e" id="removal-notice/0.1" data-q="removal-notice/0.1  the compact notice a removed member is owed: it states the removal without carrying the transition-bearing envelope, which never crosses the replica boundary."><span class="w w-task">Trust Task</span><div>
 <div class="head"><b><a href="/trust-tasks/removal-notice/0.1/">removal-notice/0.1</a></b></div>
 <p class="def">The compact notice a removed member is owed: it states the removal without carrying the transition-bearing envelope, which never crosses the replica boundary.</p>
-<div class="rels"><span>Profil <b>rltp-access@0.24</b></span><span>definiert in <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md">RLTP Access Layer 10.2</a></span></div>
+<div class="rels"><span>Profil <b>rltp-access@0.24</b></span><span>definiert in <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md">RLTP Access Layer 10.2</a></span><span>Quelle <a href="https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md">RLTP Access Layer 10.2</a></span></div>
+</div></div>
+<div class="e" id="membership-invite/0.1" data-q="membership-invite/0.1  zurückgezogene version, abgelöst durch membership-invite/0.2. die kennung löst weiter auf, das veröffentlichte schema bleibt."><span class="w w-task">Trust Task</span><div>
+<div class="head"><b><a href="/trust-tasks/membership-invite/0.1/">membership-invite/0.1</a></b><span class="tag">abgelöst</span></div>
+<p class="def">Zurückgezogene Version, abgelöst durch membership-invite/0.2. Die Kennung löst weiter auf, das veröffentlichte Schema bleibt.</p>
+<div class="rels"><span>abgelöst durch <a href="/trust-tasks/membership-invite/0.2/">membership-invite/0.2</a></span></div>
+</div></div>
+<div class="e" id="membership-accept/0.1" data-q="membership-accept/0.1  zurückgezogene version, abgelöst durch membership-accept/0.2. die kennung löst weiter auf, das veröffentlichte schema bleibt."><span class="w w-task">Trust Task</span><div>
+<div class="head"><b><a href="/trust-tasks/membership-accept/0.1/">membership-accept/0.1</a></b><span class="tag">abgelöst</span></div>
+<p class="def">Zurückgezogene Version, abgelöst durch membership-accept/0.2. Die Kennung löst weiter auf, das veröffentlichte Schema bleibt.</p>
+<div class="rels"><span>abgelöst durch <a href="/trust-tasks/membership-accept/0.2/">membership-accept/0.2</a></span></div>
 </div></div></div>
 <p class="empty" id="empty">Nichts passt zur Suche.</p>
 </main>
