@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Real Life — real-life.org</title><link rel="alternate" hreflang="de" href="https://real-life.org/de/"><style>:root{--bg:#fff;--ink:#1a2030;--muted:#667;--soft:#556;--text2:#333c4d;--line:#e2e6ef;--field:#d5dae6;--chip:#f0f2f7;--hover:#f6f7fa;--link:#2451b3;--warn:#b45309;--mark:#fdf3d8;--rlnp:#3f7a4e;--rlnp-t:#e6f0e7;--rls:#b36b1c;--rls-t:#f7ecdd;--rltp:#2f62c9;--rltp-t:#e5ecfa}
+<!DOCTYPE html><html lang="en"><head><script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The layer picture — real-life.org</title><link rel="alternate" hreflang="de" href="https://real-life.org/de/overview/"><style>:root{--bg:#fff;--ink:#1a2030;--muted:#667;--soft:#556;--text2:#333c4d;--line:#e2e6ef;--field:#d5dae6;--chip:#f0f2f7;--hover:#f6f7fa;--link:#2451b3;--warn:#b45309;--mark:#fdf3d8;--rlnp:#3f7a4e;--rlnp-t:#e6f0e7;--rls:#b36b1c;--rls-t:#f7ecdd;--rltp:#2f62c9;--rltp-t:#e5ecfa}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e0e10;--ink:#e8e8ea;--muted:#9a9aa4;--soft:#b9b9c3;--text2:#d0d0d6;--line:#2c2c31;--field:#3a3a42;--chip:#1c1c22;--hover:#18181d;--link:#7fb6d6;--warn:#fbbf24;--mark:#2a2410;--rlnp:#7cc48a;--rlnp-t:#1e2f23;--rls:#e0a25a;--rls-t:#33281a;--rltp:#7fa6f0;--rltp-t:#1d2738}}:root[data-theme="dark"]{--bg:#0e0e10;--ink:#e8e8ea;--muted:#9a9aa4;--soft:#b9b9c3;--text2:#d0d0d6;--line:#2c2c31;--field:#3a3a42;--chip:#1c1c22;--hover:#18181d;--link:#7fb6d6;--warn:#fbbf24;--mark:#2a2410;--rlnp:#7cc48a;--rlnp-t:#1e2f23;--rls:#e0a25a;--rls-t:#33281a;--rltp:#7fa6f0;--rltp-t:#1d2738}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}a{color:var(--link)}
 header{border-bottom:1px solid var(--line)}.bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:18px 24px 14px;max-width:880px;margin:0 auto}
@@ -35,10 +35,9 @@ figure{margin:0 0 1.6rem}figure img,figure svg.layers{width:100%;height:auto;dis
 .empty{display:none;color:var(--muted);padding:24px 0}</style></head><body>
 <header><div class="bar"><a class="brand" href="/"><b>Real Life</b></a>
 <nav><a href="/" class="on">Overview</a><a href="/terms/">Dictionary</a><a href="/#identifiers">Identifiers</a></nav>
-<form action="/terms/" method="get" style="display:contents"><input id="q" name="q" type="search" placeholder="Search…" aria-label="Search…"></form><div class="right"><a class="btn" href="/de/" lang="de">DE</a><button class="btn theme" id="theme" type="button" aria-label="Colour scheme"></button></div></div></header>
+<div class="right"><a class="btn" href="/de/overview/" lang="de">DE</a><button class="btn theme" id="theme" type="button" aria-label="Colour scheme"></button></div></div></header>
 <main>
-<p class="sub" style="margin-bottom:18px">Real Life consists of three parts. This page shows how they fit together and leads to each.</p>
-<figure><a class="pic" href="/overview/" aria-label="The three parts: the Network Protocol beside the Stack, the Trust Protocol filling the layers below the connector."><svg class="layers" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 940 450" font-family="Arial, Liberation Sans, Helvetica, sans-serif" role="img" aria-label="Left: the RLNP terms place and initiative, witnessing, circle, visibility, person and relationship. Right: the Real Life Stack with application, data and the connector socket. Below the socket, side by side: RLTP with the layers identity, encounter and relationship, access; and Supabase as one column across all three, other backends possible. Labelled edges connect each RLNP term with the layer that constructs it.">
+<h1>The layer picture</h1><p>RLNP on the left names what things mean. The stack on the right builds them: application, data, and the connector socket. Below the socket, RLTP fills identity, encounter and relationship, and access with its own guarantees; a conventional backend fills the same socket with fewer. Green edges are seams: a word from RLNP with a counterpart in the stack.</p><figure class="wide"><svg class="layers" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 940 450" font-family="Arial, Liberation Sans, Helvetica, sans-serif" role="img" aria-label="Left: the RLNP terms place and initiative, witnessing, circle, visibility, person and relationship. Right: the Real Life Stack with application, data and the connector socket. Below the socket, side by side: RLTP with the layers identity, encounter and relationship, access; and Supabase as one column across all three, other backends possible. Labelled edges connect each RLNP term with the layer that constructs it.">
         <rect width="940" height="450" fill="var(--bg)"/>
         <defs>
           <marker id="arr-rlnp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--rlnp)"/></marker>
@@ -138,20 +137,8 @@ figure{margin:0 0 1.6rem}figure img,figure svg.layers{width:100%;height:auto;dis
           </g>
         </g>
       </svg>
-</a></figure>
-<div class="parts">
-<section class="part p-rlnp" id="network"><h2><a href="https://reallife.network">Real Life Network</a></h2><p>A social organism that replicates itself.</p><p class="spec"><b>RLNP</b> · Real Life Network Protocol, the social specification</p><p class="for">for everyone who wants to connect</p></section>
-<section class="part p-rls" id="stack"><h2><a href="https://real-life-stack.de">Real Life Stack</a></h2><p>Tools for decentralized coordination in real life.</p><p class="spec"><b>RLS</b> · Real Life Stack, the app toolkit</p><p class="for">for developers, vibecoders and agents</p></section>
-<section class="part p-rltp" id="trust"><h2><a href="https://rltp.real-life.org">Real Life Trust Protocol</a></h2><p>Decentralized identities and communities grounded in real relationships.</p><p class="spec"><b>RLTP</b> · Real Life Trust Protocol, the technical specification</p><p class="for">for protocol developers</p></section>
-</div>
-<h2 id="identifiers">Identifiers anchored here</h2>
-<p>The permanent identifiers of all three parts live under this domain. They follow the protocols, not the branding; a breaking change gets a new version, not a new word.</p>
-<table><tr><th><a href="/terms/">/terms</a></th><td>the dictionary: everything listed here, side by side</td></tr>
-<tr><th><a href="/rlnp/v1/">/rlnp/v1</a></th><td>terms of the Real Life Network Protocol</td></tr>
-<tr><th><a href="/rls/v1/">/rls/v1</a></th><td>terms of the Real Life Stack</td></tr>
-<tr><th><a href="/rltp/v1/">/rltp/v1</a></th><td>vocabulary, context and schemas of the Real Life Trust Protocol</td></tr>
-<tr><th><a href="/trust-tasks/">/trust-tasks</a></th><td>RLTP Trust Task types (ToIP DTGWG framework 0.4)</td></tr>
-<tr><th><a href="/meta/v1/">/meta/v1</a></th><td>the shared register: context, mappings between the three parts, register fields</td></tr></table>
+</figure>
+<p class="sub">Standalone files: <a href="/overview/layers.en.svg">layers.en.svg</a> · <a href="/overview/layers.de.svg">layers.de.svg</a> · Source: <a href="https://github.com/real-life-org/meta/blob/main/overview/layers.svg">meta/overview/layers.svg</a></p>
 
 </main>
 <footer>real-life.org · <a href="https://github.com/real-life-org">real-life-org</a> · generated from <a href="https://github.com/real-life-org/rltp-spec">rltp-spec</a> and <a href="https://github.com/real-life-org/meta">meta</a>; nothing here is written by hand</footer>

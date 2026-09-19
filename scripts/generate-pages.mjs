@@ -145,13 +145,25 @@ for (const l of ['en', 'de']) {
   const t = G[l]
   emit(`${de(l)}index.html`, shell({ l, title: parts.gate.title[l], active: `/${de(l)}`, alt: { lang: other(l), href: `/${de(other(l))}` }, search: 'forward',
     body: `<p class="sub" style="margin-bottom:18px">${esc(parts.gate.sentence[l])}</p>
-<figure role="img" aria-label="${esc(t.picture)}">${inlineSvg(l)}</figure>
+<figure><a class="pic" href="/${de(l)}overview/" aria-label="${esc(t.picture)}">${inlineSvg(l)}</a></figure>
 <div class="parts">
 ${parts.parts.map((p) => `<section class="part p-${p.spec.world}" id="${p.id}"><h2><a href="${p.url}">${esc(p.name[l])}</a></h2><p>${esc(p.sentence[l])}</p><p class="spec"><b>${esc(p.spec.abbr)}</b> · ${esc(p.spec.name[l])}</p><p class="for">${esc(p.for[l])}</p></section>`).join('\n')}
 </div>
 <h2 id="identifiers">${t.ids}</h2>
 <p>${t.idsText}</p>
 <table>${t.rows.map(([path, what]) => `<tr><th><a href="/${de(l)}${path.slice(1)}/">${path}</a></th><td>${what}</td></tr>`).join('\n')}</table>` }))
+}
+
+// ── the picture on its own page, large, in the page's colour scheme ───────
+const P = {
+  en: { title: 'The layer picture', text: 'RLNP on the left names what things mean. The stack on the right builds them: application, data, and the connector socket. Below the socket, RLTP fills identity, encounter and relationship, and access with its own guarantees; a conventional backend fills the same socket with fewer. Green edges are seams: a word from RLNP with a counterpart in the stack.', files: 'Standalone files: ', src: 'Source: ' },
+  de: { title: 'Das Schichtenbild', text: 'RLNP links benennt, was die Dinge bedeuten. Der Stack rechts baut sie: Anwendung, Daten und die Steckstelle des Connectors. Unter der Steckstelle füllt RLTP Identität, Begegnung und Beziehung sowie Zugang mit eigenen Zusagen; ein klassisches Backend füllt dieselbe Steckstelle mit weniger. Grüne Kanten sind Nähte: ein Wort aus RLNP mit einem Gegenstück im Stack.', files: 'Eigenständige Dateien: ', src: 'Quelle: ' },
+}
+for (const l of ['en', 'de']) {
+  const t = P[l]
+  emit(`${de(l)}overview/index.html`, shell({ l, title: t.title, active: `/${de(l)}`, alt: { lang: other(l), href: `/${de(other(l))}overview/` },
+    body: `<h1>${t.title}</h1><p>${t.text}</p><figure class="wide">${inlineSvg(l)}</figure>
+<p class="sub">${t.files}<a href="/overview/layers.en.svg">layers.en.svg</a> · <a href="/overview/layers.de.svg">layers.de.svg</a> · ${t.src}<a href="https://github.com/real-life-org/meta/blob/main/overview/layers.svg">meta/overview/layers.svg</a></p>` }))
 }
 
 // ── list pages: each one a filter over the catalog ────────────────────────
