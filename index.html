@@ -38,7 +38,107 @@ figure{margin:0 0 1.6rem}figure img,figure svg.layers{width:100%;height:auto;dis
 <form action="/terms/" method="get" style="display:contents"><input id="q" name="q" type="search" placeholder="Search…" aria-label="Search…"></form><div class="right"><a class="btn" href="/de/" lang="de">DE</a><button class="btn theme" id="theme" type="button" aria-label="Colour scheme"></button></div></div></header>
 <main>
 <p class="sub" style="margin-bottom:18px">Real Life consists of three parts. This page shows how they fit together and leads to each.</p>
-<figure><a href="/overview/layers.en.svg"><img src="/overview/layers.en.svg" alt="The three parts: the Network Protocol beside the Stack, the Trust Protocol filling the layers below the connector."></a></figure>
+<figure><a class="pic" href="/overview/layers.en.svg" aria-label="The three parts: the Network Protocol beside the Stack, the Trust Protocol filling the layers below the connector."><svg class="layers" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 940 450" font-family="Arial, Liberation Sans, Helvetica, sans-serif" role="img" aria-label="Left: the RLNP terms place and initiative, witnessing, circle, visibility, person and relationship. Right: the Real Life Stack with application, data and the connector socket. Below the socket, side by side: RLTP with the layers identity, encounter and relationship, access; and Supabase as one column across all three, other backends possible. Labelled edges connect each RLNP term with the layer that constructs it.">
+        <rect width="940" height="450" fill="var(--bg)"/>
+        <defs>
+          <marker id="arr-rlnp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--rlnp)"/></marker>
+          <marker id="arr-rltp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--rltp)"/></marker>
+          <marker id="arr-rls" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--rls)"/></marker>
+          <marker id="arr-open" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8a5a00"/></marker>
+        </defs>
+        <g font-size="12" fill="var(--ink)">
+
+          <text x="30" y="22" font-weight="600" letter-spacing="1.5" fill="var(--muted)" font-size="11">RLNP · MEANING</text>
+          <text x="520" y="22" font-weight="600" letter-spacing="1.5" fill="var(--muted)" font-size="11">STACK · CONSTRUCTION</text>
+          <text x="410" y="22" text-anchor="middle" font-style="italic" fill="var(--muted)" font-size="11">Seam</text>
+
+          <g>
+            <rect x="30" y="40" width="270" height="52" rx="7" fill="var(--rlnp-t)" stroke="var(--rlnp)"/>
+            <text x="44" y="61" font-size="13" font-weight="600" fill="var(--ink)">Place · Initiative · Resource · Project</text>
+            <text x="44" y="79" fill="var(--muted)" font-size="11">one thing can be all of them</text>
+
+            <rect x="30" y="118" width="270" height="52" rx="7" fill="var(--rlnp-t)" stroke="var(--rlnp)"/>
+            <text x="44" y="139" font-size="13" font-weight="600" fill="var(--ink)">Witnessing · Promise · Role</text>
+            <text x="44" y="157" fill="var(--muted)" font-size="11">a statement with an author, not approval</text>
+
+            <rect x="30" y="196" width="270" height="52" rx="7" fill="var(--rlnp-t)" stroke="var(--rlnp)"/>
+            <text x="44" y="217" font-size="13" font-weight="600" fill="var(--ink)">Circle</text>
+            <text x="44" y="235" fill="var(--muted)" font-size="11">chooses its own form and access</text>
+
+            <rect x="30" y="274" width="270" height="52" rx="7" fill="var(--rlnp-t)" stroke="var(--rlnp)"/>
+            <text x="44" y="295" font-size="13" font-weight="600" fill="var(--ink)">Visibility</text>
+            <text x="44" y="313" fill="var(--muted)" font-size="11">within the circle · mirrored · published</text>
+
+            <rect x="30" y="352" width="270" height="52" rx="7" fill="var(--rlnp-t)" stroke="var(--rlnp)"/>
+            <text x="44" y="373" font-size="13" font-weight="600" fill="var(--ink)">Person · Relationship</text>
+            <text x="44" y="391" fill="var(--muted)" font-size="11">arises from encounter</text>
+          </g>
+
+          <g>
+            <rect x="520" y="40" width="302" height="56" rx="7" fill="var(--rls-t)" stroke="var(--rls)"/>
+            <text x="534" y="62" font-size="13" font-weight="600" fill="var(--ink)">5 · Application</text>
+            <text x="534" y="80" fill="var(--muted)" font-size="11">modules, views, forms</text>
+
+            <rect x="520" y="110" width="302" height="56" rx="7" fill="var(--rls-t)" stroke="var(--rls)" stroke-width="2"/>
+            <text x="534" y="132" font-size="13" font-weight="600" fill="var(--ink)">4 · Data</text>
+            <text x="534" y="150" fill="var(--muted)" font-size="11">items · relations · schema · portability</text>
+
+            <line x1="520" y1="181" x2="822" y2="181" stroke-dasharray="6 4" stroke-width="1.6" stroke="var(--rls)"/>
+            <rect x="607" y="172" width="128" height="18" rx="9" fill="var(--bg)" stroke="var(--rls)"/>
+            <text x="671" y="185" text-anchor="middle" font-size="10.5" font-weight="600" fill="var(--rls)">Connector = socket</text>
+
+            <rect x="520" y="196" width="220" height="56" rx="7" fill="var(--rltp-t)" stroke="var(--rltp)"/>
+            <text x="534" y="218" font-size="13" font-weight="600" fill="var(--ink)">3 · Access</text>
+            <text x="534" y="236" fill="var(--muted)" font-size="11">groups · policy · keys</text>
+
+            <rect x="520" y="266" width="220" height="56" rx="7" fill="var(--rltp-t)" stroke="var(--rltp)"/>
+            <text x="534" y="288" font-size="12" font-weight="600" fill="var(--ink)">2 · Encounter and Relationship</text>
+            <text x="534" y="306" fill="var(--muted)" font-size="11">ceremony · trust · credentials</text>
+
+            <rect x="520" y="336" width="220" height="56" rx="7" fill="var(--rltp-t)" stroke="var(--rltp)"/>
+            <text x="534" y="358" font-size="13" font-weight="600" fill="var(--ink)">1 · Identity</text>
+            <text x="534" y="376" fill="var(--muted)" font-size="11">identifiers · devices</text>
+
+            <line x1="520" y1="404" x2="740" y2="404" stroke-width="2" stroke="var(--rltp)"/>
+            <text x="630" y="422" text-anchor="middle" font-weight="600" font-size="12" fill="var(--rltp)">RLTP fills 1 to 3</text>
+            <text x="630" y="436" text-anchor="middle" font-size="10" fill="var(--muted)">with its own guarantees per layer</text>
+
+            <rect x="752" y="196" width="70" height="196" rx="7" fill="none" stroke="var(--ink)" stroke-opacity="0.45" stroke-dasharray="4 3"/>
+            <text x="787" y="222" text-anchor="middle" font-size="11.5" font-weight="600">Supabase</text>
+            <text x="787" y="238" text-anchor="middle" font-size="10" fill="var(--muted)">server</text>
+            <text x="787" y="330" text-anchor="middle" font-size="9.5" font-style="italic" fill="var(--muted)">others</text>
+            <text x="787" y="343" text-anchor="middle" font-size="9.5" font-style="italic" fill="var(--muted)">possible</text>
+            <line x1="752" y1="404" x2="822" y2="404" stroke-width="1.5" stroke="var(--ink)" stroke-opacity="0.45"/>
+            <text x="787" y="422" text-anchor="middle" font-size="11" font-weight="600">or one backend</text>
+            <text x="787" y="436" text-anchor="middle" font-size="10" fill="var(--muted)">for all three</text>
+
+            <line x1="838" y1="40" x2="838" y2="190" stroke-width="2" stroke="var(--rls)"/>
+            <text x="847" y="110" font-weight="600" font-size="13" fill="var(--rls)">RLS</text>
+            <text x="847" y="124" font-size="9.5" fill="var(--muted)">layers 4, 5</text>
+            <text x="847" y="136" font-size="9.5" fill="var(--muted)">+ socket</text>
+          </g>
+
+          <g stroke="var(--rlnp)" stroke-width="1.6" fill="none">
+            <path id="s1" d="M300 66 C 420 66, 440 122, 520 122" marker-end="url(#arr-rlnp)"/>
+            <path id="s2" d="M300 144 C 400 144, 440 136, 520 136" marker-end="url(#arr-rlnp)"/>
+            <path id="s3" d="M300 214 C 400 214, 440 150, 520 150" marker-end="url(#arr-rlnp)"/>
+            <path id="s4" d="M300 230 C 400 230, 440 214, 520 214" marker-end="url(#arr-rlnp)"/>
+            <path id="s5" d="M300 300 C 400 300, 440 232, 520 232" marker-end="url(#arr-rlnp)"/>
+            <path id="s6" d="M300 370 C 400 370, 440 294, 520 294" marker-end="url(#arr-rlnp)"/>
+            <path id="s7" d="M300 386 C 400 386, 440 364, 520 364" marker-end="url(#arr-rlnp)"/>
+          </g>
+          <g class="sv-lbl" font-size="10.5" fill="var(--rlnp)">
+            <text dy="-4" text-anchor="middle"><textPath xlink:href="#s1" startOffset="46%">templates + facets</textPath></text>
+            <text dy="-4" text-anchor="middle"><textPath xlink:href="#s2" startOffset="46%">item with author</textPath></text>
+            <text dy="-4" text-anchor="middle"><textPath xlink:href="#s3" startOffset="46%">space + domain model</textPath></text>
+            <text dy="-4" text-anchor="middle"><textPath xlink:href="#s4" startOffset="46%">group, log, policy</textPath></text>
+            <text dy="-4" text-anchor="middle"><textPath xlink:href="#s5" startOffset="46%">home space, keys</textPath></text>
+            <text dy="-4" text-anchor="middle"><textPath xlink:href="#s6" startOffset="46%">contact card, ceremony</textPath></text>
+            <text dy="-4" text-anchor="middle"><textPath xlink:href="#s7" startOffset="46%">key as identifier, devices</textPath></text>
+          </g>
+        </g>
+      </svg>
+</a></figure>
 <div class="parts">
 <section class="part p-rlnp" id="network"><h2><a href="https://reallife.network">Real Life Network</a></h2><p>A social organism that replicates itself.</p><p class="spec"><b>RLNP</b> · Real Life Network Protocol, the social specification</p><p class="for">for everyone who wants to connect</p></section>
 <section class="part p-rls" id="stack"><h2><a href="https://real-life-stack.de">Real Life Stack</a></h2><p>Tools for decentralized coordination in real life.</p><p class="spec"><b>RLS</b> · Real Life Stack, the app toolkit</p><p class="for">for developers, vibecoders and agents</p></section>
