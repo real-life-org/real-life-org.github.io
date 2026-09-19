@@ -130,6 +130,11 @@ emit('terms/index.json', j({
 console.log('\n── pages')
 const parts = JSON.parse(readFileSync(join(META, 'overview/parts.json'), 'utf8'))
 for (const l of ['en', 'de']) emit(`overview/layers.${l}.svg`, readFileSync(join(META, `overview/layers.${l}.svg`), 'utf8'))
+// The picture is written into the page, not embedded as an image, so it follows the page's
+// tokens and the colour-scheme toggle. Its own style block goes; its variables map onto the page's.
+const inlineSvg = (l) => readFileSync(join(META, `overview/layers.${l}.svg`), 'utf8')
+  .replace(/<\?xml[^>]*\?>\s*/, '').replace(/<!--[\s\S]*?-->\s*/g, '').replace(/<style>[\s\S]*?<\/style>\s*/, '')
+  .replace(/var\(--(rlnp|rltp|rls)-tint\)/g, 'var(--$1-t)').replace('<svg ', '<svg class="layers" ')
 
 // ── the gate ──────────────────────────────────────────────────────────────
 const G = {
@@ -140,7 +145,7 @@ for (const l of ['en', 'de']) {
   const t = G[l]
   emit(`${de(l)}index.html`, shell({ l, title: parts.gate.title[l], active: `/${de(l)}`, alt: { lang: other(l), href: `/${de(other(l))}` }, search: 'forward',
     body: `<p class="sub" style="margin-bottom:18px">${esc(parts.gate.sentence[l])}</p>
-<figure><a href="/overview/layers.${l}.svg"><img src="/overview/layers.${l}.svg" alt="${esc(t.picture)}"></a></figure>
+<figure role="img" aria-label="${esc(t.picture)}">${inlineSvg(l)}</figure>
 <div class="parts">
 ${parts.parts.map((p) => `<section class="part p-${p.spec.world}" id="${p.id}"><h2><a href="${p.url}">${esc(p.name[l])}</a></h2><p>${esc(p.sentence[l])}</p><p class="spec"><b>${esc(p.spec.abbr)}</b> · ${esc(p.spec.name[l])}</p><p class="for">${esc(p.for[l])}</p></section>`).join('\n')}
 </div>
