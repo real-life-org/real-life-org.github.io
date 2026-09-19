@@ -1,5 +1,7 @@
 #!/usr/bin/env node
-// Generate this site from the publication repository.
+// Generate the data files of this site from the publication repository (rltp-spec):
+// schemas at their $id paths, the JSON-LD context, and the two registries with digests.
+// HTML pages come from scripts/generate-pages.mjs.
 //
 // Every schema declares, in its own $id, the URL it lives at. This site's job
 // is to make that declaration true. Until now it did so with hand-copied files
@@ -137,64 +139,7 @@ emit('rltp/v1/index.json', j({
   taskTypeRegistry: `${BASE}trust-tasks/index.json`,
 }))
 
-// ── documentation pages ──────────────────────────────────────────────────
-// Every type URI must resolve for a human as well as a machine: the URI is the
-// contract we hand to other ecosystems, and a 404 there is a broken promise.
-// The pages are generated, so a new type in rltp-spec can never ship without
-// its page again.
-const STYLE = `body{font-family:system-ui,sans-serif;max-width:760px;margin:3rem auto;padding:0 1.2rem;line-height:1.6;color:#1a2030}a{color:#2451b3}code{background:#f0f2f7;padding:.1em .35em;border-radius:4px;font-size:.92em}h1{font-size:1.5rem}h2{font-size:1.15rem;margin-top:2rem}table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid #e2e6ef;padding:.4em .6em;text-align:left;font-size:.95em}footer{margin-top:3rem;font-size:.85em;color:#667}:target{background:#fdf3d8}@media(prefers-color-scheme:dark){body{background:#0e0e10;color:#e8e8ea}code{background:#1c1c22}td,th{border-color:#2c2c31}a{color:#7fb6d6}footer{color:#9a9aa4}:target{background:#2a2410}}`
-const FOOT = `<footer>Real Life Trust Protocol · <a href="https://github.com/real-life-org/rltp-spec">specification repository</a> · <a href="https://rltp.real-life.org/simulator/">simulator</a></footer></body></html>`
-const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-const page = (title, extraHead, body) =>
-  `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)}</title><style>${STYLE}</style>${extraHead}</head><body>\n${body}\n${FOOT}\n`
-
-console.log('\n── documentation pages')
-const OFFLINE_NOTE = '<p><em>Offline rule: conforming implementations pre-register every schema by its <code>$id</code> and never resolve over the network — this page is documentation, not infrastructure.</em></p>'
-
-for (const t of types) {
-  const m = meta.types[t.slug]
-  const [name] = t.slug.split('/')
-  const ld = JSON.stringify({
-    '@context': 'https://schema.org', '@type': 'DefinedTerm', '@id': t.doc.$id,
-    name: t.slug, description: `RLTP Trust Task type — ${m.summary} Payload schema: ${t.doc.$id}/schema.json`,
-    inDefinedTermSet: `${BASE}trust-tasks/`, url: `${t.doc.$id}/`,
-  })
-  emit(`trust-tasks/${t.slug}/index.html`, page(
-    `${t.slug} — RLTP Trust Task type`,
-    `<link rel="alternate" type="application/schema+json" href="schema.json"><script type="application/ld+json">${ld}</script>`,
-    `<h1><code>${t.doc.$id}</code></h1>
-<p><strong>${t.slug}</strong> is a private Trust Task type of the Real Life Trust Protocol (${esc(meta.framework)}).</p>
-<p>${esc(m.summary)}</p>
-<table><tr><th>Normative definition</th><td><a href="${m.definedIn.url}">${esc(m.definedIn.specification)} ${esc(m.definedIn.section)}</a></td></tr>
-<tr><th>Conformance profile</th><td><code>${profileOf(t.doc, t.file)}</code></td></tr>
-<tr><th>Payload schema ($id = this URI)</th><td><a href="schema.json">schema.json</a></td></tr>
-<tr><th>Document profile</th><td><a href="/rltp/v1/schemas/rltp-delivery-document.schema.json">rltp-delivery-document.schema.json</a></td></tr></table>
-${OFFLINE_NOTE}`))
-}
-
-emit('trust-tasks/index.html', page('RLTP Trust Task types',
-  `<link rel="alternate" type="application/json" href="index.json"><script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'DefinedTermSet', '@id': `${BASE}trust-tasks/`, name: 'RLTP Trust Task types', description: `Private Trust Task types of the Real Life Trust Protocol. Machine-readable registry: ${BASE}trust-tasks/index.json`, url: `${BASE}trust-tasks/` })}</script>`,
-  `<h1>RLTP Trust Task types</h1>
-<p>Private Trust Task types registered under <code>${BASE}trust-tasks/</code> by the Real Life Trust Protocol (${esc(meta.framework)}).</p>
-<p>Machine-readable registry: <a href="index.json"><code>index.json</code></a> — every type with its Type URI, payload-schema URL, defining section and SHA-256 digest. Each payload schema resolves as raw JSON at <code>&lt;Type&nbsp;URI&gt;/schema.json</code>.</p>
-<table><tr><th>Type</th><th>Defined in</th><th></th></tr>
-${types.map((t) => { const m = meta.types[t.slug]
-  return `<tr><td><a href="/trust-tasks/${t.slug}/"><code>${t.slug}</code></a></td><td>${esc(m.definedIn.specification)} ${esc(m.definedIn.section)}</td><td>${esc(m.summary)}</td></tr>` }).join('\n')}
-</table>`))
-
-emit('rltp/v1/index.html', page('RLTP vocabulary — real-life.org/rltp/v1',
-  `<link rel="alternate" type="application/ld+json" href="context.jsonld"><link rel="alternate" type="application/json" href="index.json"><script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'DefinedTermSet', '@id': `${BASE}rltp/v1`, name: 'RLTP vocabulary', description: `The vocabulary namespace of the Real Life Trust Protocol. JSON-LD context: ${BASE}rltp/v1/context.jsonld`, url: `${BASE}rltp/v1/` })}</script>`,
-  `<h1><code>${BASE}rltp/v1</code></h1>
-<p>The vocabulary namespace of the <strong>Real Life Trust Protocol</strong>. Permanent term identifiers are <code>${BASE}rltp/v1#&lt;Fragment&gt;</code>; the fragments resolve to the table below.</p>
-<p>The JSON-LD context document is <a href="context.jsonld">context.jsonld</a>. Per the interim securing profile, credentials pin their <code>@context</code> by value and implementations never process JSON-LD at runtime — this document defines meaning, not machinery.</p>
-<p>Machine-readable registry: <a href="index.json"><code>index.json</code></a> — all terms with IRI and definition, plus context and schema URLs with SHA-256 digests.</p>
-<h2>Terms</h2>
-<table><tr><th>Fragment</th><th>Meaning</th><th>Defined in</th></tr>
-${meta.terms.map((t) => `<tr id="${t.fragment}"><td><code>#${t.fragment}</code></td><td>${esc(t.meaning)}</td><td>${esc(t.definedIn)}</td></tr>`).join('\n')}
-</table>
-<h2>Normative schemas</h2>
-<p>${core.map((s) => `<a href="schemas/${s.file}">${s.file.replace('.schema.json', '')}</a>`).join(' · ')}</p>
-<p>Task payload schemas live at their Type URIs under <a href="/trust-tasks/">/trust-tasks/</a>.</p>`))
+// Documentation pages are generated by scripts/generate-pages.mjs from the same inputs.
 
 console.log(`\n${written} written, ${unchanged} unchanged.`)
 if (CHECK && errors) { console.error(`${errors} file(s) out of date — run without --check.`); process.exit(1) }

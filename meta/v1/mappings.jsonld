@@ -2,10 +2,6 @@
  "@context": "https://real-life.org/meta/v1/context.jsonld",
  "@graph": [
   {
-   "@id": "rlnp:Spiegel",
-   "skos:exactMatch": "rls:mirror"
-  },
-  {
    "@id": "rlnp:Mensch",
    "skos:relatedMatch": "rltp:Anchor",
    "skos:note": "Deliberately no exactMatch: RLTP has no person object, only anchors per context. This is by design (relationships never converge into a person)."
@@ -21,16 +17,11 @@
   },
   {
    "@id": "rlnp:Kreis",
-   "skos:relatedMatch": "rlnp:Space",
-   "skos:note": "A circle is the people, a space is the vessel. A circle chooses its own form and access; a space is meant to carry exactly that: publicly visible, open for anyone to post, or by invitation. Whether the two converge is open (2026-09-18)."
-  },
-  {
-   "@id": "rlnp:Space",
+   "skos:note": "Converged 2026-09-18: a circle is the thing itself; the Stack constructs it as a space, the Trust Protocol as a group. A circle chooses its own form and access, and the space carries exactly that: publicly visible, open for anyone to post, or by invitation. \"Space\" in the RLNP text is a reference to the Stack space, not a term of its own.",
    "skos:exactMatch": [
     "rls:space",
     "rltp:Group"
-   ],
-   "skos:note": "Converged 2026-09-18: all three say \"vessel with members\"."
+   ]
   },
   {
    "@id": "rls:space",
@@ -40,16 +31,19 @@
    "@id": "rlnp:Sichtbarkeit",
    "skos:relatedMatch": [
     "rltp:VisibilityMode",
-    "rls:mirror"
+    "rls:multi-space-item"
    ],
    "rl:convergesWith": "rls:visibility",
-   "skos:note": "Three ways, three constructions: \"within the circle\" = RLTP private; \"mirrored\" = Stack mirror bridge; \"published\" = RLTP open is only the origin, delivery of open data needs another backend (multi-connector). VisibilityMode covers the first two only."
+   "skos:note": "Three reaches, three constructions: \"within one circle\" is RLTP private; \"within several circles\" is the Stack's item in several spaces (the RLTP connector builds it as a mirror); \"published\" is RLTP open at the origin, delivery of open data needs another backend (multi-connector). VisibilityMode covers the first and third only."
   },
   {
    "@id": "rlnp:Verifikation",
-   "skos:exactMatch": "rltp:Enactment",
+   "skos:exactMatch": [
+    "rls:verification",
+    "rltp:Enactment"
+   ],
    "skos:relatedMatch": "rltp:EncounterCredential",
-   "skos:note": "The act is the same; the credential is its result."
+   "skos:note": "One act in three parts (2026-09-18): the encounter happens in the network, the Stack verifies it in the app, the Trust Protocol constructs that verification as an enactment; the encounter credential is its result. Socially it happens once per relationship; the protocol allows repeated enactments, each with a fresh anchor, all landing on the same edge."
   },
   {
    "@id": "rlnp:Bezeugen",
@@ -59,11 +53,8 @@
   },
   {
    "@id": "rltp:Member",
-   "skos:exactMatch": [
-    "rls:member",
-    "rlnp:Mitglied"
-   ],
-   "skos:note": "Converged 2026-09-18 as a proposal: meaning in RLNP, construction in RLTP, read in the Stack."
+   "skos:exactMatch": "rls:member",
+   "skos:note": "Deliberately without a counterpart in RLNP (2026-09-18): the network knows membership only as what it must not require. Belonging to the network lives in relationships, not in lists; a circle chooses its own form and access, and membership is one of the forms the Stack and the Trust Protocol provide for it."
   },
   {
    "@id": "rlnp:Rolle",
@@ -78,8 +69,18 @@
    "rl:convergesWith": "rltp:Attestation"
   },
   {
-   "@id": "rlnp:Mitglied",
-   "skos:exactMatch": "rls:member"
+   "@id": "rls:verification",
+   "skos:exactMatch": "rltp:Enactment"
+  },
+  {
+   "@id": "rlnp:Begegnung",
+   "skos:relatedMatch": "rlnp:Verifikation",
+   "skos:note": "The event itself, repeated and ordinary, deliberately without counterpart in the Stack or the Trust Protocol: the encounter belongs to the people. Verification is the one-time act that records the relationship; later encounters need none."
+  },
+  {
+   "@id": "rls:mirror",
+   "skos:relatedMatch": "rls:multi-space-item",
+   "skos:note": "Deliberately without counterpart in RLNP or RLTP: for the person it is simply a thing in several spaces; the mirror exists because the Trust Protocol partitions storage by access boundary. The protocol itself knows only groups and their replication."
   }
  ]
 }

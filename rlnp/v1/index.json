@@ -3,79 +3,67 @@
   "namespace": "https://real-life.org/rlnp/v1",
   "publisher": "https://real-life.org/",
   "specificationRepository": "https://github.com/real-life-org/real-life-network-protocol",
-  "generatedFrom": "real-life-org/meta — do not edit by hand, run scripts/generate-terms.mjs",
+  "generatedFrom": "real-life-org/meta — do not edit by hand, run scripts/generate-pages.mjs",
   "context": {
     "url": "https://real-life.org/meta/v1/context.jsonld",
     "sha256": "c1d42b127039ab756896b83b3a88622cad6353d6d3b3b2581f35acf7c6b1f324"
   },
   "scheme": {
     "url": "https://real-life.org/rlnp/v1/terms.jsonld",
-    "sha256": "85d8f056ae611f65d5831b9d1c8af72d56c7d7a7f61ecb03c0fbebced08aef2f"
+    "sha256": "162c1ab3036ac2f056c5d5814fcc48385d22809cad7a8c8075317972c7068ed3"
   },
   "mappings": {
     "url": "https://real-life.org/meta/v1/mappings.jsonld",
-    "sha256": "477fc5ea381b136b5d7cb6b28a0ced48aa09e97b6dd3e2a6e96554569d41c279"
+    "sha256": "59017d6885c4e90bf1a243e50eb1d9fc5ef8fdc13b17febd53230e3c9db42518"
   },
   "terms": [
-    {
-      "iri": "https://real-life.org/rlnp/v1#Bezeugen",
-      "en": "Witnessing",
-      "de": "Bezeugen",
-      "status": "in specification"
-    },
-    {
-      "iri": "https://real-life.org/rlnp/v1#Beziehung",
-      "en": "Relationship",
-      "de": "Beziehung",
-      "status": "in specification"
-    },
     {
       "iri": "https://real-life.org/rlnp/v1#Kreis",
       "en": "Circle",
       "de": "Kreis",
-      "status": "in specification"
-    },
-    {
-      "iri": "https://real-life.org/rlnp/v1#Mensch",
-      "en": "Person",
-      "de": "Mensch",
-      "status": "in specification"
-    },
-    {
-      "iri": "https://real-life.org/rlnp/v1#Mitglied",
-      "en": "Member",
-      "de": "Mitglied",
-      "status": "proposed"
-    },
-    {
-      "iri": "https://real-life.org/rlnp/v1#Rolle",
-      "en": "Role",
-      "de": "Rolle",
-      "status": "in specification"
+      "status": "specified"
     },
     {
       "iri": "https://real-life.org/rlnp/v1#Sichtbarkeit",
       "en": "Visibility",
       "de": "Sichtbarkeit",
-      "status": "in specification"
+      "status": "specified"
     },
     {
-      "iri": "https://real-life.org/rlnp/v1#Space",
-      "en": "Space",
-      "de": "Space",
-      "status": "in specification"
+      "iri": "https://real-life.org/rlnp/v1#Mensch",
+      "en": "Person",
+      "de": "Mensch",
+      "status": "specified"
     },
     {
-      "iri": "https://real-life.org/rlnp/v1#Spiegel",
-      "en": "Mirror",
-      "de": "Spiegel",
-      "status": "in specification"
+      "iri": "https://real-life.org/rlnp/v1#Beziehung",
+      "en": "Relationship",
+      "de": "Beziehung",
+      "status": "specified"
+    },
+    {
+      "iri": "https://real-life.org/rlnp/v1#Begegnung",
+      "en": "Encounter",
+      "de": "Begegnung",
+      "status": "specified"
     },
     {
       "iri": "https://real-life.org/rlnp/v1#Verifikation",
       "en": "Verification",
       "de": "Verifikation",
-      "status": "in specification"
+      "status": "specified"
+    },
+    {
+      "iri": "https://real-life.org/rlnp/v1#Bezeugen",
+      "en": "Witnessing",
+      "de": "Bezeugen",
+      "status": "specified"
+    },
+    {
+      "iri": "https://real-life.org/rlnp/v1#Rolle",
+      "en": "Role",
+      "de": "Rolle",
+      "status": "specified"
     }
   ]
 }

@@ -1,20 +1,158 @@
-<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Real Life — real-life.org</title><link rel="alternate" hreflang="en" href="https://real-life.org/"><style>body{font-family:system-ui,sans-serif;max-width:760px;margin:3rem auto;padding:0 1.2rem;line-height:1.6;color:#1a2030}a{color:#2451b3}code{background:#f0f2f7;padding:.1em .35em;border-radius:4px;font-size:.92em}h1{font-size:1.5rem}h2{font-size:1.15rem;margin-top:2rem}h3{font-size:1rem;margin:1.6rem 0 .2rem}dl{margin:0}dt{font-weight:600;margin-top:.6rem}dd{margin:0 0 0 1rem;color:#333c4d}.de{color:#556}.src,.map{font-size:.9em}table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid #e2e6ef;padding:.4em .6em;text-align:left;font-size:.95em}footer{margin-top:3rem;font-size:.85em;color:#667}:target{background:#fdf3d8}@media(prefers-color-scheme:dark){body{background:#0e0e10;color:#e8e8ea}code{background:#1c1c22}dd{color:#c8c8d0}.de{color:#a9a9b4}td,th{border-color:#2c2c31}a{color:#7fb6d6}footer{color:#9a9aa4}:target{background:#2a2410}}.parts{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin:1.6rem 0}@media(max-width:640px){.parts{grid-template-columns:1fr}}.part h2{margin:.2rem 0 .3rem}.part p{margin:.2rem 0}.part ul{margin:.4rem 0 .6rem 1.1rem;padding:0}.part .for{font-size:.9em;color:#667}figure{margin:1.6rem 0}figure img{width:100%;height:auto;display:block;border-radius:6px}.lang{float:right;font-size:.9em}@media(prefers-color-scheme:dark){.part .for{color:#9a9aa4}}</style></head><body>
-<p class="lang"><a href="/" lang="en">English</a></p>
-<h1>Real Life</h1>
-<p>Real Life besteht aus drei Teilen. Diese Seite zeigt, wie sie zusammengehören, und führt zu jedem.</p>
-<figure><a href="/overview/layers.de.svg"><img src="/overview/layers.de.svg" alt="Die drei Teile: das Netzwerkprotokoll neben dem Stack, das Trust Protocol füllt die Schichten unter dem Connector."></a></figure>
+<!DOCTYPE html><html lang="de"><head><script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Real Life — real-life.org</title><link rel="alternate" hreflang="en" href="https://real-life.org/"><style>:root{--bg:#fff;--ink:#1a2030;--muted:#667;--soft:#556;--text2:#333c4d;--line:#e2e6ef;--field:#d5dae6;--chip:#f0f2f7;--hover:#f6f7fa;--link:#2451b3;--warn:#b45309;--bad:#b91c1c;--mark:#fdf3d8;--rlnp:#3f7a4e;--rlnp-t:#e6f0e7;--rls:#b36b1c;--rls-t:#f7ecdd;--rltp:#2f62c9;--rltp-t:#e5ecfa}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e0e10;--ink:#e8e8ea;--muted:#9a9aa4;--soft:#b9b9c3;--text2:#d0d0d6;--line:#2c2c31;--field:#3a3a42;--chip:#1c1c22;--hover:#18181d;--link:#7fb6d6;--warn:#fbbf24;--bad:#ff6b6b;--mark:#2a2410;--rlnp:#7cc48a;--rlnp-t:#1e2f23;--rls:#e0a25a;--rls-t:#33281a;--rltp:#7fa6f0;--rltp-t:#1d2738}}:root[data-theme="dark"]{--bg:#0e0e10;--ink:#e8e8ea;--muted:#9a9aa4;--soft:#b9b9c3;--text2:#d0d0d6;--line:#2c2c31;--field:#3a3a42;--chip:#1c1c22;--hover:#18181d;--link:#7fb6d6;--warn:#fbbf24;--bad:#ff6b6b;--mark:#2a2410;--rlnp:#7cc48a;--rlnp-t:#1e2f23;--rls:#e0a25a;--rls-t:#33281a;--rltp:#7fa6f0;--rltp-t:#1d2738}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}a{color:var(--link)}
+header{border-bottom:1px solid var(--line)}.bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:18px 24px 14px;max-width:880px;margin:0 auto}
+.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:inherit}.brand b{font-size:1.35rem;font-weight:650;letter-spacing:-.01em}.brand span{font-size:.85rem;color:var(--muted)}
+nav{display:flex;gap:2px;background:var(--chip);border-radius:8px;padding:3px}nav a{border-radius:6px;padding:5px 14px;font-size:.9rem;font-weight:500;text-decoration:none;color:var(--soft)}nav a.on{background:var(--bg);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+header input{flex:0 1 220px;min-width:140px;padding:6px 12px;border:1px solid var(--field);border-radius:8px;background:var(--bg);color:var(--ink);outline:none;font:inherit}header input:focus{border-color:var(--link)}
+.right{margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--field);background:var(--bg);border-radius:8px;padding:5px 12px;font-size:.9rem;white-space:nowrap;text-decoration:none;color:var(--ink)}.btn:hover{background:var(--chip)}.btn small{color:var(--muted);font-size:.78rem}.btn.theme{padding:5px 9px;line-height:0}.btn.theme svg{width:18px;height:18px;display:block;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+main{padding:22px 24px 60px;max-width:880px;margin:0 auto}
+h1{font-size:1.5rem;margin:0 0 .6rem}h2{font-size:1.15rem;margin:2rem 0 .6rem}h3{font-size:1rem;margin:1.6rem 0 .2rem}
+p{max-width:none;text-wrap:pretty}.sub{margin:0 0 6px;color:var(--text2);font-size:.95rem}
+code{background:var(--chip);padding:.1em .35em;border-radius:4px;font-size:.92em}
+table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid var(--line);padding:.4em .6em;text-align:left;font-size:.95em;vertical-align:top}
+dl{margin:0}dt{font-weight:600;margin-top:.6rem}dd{margin:0 0 0 1rem;color:var(--text2)}.de{color:var(--soft)}.src,.map{font-size:.9em}
+:target{background:var(--mark)}
+footer{padding:0 24px 28px;font-size:.85em;color:var(--muted);max-width:880px;margin:0 auto}
+.stats{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.85rem;color:var(--muted);margin-bottom:22px}
+figure{margin:0 0 1.6rem}figure img,figure svg.layers{width:100%;height:auto;display:block;border-radius:6px;border:1px solid var(--line)}figure a.pic{display:block}figure a.pic:hover svg.layers{border-color:var(--link)}figure.wide{margin-left:calc(50% - 50vw + 24px);margin-right:calc(50% - 50vw + 24px);max-width:1240px}@media(min-width:1290px){figure.wide{margin-left:calc((880px - 1240px)/2);margin-right:calc((880px - 1240px)/2)}}
+.parts{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin:0 0 1.6rem}@media(max-width:640px){.parts{grid-template-columns:1fr}}.part{border-top:3px solid var(--c);padding-top:.7rem}.part.p-rlnp{--c:var(--rlnp)}.part.p-rls{--c:var(--rls)}.part.p-rltp{--c:var(--rltp)}.part h2{margin:.2rem 0 .3rem}.part h2 a{color:var(--c)}.part p{margin:.2rem 0}.part .for,.part .spec{font-size:.9em;color:var(--muted)}.part .spec b{color:var(--c);font-weight:600;letter-spacing:.04em}
+.rows{display:flex;flex-direction:column;gap:10px}
+.row{border:1px solid var(--line);border-radius:10px;padding:12px 16px;background:var(--bg)}
+.rowhead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}.rowhead b{font-size:1.05rem;font-weight:650}.rowhead span{font-size:.85rem;color:var(--muted)}
+.entries{display:flex;flex-direction:column;gap:6px}.rels b{font-weight:500;color:var(--ink)}
+.e{display:grid;grid-template-columns:126px minmax(0,1fr);gap:12px;align-items:start;padding:6px 8px;margin:0 -8px;border-radius:6px}.e:hover{background:var(--hover)}.e:target{background:var(--mark)}
+@media(max-width:560px){.e{grid-template-columns:1fr;gap:4px}}
+.w{justify-self:start;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;font-weight:600;border-radius:4px;padding:2px 7px;margin-top:3px;white-space:nowrap}
+.w-rlnp{color:var(--rlnp);background:var(--rlnp-t)}.w-rls{color:var(--rls);background:var(--rls-t)}.w-rltp,.w-task{color:var(--rltp);background:var(--rltp-t)}.w-meta{color:var(--soft);background:var(--chip)}
+.head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px}.head b a{color:inherit;text-decoration:none}.head b a:hover{text-decoration:underline}.head .o{font-size:.88em;color:var(--soft)}
+.tag{font-size:.72em;border:1px solid var(--warn);color:var(--warn);border-radius:4px;padding:0 .35em}
+.def{margin:2px 0 0;font-size:.92em;color:var(--text2)}
+.rels{display:flex;flex-wrap:wrap;gap:2px 10px;margin-top:4px;font-size:.82em;color:var(--soft)}.rels span{white-space:nowrap}.rels i{font-style:normal;color:var(--muted)}
+.act{margin-top:3px;font-size:.8em}.act a{margin-right:.7em;color:var(--muted)}.act a:hover{color:var(--link)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.note{margin:4px 0 0;font-size:.85em;color:var(--soft);font-style:italic}
+.empty{display:none;color:var(--muted);padding:24px 0}</style></head><body>
+<header><div class="bar"><a class="brand" href="/de/"><b>Real Life</b></a>
+<nav><a href="/de/" class="on">Überblick</a><a href="/de/terms/">Wörterbuch</a><a href="/de/#identifiers">Kennungen</a></nav>
+<form action="/de/terms/" method="get" style="display:contents"><input id="q" name="q" type="search" placeholder="Suchen…" aria-label="Suchen…"></form><div class="right"><a class="btn" href="/" lang="en">EN</a><button class="btn theme" id="theme" type="button" aria-label="Farbschema"></button></div></div></header>
+<main>
+<h1 class="vh">Real Life</h1><p class="sub" style="margin-bottom:18px">Real Life besteht aus drei Teilen. Diese Seite zeigt, wie sie zusammengehören, und führt zu jedem.</p>
+<figure><a class="pic" href="/overview/layers.de.svg" aria-label="Die drei Teile: das Netzwerkprotokoll neben dem Stack, das Trust Protocol füllt die Schichten unter dem Connector."><svg class="layers" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 940 450" font-family="Arial, Liberation Sans, Helvetica, sans-serif" role="img" aria-label="Left: the RLNP terms place and initiative, witnessing, circle, visibility, person and relationship. Right: the Real Life Stack with application, data and the connector socket. Below the socket, side by side: RLTP with the layers identity, encounter and relationship, access; and Supabase as one column across all three, other backends possible. Labelled edges connect each RLNP term with the layer that constructs it.">
+        <rect width="940" height="450" fill="var(--bg)"/>
+        <defs>
+          <marker id="arr-rlnp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--rlnp)"/></marker>
+          <marker id="arr-rltp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--rltp)"/></marker>
+          <marker id="arr-rls" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--rls)"/></marker>
+          <marker id="arr-open" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8a5a00"/></marker>
+        </defs>
+        <g font-size="12" fill="var(--ink)">
+
+          <text x="30" y="22" font-weight="600" letter-spacing="1.5" fill="var(--muted)" font-size="11">RLNP · BEDEUTUNG</text>
+          <text x="520" y="22" font-weight="600" letter-spacing="1.5" fill="var(--muted)" font-size="11">STACK · KONSTRUKTION</text>
+          <text x="410" y="22" text-anchor="middle" font-style="italic" fill="var(--muted)" font-size="11">Naht</text>
+
+          <g>
+            <rect x="30" y="40" width="270" height="52" rx="7" fill="var(--rlnp-t)" stroke="var(--rlnp)"/>
+            <text x="44" y="61" font-size="13" font-weight="600" fill="var(--ink)">Ort · Initiative · Ressource · Projekt</text>
+            <text x="44" y="79" fill="var(--muted)" font-size="11">eines kann alles zugleich sein</text>
+
+            <rect x="30" y="118" width="270" height="52" rx="7" fill="var(--rlnp-t)" stroke="var(--rlnp)"/>
+            <text x="44" y="139" font-size="13" font-weight="600" fill="var(--ink)">Bezeugen · Versprechen · Rolle</text>
+            <text x="44" y="157" fill="var(--muted)" font-size="11">Aussage mit Urheber, keine Abnahme</text>
+
+            <rect x="30" y="196" width="270" height="52" rx="7" fill="var(--rlnp-t)" stroke="var(--rlnp)"/>
+            <text x="44" y="217" font-size="13" font-weight="600" fill="var(--ink)">Kreis</text>
+            <text x="44" y="235" fill="var(--muted)" font-size="11">wählt Form und Zugang selbst</text>
+
+            <rect x="30" y="274" width="270" height="52" rx="7" fill="var(--rlnp-t)" stroke="var(--rlnp)"/>
+            <text x="44" y="295" font-size="13" font-weight="600" fill="var(--ink)">Sichtbarkeit</text>
+            <text x="44" y="313" fill="var(--muted)" font-size="11">im Kreis · gespiegelt · veröffentlicht</text>
+
+            <rect x="30" y="352" width="270" height="52" rx="7" fill="var(--rlnp-t)" stroke="var(--rlnp)"/>
+            <text x="44" y="373" font-size="13" font-weight="600" fill="var(--ink)">Mensch · Beziehung</text>
+            <text x="44" y="391" fill="var(--muted)" font-size="11">entsteht durch Begegnung</text>
+          </g>
+
+          <g>
+            <rect x="520" y="40" width="302" height="56" rx="7" fill="var(--rls-t)" stroke="var(--rls)"/>
+            <text x="534" y="62" font-size="13" font-weight="600" fill="var(--ink)">5 · Anwendung</text>
+            <text x="534" y="80" fill="var(--muted)" font-size="11">Module, Ansichten, Formulare</text>
+
+            <rect x="520" y="110" width="302" height="56" rx="7" fill="var(--rls-t)" stroke="var(--rls)" stroke-width="2"/>
+            <text x="534" y="132" font-size="13" font-weight="600" fill="var(--ink)">4 · Daten</text>
+            <text x="534" y="150" fill="var(--muted)" font-size="11">Items · Relationen · Schema · Portabilität</text>
+
+            <line x1="520" y1="181" x2="822" y2="181" stroke-dasharray="6 4" stroke-width="1.6" stroke="var(--rls)"/>
+            <rect x="607" y="172" width="128" height="18" rx="9" fill="var(--bg)" stroke="var(--rls)"/>
+            <text x="671" y="185" text-anchor="middle" font-size="10.5" font-weight="600" fill="var(--rls)">Connector = Steckstelle</text>
+
+            <rect x="520" y="196" width="220" height="56" rx="7" fill="var(--rltp-t)" stroke="var(--rltp)"/>
+            <text x="534" y="218" font-size="13" font-weight="600" fill="var(--ink)">3 · Zugang</text>
+            <text x="534" y="236" fill="var(--muted)" font-size="11">Gruppen · Regeln · Schlüssel</text>
+
+            <rect x="520" y="266" width="220" height="56" rx="7" fill="var(--rltp-t)" stroke="var(--rltp)"/>
+            <text x="534" y="288" font-size="12" font-weight="600" fill="var(--ink)">2 · Begegnung und Beziehung</text>
+            <text x="534" y="306" fill="var(--muted)" font-size="11">Zeremonie · Vertrauen · Nachweise</text>
+
+            <rect x="520" y="336" width="220" height="56" rx="7" fill="var(--rltp-t)" stroke="var(--rltp)"/>
+            <text x="534" y="358" font-size="13" font-weight="600" fill="var(--ink)">1 · Identität</text>
+            <text x="534" y="376" fill="var(--muted)" font-size="11">Kennungen · Geräte</text>
+
+            <line x1="520" y1="404" x2="740" y2="404" stroke-width="2" stroke="var(--rltp)"/>
+            <text x="630" y="422" text-anchor="middle" font-weight="600" font-size="12" fill="var(--rltp)">RLTP füllt 1 bis 3</text>
+            <text x="630" y="436" text-anchor="middle" font-size="10" fill="var(--muted)">mit eigenen Zusagen je Schicht</text>
+
+            <rect x="752" y="196" width="70" height="196" rx="7" fill="none" stroke="var(--ink)" stroke-opacity="0.45" stroke-dasharray="4 3"/>
+            <text x="787" y="222" text-anchor="middle" font-size="11.5" font-weight="600">Supabase</text>
+            <text x="787" y="238" text-anchor="middle" font-size="10" fill="var(--muted)">Server</text>
+            <text x="787" y="330" text-anchor="middle" font-size="9.5" font-style="italic" fill="var(--muted)">weitere</text>
+            <text x="787" y="343" text-anchor="middle" font-size="9.5" font-style="italic" fill="var(--muted)">möglich</text>
+            <line x1="752" y1="404" x2="822" y2="404" stroke-width="1.5" stroke="var(--ink)" stroke-opacity="0.45"/>
+            <text x="787" y="422" text-anchor="middle" font-size="11" font-weight="600">oder ein Backend</text>
+            <text x="787" y="436" text-anchor="middle" font-size="10" fill="var(--muted)">für alle drei</text>
+
+            <line x1="838" y1="40" x2="838" y2="190" stroke-width="2" stroke="var(--rls)"/>
+            <text x="847" y="110" font-weight="600" font-size="13" fill="var(--rls)">RLS</text>
+            <text x="847" y="124" font-size="9.5" fill="var(--muted)">Schicht 4, 5</text>
+            <text x="847" y="136" font-size="9.5" fill="var(--muted)">+ Steckstelle</text>
+          </g>
+
+          <g stroke="var(--rlnp)" stroke-width="1.6" fill="none">
+            <path id="s1" d="M300 66 C 420 66, 440 122, 520 122" marker-end="url(#arr-rlnp)"/>
+            <path id="s2" d="M300 144 C 400 144, 440 136, 520 136" marker-end="url(#arr-rlnp)"/>
+            <path id="s3" d="M300 214 C 400 214, 440 150, 520 150" marker-end="url(#arr-rlnp)"/>
+            <path id="s4" d="M300 230 C 400 230, 440 214, 520 214" marker-end="url(#arr-rlnp)"/>
+            <path id="s5" d="M300 300 C 400 300, 440 232, 520 232" marker-end="url(#arr-rlnp)"/>
+            <path id="s6" d="M300 370 C 400 370, 440 294, 520 294" marker-end="url(#arr-rlnp)"/>
+            <path id="s7" d="M300 386 C 400 386, 440 364, 520 364" marker-end="url(#arr-rlnp)"/>
+          </g>
+          <g class="sv-lbl" font-size="10.5" fill="var(--rlnp)">
+            <text dy="-4" text-anchor="middle"><textPath xlink:href="#s1" startOffset="46%">Vorlagen + Facetten</textPath></text>
+            <text dy="-4" text-anchor="middle"><textPath xlink:href="#s2" startOffset="46%">Item mit Urheber</textPath></text>
+            <text dy="-4" text-anchor="middle"><textPath xlink:href="#s3" startOffset="46%">Space + Domänenmodell</textPath></text>
+            <text dy="-4" text-anchor="middle"><textPath xlink:href="#s4" startOffset="46%">Gruppe, Log, Regeln</textPath></text>
+            <text dy="-4" text-anchor="middle"><textPath xlink:href="#s5" startOffset="46%">Home-Space, Schlüssel</textPath></text>
+            <text dy="-4" text-anchor="middle"><textPath xlink:href="#s6" startOffset="46%">Kontaktkarte, Zeremonie</textPath></text>
+            <text dy="-4" text-anchor="middle"><textPath xlink:href="#s7" startOffset="46%">Schlüssel als Kennung, Geräte</textPath></text>
+          </g>
+        </g>
+      </svg>
+</a></figure>
 <div class="parts">
-<section class="part" id="network"><h2><a href="https://reallife.network">Real Life Netzwerk</a></h2><p>Ein sich selbst replizierender sozialer Organismus.</p><p class="for">für alle, die sich vernetzen wollen</p></section>
-<section class="part" id="stack"><h2><a href="https://real-life-stack.de">Real Life Stack</a></h2><p>Werkzeuge für dezentrale Koordination im echten Leben.</p><p class="for">für Entwickler, Vibecoder und Agents</p></section>
-<section class="part" id="trust"><h2><a href="https://rltp.real-life.org">Real Life Trust Protocol</a></h2><p>Dezentrale Identitäten und Gemeinschaften auf Basis echter Beziehung.</p><p class="for">für Protokollentwickler</p></section>
+<section class="part p-rlnp" id="network"><h2><a href="https://reallife.network">Real Life Netzwerk</a></h2><p>Ein sich selbst replizierender sozialer Organismus.</p><p class="spec"><b>RLNP</b> · Real Life Network Protocol, die soziale Spezifikation</p><p class="for">für alle, die sich vernetzen wollen</p></section>
+<section class="part p-rls" id="stack"><h2><a href="https://real-life-stack.de">Real Life Stack</a></h2><p>Werkzeuge für dezentrale Koordination im echten Leben.</p><p class="spec"><b>RLS</b> · Real Life Stack, der App-Baukasten</p><p class="for">für Entwickler, Vibecoder und Agents</p></section>
+<section class="part p-rltp" id="trust"><h2><a href="https://rltp.real-life.org">Real Life Trust Protocol</a></h2><p>Dezentrale Identitäten und Gemeinschaften auf Basis echter Beziehung.</p><p class="spec"><b>RLTP</b> · Real Life Trust Protocol, die technische Spezifikation</p><p class="for">für Protokollentwickler</p></section>
 </div>
-<h2>Kennungen, die hier verankert sind</h2>
+<h2 id="identifiers">Kennungen, die hier verankert sind</h2>
 <p>Die dauerhaften Kennungen aller drei Teile liegen unter dieser Domain. Sie folgen den Protokollen, nicht dem Branding; ein Bruch bekommt eine neue Version, kein neues Wort.</p>
-<table><tr><th><a href="/terms/">/terms</a></th><td>das Wörterbuch: alle Begriffe der drei Teile nebeneinander</td></tr>
-<tr><th><a href="/rlnp/v1/">/rlnp/v1</a></th><td>Begriffe des Real Life Network Protocol</td></tr>
-<tr><th><a href="/rls/v1/">/rls/v1</a></th><td>Begriffe des Real Life Stack</td></tr>
-<tr><th><a href="/rltp/v1/">/rltp/v1</a></th><td>Vokabular, Kontext und Schemas des Real Life Trust Protocol</td></tr>
-<tr><th><a href="/trust-tasks/">/trust-tasks</a></th><td>RLTP Trust-Task-Typen (ToIP DTGWG Framework 0.4)</td></tr>
-<tr><th><a href="/meta/v1/">/meta/v1</a></th><td>das gemeinsame Register: Kontext, Verknüpfungen zwischen den drei Teilen, Registerfelder</td></tr></table>
-<p>Bild, Nähte und Register: <a href="https://github.com/real-life-org/meta">real-life-org/meta</a>.</p>
-<footer>real-life.org · <a href="https://github.com/real-life-org">real-life-org</a> · generated from real-life-org/meta by scripts/generate-terms.mjs</footer></body></html>
+<table><tr><th><a href="/de/terms/">/terms</a></th><td>das Wörterbuch: alles, was hier gelistet ist, nebeneinander</td></tr>
+<tr><th><a href="/de/rlnp/v1/">/rlnp/v1</a></th><td>Begriffe des Real Life Network Protocol</td></tr>
+<tr><th><a href="/de/rls/v1/">/rls/v1</a></th><td>Begriffe des Real Life Stack</td></tr>
+<tr><th><a href="/de/rltp/v1/">/rltp/v1</a></th><td>Vokabular, Kontext und Schemas des Real Life Trust Protocol</td></tr>
+<tr><th><a href="/de/trust-tasks/">/trust-tasks</a></th><td>RLTP Trust-Task-Typen (ToIP DTGWG Framework 0.4)</td></tr>
+<tr><th><a href="/de/meta/v1/">/meta/v1</a></th><td>das gemeinsame Register: Kontext, Verknüpfungen zwischen den drei Teilen, Registerfelder</td></tr></table>
+
+</main>
+<footer>real-life.org · <a href="https://github.com/real-life-org">real-life-org</a> · generated from <a href="https://github.com/real-life-org/rltp-spec">rltp-spec</a> and <a href="https://github.com/real-life-org/meta">meta</a>; nothing here is written by hand</footer>
+<script>(function(){var b=document.getElementById('theme');if(!b)return;var L={"en":["System","Light","Dark"],"de":["System","Hell","Dunkel"]}[document.documentElement.lang]||['System','Light','Dark'];var I={system:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg>',light:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',dark:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>'};var order=['system','light','dark'];function cur(){try{return localStorage.getItem('theme')||'system'}catch(e){return 'system'}}function show(){var t=cur();b.innerHTML=I[t];b.title=L[order.indexOf(t)];b.setAttribute('aria-label',L[order.indexOf(t)])}function set(t){try{t==='system'?localStorage.removeItem('theme'):localStorage.setItem('theme',t)}catch(e){}if(t==='system')document.documentElement.removeAttribute('data-theme');else document.documentElement.setAttribute('data-theme',t);show()}b.addEventListener('click',function(){set(order[(order.indexOf(cur())+1)%3])});show()})()</script></body></html>

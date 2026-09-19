@@ -3,25 +3,49 @@
   "namespace": "https://real-life.org/rls/v1",
   "publisher": "https://real-life.org/",
   "specificationRepository": "https://github.com/real-life-org/real-life-stack",
-  "generatedFrom": "real-life-org/meta — do not edit by hand, run scripts/generate-terms.mjs",
+  "generatedFrom": "real-life-org/meta — do not edit by hand, run scripts/generate-pages.mjs",
   "context": {
     "url": "https://real-life.org/meta/v1/context.jsonld",
     "sha256": "c1d42b127039ab756896b83b3a88622cad6353d6d3b3b2581f35acf7c6b1f324"
   },
   "scheme": {
     "url": "https://real-life.org/rls/v1/terms.jsonld",
-    "sha256": "90357e8384fb1ccf07fb4be72008fa09875da31e9eaec7362419aad5604f484e"
+    "sha256": "1bed81ed8c37b02edd90451cc2ebefd7c759139478a7877fbd36cf6dcd5b814e"
   },
   "mappings": {
     "url": "https://real-life.org/meta/v1/mappings.jsonld",
-    "sha256": "477fc5ea381b136b5d7cb6b28a0ced48aa09e97b6dd3e2a6e96554569d41c279"
+    "sha256": "59017d6885c4e90bf1a243e50eb1d9fc5ef8fdc13b17febd53230e3c9db42518"
   },
   "terms": [
+    {
+      "iri": "https://real-life.org/rls/v1#space",
+      "en": "Space",
+      "de": "Space",
+      "status": "specified"
+    },
+    {
+      "iri": "https://real-life.org/rls/v1#mirror",
+      "en": "Mirror",
+      "de": "Spiegel",
+      "status": "specified"
+    },
+    {
+      "iri": "https://real-life.org/rls/v1#relation",
+      "en": "Relation",
+      "de": "Relation",
+      "status": "specified"
+    },
+    {
+      "iri": "https://real-life.org/rls/v1#profile",
+      "en": "Person profile",
+      "de": "Personenprofil",
+      "status": "specified"
+    },
     {
       "iri": "https://real-life.org/rls/v1#connector",
       "en": "Connector",
       "de": "Connector",
-      "status": "in specification"
+      "status": "specified"
     },
     {
       "iri": "https://real-life.org/rls/v1#member",
@@ -30,33 +54,21 @@
       "status": "proposed"
     },
     {
-      "iri": "https://real-life.org/rls/v1#mirror",
-      "en": "Mirror",
-      "de": "Spiegel",
-      "status": "in specification"
-    },
-    {
-      "iri": "https://real-life.org/rls/v1#profile",
-      "en": "Person profile",
-      "de": "Personenprofil",
-      "status": "in specification"
-    },
-    {
-      "iri": "https://real-life.org/rls/v1#relation",
-      "en": "Relation",
-      "de": "Relation",
-      "status": "in specification"
-    },
-    {
-      "iri": "https://real-life.org/rls/v1#space",
-      "en": "Space",
-      "de": "Space",
-      "status": "in specification"
-    },
-    {
       "iri": "https://real-life.org/rls/v1#visibility",
       "en": "Visibility",
       "de": "Sichtbarkeit",
+      "status": "proposed"
+    },
+    {
+      "iri": "https://real-life.org/rls/v1#verification",
+      "en": "Verification",
+      "de": "Verifikation",
+      "status": "specified"
+    },
+    {
+      "iri": "https://real-life.org/rls/v1#multi-space-item",
+      "en": "Item in several spaces",
+      "de": "Item in mehreren Spaces",
       "status": "proposed"
     }
   ]

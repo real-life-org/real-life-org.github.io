@@ -1,0 +1,256 @@
+{
+ "@context": "https://real-life.org/meta/v1/context.jsonld",
+ "@graph": [
+  {
+   "@id": "rltp:",
+   "@type": "skos:ConceptScheme",
+   "dct:title": [
+    {
+     "@value": "Real Life Trust Protocol · Konstruktion",
+     "@language": "de"
+    },
+    {
+     "@value": "Real Life Trust Protocol · construction",
+     "@language": "en"
+    }
+   ]
+  },
+  {
+   "@id": "rltp:Group",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Gruppe",
+     "@language": "de"
+    },
+    {
+     "@value": "Group",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Kollektiver Akteur mit Mitgliedern, Policy, Autoritäts-Log und Dokumenten. Identität ist der Digest der Genesis-Operation, Adresse die Gruppen-DID.",
+     "@language": "de"
+    },
+    {
+     "@value": "A collective actor with members, a policy, an authority log, and documents. Its identity is the digest of its genesis operation; its address is its group DID.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md#2-conventions-and-terminology"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:Member",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Mitglied",
+     "@language": "de"
+    },
+    {
+     "@value": "Member",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Zustand im Autoritäts-Log plus Schlüsselbesitz, kein Zertifikat. Eintritt nur durch explizite, kryptografisch gebundene Zustimmung.",
+     "@language": "de"
+    },
+    {
+     "@value": "A fact in the authority log plus key possession, not a certificate. Entered only by explicit, cryptographically bound consent.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md#5-members",
+    "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:Anchor",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Anker",
+     "@language": "de"
+    },
+    {
+     "@value": "Anchor",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Kennung einer Person gegenüber einem Kontext (did:key). Jede Durchführung einer Zeremonie läuft unter einem frisch abgeleiteten Paaranker, auch eine Wiederbegegnung; ein stehender Anker erscheint nie auf dem Zeremoniedraht, und Anker laufen nie zu einer Person zusammen.",
+     "@language": "de"
+    },
+    {
+     "@value": "A person's identifier toward one context (did:key). Every enactment of a ceremony runs under a freshly derived pair anchor, a re-encounter too; a standing anchor never appears on the ceremony wire, and anchors never converge into a person.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/rltp-spec/blob/main/spec/encounter-layer.md#22-terms",
+    "https://github.com/real-life-org/rltp-spec/blob/main/spec/encounter-layer.md#44-the-enacting-anchor-fresh-always-normative",
+    "https://github.com/real-life-org/rltp-spec/blob/main/spec/identity-layer.md"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:Edge",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Kante",
+     "@language": "de"
+    },
+    {
+     "@value": "Edge",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Die Relation zwischen zwei Ankern, gebildet aus den Begegnungs-Credentials zwischen ihnen; eingehend, ausgehend oder beidseitig. Eine Kante je Ankerpaar.",
+     "@language": "de"
+    },
+    {
+     "@value": "The relation between two anchors constituted by the encounter credentials between them; incoming, outgoing, or mutual. One edge per anchor pair.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/rltp-spec/blob/main/spec/encounter-layer.md#42-the-edge-is-the-relation-and-it-is-per-anchor-pair"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:EncounterCredential",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Begegnungs-Credential",
+     "@language": "de"
+    },
+    {
+     "@value": "Encounter credential",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Unveränderliches Credential, in dem eine Partei festhält, dass sie eine andere erkannt hat. Ausgestellt von einer Partei über die andere, offline prüfbar.",
+     "@language": "de"
+    },
+    {
+     "@value": "The immutable credential in which one party records that they recognized another. Issued by one party about the other, verifiable offline.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/rltp-spec/blob/main/spec/encounter-layer.md#7-the-encounter-credential"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:VisibilityMode",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Sichtbarkeitsmodus",
+     "@language": "de"
+    },
+    {
+     "@value": "Visibility mode",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Der Modus, in dem eine Gruppe nach außen lesbar ist; Veröffentlichung läuft über den Publikations-Port (offene Sichtbarkeit: weltlesbar).",
+     "@language": "de"
+    },
+    {
+     "@value": "The mode in which a group is readable from outside; publication runs through the publication port (open visibility: world-readable).",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md#8-visibility-modes",
+    "https://github.com/real-life-org/rltp-spec/blob/main/spec/network-visibility.md"
+   ],
+   "skos:editorialNote": "German text: draft; the spec names the term only in its fragment table, definition still to be quoted"
+  },
+  {
+   "@id": "rltp:Enactment",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Begegnungsvorgang",
+     "@language": "de"
+    },
+    {
+     "@value": "Enactment",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Ein durchgeführter Lauf einer Zeremonie zwischen zwei Menschen. Nie wiederverwendet; vollständig, wenn beide Seiten ihre Aufzeichnung halten.",
+     "@language": "de"
+    },
+    {
+     "@value": "One performed run of a ceremony between two people. Never reused; complete when both parties hold records.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/rltp-spec/blob/main/spec/encounter-layer.md#22-terms"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:Attestation",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Attestation",
+     "@language": "de"
+    },
+    {
+     "@value": "Attestation",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Vorgeschlagen: signierte, portable Aussage einer Person über Beitrag, Rolle, Fähigkeit oder Versprechen einer anderen, unabhängig prüfbar. Kandidat: DTG Endorsement Credential.",
+     "@language": "de"
+    },
+    {
+     "@value": "Proposed: a signed, portable statement by one person about another's contribution, role, skill or promise, independently verifiable. Candidate: DTG Endorsement Credential.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/rltp-spec/blob/main/README.md#alignment-with-the-toip-dtgwg"
+   ],
+   "rl:status": "proposed",
+   "skos:editorialNote": "Does not exist in the spec yet. Evaluation of the DTG Endorsement Credential is pending (2026-09-18)."
+  }
+ ]
+}
