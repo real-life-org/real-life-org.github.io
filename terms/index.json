@@ -840,7 +840,6 @@
         "https://github.com/real-life-org/real-life-stack/blob/master/docs/spec/04-items-relations-groups-spaces.md"
       ],
       "symbols": [
-        "_members",
         "groupMembers"
       ],
       "facts": [],
