@@ -238,19 +238,19 @@
    ],
    "skos:definition": [
     {
-     "@value": "Vorgeschlagen: signierte, portable Aussage einer Person über Beitrag, Rolle, Fähigkeit oder Versprechen einer anderen, unabhängig prüfbar. Kandidat: DTG Endorsement Credential.",
+     "@value": "Vorgeschlagen: signierte, portable Aussage einer Person über Beitrag, Rolle, Fähigkeit oder Versprechen einer anderen, unabhängig prüfbar. Kandidat: DTG Endorsement Credential (VEC), also ein Statement Credential mit dem Prädikat endorses/1.",
      "@language": "de"
     },
     {
-     "@value": "Proposed: a signed, portable statement by one person about another's contribution, role, skill or promise, independently verifiable. Candidate: DTG Endorsement Credential.",
+     "@value": "Proposed: a signed, portable statement by one person about another's contribution, role, skill or promise, independently verifiable. Candidate: DTG Endorsement Credential (VEC), i.e. a Statement Credential with predicate endorses/1.",
      "@language": "en"
     }
    ],
    "dct:source": [
-    "https://github.com/real-life-org/rltp-spec/blob/main/README.md"
+    "https://github.com/trustoverip/dtgwg-vsc-registry/blob/f828afd/predicates/endorses/1/profile.md"
    ],
    "rl:status": "proposed",
-   "skos:editorialNote": "Does not exist in the spec yet. Evaluation of the DTG Endorsement Credential is pending (2026-09-18)."
+   "skos:editorialNote": "Does not exist in the spec yet. The source is the normative VEC profile in the DTG VSC registry; evaluating it for RLTP is pending (2026-10-03)."
   }
  ]
 }
