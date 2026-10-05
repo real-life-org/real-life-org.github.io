@@ -324,7 +324,7 @@
       },
       "status": "specified",
       "sources": [
-        "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md#2-conventions-and-terminology"
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#2-conventions-and-terminology"
       ],
       "symbols": [],
       "facts": [
@@ -370,8 +370,8 @@
       },
       "status": "specified",
       "sources": [
-        "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md#5-members",
-        "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#5-members",
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/membership-tasks.md"
       ],
       "symbols": [],
       "facts": [
@@ -412,9 +412,9 @@
       },
       "status": "specified",
       "sources": [
-        "https://github.com/real-life-org/rltp-spec/blob/main/spec/encounter-layer.md#22-terms",
-        "https://github.com/real-life-org/rltp-spec/blob/main/spec/encounter-layer.md#44-the-enacting-anchor-fresh-always-normative",
-        "https://github.com/real-life-org/rltp-spec/blob/main/spec/identity-layer.md"
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#22-terms",
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#44-the-enacting-anchor-fresh-always-normative",
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/identity-layer.md"
       ],
       "symbols": [],
       "facts": [
@@ -454,7 +454,7 @@
       },
       "status": "specified",
       "sources": [
-        "https://github.com/real-life-org/rltp-spec/blob/main/spec/encounter-layer.md#42-the-edge-is-the-relation-and-it-is-per-anchor-pair"
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#42-the-edge-is-the-relation-and-it-is-per-anchor-pair"
       ],
       "symbols": [],
       "facts": [
@@ -494,7 +494,7 @@
       },
       "status": "specified",
       "sources": [
-        "https://github.com/real-life-org/rltp-spec/blob/main/spec/encounter-layer.md#7-the-encounter-credential"
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#7-the-encounter-credential"
       ],
       "symbols": [],
       "facts": [
@@ -538,8 +538,8 @@
       },
       "status": "specified",
       "sources": [
-        "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md#8-visibility-modes",
-        "https://github.com/real-life-org/rltp-spec/blob/main/spec/network-visibility.md"
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#8-visibility-modes",
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/network-visibility.md"
       ],
       "symbols": [],
       "facts": [
@@ -579,7 +579,7 @@
       },
       "status": "specified",
       "sources": [
-        "https://github.com/real-life-org/rltp-spec/blob/main/spec/encounter-layer.md#22-terms"
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#22-terms"
       ],
       "symbols": [],
       "facts": [
@@ -609,6 +609,385 @@
       ]
     },
     {
+      "key": "rltp:PairAnchor",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#PairAnchor",
+      "page": "https://real-life.org/rltp/v1/#PairAnchor",
+      "label": {
+        "de": "Paaranker",
+        "en": "Pair anchor"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Ein für einen Begegnungsvorgang abgeleiteter Anker (DTG-Scope pairwise). Der Anker, unter dem eine Zeremonie durchgeführt wird, ist bei jedem Vorgang ein frischer Paaranker.",
+        "en": "An anchor derived for one enactment (DTG scope pairwise). The enacting anchor of a ceremony is a fresh pair anchor at every enactment."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#22-terms",
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#44-the-enacting-anchor-fresh-always-normative"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the fresh anchor a person uses for one enactment is pure protocol construction; for the person it is still the one relationship (RLNP Beziehung, mapped at rltp:Edge).",
+      "mappings": [],
+      "row": [
+        "rltp:PairAnchor"
+      ]
+    },
+    {
+      "key": "rltp:ContactCard",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#ContactCard",
+      "page": "https://real-life.org/rltp/v1/#ContactCard",
+      "label": {
+        "de": "Kontaktkarte",
+        "en": "Contact card"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Signierte Selbstbeschreibung einer Person mit dem Material, um sie zu erkennen und zu erreichen, und im Begegnungsvorgang mit einer frischen Challenge; angezeigt (zum Scannen) oder gesendet (im Vorgang übertragen, nennt den Empfänger). Kein Credential.",
+        "en": "A person's signed self-description carrying the material needed to recognize and reach them and, in an enactment, a fresh challenge; displayed (shown for scanning) or sent (transmitted inside an enactment, naming its recipient). Not a credential."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#22-terms",
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#6-the-contact-card"
+      ],
+      "symbols": [],
+      "facts": [
+        {
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
+          "target": "Encounter 6"
+        }
+      ],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the card carries what the counterpart needs to reach and recognize an anchor; the Stack shows a profile, which is the view of a person, not a delivery address.",
+      "mappings": [],
+      "row": [
+        "rltp:ContactCard"
+      ]
+    },
+    {
+      "key": "rltp:Challenge",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#Challenge",
+      "page": "https://real-life.org/rltp/v1/#Challenge",
+      "label": {
+        "de": "Challenge",
+        "en": "Challenge"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Frischer, einmal verwendbarer Wert hoher Entropie, der in einer Kontaktkarte für einen Begegnungsvorgang reist. Ein Begriff; angezeigte und gesendete Karten unterscheiden sich nur im Lebenszyklus.",
+        "en": "A fresh, single-use, high-entropy value carried in a contact card for one enactment. One concept; displayed and sent cards differ only in lifecycle."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#22-terms",
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#53-challenges"
+      ],
+      "symbols": [],
+      "facts": [
+        {
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
+          "target": "Encounter 5.3"
+        }
+      ],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the fresh value each party shows during an enactment is a construction detail of the verification (mapped at rltp:Enactment).",
+      "mappings": [],
+      "row": [
+        "rltp:Challenge"
+      ]
+    },
+    {
+      "key": "rltp:Ceremony",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#Ceremony",
+      "page": "https://real-life.org/rltp/v1/#Ceremony",
+      "label": {
+        "de": "Zeremonie",
+        "en": "Ceremony"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Registrierte, versionierte Definition einer Begegnungsinteraktion einschließlich ihrer Zeitparameter.",
+        "en": "A registered, versioned definition of an encounter interaction, including its time parameters."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#22-terms",
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#51-registered-ceremonies"
+      ],
+      "symbols": [],
+      "facts": [
+        {
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
+          "target": "Encounter 5.1"
+        }
+      ],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the registered form of an enactment (how the two parties see each other's challenges) is a construction detail of the verification (mapped at rltp:Enactment).",
+      "mappings": [],
+      "row": [
+        "rltp:Ceremony"
+      ]
+    },
+    {
+      "key": "rltp:Step",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#Step",
+      "page": "https://real-life.org/rltp/v1/#Step",
+      "label": {
+        "de": "Schritt",
+        "en": "Step"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Eine Credential-Ausstellung innerhalb eines Begegnungsvorgangs.",
+        "en": "One credential issuance within an enactment."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#22-terms"
+      ],
+      "symbols": [],
+      "facts": [
+        {
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
+          "target": "Encounter 5.2"
+        }
+      ],
+      "note": "Deliberately without counterpart in RLNP or the Stack: one party's confirmation inside an enactment is a construction detail of the verification; the Stack and RLNP see the whole act.",
+      "mappings": [],
+      "row": [
+        "rltp:Step"
+      ]
+    },
+    {
+      "key": "rltp:EnactmentBinding",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#EnactmentBinding",
+      "page": "https://real-life.org/rltp/v1/#EnactmentBinding",
+      "label": {
+        "de": "Vorgangsbindung",
+        "en": "Enactment binding"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Der in beiden Schritt-Credentials eines Vorgangs identische Digest, der sie an einen Austauschdeskriptor bindet: Multihash über JCS von Zeremonie und beiden Challenges in aufsteigender Ordnung.",
+        "en": "The digest, identical in both step credentials of an enactment, that ties them to one exchange descriptor: the multihash over JCS of the ceremony and both challenges in ascending order."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#22-terms",
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#54-the-enactment-binding"
+      ],
+      "symbols": [],
+      "facts": [
+        {
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
+          "target": "Encounter 5.4"
+        }
+      ],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the digest that ties the two challenges together is construction, invisible to the person.",
+      "mappings": [],
+      "row": [
+        "rltp:EnactmentBinding"
+      ]
+    },
+    {
+      "key": "rltp:EnactmentRecord",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#EnactmentRecord",
+      "page": "https://real-life.org/rltp/v1/#EnactmentRecord",
+      "label": {
+        "de": "Vorgangsaufzeichnung",
+        "en": "Enactment record"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Die dauerhafte lokale Aufzeichnung einer Partei über einen Begegnungsvorgang, vor der Ausstellung angelegt; die Aufzeichnungen sind zugleich die Geschichte verbrauchter Challenges.",
+        "en": "A party's durable local record of an enactment, created before issuing; the records are also the consumed-challenge history."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#22-terms",
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#55-the-enactment-record"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: what a party keeps after its own step is local state of the protocol, not a thing in the network.",
+      "mappings": [],
+      "row": [
+        "rltp:EnactmentRecord"
+      ]
+    },
+    {
+      "key": "rltp:CredentialDigest",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#CredentialDigest",
+      "page": "https://real-life.org/rltp/v1/#CredentialDigest",
+      "label": {
+        "de": "Credential-Digest",
+        "en": "Credential digest"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Der multibase-kodierte Multihash über JCS des vollständigen Credentials einschließlich seines Proofs.",
+        "en": "The multibase-encoded multihash over JCS of the complete credential including its proof."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#22-terms"
+      ],
+      "symbols": [],
+      "facts": [
+        {
+          "text": {
+            "de": "definiert in",
+            "en": "defined in"
+          },
+          "target": "Encounter 2.2"
+        }
+      ],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the content digest of an encounter credential is construction, invisible to the person.",
+      "mappings": [],
+      "row": [
+        "rltp:CredentialDigest"
+      ]
+    },
+    {
+      "key": "rltp:Bundle",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#Bundle",
+      "page": "https://real-life.org/rltp/v1/#Bundle",
+      "label": {
+        "de": "Bündel",
+        "en": "Bundle"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Die Ein-Scan-Übertragung (gesendete Karte plus Schritt-Credential), spezifiziert als Delivery-Contract-Task encounter-bundle.",
+        "en": "The one-scan transmission (sent card plus step credential), specified as the Delivery Contract task encounter-bundle."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#22-terms",
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/delivery-contract.md"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the delivery unit of the one-scan path is construction of the transport, invisible to the person.",
+      "mappings": [],
+      "row": [
+        "rltp:Bundle"
+      ]
+    },
+    {
+      "key": "rltp:IncomingEdge",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#IncomingEdge",
+      "page": "https://real-life.org/rltp/v1/#IncomingEdge",
+      "label": {
+        "de": "Eingehende Kante",
+        "en": "Incoming edge"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Eine Kante aus lokaler Sicht, wenn die Partei ein Credential der Gegenseite angenommen und selbst keines ausgestellt hat.",
+        "en": "An edge, from a party's local view, when it has received the counterparty's credential and not issued its own."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#42-the-edge-is-the-relation-and-it-is-per-anchor-pair"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: a direction state of rltp:Edge (only the counterpart has confirmed). For the person it is an unfinished verification; the Stack shows it as pending, not as a relationship.",
+      "mappings": [],
+      "row": [
+        "rltp:IncomingEdge"
+      ]
+    },
+    {
+      "key": "rltp:OutgoingEdge",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#OutgoingEdge",
+      "page": "https://real-life.org/rltp/v1/#OutgoingEdge",
+      "label": {
+        "de": "Ausgehende Kante",
+        "en": "Outgoing edge"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Eine Kante aus lokaler Sicht, wenn die Partei ihr Credential ausgestellt und keines der Gegenseite angenommen hat.",
+        "en": "An edge, from a party's local view, when it has issued its own credential and not received the counterparty's."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#42-the-edge-is-the-relation-and-it-is-per-anchor-pair"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: a direction state of rltp:Edge (only this party has confirmed). For the person it is an unfinished verification; the Stack shows it as pending, not as a relationship.",
+      "mappings": [],
+      "row": [
+        "rltp:OutgoingEdge"
+      ]
+    },
+    {
+      "key": "rltp:MutualEdge",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#MutualEdge",
+      "page": "https://real-life.org/rltp/v1/#MutualEdge",
+      "label": {
+        "de": "Beidseitige Kante",
+        "en": "Mutual edge"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Eine Kante aus lokaler Sicht, wenn die Partei für mindestens einen Vorgang sowohl ausgestellt als auch angenommen hat.",
+        "en": "An edge, from a party's local view, when for at least one enactment it has both issued and received."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#42-the-edge-is-the-relation-and-it-is-per-anchor-pair"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the state of rltp:Edge in which both parties have confirmed; this is the state RLNP Beziehung maps to.",
+      "mappings": [],
+      "row": [
+        "rltp:MutualEdge"
+      ]
+    },
+    {
       "key": "rltp:Attestation",
       "kind": "term",
       "world": "rltp",
@@ -620,8 +999,8 @@
       },
       "alt": [],
       "definition": {
-        "de": "Vorgeschlagen: signierte, portable Aussage einer Person über Beitrag, Rolle, Fähigkeit oder Versprechen einer anderen, unabhängig prüfbar. Kandidat: DTG Endorsement Credential (VEC), also ein Statement Credential mit dem Prädikat endorses/1.",
-        "en": "Proposed: a signed, portable statement by one person about another's contribution, role, skill or promise, independently verifiable. Candidate: DTG Endorsement Credential (VEC), i.e. a Statement Credential with predicate endorses/1."
+        "de": "Vorgeschlagen: signierte, portable Aussage einer Person über Beitrag, Rolle, Fähigkeit oder Versprechen einer anderen, unabhängig prüfbar. Kandidat: Verifiable Endorsement Credential (VEC) der DTG, also ein Statement Credential mit dem Prädikat endorses/1.",
+        "en": "Proposed: a signed, portable statement by one person about another's contribution, role, skill or promise, independently verifiable. Candidate: the DTG Verifiable Endorsement Credential (VEC), i.e. a Statement Credential with predicate endorses/1."
       },
       "status": "proposed",
       "sources": [
@@ -963,204 +1342,6 @@
       ],
       "row": [
         "rls:multi-space-item"
-      ]
-    },
-    {
-      "key": "rltp:ContactCard",
-      "kind": "term",
-      "world": "rltp",
-      "iri": "https://real-life.org/rltp/v1#ContactCard",
-      "page": "https://real-life.org/rltp/v1/#ContactCard",
-      "label": {
-        "de": "",
-        "en": "ContactCard"
-      },
-      "alt": [],
-      "definition": {
-        "de": "",
-        "en": "a person's signed self-description: verification material, key-agreement key, challenge when used in an enactment"
-      },
-      "status": "specified",
-      "sources": [],
-      "symbols": [],
-      "facts": [
-        {
-          "text": {
-            "de": "definiert in",
-            "en": "defined in"
-          },
-          "target": "Encounter 6"
-        }
-      ],
-      "note": "",
-      "mappings": [],
-      "row": [
-        "rltp:ContactCard"
-      ]
-    },
-    {
-      "key": "rltp:Challenge",
-      "kind": "term",
-      "world": "rltp",
-      "iri": "https://real-life.org/rltp/v1#Challenge",
-      "page": "https://real-life.org/rltp/v1/#Challenge",
-      "label": {
-        "de": "",
-        "en": "Challenge"
-      },
-      "alt": [],
-      "definition": {
-        "de": "",
-        "en": "a fresh, single-use, high-entropy value carried in a contact card for one enactment; governed by the own-challenge state model"
-      },
-      "status": "specified",
-      "sources": [],
-      "symbols": [],
-      "facts": [
-        {
-          "text": {
-            "de": "definiert in",
-            "en": "defined in"
-          },
-          "target": "Encounter 5.3"
-        }
-      ],
-      "note": "",
-      "mappings": [],
-      "row": [
-        "rltp:Challenge"
-      ]
-    },
-    {
-      "key": "rltp:Ceremony",
-      "kind": "term",
-      "world": "rltp",
-      "iri": "https://real-life.org/rltp/v1#Ceremony",
-      "page": "https://real-life.org/rltp/v1/#Ceremony",
-      "label": {
-        "de": "",
-        "en": "Ceremony"
-      },
-      "alt": [],
-      "definition": {
-        "de": "",
-        "en": "a registered, versioned definition of an encounter interaction, including its time parameters"
-      },
-      "status": "specified",
-      "sources": [],
-      "symbols": [],
-      "facts": [
-        {
-          "text": {
-            "de": "definiert in",
-            "en": "defined in"
-          },
-          "target": "Encounter 5.1"
-        }
-      ],
-      "note": "",
-      "mappings": [],
-      "row": [
-        "rltp:Ceremony"
-      ]
-    },
-    {
-      "key": "rltp:Step",
-      "kind": "term",
-      "world": "rltp",
-      "iri": "https://real-life.org/rltp/v1#Step",
-      "page": "https://real-life.org/rltp/v1/#Step",
-      "label": {
-        "de": "",
-        "en": "Step"
-      },
-      "alt": [],
-      "definition": {
-        "de": "",
-        "en": "one credential issuance within an enactment"
-      },
-      "status": "specified",
-      "sources": [],
-      "symbols": [],
-      "facts": [
-        {
-          "text": {
-            "de": "definiert in",
-            "en": "defined in"
-          },
-          "target": "Encounter 5.2"
-        }
-      ],
-      "note": "",
-      "mappings": [],
-      "row": [
-        "rltp:Step"
-      ]
-    },
-    {
-      "key": "rltp:EnactmentBinding",
-      "kind": "term",
-      "world": "rltp",
-      "iri": "https://real-life.org/rltp/v1#EnactmentBinding",
-      "page": "https://real-life.org/rltp/v1/#EnactmentBinding",
-      "label": {
-        "de": "",
-        "en": "EnactmentBinding"
-      },
-      "alt": [],
-      "definition": {
-        "de": "",
-        "en": "the digest, identical in both step credentials, tying them to one exchange descriptor"
-      },
-      "status": "specified",
-      "sources": [],
-      "symbols": [],
-      "facts": [
-        {
-          "text": {
-            "de": "definiert in",
-            "en": "defined in"
-          },
-          "target": "Encounter 5.4"
-        }
-      ],
-      "note": "",
-      "mappings": [],
-      "row": [
-        "rltp:EnactmentBinding"
-      ]
-    },
-    {
-      "key": "rltp:CredentialDigest",
-      "kind": "term",
-      "world": "rltp",
-      "iri": "https://real-life.org/rltp/v1#CredentialDigest",
-      "page": "https://real-life.org/rltp/v1/#CredentialDigest",
-      "label": {
-        "de": "",
-        "en": "CredentialDigest"
-      },
-      "alt": [],
-      "definition": {
-        "de": "",
-        "en": "the multibase multihash over JCS(document) of the complete credential including its proof"
-      },
-      "status": "specified",
-      "sources": [],
-      "symbols": [],
-      "facts": [
-        {
-          "text": {
-            "de": "definiert in",
-            "en": "defined in"
-          },
-          "target": "Encounter 2.2"
-        }
-      ],
-      "note": "",
-      "mappings": [],
-      "row": [
-        "rltp:CredentialDigest"
       ]
     },
     {

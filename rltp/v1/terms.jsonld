@@ -40,7 +40,7 @@
     }
    ],
    "dct:source": [
-    "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md#2-conventions-and-terminology"
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#2-conventions-and-terminology"
    ],
    "skos:editorialNote": "German text: draft, not normative"
   },
@@ -69,8 +69,8 @@
     }
    ],
    "dct:source": [
-    "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md#5-members",
-    "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#5-members",
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/membership-tasks.md"
    ],
    "skos:editorialNote": "German text: draft, not normative"
   },
@@ -99,9 +99,9 @@
     }
    ],
    "dct:source": [
-    "https://github.com/real-life-org/rltp-spec/blob/main/spec/encounter-layer.md#22-terms",
-    "https://github.com/real-life-org/rltp-spec/blob/main/spec/encounter-layer.md#44-the-enacting-anchor-fresh-always-normative",
-    "https://github.com/real-life-org/rltp-spec/blob/main/spec/identity-layer.md"
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#22-terms",
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#44-the-enacting-anchor-fresh-always-normative",
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/identity-layer.md"
    ],
    "skos:editorialNote": "German text: draft, not normative"
   },
@@ -130,7 +130,7 @@
     }
    ],
    "dct:source": [
-    "https://github.com/real-life-org/rltp-spec/blob/main/spec/encounter-layer.md#42-the-edge-is-the-relation-and-it-is-per-anchor-pair"
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#42-the-edge-is-the-relation-and-it-is-per-anchor-pair"
    ],
    "skos:editorialNote": "German text: draft, not normative"
   },
@@ -159,7 +159,7 @@
     }
    ],
    "dct:source": [
-    "https://github.com/real-life-org/rltp-spec/blob/main/spec/encounter-layer.md#7-the-encounter-credential"
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#7-the-encounter-credential"
    ],
    "skos:editorialNote": "German text: draft, not normative"
   },
@@ -188,8 +188,8 @@
     }
    ],
    "dct:source": [
-    "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md#8-visibility-modes",
-    "https://github.com/real-life-org/rltp-spec/blob/main/spec/network-visibility.md"
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#8-visibility-modes",
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/network-visibility.md"
    ],
    "skos:editorialNote": "German text: draft; the spec names the term only in its fragment table, definition still to be quoted"
   },
@@ -218,7 +218,366 @@
     }
    ],
    "dct:source": [
-    "https://github.com/real-life-org/rltp-spec/blob/main/spec/encounter-layer.md#22-terms"
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#22-terms"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:PairAnchor",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:broader": { "@id": "rltp:Anchor" },
+   "skos:prefLabel": [
+    {
+     "@value": "Paaranker",
+     "@language": "de"
+    },
+    {
+     "@value": "Pair anchor",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Ein für einen Begegnungsvorgang abgeleiteter Anker (DTG-Scope pairwise). Der Anker, unter dem eine Zeremonie durchgeführt wird, ist bei jedem Vorgang ein frischer Paaranker.",
+     "@language": "de"
+    },
+    {
+     "@value": "An anchor derived for one enactment (DTG scope pairwise). The enacting anchor of a ceremony is a fresh pair anchor at every enactment.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#22-terms",
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#44-the-enacting-anchor-fresh-always-normative"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:ContactCard",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Kontaktkarte",
+     "@language": "de"
+    },
+    {
+     "@value": "Contact card",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Signierte Selbstbeschreibung einer Person mit dem Material, um sie zu erkennen und zu erreichen, und im Begegnungsvorgang mit einer frischen Challenge; angezeigt (zum Scannen) oder gesendet (im Vorgang übertragen, nennt den Empfänger). Kein Credential.",
+     "@language": "de"
+    },
+    {
+     "@value": "A person's signed self-description carrying the material needed to recognize and reach them and, in an enactment, a fresh challenge; displayed (shown for scanning) or sent (transmitted inside an enactment, naming its recipient). Not a credential.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#22-terms",
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#6-the-contact-card"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:Challenge",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Challenge",
+     "@language": "de"
+    },
+    {
+     "@value": "Challenge",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Frischer, einmal verwendbarer Wert hoher Entropie, der in einer Kontaktkarte für einen Begegnungsvorgang reist. Ein Begriff; angezeigte und gesendete Karten unterscheiden sich nur im Lebenszyklus.",
+     "@language": "de"
+    },
+    {
+     "@value": "A fresh, single-use, high-entropy value carried in a contact card for one enactment. One concept; displayed and sent cards differ only in lifecycle.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#22-terms",
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#53-challenges"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:Ceremony",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Zeremonie",
+     "@language": "de"
+    },
+    {
+     "@value": "Ceremony",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Registrierte, versionierte Definition einer Begegnungsinteraktion einschließlich ihrer Zeitparameter.",
+     "@language": "de"
+    },
+    {
+     "@value": "A registered, versioned definition of an encounter interaction, including its time parameters.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#22-terms",
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#51-registered-ceremonies"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:Step",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Schritt",
+     "@language": "de"
+    },
+    {
+     "@value": "Step",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Eine Credential-Ausstellung innerhalb eines Begegnungsvorgangs.",
+     "@language": "de"
+    },
+    {
+     "@value": "One credential issuance within an enactment.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#22-terms"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:EnactmentBinding",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Vorgangsbindung",
+     "@language": "de"
+    },
+    {
+     "@value": "Enactment binding",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Der in beiden Schritt-Credentials eines Vorgangs identische Digest, der sie an einen Austauschdeskriptor bindet: Multihash über JCS von Zeremonie und beiden Challenges in aufsteigender Ordnung.",
+     "@language": "de"
+    },
+    {
+     "@value": "The digest, identical in both step credentials of an enactment, that ties them to one exchange descriptor: the multihash over JCS of the ceremony and both challenges in ascending order.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#22-terms",
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#54-the-enactment-binding"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:EnactmentRecord",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Vorgangsaufzeichnung",
+     "@language": "de"
+    },
+    {
+     "@value": "Enactment record",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Die dauerhafte lokale Aufzeichnung einer Partei über einen Begegnungsvorgang, vor der Ausstellung angelegt; die Aufzeichnungen sind zugleich die Geschichte verbrauchter Challenges.",
+     "@language": "de"
+    },
+    {
+     "@value": "A party's durable local record of an enactment, created before issuing; the records are also the consumed-challenge history.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#22-terms",
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#55-the-enactment-record"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:CredentialDigest",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Credential-Digest",
+     "@language": "de"
+    },
+    {
+     "@value": "Credential digest",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Der multibase-kodierte Multihash über JCS des vollständigen Credentials einschließlich seines Proofs.",
+     "@language": "de"
+    },
+    {
+     "@value": "The multibase-encoded multihash over JCS of the complete credential including its proof.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#22-terms"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:Bundle",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Bündel",
+     "@language": "de"
+    },
+    {
+     "@value": "Bundle",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Die Ein-Scan-Übertragung (gesendete Karte plus Schritt-Credential), spezifiziert als Delivery-Contract-Task encounter-bundle.",
+     "@language": "de"
+    },
+    {
+     "@value": "The one-scan transmission (sent card plus step credential), specified as the Delivery Contract task encounter-bundle.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#22-terms",
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/delivery-contract.md"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:IncomingEdge",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:broader": { "@id": "rltp:Edge" },
+   "skos:prefLabel": [
+    {
+     "@value": "Eingehende Kante",
+     "@language": "de"
+    },
+    {
+     "@value": "Incoming edge",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Eine Kante aus lokaler Sicht, wenn die Partei ein Credential der Gegenseite angenommen und selbst keines ausgestellt hat.",
+     "@language": "de"
+    },
+    {
+     "@value": "An edge, from a party's local view, when it has received the counterparty's credential and not issued its own.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#42-the-edge-is-the-relation-and-it-is-per-anchor-pair"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:OutgoingEdge",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:broader": { "@id": "rltp:Edge" },
+   "skos:prefLabel": [
+    {
+     "@value": "Ausgehende Kante",
+     "@language": "de"
+    },
+    {
+     "@value": "Outgoing edge",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Eine Kante aus lokaler Sicht, wenn die Partei ihr Credential ausgestellt und keines der Gegenseite angenommen hat.",
+     "@language": "de"
+    },
+    {
+     "@value": "An edge, from a party's local view, when it has issued its own credential and not received the counterparty's.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#42-the-edge-is-the-relation-and-it-is-per-anchor-pair"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:MutualEdge",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:broader": { "@id": "rltp:Edge" },
+   "skos:prefLabel": [
+    {
+     "@value": "Beidseitige Kante",
+     "@language": "de"
+    },
+    {
+     "@value": "Mutual edge",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Eine Kante aus lokaler Sicht, wenn die Partei für mindestens einen Vorgang sowohl ausgestellt als auch angenommen hat.",
+     "@language": "de"
+    },
+    {
+     "@value": "An edge, from a party's local view, when for at least one enactment it has both issued and received.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/encounter-layer.md#42-the-edge-is-the-relation-and-it-is-per-anchor-pair"
    ],
    "skos:editorialNote": "German text: draft, not normative"
   },
@@ -238,11 +597,11 @@
    ],
    "skos:definition": [
     {
-     "@value": "Vorgeschlagen: signierte, portable Aussage einer Person über Beitrag, Rolle, Fähigkeit oder Versprechen einer anderen, unabhängig prüfbar. Kandidat: DTG Endorsement Credential (VEC), also ein Statement Credential mit dem Prädikat endorses/1.",
+     "@value": "Vorgeschlagen: signierte, portable Aussage einer Person über Beitrag, Rolle, Fähigkeit oder Versprechen einer anderen, unabhängig prüfbar. Kandidat: Verifiable Endorsement Credential (VEC) der DTG, also ein Statement Credential mit dem Prädikat endorses/1.",
      "@language": "de"
     },
     {
-     "@value": "Proposed: a signed, portable statement by one person about another's contribution, role, skill or promise, independently verifiable. Candidate: DTG Endorsement Credential (VEC), i.e. a Statement Credential with predicate endorses/1.",
+     "@value": "Proposed: a signed, portable statement by one person about another's contribution, role, skill or promise, independently verifiable. Candidate: the DTG Verifiable Endorsement Credential (VEC), i.e. a Statement Credential with predicate endorses/1.",
      "@language": "en"
     }
    ],

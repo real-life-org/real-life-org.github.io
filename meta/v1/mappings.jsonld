@@ -81,6 +81,54 @@
    "@id": "rls:mirror",
    "skos:relatedMatch": "rls:multi-space-item",
    "skos:note": "Deliberately without counterpart in RLNP or RLTP: for the person it is simply a thing in several spaces; the mirror exists because the Trust Protocol partitions storage by access boundary. The protocol itself knows only groups and their replication."
+  },
+  {
+   "@id": "rltp:PairAnchor",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the fresh anchor a person uses for one enactment is pure protocol construction; for the person it is still the one relationship (RLNP Beziehung, mapped at rltp:Edge)."
+  },
+  {
+   "@id": "rltp:ContactCard",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the card carries what the counterpart needs to reach and recognize an anchor; the Stack shows a profile, which is the view of a person, not a delivery address."
+  },
+  {
+   "@id": "rltp:Challenge",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the fresh value each party shows during an enactment is a construction detail of the verification (mapped at rltp:Enactment)."
+  },
+  {
+   "@id": "rltp:Ceremony",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the registered form of an enactment (how the two parties see each other's challenges) is a construction detail of the verification (mapped at rltp:Enactment)."
+  },
+  {
+   "@id": "rltp:Step",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: one party's confirmation inside an enactment is a construction detail of the verification; the Stack and RLNP see the whole act."
+  },
+  {
+   "@id": "rltp:EnactmentBinding",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the digest that ties the two challenges together is construction, invisible to the person."
+  },
+  {
+   "@id": "rltp:EnactmentRecord",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: what a party keeps after its own step is local state of the protocol, not a thing in the network."
+  },
+  {
+   "@id": "rltp:CredentialDigest",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the content digest of an encounter credential is construction, invisible to the person."
+  },
+  {
+   "@id": "rltp:Bundle",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the delivery unit of the one-scan path is construction of the transport, invisible to the person."
+  },
+  {
+   "@id": "rltp:IncomingEdge",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: a direction state of rltp:Edge (only the counterpart has confirmed). For the person it is an unfinished verification; the Stack shows it as pending, not as a relationship."
+  },
+  {
+   "@id": "rltp:OutgoingEdge",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: a direction state of rltp:Edge (only this party has confirmed). For the person it is an unfinished verification; the Stack shows it as pending, not as a relationship."
+  },
+  {
+   "@id": "rltp:MutualEdge",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the state of rltp:Edge in which both parties have confirmed; this is the state RLNP Beziehung maps to."
   }
  ]
 }

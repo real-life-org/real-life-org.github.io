@@ -138,22 +138,22 @@
     {
       "name": "contact-card-0.25",
       "url": "https://real-life.org/rltp/v1/schemas/contact-card-0.25.schema.json",
-      "sha256": "f15283f390baad5edcf6a671365c81aa61127d612a8b6467253968545350dc76"
+      "sha256": "bb748bb1c903e10d2dc50822739e8341c77f3b4905a0b638d12d138a9ee932b7"
     },
     {
       "name": "contact-card",
       "url": "https://real-life.org/rltp/v1/schemas/contact-card.schema.json",
-      "sha256": "b1db4afde2c1181ec096c5187371f6f3836f75ffc8ee768143d3a31b425755fd"
+      "sha256": "2f671e64874a179ccdfc0ab0a3b712537ed2856f889d58c3309b2e6a61c0f9c4"
     },
     {
       "name": "encounter-credential-0.25",
       "url": "https://real-life.org/rltp/v1/schemas/encounter-credential-0.25.schema.json",
-      "sha256": "8e41a17c130d23d267db06462db53a224aaa779e9900fa4f2924b53f678edb61"
+      "sha256": "8a442026928f7cbade7e670ff5cb86e939e8fcfb80b212c4ff4094020aaec7e8"
     },
     {
       "name": "encounter-credential",
       "url": "https://real-life.org/rltp/v1/schemas/encounter-credential.schema.json",
-      "sha256": "b4d456663f1bf9657532c7fd57a1ad9ab19b7bc477d4c43d570fc98f5532caac"
+      "sha256": "0e56503af9fa8d22c128e6281f8105048b469aed33386302dc417e9384256088"
     },
     {
       "name": "rltp-delivery-document",
