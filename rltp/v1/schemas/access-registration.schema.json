@@ -1,8 +1,8 @@
 {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "$id": "https://real-life.org/rltp/v1/schemas/access-registration.schema.json",
- "title": "RLTP Service Registration (artifact 0.26, Access Layer section 7.3)",
- "description": "The versioned wire artifact by which a group registers at a service (trust-on-first-use binding genesisDigest -> view chain). Signature input = JCS serialization with sig omitted; sig MUST verify under the named identity field (the seq-0 service identity, which MUST also sign the seq-0 view). service names the ONE service this registration is for — a service MUST reject a registration not naming itself (no cross-service replay). Durations use the profile day/time subset with fixed-seconds arithmetic (Access 7.3); divergenceQuota is the retained-full-artifact bound of Access 7.3 obligation 5 (the digest skeleton is hard-bounded at 8 x divergenceQuota entries with mandatory compaction). Out-of-range values, missing fields, or a failing signature make the registration invalid — services MUST NOT repair or default them. New in 0.26 (the replication-seam castings; supersedes the never-instantiated interim 0.25): attestationKey, registrationGeneration, previousRegistration, authorizationRoot — the generation chain is the group-authorized service rebind; a replayed old registration cannot re-open a superseded generation.",
+ "title": "RLTP Service Registration (artifact 0.27, Access Layer section 7.3)",
+ "description": "The versioned wire artifact by which a group registers at a service (trust-on-first-use binding genesisDigest -> view chain). Signature input = JCS serialization with sig omitted; sig MUST verify under the named identity field (the seq-0 service identity, which MUST also sign the seq-0 view). service names the ONE service this registration is for — a service MUST reject a registration not naming itself (no cross-service replay). Durations use the profile day/time subset with fixed-seconds arithmetic (Access 7.3); divergenceQuota is the retained-full-artifact bound of Access 7.3 obligation 5 (the digest skeleton is hard-bounded at 8 x divergenceQuota entries with mandatory compaction). Out-of-range values, missing fields, or a failing signature make the registration invalid — services MUST NOT repair or default them. Fields attestationKey, registrationGeneration, previousRegistration, authorizationRoot carry the generation chain, the group-authorized service rebind; a replayed old registration cannot re-open a superseded generation. New in 0.27: the REQUIRED field class (blind | view | log) declares the service class, what the service may receive and learn of the group (Access 9.3, RLTP-ACC-9560/9570); a registration without it is invalid (RLTP-ACC-7330). Optional intakeBudget: the declared intake budget of RLTP-ACC-9535, a block { operations, bytes }.",
  "type": "object",
  "required": [
   "v",
@@ -12,6 +12,7 @@
   "identity",
   "service",
   "m",
+  "class",
   "stalenessBound",
   "terminalRetention",
   "divergenceQuota",
@@ -24,7 +25,7 @@
  "additionalProperties": false,
  "properties": {
   "v": {
-   "const": "rltp-access-registration/0.26"
+   "const": "rltp-access-registration/0.27"
   },
   "type": {
    "const": "service-registration"
@@ -49,6 +50,14 @@
    "const": 1,
    "description": "the initial quorum size is always 1 (the seq-0 identity seeds the chain); growth happens via the m field of later views (Access 7.3)"
   },
+  "class": {
+   "enum": [
+    "blind",
+    "view",
+    "log"
+   ],
+   "description": "the service class (Access 9.3): blind = ciphertext only; view = also authorization views (holds the view chain, 7.3); log = also the authority log, which the service materializes itself (RLTP-ACC-9545, 9570)"
+  },
   "stalenessBound": {
    "type": "string",
    "pattern": "^P([1-9]|[12][0-9]|30)D$",
@@ -63,6 +72,27 @@
    "minimum": 16,
    "maximum": 4096,
    "description": "bound on retained full view artifacts per group while fail-closed (Access 7.3 obligation 5); RECOMMENDED default 64"
+  },
+  "intakeBudget": {
+   "type": "object",
+   "required": [
+    "operations",
+    "bytes"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "operations": {
+     "type": "integer",
+     "minimum": 1,
+     "description": "the operations the service admits per presenter and group within one stalenessBound"
+    },
+    "bytes": {
+     "type": "integer",
+     "minimum": 1,
+     "description": "the bytes the service admits per presenter and group within one stalenessBound"
+    }
+   },
+   "description": "OPTIONAL: the declared intake bound of RLTP-ACC-9535, a block { operations, bytes } naming the operations and the bytes the service admits per presenter and group within one stalenessBound. A service that bounds its intake by size, rate or syntactic validity MUST declare it here, apply it per presenter and group, check only syntax and signature at intake, and admit on presentation every syntactically and cryptographically valid authority operation within it; it MUST NOT bound intake by the sender's membership or by the author of an authority operation. Absent: the service declares no bound."
   },
   "sig": {
    "type": "string",

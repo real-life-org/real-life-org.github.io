@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://real-life.org/rltp/v1/schemas/welcome.schema.json",
   "title": "RLTP Welcome (rltp-welcome/0.1, rltp-membership@0.16)",
-  "description": "The plaintext of a welcome seal (Membership Tasks section 4): binding fields (v, group, subject, accept) are owned by Membership Tasks and CLOSED — the receiver verifies them against the admitting operation; material is owned by the Access layer and PINNED (MO-4 discharged): the rltp-access-material/0.24 object of Access 9.5, validated against access-material.schema.json — the CURRENT epoch's key material per the adapter registration, current epoch only (history opens through the epoch-key lineage in the replicated log, never through the welcome; no implicit-capability blind exists — the implicit capability follows from membership itself, Access 6). The digest over JCS(this document) is committed in the admitting operation's body (admission.welcome), which is the welcome's one authenticity carrier. The welcome binds the ACCEPT digest, never the operation id — the id covers admission.welcome, so a back-pointer would be an unconstructible hash fixed point.",
+  "description": "The plaintext of a welcome seal (Membership Tasks section 4): binding fields (v, group, subject, accept) are owned by Membership Tasks and CLOSED — the receiver verifies them against the admitting operation; material is owned by the Access layer and PINNED (MO-4 discharged): the rltp-access-material object of Access 9.4, validated against access-material.schema.json — under rltp-access@0.54 the 0.25 form with keyState is produced (Access 11, RLTP-ACC-9362), and the 0.24 form Membership 0.16 section 4 pins is accepted without keyState, naming the key state of the most recent transition in the admission's ancestry, until the companion's pin advances (RLTP-ACC-11100) — the CURRENT epoch's key material per the adapter registration, current epoch only (history opens through the epoch-key lineage in the replicated log, never through the welcome; no implicit-capability blind exists — the implicit capability follows from membership itself, Access 6). The digest over JCS(this document) is committed in the admitting operation's body (admission.welcome), which is the welcome's one authenticity carrier. The welcome binds the ACCEPT digest, never the operation id — the id covers admission.welcome, so a back-pointer would be an unconstructible hash fixed point.",
   "type": "object",
   "required": ["v", "group", "subject", "accept", "material"],
   "additionalProperties": false,
@@ -20,12 +20,12 @@
         { "$ref": "https://real-life.org/rltp/v1/schemas/access-material.schema.json" },
         {
           "properties": {
-            "v": { "const": "rltp-access-material/0.24" }
+            "v": { "enum": ["rltp-access-material/0.25", "rltp-access-material/0.24"] }
           },
-          "description": "the welcome carries the material form, never the keydist form"
+          "description": "the welcome carries the material form, never the keydist form; 0.24 (without keyState) is accepted until the companion's pin advances (RLTP-ACC-11100)"
         }
       ],
-      "description": "Access-owned and pinned (MO-4 discharged): the rltp-access-material/0.24 object of Access 9.5 — current-epoch key material per the adapter registration"
+      "description": "Access-owned and pinned (MO-4 discharged): the rltp-access-material/0.25 object of Access 9.4 (with keyState) — current-epoch key material per the adapter registration; a receiver accepts rltp-access-material/0.24 without keyState as naming the key state of the most recent transition in the admission's ancestry, until the companion's pin advances (RLTP-ACC-11100)"
     }
   },
   "$defs": {

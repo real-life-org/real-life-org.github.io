@@ -582,6 +582,770 @@
    "skos:editorialNote": "German text: draft, not normative"
   },
   {
+   "@id": "rltp:AuthorityPort",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Autoritäts-Port",
+     "@language": "de"
+    },
+    {
+     "@value": "Authority port",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Der Teil der Zugangsschicht, der über Mitgliedschaft, Policy und Berechtigung entscheidet: Log, Materialisierung, Konfliktmatrix, Policy, Sichten. Nicht durch einen Adapter ersetzbar.",
+     "@language": "de"
+    },
+    {
+     "@value": "The part of the Access Layer that decides membership, policy and authorization: log, materialization, conflict matrix, policy, views. Not replaceable by an adapter.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#91-the-authority-port"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:KeyPort",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Schlüssel-Port",
+     "@language": "de"
+    },
+    {
+     "@value": "Key port",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Die Schnittstelle, über die ein registrierter Adapter Epochengeheimnisse erzeugt, die die Invarianten KV1 bis KV6 erfüllen.",
+     "@language": "de"
+    },
+    {
+     "@value": "The interface through which a registered adapter produces epoch secrets satisfying the invariants KV1 to KV6.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#92-the-key-port"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:Healing",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Heilung",
+     "@language": "de"
+    },
+    {
+     "@value": "Healing",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Die Korrektur der Schlüsselstruktur durch den Schlüssel-Port an die materialisierte Mitgliedschaft; das Log entscheidet, die Schlüssel folgen.",
+     "@language": "de"
+    },
+    {
+     "@value": "The key port's correction of its key structure to the materialized membership; the log decides, the keys follow.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#92-the-key-port"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:MemberAnchor",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Mitgliedsanker",
+     "@language": "de"
+    },
+    {
+     "@value": "Member anchor",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Der gruppenspezifische Kontextanker, unter dem ein Mitglied in einer Gruppe handelt (DTG-Geltungsbereich directed).",
+     "@language": "de"
+    },
+    {
+     "@value": "The per-group context anchor under which one member acts in one group (DTG scope directed).",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#51-identity"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:CommunityAnchor",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Gemeinschaftsanker",
+     "@language": "de"
+    },
+    {
+     "@value": "Community anchor",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Der Anker der persönlichen Gemeinschaft einer Person, ein gewöhnlicher Mitgliedsanker nach Identity §6, der als selbstgewählte beziehungsübergreifende Koordinate der Person dient; er erscheint in keinem Artefakt der Zugangsschicht außer innerhalb von member-mapping@1.",
+     "@language": "de"
+    },
+    {
+     "@value": "The anchor of a person's personal community, an ordinary member anchor of Identity §6, serving as the person's chosen cross-relationship coordinate; it appears in no artifact of the Access Layer except inside member-mapping@1.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#55-member-mapping1--the-deliberate-crossing-of-the-group-boundary",
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/identity-layer.md#6-context-labels-normative"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:DeviceCard",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Gerätekarte",
+     "@language": "de"
+    },
+    {
+     "@value": "Device card",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Die signierte Bindung des Schlüsselmaterials eines Geräts an den Mitgliedsanker der Person, der es gehört; steht im Autoritäts-Log.",
+     "@language": "de"
+    },
+    {
+     "@value": "The signed binding of one device's key material to the member anchor of the person it belongs to; recorded in the authority log.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#51-identity"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:Service",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Dienst",
+     "@language": "de"
+    },
+    {
+     "@value": "Service",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Eine Partei, die die Einträge einer Gruppe speichert und weiterleitet, ohne ihre Schlüssel zu halten; ihre Klasse (blind, view, log) ist die registrierte Aussage darüber, was sie von der Gruppe weiß.",
+     "@language": "de"
+    },
+    {
+     "@value": "A party that stores and forwards a group's items without holding its keys; its class (blind, view, log) is the registered statement of what it knows of the group.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#93-the-service"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:ServiceClass",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Dienstklasse",
+     "@language": "de"
+    },
+    {
+     "@value": "Service class",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Die bei der Registrierung erklärte Aussage, was ein Dienst von einer Gruppe weiß: blind (nur Chiffrat), view (auch Berechtigungssichten) oder log (auch das Autoritäts-Log). Die Wahl trifft die Gruppe.",
+     "@language": "de"
+    },
+    {
+     "@value": "The statement, declared at registration, of what a service knows of a group: blind (ciphertext only), view (also authorization views) or log (also the authority log). The group chooses.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#93-the-service"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:AuthorityLog",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Autoritätslog",
+     "@language": "de"
+    },
+    {
+     "@value": "Authority log",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Der nur anwachsende Operations-DAG, der in der Genesis-Operation wurzelt; die einzige Quelle des Berechtigungszustands.",
+     "@language": "de"
+    },
+    {
+     "@value": "The append-only operation DAG rooted in the genesis operation; the sole source of authorization state.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#31-one-log-one-truth"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:Operation",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Operation",
+     "@language": "de"
+    },
+    {
+     "@value": "Operation",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Ein signierter, kausal verankerter Umschlag.",
+     "@language": "de"
+    },
+    {
+     "@value": "A signed, causally anchored envelope.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#33-the-operation-envelope"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:Materialization",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Materialisierung",
+     "@language": "de"
+    },
+    {
+     "@value": "Materialization",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Die deterministische Ableitung des Gruppenzustands aus dem Log; ihr Ergebnis ist der materialisierte Zustand.",
+     "@language": "de"
+    },
+    {
+     "@value": "The deterministic derivation of group state from the log; its result is the materialized state.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#35-materialization",
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#36-concurrency-the-conflict-matrix"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:Canonical",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Kanonisch",
+     "@language": "de"
+    },
+    {
+     "@value": "Canonical",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Eine Operation ist kanonisch, wenn die Materialisierung an ihrer kausalen Position sie annimmt und keine Ergebnisregel aus 3.6 über sie verfügt.",
+     "@language": "de"
+    },
+    {
+     "@value": "An operation is canonical when materialization at its causal position accepts it and no outcome rule of 3.6 disposes of it.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#35-materialization",
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#36-concurrency-the-conflict-matrix"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:ReplicaBoundary",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Replikatgrenze",
+     "@language": "de"
+    },
+    {
+     "@value": "Replica boundary",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Die Menge der Parteien, die das replizierte Log der Gruppe bei einem gegebenen materialisierten Zustand halten und halten dürfen.",
+     "@language": "de"
+    },
+    {
+     "@value": "The set of parties holding, and entitled to hold, the group's replicated log at a given materialized state.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#22-terms",
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/membership-tasks.md#2-conventions-and-terminology"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:MaterializedState",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Materialisierter Zustand",
+     "@language": "de"
+    },
+    {
+     "@value": "Materialized state",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Der Gruppenzustand, den die deterministische Ableitung aus dem Log ergibt (Materialisierung).",
+     "@language": "de"
+    },
+    {
+     "@value": "The group state yielded by materialization, the deterministic derivation of group state from the log.",
+     "@language": "en"
+    }
+   ],
+   "skos:broader": { "@id": "rltp:Materialization" },
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#35-materialization",
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#36-concurrency-the-conflict-matrix"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:ForkedState",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Gegabelter Zustand",
+     "@language": "de"
+    },
+    {
+     "@value": "Forked state",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Das ausfallsichere Ergebnis der Materialisierung bei den Gabel-Paarungen aus 3.6: eine Policy-Änderung oder eine Auflösung nebenläufig zu einer Durchsetzungsoperation.",
+     "@language": "de"
+    },
+    {
+     "@value": "The fail-closed materialization outcome of the fork pairings that 3.6 names: a policy change or a dissolution concurrent with an enforcement operation.",
+     "@language": "en"
+    }
+   ],
+   "skos:broader": { "@id": "rltp:MaterializedState" },
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#36-concurrency-the-conflict-matrix"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:RetainedMembers",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Verbleibende Mitglieder",
+     "@language": "de"
+    },
+    {
+     "@value": "Retained members",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Die normativ berechnete Menge der Mitglieder, die das neue Epochengeheimnis einer Durchsetzungsoperation erreicht.",
+     "@language": "de"
+    },
+    {
+     "@value": "The normatively computed set of members an enforcement operation’s new epoch secret reaches.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#71-transitions-and-the-retained-set"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:PendingExit",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Ausstehender Austritt",
+     "@language": "de"
+    },
+    {
+     "@value": "Pending exit",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Der Zustand eines Mitglieds, dessen member.leave gemergt ist, dessen entlastender Übergang aber noch nicht.",
+     "@language": "de"
+    },
+    {
+     "@value": "The state of a member whose member.leave has merged but whose discharging transition has not.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#54-leave-pending-exit-and-dissolve"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:Policy",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Policy",
+     "@language": "de"
+    },
+    {
+     "@value": "Policy",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Gruppendefinierte Daten, die je Regelschlüssel angeben, welcher Nachweis die Entscheidungsregel der Gruppe erfüllt.",
+     "@language": "de"
+    },
+    {
+     "@value": "Group-defined data stating, per rule key, which proof satisfies the group’s decision rule.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#4-policy",
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#41-the-policy-object-rule-keys-and-the-defaults"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:PolicyProof",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Policy-Nachweis",
+     "@language": "de"
+    },
+    {
+     "@value": "Policy proof",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Das Material, an dem eine Operation gegen ihre Regel geprüft wird: die Menge ihrer Unterzeichner und die Menge der zulässigen Bürgschaften.",
+     "@language": "de"
+    },
+    {
+     "@value": "The material an operation is judged by against its rule: its signer set and its admissible vouch set.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#43-policy-proofs"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:KeyServiceDuty",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Schlüsseldienstpflicht",
+     "@language": "de"
+    },
+    {
+     "@value": "Key service duty",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Die stehende Pflicht der Mitglieder, einer Partei, der der materialisierte Zustand es zuspricht, prüfbares Schlüsselmaterial der aktuellen Epoche (erneut) zuzustellen.",
+     "@language": "de"
+    },
+    {
+     "@value": "The standing obligation of members to (re)deliver verifiable current-epoch key material to a party the materialized state entitles to it.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#53-admission-and-removal",
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#101-key-delivery01"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:Epoch",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Epoche",
+     "@language": "de"
+    },
+    {
+     "@value": "Epoch",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Ein nummerierter Abschnitt der Schlüsselwelt der Gruppe; Durchsetzung wirkt als Epochenübergang. Begriff wie in MLS (RFC 9420).",
+     "@language": "de"
+    },
+    {
+     "@value": "A numbered period of the group’s key world; enforcement takes effect as epoch transitions. Term aligned with MLS (RFC 9420).",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#7-epochs"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:EpochKeyLineage",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Epochenschlüssel-Linie",
+     "@language": "de"
+    },
+    {
+     "@value": "Epoch-key lineage",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Die Kette der Einträge je Übergang, mit der der Adapter linear/0.1 einen früheren Inhaltsschlüssel unter dem nächsten lesbar macht.",
+     "@language": "de"
+    },
+    {
+     "@value": "The chain of per-transition entries by which the adapter linear/0.1 makes a previous content key readable under the next.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#941-linear01"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:AuthorizationView",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Berechtigungssicht",
+     "@language": "de"
+    },
+    {
+     "@value": "Authorization view",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Das verkettete, per Quorum signierte Objekt, durch das ein Dienst der Klasse view die Epoche und die berechtigten Geräte-Identitäten einer Gruppe erfährt.",
+     "@language": "de"
+    },
+    {
+     "@value": "The chained, quorum-signed object by which a service of class view learns a group’s epoch and authorized device identities.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#73-authorization-views"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:PrivilegedOperation",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Privilegierte Operation",
+     "@language": "de"
+    },
+    {
+     "@value": "Privileged operation",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Eine Operation des geschlossenen Katalogs, jede mit Klasse (additiv, Durchsetzung, terminal), Epochenwirkung und geschlossenem Body-Profil.",
+     "@language": "de"
+    },
+    {
+     "@value": "An operation of the closed catalog, each with its class (additive, enforcement, terminal), epoch effect and closed body profile.",
+     "@language": "en"
+    }
+   ],
+   "skos:broader": { "@id": "rltp:Operation" },
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#45-privileged-operations-catalog-and-body-profiles"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:ImplicitCapability",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Implizite Befähigung",
+     "@language": "de"
+    },
+    {
+     "@value": "Implicit capability",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Das Lese- und Schreibrecht, das jedes Mitglied allein durch die Mitgliedschaft hat.",
+     "@language": "de"
+    },
+    {
+     "@value": "The read/write standing every member holds by membership alone.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#6-actions-and-the-implicit-capability"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
+   "@id": "rltp:Adapter",
+   "@type": "skos:Concept",
+   "skos:inScheme": "rltp:",
+   "skos:prefLabel": [
+    {
+     "@value": "Adapter",
+     "@language": "de"
+    },
+    {
+     "@value": "Adapter",
+     "@language": "en"
+    }
+   ],
+   "skos:definition": [
+    {
+     "@value": "Eine registrierte Bindung eines Schlüsselvereinbarungsverfahrens an den Schlüssel-Port.",
+     "@language": "de"
+    },
+    {
+     "@value": "A registered binding of one key-agreement procedure to the key port.",
+     "@language": "en"
+    }
+   ],
+   "dct:source": [
+    "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#94-registered-adapters"
+   ],
+   "skos:editorialNote": "German text: draft, not normative"
+  },
+  {
    "@id": "rltp:Attestation",
    "@type": "skos:Concept",
    "skos:inScheme": "rltp:",

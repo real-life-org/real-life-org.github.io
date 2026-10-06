@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://real-life.org/rltp/v1/schemas/access-material.schema.json",
-  "title": "RLTP Access key material (Access Layer 0.24 sections 7.1 and 9.5)",
-  "description": "The two plaintext shapes the adapter produces: rltp-access-material/0.24 (the welcome material of Membership section 4 — the MO-4 pin, adopted by Membership 0.9) and rltp-access-keydist/0.24 (the keydist/refresh plaintext of Access 7.1/10.1). Both forms carry the registered adapter id; keys is owned and CLOSED by the adapter registration. linear/0.1 carries exactly the content key — every further secret is DERIVED from it (HKDF info rltp/v1/epoch-secret/<genesis digest>), never transported, so the log's contentKeyCommitment authenticates all consensus-relevant material.",
+  "title": "RLTP Access key material (Access Layer 0.54 sections 9.4, 9.4.1, 9.4.2)",
+  "description": "The plaintext shapes the adapter produces and accepts under rltp-access@0.54 (Access 11): rltp-access-material/0.25 (the welcome material of Membership section 4, re-welcome/refresh-era material produced after its transition, and the beekem/0.1 key-delivery kind material, 9.4.2), rltp-access-keydist/0.25 (the per-device key distribution a transition commits to, Access 9.4.1/10.1), and, accepted only, the legacy rltp-access-material/0.24. keyState: REQUIRED in rltp-access-material/0.25 — a material object produced after its transition (welcome, re-welcome, refresh, recovery) names the key state its keys belong to (RLTP-ACC-9360, 9362): the oid: of the transition that created it (RLTP-ACC-9262), or, for a state an adapter derives by merging without a transition, the adapter's merge identifier (RLTP-ACC-9264: the multibase multihash over the JCS array, in unsigned bytewise order, of the ids of all transition-created key states it merges, directly or through earlier merges); the epoch number is a counter and never names a key state (RLTP-ACC-7042). The receiver verifies the material against the log's binding of exactly that key state (9362, 10110). FORBIDDEN in rltp-access-keydist/0.25: a keydist object the transition itself commits to carries no keyState, its key state being the committing transition (RLTP-ACC-9362, 3005 — naming it would make the operation id a fixpoint of its own content). rltp-access-material/0.24 without keyState is accepted in the welcome of Membership 0.16 until the companion's pin advances, naming the key state of the most recent transition in the admission's ancestry (RLTP-ACC-11100); the receiver supplies that identifier, the object carries none. Every form carries the registered adapter id (Access 11: linear/0.1, beekem/0.1); keys is owned and CLOSED by the adapter registration (RLTP-ACC-9200, 9360). linear/0.1 carries exactly the content key — every further secret is DERIVED from it (HKDF info rltp/v1/epoch-secret/<genesis digest>), never transported, so the log's contentKeyCommitment authenticates all consensus-relevant material; it cannot merge (9705), so its keyState is always a transition id. beekem/0.1 (experimental, 9.4.2) carries its key operation as bytes; Access 0.54 names no closed keys schema for it, so this transcription closes keys to { op } and is expected to change with the adapter version.",
   "type": "object",
   "required": [
     "v",
@@ -14,24 +14,88 @@
   "properties": {
     "v": {
       "enum": [
-        "rltp-access-material/0.24",
-        "rltp-access-keydist/0.24"
-      ]
+        "rltp-access-material/0.25",
+        "rltp-access-keydist/0.25",
+        "rltp-access-material/0.24"
+      ],
+      "description": "wire version (Access 11): rltp-access-material/0.25 with keyState, rltp-access-keydist/0.25 without it, rltp-access-material/0.24 (no keyState) accepted in the welcome only (RLTP-ACC-11100)"
     },
     "adapter": {
-      "type": "string",
-      "maxLength": 64,
-      "description": "the registered adapter id"
+      "enum": [
+        "linear/0.1",
+        "beekem/0.1"
+      ],
+      "description": "the registered adapter id (Access 9.4, 11); an unregistered adapter is a new identifier (RLTP-ACC-11040)"
     },
     "epoch": {
       "type": "integer",
-      "minimum": 0
+      "minimum": 0,
+      "description": "the epoch counter of the key state (RLTP-ACC-7040); a counter for views and monotonicity only, never the key state's identifier (7042) — at adoption it MUST equal the recipient's current epoch (10110)"
+    },
+    "keyState": {
+      "type": "string",
+      "pattern": "^(oid:[A-Za-z0-9_-]{42}[AEIMQUYcgkosw048]|u[A-Za-z0-9_-]{45}[AQgw]|z[1-9A-HJ-NP-Za-km-z]{44,48})$",
+      "description": "the identifier of the key state the keys belong to (RLTP-ACC-9362): the oid: of the transition that created it (RLTP-ACC-9262), or a merge identifier — the multibase multihash (u… base64url or z… base58btc, sha2-256) over the JCS array of the ids of the transition-created key states merged, directly or through earlier merges (RLTP-ACC-9264). REQUIRED in rltp-access-material/0.25, FORBIDDEN in rltp-access-keydist/0.25 and in rltp-access-material/0.24 (RLTP-ACC-9362, 11100). For the key-delivery kind material (beekem/0.1) the helper's current key state (RLTP-ACC-9897); the receiver checks it is the current key state of its own materialization, a historical one only to open history (9898, 10110)"
     },
     "keys": {
       "type": "object"
     }
   },
   "allOf": [
+    {
+      "if": {
+        "required": [
+          "v"
+        ],
+        "properties": {
+          "v": {
+            "const": "rltp-access-material/0.25"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "keyState"
+        ]
+      },
+      "description": "material produced after its transition names its key state (RLTP-ACC-9362)"
+    },
+    {
+      "if": {
+        "required": [
+          "v"
+        ],
+        "properties": {
+          "v": {
+            "const": "rltp-access-keydist/0.25"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "keyState": false
+        }
+      },
+      "description": "a keydist object the transition commits to carries no keyState; its key state is the committing transition (RLTP-ACC-9362, 3005)"
+    },
+    {
+      "if": {
+        "required": [
+          "v"
+        ],
+        "properties": {
+          "v": {
+            "const": "rltp-access-material/0.24"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "keyState": false
+        }
+      },
+      "description": "legacy 0.24 material carries no keyState; accepted in the welcome as naming the key state of the most recent transition in the admission's ancestry (RLTP-ACC-11100)"
+    },
     {
       "if": {
         "required": [
@@ -56,6 +120,42 @@
                 "type": "string",
                 "pattern": "^[A-Za-z0-9_-]{42}[AEIMQUYcgkosw048]$",
                 "description": "base64url (unpadded) 32-byte AES-256 content key; its commitment is the multihash over the raw 32 bytes (Access 7.1); the per-epoch secret is derived, never transported"
+              }
+            }
+          },
+          "keyState": {
+            "type": "string",
+            "pattern": "^oid:",
+            "description": "linear/0.1 cannot merge: every key state is the content key of one transition, named by that transition's id (RLTP-ACC-9705)"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "adapter"
+        ],
+        "properties": {
+          "adapter": {
+            "const": "beekem/0.1"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "keys": {
+            "type": "object",
+            "required": [
+              "op"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "op": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_-]+$",
+                "maxLength": 65536,
+                "description": "base64url (unpadded) bytes of the adapter's key operation (Access 9.4.2, RLTP-ACC-9870, 9890), addressed to the material's recipient; an enforcement operation's keyOpDigest is the multibase multihash over exactly the key-operation bytes. In the key-delivery kind material (RLTP-ACC-9897) it is a key operation freshly produced by the helper's device at the key state named in keyState that gives the requesting device a leaf or path there; the receiver checks that it applies to that key state under the adapter's rules and MUST NOT compare it with the keyOpDigest of any earlier operation (RLTP-ACC-9898). Transcription placeholder: Access 0.54 names no closed keys schema for beekem/0.1"
               }
             }
           }

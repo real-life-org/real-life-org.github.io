@@ -988,6 +988,715 @@
       ]
     },
     {
+      "key": "rltp:AuthorityPort",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#AuthorityPort",
+      "page": "https://real-life.org/rltp/v1/#AuthorityPort",
+      "label": {
+        "de": "Autoritäts-Port",
+        "en": "Authority port"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Der Teil der Zugangsschicht, der über Mitgliedschaft, Policy und Berechtigung entscheidet: Log, Materialisierung, Konfliktmatrix, Policy, Sichten. Nicht durch einen Adapter ersetzbar.",
+        "en": "The part of the Access Layer that decides membership, policy and authorization: log, materialization, conflict matrix, policy, views. Not replaceable by an adapter."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#91-the-authority-port"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the part of the Access Layer that decides membership, policy and authorization is internal protocol architecture. The person sees a circle and its members; the Stack sees a space (rltp:Group).",
+      "mappings": [],
+      "row": [
+        "rltp:AuthorityPort"
+      ]
+    },
+    {
+      "key": "rltp:KeyPort",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#KeyPort",
+      "page": "https://real-life.org/rltp/v1/#KeyPort",
+      "label": {
+        "de": "Schlüssel-Port",
+        "en": "Key port"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Die Schnittstelle, über die ein registrierter Adapter Epochengeheimnisse erzeugt, die die Invarianten KV1 bis KV6 erfüllen.",
+        "en": "The interface through which a registered adapter produces epoch secrets satisfying the invariants KV1 to KV6."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#92-the-key-port"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the interface through which an adapter produces epoch secrets is internal protocol architecture, invisible to the person and below the Stack's connector.",
+      "mappings": [],
+      "row": [
+        "rltp:KeyPort"
+      ]
+    },
+    {
+      "key": "rltp:Healing",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#Healing",
+      "page": "https://real-life.org/rltp/v1/#Healing",
+      "label": {
+        "de": "Heilung",
+        "en": "Healing"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Die Korrektur der Schlüsselstruktur durch den Schlüssel-Port an die materialisierte Mitgliedschaft; das Log entscheidet, die Schlüssel folgen.",
+        "en": "The key port's correction of its key structure to the materialized membership; the log decides, the keys follow."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#92-the-key-port"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the key port's correction of its key structure to the materialized membership is internal key management. For the person and the Stack membership simply holds.",
+      "mappings": [],
+      "row": [
+        "rltp:Healing"
+      ]
+    },
+    {
+      "key": "rltp:MemberAnchor",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#MemberAnchor",
+      "page": "https://real-life.org/rltp/v1/#MemberAnchor",
+      "label": {
+        "de": "Mitgliedsanker",
+        "en": "Member anchor"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Der gruppenspezifische Kontextanker, unter dem ein Mitglied in einer Gruppe handelt (DTG-Geltungsbereich directed).",
+        "en": "The per-group context anchor under which one member acts in one group (DTG scope directed)."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#51-identity"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the per-group anchor under which a member acts is protocol construction, like every anchor (RLNP Mensch, related at rltp:Anchor). For the person it is still the one member of the circle (rls:member, mapped at rltp:Member).",
+      "mappings": [],
+      "row": [
+        "rltp:MemberAnchor"
+      ]
+    },
+    {
+      "key": "rltp:CommunityAnchor",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#CommunityAnchor",
+      "page": "https://real-life.org/rltp/v1/#CommunityAnchor",
+      "label": {
+        "de": "Gemeinschaftsanker",
+        "en": "Community anchor"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Der Anker der persönlichen Gemeinschaft einer Person, ein gewöhnlicher Mitgliedsanker nach Identity §6, der als selbstgewählte beziehungsübergreifende Koordinate der Person dient; er erscheint in keinem Artefakt der Zugangsschicht außer innerhalb von member-mapping@1.",
+        "en": "The anchor of a person's personal community, an ordinary member anchor of Identity §6, serving as the person's chosen cross-relationship coordinate; it appears in no artifact of the Access Layer except inside member-mapping@1."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#55-member-mapping1--the-deliberate-crossing-of-the-group-boundary",
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/identity-layer.md#6-context-labels-normative"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: an ordinary member anchor that a person uses as a chosen cross-relationship coordinate is protocol construction, like every anchor (RLNP Mensch, related at rltp:Anchor). The Stack shows a profile, which is the view of a person, not an anchor.",
+      "mappings": [],
+      "row": [
+        "rltp:CommunityAnchor"
+      ]
+    },
+    {
+      "key": "rltp:DeviceCard",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#DeviceCard",
+      "page": "https://real-life.org/rltp/v1/#DeviceCard",
+      "label": {
+        "de": "Gerätekarte",
+        "en": "Device card"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Die signierte Bindung des Schlüsselmaterials eines Geräts an den Mitgliedsanker der Person, der es gehört; steht im Autoritäts-Log.",
+        "en": "The signed binding of one device's key material to the member anchor of the person it belongs to; recorded in the authority log."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#51-identity"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the signed binding of a device's key material to a member anchor is protocol construction. Neither RLNP nor the Stack distinguish a person's devices.",
+      "mappings": [],
+      "row": [
+        "rltp:DeviceCard"
+      ]
+    },
+    {
+      "key": "rltp:Service",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#Service",
+      "page": "https://real-life.org/rltp/v1/#Service",
+      "label": {
+        "de": "Dienst",
+        "en": "Service"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Eine Partei, die die Einträge einer Gruppe speichert und weiterleitet, ohne ihre Schlüssel zu halten; ihre Klasse (blind, view, log) ist die registrierte Aussage darüber, was sie von der Gruppe weiß.",
+        "en": "A party that stores and forwards a group's items without holding its keys; its class (blind, view, log) is the registered statement of what it knows of the group."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#93-the-service"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: a party that stores and forwards a group's items without holding its keys is protocol infrastructure. The network knows only people and circles; the Stack's connector is the app-side access to a backend, not a party the group registers.",
+      "mappings": [],
+      "row": [
+        "rltp:Service"
+      ]
+    },
+    {
+      "key": "rltp:ServiceClass",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#ServiceClass",
+      "page": "https://real-life.org/rltp/v1/#ServiceClass",
+      "label": {
+        "de": "Dienstklasse",
+        "en": "Service class"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Die bei der Registrierung erklärte Aussage, was ein Dienst von einer Gruppe weiß: blind (nur Chiffrat), view (auch Berechtigungssichten) oder log (auch das Autoritäts-Log). Die Wahl trifft die Gruppe.",
+        "en": "The statement, declared at registration, of what a service knows of a group: blind (ciphertext only), view (also authorization views) or log (also the authority log). The group chooses."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#93-the-service"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: what a service knows of a group (blind, view, log) is a registered protocol statement about rltp:Service, invisible to the person and the Stack.",
+      "mappings": [],
+      "row": [
+        "rltp:ServiceClass"
+      ]
+    },
+    {
+      "key": "rltp:AuthorityLog",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#AuthorityLog",
+      "page": "https://real-life.org/rltp/v1/#AuthorityLog",
+      "label": {
+        "de": "Autoritätslog",
+        "en": "Authority log"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Der nur anwachsende Operations-DAG, der in der Genesis-Operation wurzelt; die einzige Quelle des Berechtigungszustands.",
+        "en": "The append-only operation DAG rooted in the genesis operation; the sole source of authorization state."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#31-one-log-one-truth"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the append-only operation DAG that is the sole source of authorization state is protocol construction. The person sees who belongs to the circle; the Stack sees the members of a space.",
+      "mappings": [],
+      "row": [
+        "rltp:AuthorityLog"
+      ]
+    },
+    {
+      "key": "rltp:Operation",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#Operation",
+      "page": "https://real-life.org/rltp/v1/#Operation",
+      "label": {
+        "de": "Operation",
+        "en": "Operation"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Ein signierter, kausal verankerter Umschlag.",
+        "en": "A signed, causally anchored envelope."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#33-the-operation-envelope"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: a signed, causally anchored envelope in the authority log is protocol construction, invisible to the person and the Stack.",
+      "mappings": [],
+      "row": [
+        "rltp:Operation"
+      ]
+    },
+    {
+      "key": "rltp:Materialization",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#Materialization",
+      "page": "https://real-life.org/rltp/v1/#Materialization",
+      "label": {
+        "de": "Materialisierung",
+        "en": "Materialization"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Die deterministische Ableitung des Gruppenzustands aus dem Log; ihr Ergebnis ist der materialisierte Zustand.",
+        "en": "The deterministic derivation of group state from the log; its result is the materialized state."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#35-materialization",
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#36-concurrency-the-conflict-matrix"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the deterministic derivation of group state from the log is protocol construction. The person and the Stack see only its result: the circle or space with its members.",
+      "mappings": [],
+      "row": [
+        "rltp:Materialization"
+      ]
+    },
+    {
+      "key": "rltp:Canonical",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#Canonical",
+      "page": "https://real-life.org/rltp/v1/#Canonical",
+      "label": {
+        "de": "Kanonisch",
+        "en": "Canonical"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Eine Operation ist kanonisch, wenn die Materialisierung an ihrer kausalen Position sie annimmt und keine Ergebnisregel aus 3.6 über sie verfügt.",
+        "en": "An operation is canonical when materialization at its causal position accepts it and no outcome rule of 3.6 disposes of it."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#35-materialization",
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#36-concurrency-the-conflict-matrix"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: whether materialization accepts an operation at its causal position is a property inside the protocol's conflict resolution, invisible to the person and the Stack.",
+      "mappings": [],
+      "row": [
+        "rltp:Canonical"
+      ]
+    },
+    {
+      "key": "rltp:ReplicaBoundary",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#ReplicaBoundary",
+      "page": "https://real-life.org/rltp/v1/#ReplicaBoundary",
+      "label": {
+        "de": "Replikatgrenze",
+        "en": "Replica boundary"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Die Menge der Parteien, die das replizierte Log der Gruppe bei einem gegebenen materialisierten Zustand halten und halten dürfen.",
+        "en": "The set of parties holding, and entitled to hold, the group's replicated log at a given materialized state."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#22-terms",
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/membership-tasks.md#2-conventions-and-terminology"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the set of parties entitled to hold the group's replicated log is protocol construction. RLNP Sichtbarkeit is about what a person shows to whom, not about who stores the log.",
+      "mappings": [],
+      "row": [
+        "rltp:ReplicaBoundary"
+      ]
+    },
+    {
+      "key": "rltp:MaterializedState",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#MaterializedState",
+      "page": "https://real-life.org/rltp/v1/#MaterializedState",
+      "label": {
+        "de": "Materialisierter Zustand",
+        "en": "Materialized state"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Der Gruppenzustand, den die deterministische Ableitung aus dem Log ergibt (Materialisierung).",
+        "en": "The group state yielded by materialization, the deterministic derivation of group state from the log."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#35-materialization",
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#36-concurrency-the-conflict-matrix"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the group state yielded by materialization is protocol construction; the person sees the circle, the Stack the space (rltp:Group), not a derived state.",
+      "mappings": [],
+      "row": [
+        "rltp:MaterializedState"
+      ]
+    },
+    {
+      "key": "rltp:ForkedState",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#ForkedState",
+      "page": "https://real-life.org/rltp/v1/#ForkedState",
+      "label": {
+        "de": "Gegabelter Zustand",
+        "en": "Forked state"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Das ausfallsichere Ergebnis der Materialisierung bei den Gabel-Paarungen aus 3.6: eine Policy-Änderung oder eine Auflösung nebenläufig zu einer Durchsetzungsoperation.",
+        "en": "The fail-closed materialization outcome of the fork pairings that 3.6 names: a policy change or a dissolution concurrent with an enforcement operation."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#36-concurrency-the-conflict-matrix"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: a fail-closed outcome of materialization and a narrower case of rltp:MaterializedState, arising when a policy change or dissolution runs concurrent with an enforcement operation. It is conflict handling inside the protocol, invisible to the person and the Stack.",
+      "mappings": [],
+      "row": [
+        "rltp:ForkedState"
+      ]
+    },
+    {
+      "key": "rltp:RetainedMembers",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#RetainedMembers",
+      "page": "https://real-life.org/rltp/v1/#RetainedMembers",
+      "label": {
+        "de": "Verbleibende Mitglieder",
+        "en": "Retained members"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Die normativ berechnete Menge der Mitglieder, die das neue Epochengeheimnis einer Durchsetzungsoperation erreicht.",
+        "en": "The normatively computed set of members an enforcement operation’s new epoch secret reaches."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#71-transitions-and-the-retained-set"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the computed set of members an enforcement operation's new epoch secret reaches is key-management construction. For the person and the Stack the circle simply keeps its members (rls:member, mapped at rltp:Member).",
+      "mappings": [],
+      "row": [
+        "rltp:RetainedMembers"
+      ]
+    },
+    {
+      "key": "rltp:PendingExit",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#PendingExit",
+      "page": "https://real-life.org/rltp/v1/#PendingExit",
+      "label": {
+        "de": "Ausstehender Austritt",
+        "en": "Pending exit"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Der Zustand eines Mitglieds, dessen member.leave gemergt ist, dessen entlastender Übergang aber noch nicht.",
+        "en": "The state of a member whose member.leave has merged but whose discharging transition has not."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#54-leave-pending-exit-and-dissolve"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the state between a merged member.leave and its discharging transition is protocol construction. For the person leaving a circle is one act; the Stack has no intermediate state for it.",
+      "mappings": [],
+      "row": [
+        "rltp:PendingExit"
+      ]
+    },
+    {
+      "key": "rltp:Policy",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#Policy",
+      "page": "https://real-life.org/rltp/v1/#Policy",
+      "label": {
+        "de": "Policy",
+        "en": "Policy"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Gruppendefinierte Daten, die je Regelschlüssel angeben, welcher Nachweis die Entscheidungsregel der Gruppe erfüllt.",
+        "en": "Group-defined data stating, per rule key, which proof satisfies the group’s decision rule."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#4-policy",
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#41-the-policy-object-rule-keys-and-the-defaults"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: group-defined data stating which proof satisfies the group's decision rule is protocol construction. RLNP lets a circle choose its own form and decisions without encoding them as rules; the Stack has no policy object.",
+      "mappings": [],
+      "row": [
+        "rltp:Policy"
+      ]
+    },
+    {
+      "key": "rltp:PolicyProof",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#PolicyProof",
+      "page": "https://real-life.org/rltp/v1/#PolicyProof",
+      "label": {
+        "de": "Policy-Nachweis",
+        "en": "Policy proof"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Das Material, an dem eine Operation gegen ihre Regel geprüft wird: die Menge ihrer Unterzeichner und die Menge der zulässigen Bürgschaften.",
+        "en": "The material an operation is judged by against its rule: its signer set and its admissible vouch set."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#43-policy-proofs"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the signer set and vouch set an operation is judged by is construction of rltp:Policy, invisible to the person and the Stack.",
+      "mappings": [],
+      "row": [
+        "rltp:PolicyProof"
+      ]
+    },
+    {
+      "key": "rltp:KeyServiceDuty",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#KeyServiceDuty",
+      "page": "https://real-life.org/rltp/v1/#KeyServiceDuty",
+      "label": {
+        "de": "Schlüsseldienstpflicht",
+        "en": "Key service duty"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Die stehende Pflicht der Mitglieder, einer Partei, der der materialisierte Zustand es zuspricht, prüfbares Schlüsselmaterial der aktuellen Epoche (erneut) zuzustellen.",
+        "en": "The standing obligation of members to (re)deliver verifiable current-epoch key material to a party the materialized state entitles to it."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#53-admission-and-removal",
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#101-key-delivery01"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the members' standing obligation to (re)deliver current-epoch key material is a duty inside the protocol's key management. For the person and the Stack entitled members simply can read.",
+      "mappings": [],
+      "row": [
+        "rltp:KeyServiceDuty"
+      ]
+    },
+    {
+      "key": "rltp:Epoch",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#Epoch",
+      "page": "https://real-life.org/rltp/v1/#Epoch",
+      "label": {
+        "de": "Epoche",
+        "en": "Epoch"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Ein nummerierter Abschnitt der Schlüsselwelt der Gruppe; Durchsetzung wirkt als Epochenübergang. Begriff wie in MLS (RFC 9420).",
+        "en": "A numbered period of the group’s key world; enforcement takes effect as epoch transitions. Term aligned with MLS (RFC 9420)."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#7-epochs"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: a numbered period of the group's key world, aligned with MLS, is key-management construction. Neither RLNP nor the Stack divide a circle or space into key periods.",
+      "mappings": [],
+      "row": [
+        "rltp:Epoch"
+      ]
+    },
+    {
+      "key": "rltp:EpochKeyLineage",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#EpochKeyLineage",
+      "page": "https://real-life.org/rltp/v1/#EpochKeyLineage",
+      "label": {
+        "de": "Epochenschlüssel-Linie",
+        "en": "Epoch-key lineage"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Die Kette der Einträge je Übergang, mit der der Adapter linear/0.1 einen früheren Inhaltsschlüssel unter dem nächsten lesbar macht.",
+        "en": "The chain of per-transition entries by which the adapter linear/0.1 makes a previous content key readable under the next."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#941-linear01"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the chain of per-transition entries by which the adapter linear/0.1 keeps earlier content keys readable is construction of one adapter (rltp:Adapter), invisible to the person and the Stack.",
+      "mappings": [],
+      "row": [
+        "rltp:EpochKeyLineage"
+      ]
+    },
+    {
+      "key": "rltp:AuthorizationView",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#AuthorizationView",
+      "page": "https://real-life.org/rltp/v1/#AuthorizationView",
+      "label": {
+        "de": "Berechtigungssicht",
+        "en": "Authorization view"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Das verkettete, per Quorum signierte Objekt, durch das ein Dienst der Klasse view die Epoche und die berechtigten Geräte-Identitäten einer Gruppe erfährt.",
+        "en": "The chained, quorum-signed object by which a service of class view learns a group’s epoch and authorized device identities."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#73-authorization-views"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the quorum-signed object by which a service of class view learns a group's epoch and authorized devices is protocol infrastructure (rltp:Service), invisible to the person and the Stack.",
+      "mappings": [],
+      "row": [
+        "rltp:AuthorizationView"
+      ]
+    },
+    {
+      "key": "rltp:PrivilegedOperation",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#PrivilegedOperation",
+      "page": "https://real-life.org/rltp/v1/#PrivilegedOperation",
+      "label": {
+        "de": "Privilegierte Operation",
+        "en": "Privileged operation"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Eine Operation des geschlossenen Katalogs, jede mit Klasse (additiv, Durchsetzung, terminal), Epochenwirkung und geschlossenem Body-Profil.",
+        "en": "An operation of the closed catalog, each with its class (additive, enforcement, terminal), epoch effect and closed body profile."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#45-privileged-operations-catalog-and-body-profiles"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: an operation of the closed catalog and a narrower case of rltp:Operation, each with its class, epoch effect and body profile. Admitting or removing a member is one act for the person and the Stack; the operation is its construction.",
+      "mappings": [],
+      "row": [
+        "rltp:PrivilegedOperation"
+      ]
+    },
+    {
+      "key": "rltp:ImplicitCapability",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#ImplicitCapability",
+      "page": "https://real-life.org/rltp/v1/#ImplicitCapability",
+      "label": {
+        "de": "Implizite Befähigung",
+        "en": "Implicit capability"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Das Lese- und Schreibrecht, das jedes Mitglied allein durch die Mitgliedschaft hat.",
+        "en": "The read/write standing every member holds by membership alone."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#6-actions-and-the-implicit-capability"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: the read/write standing every member holds by membership alone is how the protocol states that belonging is enough. The Stack expresses it through membership itself (rls:member, mapped at rltp:Member); RLNP knows no membership list to attach it to.",
+      "mappings": [],
+      "row": [
+        "rltp:ImplicitCapability"
+      ]
+    },
+    {
+      "key": "rltp:Adapter",
+      "kind": "term",
+      "world": "rltp",
+      "iri": "https://real-life.org/rltp/v1#Adapter",
+      "page": "https://real-life.org/rltp/v1/#Adapter",
+      "label": {
+        "de": "Adapter",
+        "en": "Adapter"
+      },
+      "alt": [],
+      "definition": {
+        "de": "Eine registrierte Bindung eines Schlüsselvereinbarungsverfahrens an den Schlüssel-Port.",
+        "en": "A registered binding of one key-agreement procedure to the key port."
+      },
+      "status": "specified",
+      "sources": [
+        "https://github.com/real-life-org/trust-protocol/blob/main/spec/access-layer.md#94-registered-adapters"
+      ],
+      "symbols": [],
+      "facts": [],
+      "note": "Deliberately without counterpart in RLNP or the Stack: a registered binding of a key-agreement procedure to the key port is internal protocol architecture, invisible to the person. The Stack's backend binding is the connector, which is pure Stack construction and unrelated.",
+      "mappings": [],
+      "row": [
+        "rltp:Adapter"
+      ]
+    },
+    {
       "key": "rltp:Attestation",
       "kind": "term",
       "world": "rltp",
@@ -1674,7 +2383,7 @@
             "de": "Profil",
             "en": "profile"
           },
-          "target": "rltp-access@0.24"
+          "target": "rltp-access@0.54"
         },
         {
           "text": {
@@ -1889,7 +2598,7 @@
             "de": "Profil",
             "en": "profile"
           },
-          "target": "rltp-access@0.24"
+          "target": "rltp-access@0.54"
         },
         {
           "text": {

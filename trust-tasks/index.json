@@ -23,7 +23,7 @@
         "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/membership-tasks.md"
       },
       "schema": "https://real-life.org/trust-tasks/access-operation/0.1/schema.json",
-      "schemaSha256": "f70824cc329aa3771503bd369b7bbdec23c0443bce9000d92ca393f411feeaba",
+      "schemaSha256": "610ac014510883293a391a831dfc19c8abe249b3b10a2588adab908708667175",
       "documentation": "https://real-life.org/trust-tasks/access-operation/0.1/"
     },
     {
@@ -75,7 +75,7 @@
       "type": "https://real-life.org/trust-tasks/key-delivery/0.1",
       "name": "key-delivery",
       "version": "0.1",
-      "profile": "rltp-access@0.24",
+      "profile": "rltp-access@0.54",
       "summary": "Epoch key material to a specific party, and the authenticated request for it: transition key envelopes, welcomes and re-welcomes, refreshes under the key service duty.",
       "definedIn": {
         "specification": "RLTP Access Layer",
@@ -83,7 +83,7 @@
         "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md"
       },
       "schema": "https://real-life.org/trust-tasks/key-delivery/0.1/schema.json",
-      "schemaSha256": "d1df384f76f7200317d186a5e9be4c3a413e58cadf27639c221051b994a1bda3",
+      "schemaSha256": "04eedd07240e204b480bb5266bac9e38eb7f1620dab5001c9b0f9350a6bc7159",
       "documentation": "https://real-life.org/trust-tasks/key-delivery/0.1/"
     },
     {
@@ -150,7 +150,7 @@
       "type": "https://real-life.org/trust-tasks/removal-notice/0.1",
       "name": "removal-notice",
       "version": "0.1",
-      "profile": "rltp-access@0.24",
+      "profile": "rltp-access@0.54",
       "summary": "The compact notice a removed member is owed: it states the removal without carrying the transition-bearing envelope, which never crosses the replica boundary.",
       "definedIn": {
         "specification": "RLTP Access Layer",
@@ -158,7 +158,7 @@
         "url": "https://github.com/real-life-org/rltp-spec/blob/main/spec/access-layer.md"
       },
       "schema": "https://real-life.org/trust-tasks/removal-notice/0.1/schema.json",
-      "schemaSha256": "8d497897d910d83e309c300031d9afec223aa03d95056f8310de2b820bef5fc6",
+      "schemaSha256": "92daa937cd614d2da3c07f8f45076dee7865d08e7d3bed7aa0a9cf8791d9b35e",
       "documentation": "https://real-life.org/trust-tasks/removal-notice/0.1/"
     }
   ]

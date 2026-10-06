@@ -129,6 +129,110 @@
   {
    "@id": "rltp:MutualEdge",
    "skos:note": "Deliberately without counterpart in RLNP or the Stack: the state of rltp:Edge in which both parties have confirmed; this is the state RLNP Beziehung maps to."
+  },
+  {
+   "@id": "rltp:AuthorityPort",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the part of the Access Layer that decides membership, policy and authorization is internal protocol architecture. The person sees a circle and its members; the Stack sees a space (rltp:Group)."
+  },
+  {
+   "@id": "rltp:KeyPort",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the interface through which an adapter produces epoch secrets is internal protocol architecture, invisible to the person and below the Stack's connector."
+  },
+  {
+   "@id": "rltp:Healing",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the key port's correction of its key structure to the materialized membership is internal key management. For the person and the Stack membership simply holds."
+  },
+  {
+   "@id": "rltp:MemberAnchor",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the per-group anchor under which a member acts is protocol construction, like every anchor (RLNP Mensch, related at rltp:Anchor). For the person it is still the one member of the circle (rls:member, mapped at rltp:Member)."
+  },
+  {
+   "@id": "rltp:CommunityAnchor",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: an ordinary member anchor that a person uses as a chosen cross-relationship coordinate is protocol construction, like every anchor (RLNP Mensch, related at rltp:Anchor). The Stack shows a profile, which is the view of a person, not an anchor."
+  },
+  {
+   "@id": "rltp:DeviceCard",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the signed binding of a device's key material to a member anchor is protocol construction. Neither RLNP nor the Stack distinguish a person's devices."
+  },
+  {
+   "@id": "rltp:Service",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: a party that stores and forwards a group's items without holding its keys is protocol infrastructure. The network knows only people and circles; the Stack's connector is the app-side access to a backend, not a party the group registers."
+  },
+  {
+   "@id": "rltp:ServiceClass",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: what a service knows of a group (blind, view, log) is a registered protocol statement about rltp:Service, invisible to the person and the Stack."
+  },
+  {
+   "@id": "rltp:AuthorityLog",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the append-only operation DAG that is the sole source of authorization state is protocol construction. The person sees who belongs to the circle; the Stack sees the members of a space."
+  },
+  {
+   "@id": "rltp:Operation",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: a signed, causally anchored envelope in the authority log is protocol construction, invisible to the person and the Stack."
+  },
+  {
+   "@id": "rltp:Materialization",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the deterministic derivation of group state from the log is protocol construction. The person and the Stack see only its result: the circle or space with its members."
+  },
+  {
+   "@id": "rltp:Canonical",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: whether materialization accepts an operation at its causal position is a property inside the protocol's conflict resolution, invisible to the person and the Stack."
+  },
+  {
+   "@id": "rltp:ReplicaBoundary",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the set of parties entitled to hold the group's replicated log is protocol construction. RLNP Sichtbarkeit is about what a person shows to whom, not about who stores the log."
+  },
+  {
+   "@id": "rltp:MaterializedState",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the group state yielded by materialization is protocol construction; the person sees the circle, the Stack the space (rltp:Group), not a derived state."
+  },
+  {
+   "@id": "rltp:ForkedState",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: a fail-closed outcome of materialization and a narrower case of rltp:MaterializedState, arising when a policy change or dissolution runs concurrent with an enforcement operation. It is conflict handling inside the protocol, invisible to the person and the Stack."
+  },
+  {
+   "@id": "rltp:RetainedMembers",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the computed set of members an enforcement operation's new epoch secret reaches is key-management construction. For the person and the Stack the circle simply keeps its members (rls:member, mapped at rltp:Member)."
+  },
+  {
+   "@id": "rltp:PendingExit",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the state between a merged member.leave and its discharging transition is protocol construction. For the person leaving a circle is one act; the Stack has no intermediate state for it."
+  },
+  {
+   "@id": "rltp:Policy",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: group-defined data stating which proof satisfies the group's decision rule is protocol construction. RLNP lets a circle choose its own form and decisions without encoding them as rules; the Stack has no policy object."
+  },
+  {
+   "@id": "rltp:PolicyProof",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the signer set and vouch set an operation is judged by is construction of rltp:Policy, invisible to the person and the Stack."
+  },
+  {
+   "@id": "rltp:KeyServiceDuty",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the members' standing obligation to (re)deliver current-epoch key material is a duty inside the protocol's key management. For the person and the Stack entitled members simply can read."
+  },
+  {
+   "@id": "rltp:Epoch",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: a numbered period of the group's key world, aligned with MLS, is key-management construction. Neither RLNP nor the Stack divide a circle or space into key periods."
+  },
+  {
+   "@id": "rltp:EpochKeyLineage",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the chain of per-transition entries by which the adapter linear/0.1 keeps earlier content keys readable is construction of one adapter (rltp:Adapter), invisible to the person and the Stack."
+  },
+  {
+   "@id": "rltp:AuthorizationView",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the quorum-signed object by which a service of class view learns a group's epoch and authorized devices is protocol infrastructure (rltp:Service), invisible to the person and the Stack."
+  },
+  {
+   "@id": "rltp:PrivilegedOperation",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: an operation of the closed catalog and a narrower case of rltp:Operation, each with its class, epoch effect and body profile. Admitting or removing a member is one act for the person and the Stack; the operation is its construction."
+  },
+  {
+   "@id": "rltp:ImplicitCapability",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: the read/write standing every member holds by membership alone is how the protocol states that belonging is enough. The Stack expresses it through membership itself (rls:member, mapped at rltp:Member); RLNP knows no membership list to attach it to."
+  },
+  {
+   "@id": "rltp:Adapter",
+   "skos:note": "Deliberately without counterpart in RLNP or the Stack: a registered binding of a key-agreement procedure to the key port is internal protocol architecture, invisible to the person. The Stack's backend binding is the connector, which is pure Stack construction and unrelated."
   }
  ]
 }

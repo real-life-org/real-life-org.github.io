@@ -118,17 +118,17 @@
     {
       "name": "access-material",
       "url": "https://real-life.org/rltp/v1/schemas/access-material.schema.json",
-      "sha256": "71c2360c7138418ba398595634bcceff728802ab199c11569745f7a4d82ba29f"
+      "sha256": "cac257a57b0e47c3bbcf1ab7096d6e7dfb200c4960ec5a859649e46d8084ad65"
     },
     {
       "name": "access-operation-envelope",
       "url": "https://real-life.org/rltp/v1/schemas/access-operation-envelope.schema.json",
-      "sha256": "3786efa6ae507aead12f5b0ab40615f3e9562b401a5f60ff1bbfc21373e7a1a6"
+      "sha256": "105869168e31591eb0edac38e6bebafea758cc8ece9fbdf83d089df7cd3623d6"
     },
     {
       "name": "access-registration",
       "url": "https://real-life.org/rltp/v1/schemas/access-registration.schema.json",
-      "sha256": "231e2388dc864343e368b4288011999b2dbb72d5700ecd9ed7dea359243ec30c"
+      "sha256": "a779c3f47d5e0d12095fa4d6ac8ffbf0cf7801f4adce1871484193f8b2a21293"
     },
     {
       "name": "authorization-view",
@@ -168,7 +168,7 @@
     {
       "name": "welcome",
       "url": "https://real-life.org/rltp/v1/schemas/welcome.schema.json",
-      "sha256": "635510250812c033e1f8d3ff02c0be15717c8b3ee66615accc1b6319a4299a92"
+      "sha256": "b460f89eb78b95dcd277793e636107e05208273964a227daf64da1c30bdbacc2"
     }
   ],
   "taskTypeRegistry": "https://real-life.org/trust-tasks/index.json"
