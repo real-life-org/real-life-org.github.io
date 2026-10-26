@@ -133,8 +133,8 @@ h2+p.muted{margin:-6px 0 14px;font-size:14px}
 // ── words of the shell ────────────────────────────────────────────────────
 export const NAV = { en: [['/', 'Overview'], ['/terms/', 'Dictionary'], ['/#identifiers', 'Identifiers']], de: [['/de/', 'Überblick'], ['/de/terms/', 'Wörterbuch'], ['/de/#identifiers', 'Kennungen']] }
 const S = {
-  en: { nav: 'Main navigation', search: 'Search…', nores: 'Nothing matches the search.', scheme: 'Colour scheme', toDark: 'Switch to dark', toLight: 'Switch to light', github: 'real-life-org on GitHub', otherLang: 'Deutsche Fassung', generated: 'generated from', and: 'and', byHand: 'nothing here is written by hand' },
-  de: { nav: 'Hauptnavigation', search: 'Suchen…', nores: 'Nichts passt zur Suche.', scheme: 'Farbschema', toDark: 'Zu Dunkel wechseln', toLight: 'Zu Hell wechseln', github: 'real-life-org auf GitHub', otherLang: 'English version', generated: 'erzeugt aus', and: 'und', byHand: 'nichts hier ist von Hand geschrieben' },
+  en: { nav: 'Main navigation', search: 'Search…', nores: 'Nothing matches the search.', scheme: 'Colour scheme', toDark: 'Switch to dark', toLight: 'Switch to light', github: 'real-life-org on GitHub', otherLang: 'Deutsche Fassung', generated: 'generated from', and: 'and', byHand: 'nothing here is written by hand', licenses: 'content keeps the license of its source: <a href="https://github.com/real-life-org/trust-protocol#license">trust-protocol</a> CC BY 4.0 / Apache-2.0, <a href="https://github.com/real-life-org/real-life-network-protocol#lizenz">RLNP</a> and <a href="https://github.com/real-life-org/meta#license">meta</a> CC BY 4.0, <a href="https://github.com/real-life-org/real-life-stack/blob/master/LICENSE">RLS</a> MIT; © Anton Tranelis and contributors' },
+  de: { nav: 'Hauptnavigation', search: 'Suchen…', nores: 'Nichts passt zur Suche.', scheme: 'Farbschema', toDark: 'Zu Dunkel wechseln', toLight: 'Zu Hell wechseln', github: 'real-life-org auf GitHub', otherLang: 'English version', generated: 'erzeugt aus', and: 'und', byHand: 'nichts hier ist von Hand geschrieben', licenses: 'Inhalte stehen unter der Lizenz ihrer Quelle: <a href="https://github.com/real-life-org/trust-protocol#license">trust-protocol</a> CC BY 4.0 / Apache-2.0, <a href="https://github.com/real-life-org/real-life-network-protocol#lizenz">RLNP</a> und <a href="https://github.com/real-life-org/meta#license">meta</a> CC BY 4.0, <a href="https://github.com/real-life-org/real-life-stack/blob/master/LICENSE">RLS</a> MIT; © Anton Tranelis und Mitwirkende' },
 }
 export const WORLD_NAME = { en: { rlnp: 'Network', rls: 'Stack', rltp: 'Trust Protocol', task: 'Trust Task', meta: 'Register' }, de: { rlnp: 'Netzwerk', rls: 'Stack', rltp: 'Trust Protocol', task: 'Trust Task', meta: 'Register' } }
 
@@ -166,7 +166,7 @@ ${search === true ? box : `<form action="${root}terms/" method="get" style="disp
 <main>
 ${body}
 </main>
-<footer class="site-footer"><div><span>real-life.org</span><a href="https://github.com/real-life-org">real-life-org</a><span>${s.generated} <a href="https://github.com/real-life-org/rltp-spec">rltp-spec</a> ${s.and} <a href="https://github.com/real-life-org/meta">meta</a>; ${s.byHand}</span></div></footer>
+<footer class="site-footer"><div><span>real-life.org</span><a href="https://github.com/real-life-org">real-life-org</a><span>${s.generated} <a href="https://github.com/real-life-org/rltp-spec">rltp-spec</a> ${s.and} <a href="https://github.com/real-life-org/meta">meta</a>; ${s.byHand}</span><span>${s.licenses}</span></div></footer>
 ${themeScript(l)}${search === true ? SEARCH_SCRIPT : ''}${script}</body></html>
 `
 }
